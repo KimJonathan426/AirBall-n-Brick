@@ -10,7 +10,15 @@ module.exports = (sequelize, DataTypes) => {
     price: DataTypes.DECIMAL
   }, {});
   Spot.associate = function(models) {
-    // associations can be defined here
+    Spot.hasMany(models.Image, {
+      foreignKey: 'spotId'
+    })
+    Spot.hasMany(models.Review, {
+      foreignKey: 'spotId'
+    })
+    Spot.belongsTo(models.User, {
+      foreignKey: 'userId'
+    })
   };
   return Spot;
 };
