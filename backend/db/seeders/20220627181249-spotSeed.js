@@ -64,6 +64,15 @@ module.exports = {
         price: 60000
       },
       {
+        userId: 7,
+        address: '280 W 155th St',
+        city: 'New York City',
+        state: 'New York',
+        country: 'United States of America',
+        name: 'Rucker Park',
+        price: 1000
+      },
+      {
         userId: 8,
         address: '4 Pennsylvania Plaza',
         city: 'New York City',
@@ -105,7 +114,7 @@ module.exports = {
         city: 'Rockville',
         state: 'Maryland',
         country: 'United States of America',
-        name: 'Kings Court',
+        name: 'Kings Chain Court',
         price: 99
       },
       {

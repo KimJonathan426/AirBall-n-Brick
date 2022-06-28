@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     url: {
       allowNull: false,
-      type: DataTypes.STRING(500)
+      type: DataTypes.TEXT
     }
   }, {});
   Image.associate = function(models) {

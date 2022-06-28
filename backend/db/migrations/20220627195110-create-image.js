@@ -10,11 +10,12 @@ module.exports = {
       },
       spotId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { model: 'Spots' }
       },
       url: {
         allowNull: false,
-        type: Sequelize.STRING(500)
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,

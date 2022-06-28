@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Spot = sequelize.define('Spot', {
     userId: {
       allowNull: false,
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
     },
     address: {
       allowNull: false,
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: {
       allowNull: false,
-      type: DataTypes.STRING(50)
+      type: DataTypes.STRING(155)
     },
     price: {
       allowNull: false,

@@ -3,19 +3,19 @@ module.exports = (sequelize, DataTypes) => {
   const Review = sequelize.define('Review', {
     userId: {
       allowNull: false,
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
     },
     spotId: {
       allowNull: false,
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
     },
     review: {
       allowNull: false,
-      type: DataTypes.STRING(1000)
+      type: DataTypes.TEXT
     },
     rating: {
       allowNull: false,
-      type: DataTypes.INTEGER(1, 0)
+      type: DataTypes.INTEGER
     }
   }, {});
   Review.associate = function(models) {
