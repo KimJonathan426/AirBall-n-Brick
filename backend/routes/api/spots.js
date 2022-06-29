@@ -20,5 +20,9 @@ router.get('/', asyncHandler(async (_req, res) => {
     });
 }));
 
+router.post('/', asyncHandler(async (req, res) => {
+    const spot = await Spot.create(req.body);
+    res.json(spot);
+})) // post spots
 
 module.exports = router;
