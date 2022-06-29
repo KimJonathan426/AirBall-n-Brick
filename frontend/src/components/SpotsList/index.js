@@ -4,23 +4,37 @@ import { getSpots } from '../../store/spotReducer';
 
 const SpotList = () => {
     const dispatch = useDispatch();
-    const spots = useSelector(state => state.spot)
+    const spots = useSelector(state => state.spot);
+    console.log('spots', spots)
 
     useEffect(() => {
         dispatch(getSpots());
     }, [dispatch]);
 
-    const spotArray = Object.values(spots)
+    const spotArray = Object.values(spots.spots);
+    const imageArray = Object.values(spots.images)
+    console.log('imageArray', imageArray)
+    console.log('spotarray', spotArray)
+
+    let spotImg;
 
     return (
         <div>
             <h1>Spots</h1>
             <div>
-                {spotArray.map(({id, name, price}) => (
-                    <div key={id}>
-                        {name} {id}
-                    </div>
-                ))}
+                {spotArray.map((spot) => {
+                    spotImg = imageArray.find(image => spot.id === image.spotId)
+                    return (
+                        <div key={spot.id}>
+                            <img src={spotImg.url}></img>
+                            <div>
+                                {spot.price}
+                                {spot.name}
+                                {spot.address}
+                            </div>
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )

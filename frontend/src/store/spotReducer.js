@@ -21,10 +21,11 @@ const actionCreateSpot = (spot) => {
     }
 }
 
-const actionGetSpots = (spots) => {
+const actionGetSpots = (spots, images) => {
     return {
         type: GET_SPOTS,
-        spots
+        spots,
+        images
     }
 }
 
@@ -48,19 +49,24 @@ export const getSpots = () => async (dispatch) => {
     const response = await csrfFetch('/api/spots');
 
     if (response.ok) {
-        const spots = await response.json();
-        dispatch(actionGetSpots(spots));
-        return spots;
+        const data = await response.json();
+        dispatch(actionGetSpots(data.spots, data.images));
+        return data;
     }
 };
 
+const initialState = { spots: {}, images: {}, isLoaded: true };
+
 // Reducer
-const spotReducer = (state = {}, action) => {
+const spotReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SPOTS: {
             const newState = { ...state };
             action.spots.forEach( spot => {
-                newState[spot.id] = spot
+                newState.spots[spot.id] = spot
+            });
+            action.images.forEach( image => {
+                newState.images[image.id] = image
             });
             return newState;
         }
