@@ -55,7 +55,7 @@ export const getSpots = () => async (dispatch) => {
     }
 };
 
-const initialState = { spots: {}, images: {}, isLoaded: true };
+const initialState = { spots: {}, images: {} };
 
 // Reducer
 const spotReducer = (state = initialState, action) => {

@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { getSpots } from '../../store/spotReducer';
 
 const SpotList = () => {
     const dispatch = useDispatch();
     const spots = useSelector(state => state.spot);
-    console.log('spots', spots)
 
     useEffect(() => {
         dispatch(getSpots());
@@ -13,8 +13,6 @@ const SpotList = () => {
 
     const spotArray = Object.values(spots.spots);
     const imageArray = Object.values(spots.images)
-    console.log('imageArray', imageArray)
-    console.log('spotarray', spotArray)
 
     let spotImg;
 
@@ -26,12 +24,15 @@ const SpotList = () => {
                     spotImg = imageArray.find(image => spot.id === image.spotId)
                     return (
                         <div key={spot.id}>
-                            <img src={spotImg.url}></img>
-                            <div>
-                                {spot.price}
-                                {spot.name}
-                                {spot.address}
-                            </div>
+                            <NavLink to={`/spots/${spot.id}`}>
+                                <img src={spotImg.url} />
+                                <div>
+                                    {spot.name}
+                                    {spot.city}
+                                    {spot.state}
+                                    {spot.price}
+                                </div>
+                            </NavLink>
                         </div>
                     )
                 })}
