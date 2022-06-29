@@ -15,7 +15,7 @@ function DemoButton() {
     <Redirect to="/" />
   );
 
-  const DemoLogin = (e) => {
+  const DemoLogin = () => {
     return dispatch(sessionActions.login({ credential, password }))
   }
 
