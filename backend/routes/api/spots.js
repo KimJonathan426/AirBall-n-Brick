@@ -5,6 +5,7 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Spot, Image } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const { Op } = require('sequelize');
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ router.get('/', asyncHandler(async (_req, res) => {
     });
     const images = await Image.findAll();
 
-    res.json({
+    return res.json({
         spots,
         images
     });
@@ -25,7 +26,6 @@ router.post('/', asyncHandler(async (req, res) => {
     const { url1, url2, url3, url4, url5 } = req.body;
 
     const spot = await Spot.create({ userId, address, city, state, country, name, description, price });
-    console.log('spot', spot)
 
     const spotId = spot.id;
     const image1 = await Image.create({ spotId, url: url1 });
@@ -40,6 +40,31 @@ router.post('/', asyncHandler(async (req, res) => {
         spot,
         images
     });
+}))
+
+router.put('/:id', asyncHandler(async (req, res) => {
+    const { id, userId, address, city, state, country, name, description, price } = req.body;
+    const { url1, url2, url3, url4, url5 } = req.body;
+
+    const spot = await Spot.findByPk(id)
+    const images = await Image.findAll({
+        where: {
+            spotId: id
+        }
+    });
+
+    await spot.update({ userId, address, city, state, country, name, description, price });
+
+    await images[0].update({ url: url1 })
+    await images[1].update({ url: url2 })
+    await images[2].update({ url: url3 })
+    await images[3].update({ url: url4 })
+    await images[4].update({ url: url5 })
+
+    return res.json({
+        spot,
+        images
+    })
 }))
 
 module.exports = router;
