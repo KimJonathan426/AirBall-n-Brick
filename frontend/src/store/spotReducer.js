@@ -1,23 +1,28 @@
 import { csrfFetch } from './csrf';
 
-// CREATE
-const CREATE_SPOT = 'spots/createSpot';
+// CREATE/UPDATE
+const ADD_SPOT = 'spots/createSpot';
+const ADD_IMAGE = 'spots/createImage';
 
 // READ
 const GET_SPOTS = 'spots/getSpot';
-
-// UPDATE
-const UPDATE_SPOT = 'spots/updateSpot';
 
 // DELETE
 const DELETE_SPOT = 'spots/deleteSpot';
 
 
 // Thunk action creators
-const actionCreateSpot = (spot) => {
+const actionAddSpot = (spot) => {
     return {
-        type: CREATE_SPOT,
+        type: ADD_SPOT,
         spot
+    }
+}
+
+const actionAddImage = (image) => {
+    return {
+        type: ADD_IMAGE,
+        image
     }
 }
 
@@ -26,13 +31,6 @@ const actionGetSpots = (spots, images) => {
         type: GET_SPOTS,
         spots,
         images
-    }
-}
-
-const actionUpdateSpot = (spot) => {
-    return {
-        type: UPDATE_SPOT,
-        spot
     }
 }
 
@@ -55,6 +53,21 @@ export const getSpots = () => async (dispatch) => {
     }
 };
 
+export const createSpot = (payload) => async (dispatch) => {
+    const response = await csrfFetch('/api/spots', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+        const spot = await response.json();
+        dispatch(actionAddSpot(spot));
+        return spot;
+    }
+
+}
+
 const initialState = { spots: {}, images: {} };
 
 // Reducer
@@ -68,6 +81,16 @@ const spotReducer = (state = initialState, action) => {
             action.images.forEach( image => {
                 newState.images[image.id] = image
             });
+            return newState;
+        }
+        case ADD_SPOT: {
+            const newState = { ...state };
+            newState[action.spot.id] = action.spot;
+            return newState;
+        }
+        case ADD_IMAGE: {
+            const newState = { ...state };
+            newState[action.image.id] = action.image;
             return newState;
         }
         default:
