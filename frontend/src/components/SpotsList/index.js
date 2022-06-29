@@ -21,16 +21,16 @@ const SpotList = () => {
             <h1>Spots</h1>
             <div>
                 {spotArray.map((spot) => {
-                    spotImg = imageArray.find(image => spot.id === image.spotId)
+                    spotImg = imageArray.find(image => spot?.id === image?.spotId)
                     return (
-                        <div key={spot.id}>
-                            <NavLink to={`/spots/${spot.id}`}>
-                                <img src={spotImg.url} />
+                        <div key={spot?.id}>
+                            <NavLink to={`/spots/${spot?.id}`}>
+                                <img src={spotImg?.url} />
                                 <div>
-                                    {spot.name}
-                                    {spot.city}
-                                    {spot.state}
-                                    {spot.price}
+                                    {spot?.name}
+                                    {spot?.city}
+                                    {spot?.state}
+                                    {spot?.price}
                                 </div>
                             </NavLink>
                         </div>

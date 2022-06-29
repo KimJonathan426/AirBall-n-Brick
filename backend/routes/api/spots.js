@@ -21,8 +21,25 @@ router.get('/', asyncHandler(async (_req, res) => {
 }));
 
 router.post('/', asyncHandler(async (req, res) => {
-    const spot = await Spot.create(req.body);
-    res.json(spot);
-})) // post spots
+    const { userId, address, city, state, country, name, description, price } = req.body;
+    const { url1, url2, url3, url4, url5 } = req.body;
+
+    const spot = await Spot.create({ userId, address, city, state, country, name, description, price });
+    console.log('spot', spot)
+
+    const spotId = spot.id;
+    const image1 = await Image.create({ spotId, url: url1 });
+    const image2 = await Image.create({ spotId, url: url2 });
+    const image3 = await Image.create({ spotId, url: url3 });
+    const image4 = await Image.create({ spotId, url: url4 });
+    const image5 = await Image.create({ spotId, url: url5 });
+
+    const images = [image1, image2, image3, image4, image5];
+
+    return res.json({
+        spot,
+        images
+    });
+}))
 
 module.exports = router;

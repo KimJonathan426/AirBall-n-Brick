@@ -1,8 +1,8 @@
 import { csrfFetch } from './csrf';
 
 // CREATE/UPDATE
-const ADD_SPOT = 'spots/createSpot';
-const ADD_IMAGE = 'spots/createImage';
+const ADD_SPOT = 'spots/addSpot';
+const ADD_IMAGES = 'spots/addImage';
 
 // READ
 const GET_SPOTS = 'spots/getSpot';
@@ -17,14 +17,14 @@ const actionAddSpot = (spot) => {
         type: ADD_SPOT,
         spot
     }
-}
+};
 
-const actionAddImage = (image) => {
+const actionAddImages = (images) => {
     return {
-        type: ADD_IMAGE,
-        image
+        type: ADD_IMAGES,
+        images
     }
-}
+};
 
 const actionGetSpots = (spots, images) => {
     return {
@@ -32,14 +32,14 @@ const actionGetSpots = (spots, images) => {
         spots,
         images
     }
-}
+};
 
 const actionDeleteSpot = (spotId) => {
     return {
         type: DELETE_SPOT,
         spotId
     }
-}
+};
 
 
 // Thunks
@@ -61,11 +61,12 @@ export const createSpot = (payload) => async (dispatch) => {
     });
 
     if (response.ok) {
-        const spot = await response.json();
-        dispatch(actionAddSpot(spot));
-        return spot;
-    }
+        const data = await response.json();
 
+        dispatch(actionAddSpot(data.spot));
+        dispatch(actionAddImages(data.images));
+        return data;
+    }
 }
 
 const initialState = { spots: {}, images: {} };
@@ -76,21 +77,23 @@ const spotReducer = (state = initialState, action) => {
         case GET_SPOTS: {
             const newState = { ...state };
             action.spots.forEach( spot => {
-                newState.spots[spot.id] = spot
+                newState.spots[spot.id] = spot;
             });
             action.images.forEach( image => {
-                newState.images[image.id] = image
+                newState.images[image.id] = image;
             });
             return newState;
         }
         case ADD_SPOT: {
             const newState = { ...state };
-            newState[action.spot.id] = action.spot;
+            newState.spots[action.spot.id] = action.spot;
             return newState;
         }
-        case ADD_IMAGE: {
+        case ADD_IMAGES: {
             const newState = { ...state };
-            newState[action.image.id] = action.image;
+            action.images.forEach( image => {
+                newState.images[image.id] = image;
+            })
             return newState;
         }
         default:

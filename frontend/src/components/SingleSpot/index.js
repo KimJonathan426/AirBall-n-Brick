@@ -6,12 +6,14 @@ import { getSpots } from '../../store/spotReducer';
 const SingleSpot = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const spotState = useSelector(state => state.spot);
+    const singleSpot = useSelector(state => state.spot.spots[id]);
+    const images = useSelector(state => state.spot.images);
 
-    const spotsArray = Object.values(spotState.spots);
-    const imagesArray = Object.values(spotState.images);
+    console.log('spot', singleSpot)
+    console.log('image', images)
 
-    const singleSpot = spotsArray.find( spot => spot.id === +id);
+    const imagesArray = Object.values(images);
+
     const spotImages = imagesArray.filter( image => image.spotId === +id);
 
     useEffect( () => {
@@ -36,7 +38,7 @@ const SingleSpot = () => {
                 <img src={spotImages[4]?.url} className='right-bot-image'/>
             </div>
             <div>
-                Hosted By {singleSpot?.User.username}
+                Hosted By {singleSpot?.User?.username}
                 <br />
                 {singleSpot?.price}
                 <br />
