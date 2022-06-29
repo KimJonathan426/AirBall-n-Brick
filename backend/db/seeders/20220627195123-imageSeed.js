@@ -91,11 +91,11 @@ module.exports = {
       },
       {
         spotId: 5,
-        url: 'https://basketballword.com/wp-content/uploads/2020/08/Webp.net-resizeimage-87.jpg'
+        url: 'https://images.pexels.com/photos/5331961/pexels-photo-5331961.jpeg'
       },
       {
         spotId: 5,
-        url: 'https://images.pexels.com/photos/5331961/pexels-photo-5331961.jpeg'
+        url: 'https://basketballword.com/wp-content/uploads/2020/08/Webp.net-resizeimage-87.jpg'
       },
       {
         spotId: 5,
@@ -107,7 +107,7 @@ module.exports = {
       },
       {
         spotId: 6,
-        url: 'https://www.planetsport.com/image-library/og/1600/l/luka-doncic-dallas-mavericks-nba-may2022.jpg'
+        url: 'https://2.bp.blogspot.com/-qpASKaWzU20/UofZZwppWuI/AAAAAAAAAdM/e27e2NUJNVo/s1600/nba-2k14-dallas-mavericks-hd-court-mod.jpg'
       },
       {
         spotId: 6,
@@ -115,7 +115,7 @@ module.exports = {
       },
       {
         spotId: 6,
-        url: 'https://2.bp.blogspot.com/-qpASKaWzU20/UofZZwppWuI/AAAAAAAAAdM/e27e2NUJNVo/s1600/nba-2k14-dallas-mavericks-hd-court-mod.jpg'
+        url: 'https://www.planetsport.com/image-library/og/1600/l/luka-doncic-dallas-mavericks-nba-may2022.jpg'
       },
       {
         spotId: 6,

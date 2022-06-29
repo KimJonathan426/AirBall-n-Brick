@@ -33,6 +33,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(155)
       },
+      description: {
+        allowNull: false,
+        type: Sequelize.TEXT
+      },
       price: {
         allowNull: false,
         type: Sequelize.DECIMAL(10, 2)
