@@ -35,7 +35,7 @@ const SingleSpot = () => {
         const res = await dispatch(deleteSpot(payload))
 
         if (res) {
-            // history.push('/');
+            history.push('/');
         }
     }
 
