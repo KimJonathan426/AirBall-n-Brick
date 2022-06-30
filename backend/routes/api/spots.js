@@ -71,10 +71,7 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 
     await spot.destroy();
 
-    return res.json({
-        message: 'Successfully Deleted',
-        spotId: req.params.id
-    });
+    return res.json({ message: 'Successfully Deleted' });
 }))
 
 
