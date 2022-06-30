@@ -27,9 +27,6 @@ function App() {
           <Route exact path='/'>
             <SpotList />
           </Route>
-          <Route path="/demo">
-            <DemoButton />
-          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
