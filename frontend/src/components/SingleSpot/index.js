@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { getSpots } from '../../store/spotReducer';
+import { getSpots, deleteSpot } from '../../store/spotReducer';
 import SpotEditForm from '../SpotEditForm';
 
 const SingleSpot = () => {
@@ -17,6 +17,20 @@ const SingleSpot = () => {
 
     const spotImages = imagesArray.filter(image => image.spotId === +id);
 
+    const onDelete = async (e) => {
+        e.preventDefault();
+
+        const payload = {
+            spotId: singleSpot.id
+        }
+
+        const res = await dispatch(deleteSpot(payload))
+
+        if (res) {
+            res.redirect('/');
+        }
+    }
+
     useEffect(() => {
         dispatch(getSpots())
     }, [dispatch])
@@ -24,10 +38,13 @@ const SingleSpot = () => {
     return (
         <div>
             {(!showEditSpotForm && user === singleSpot?.userId) && (
-                <button onClick={() => setShowEditSpotForm(true)}>Edit Spot</button>
+                <>
+                    <button onClick={() => setShowEditSpotForm(true)}>Edit Spot</button>
+                    <button onClick={onDelete}>Delete Court</button>
+                </>
             )}
             {showEditSpotForm && (
-                <SpotEditForm spotImages={spotImages} spot={singleSpot} id={id} hideForm={() => setShowEditSpotForm(false)}/>
+                <SpotEditForm spotImages={spotImages} spot={singleSpot} id={id} hideForm={() => setShowEditSpotForm(false)} />
             )}
             <div>
                 {singleSpot?.name}
