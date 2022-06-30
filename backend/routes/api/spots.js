@@ -68,12 +68,14 @@ router.put('/:id', asyncHandler(async (req, res) => {
 }));
 
 router.delete('/:id', asyncHandler(async (req, res) => {
-    console.log('================================', req.params.id)
     const spot = await Spot.findByPk(req.params.id);
 
     await spot.destroy();
 
-    return res.json({ message: 'Successfully Deleted' });
+    return res.json({
+        message: 'Successfully Deleted',
+        spotId: req.params.id
+    });
 }))
 
 
