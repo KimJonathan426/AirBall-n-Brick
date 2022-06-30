@@ -40,7 +40,7 @@ router.post('/', asyncHandler(async (req, res) => {
         spot,
         images
     });
-}))
+}));
 
 router.put('/:id', asyncHandler(async (req, res) => {
     const { id, userId, address, city, state, country, name, description, price } = req.body;
@@ -55,16 +55,26 @@ router.put('/:id', asyncHandler(async (req, res) => {
 
     await spot.update({ userId, address, city, state, country, name, description, price });
 
-    await images[0].update({ url: url1 })
-    await images[1].update({ url: url2 })
-    await images[2].update({ url: url3 })
-    await images[3].update({ url: url4 })
-    await images[4].update({ url: url5 })
+    await images[0].update({ url: url1 });
+    await images[1].update({ url: url2 });
+    await images[2].update({ url: url3 });
+    await images[3].update({ url: url4 });
+    await images[4].update({ url: url5 });
 
     return res.json({
         spot,
         images
-    })
+    });
+}));
+
+router.delete('/:id', asyncHandler(async (req, res) => {
+    console.log('================================', req.params.id)
+    const spot = await Spot.findByPk(req.params.id);
+
+    await spot.destroy();
+
+    return res.json({ message: 'Successfully Deleted' });
 }))
+
 
 module.exports = router;
