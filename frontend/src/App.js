@@ -8,6 +8,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotList from "./components/SpotsList";
 import SingleSpot from "./components/SingleSpot";
+import SpotForm from './components/SpotForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/spots/new">
+            <SpotForm />
           </Route>
           <Route path="/spots/:id">
             <SingleSpot />

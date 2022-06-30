@@ -36,10 +36,14 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Spot.associate = function(models) {
     Spot.hasMany(models.Image, {
-      foreignKey: 'spotId'
+      foreignKey: 'spotId',
+      onDelete: 'CASCADE',
+      hooks: true
     })
     Spot.hasMany(models.Review, {
-      foreignKey: 'spotId'
+      foreignKey: 'spotId',
+      onDelete: 'CASCADE',
+      hooks: true
     })
     Spot.belongsTo(models.User, {
       foreignKey: 'userId'
