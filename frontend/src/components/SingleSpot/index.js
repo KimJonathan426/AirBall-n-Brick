@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getSpots, deleteSpot } from '../../store/spotReducer';
 import SpotEditForm from '../SpotEditForm';
-import PageNotFound from '../PageNotFound';
 
 const SingleSpot = () => {
     const { id } = useParams();
@@ -33,7 +32,7 @@ const SingleSpot = () => {
             ]
         }
 
-        const res = await dispatch(deleteSpot(payload))
+        const res = await dispatch(deleteSpot(payload));
 
         if (res) {
             history.push('/');
@@ -41,14 +40,18 @@ const SingleSpot = () => {
     }
 
     useEffect(() => {
-        dispatch(getSpots())
+        dispatch(getSpots());
     }, [dispatch])
 
     let content = null;
 
     if (!singleSpot) {
         content = (
-            <PageNotFound />
+            <div>
+                This page is loading...
+                <br />
+                If the page does not load within 5 seconds, this court has yet to be made, go back!
+            </div>
         )
     } else {
         content = (

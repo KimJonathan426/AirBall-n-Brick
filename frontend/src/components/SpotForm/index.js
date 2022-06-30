@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { createSpot } from '../../store/spotReducer';
 
 const SpotForm = () => {
@@ -59,6 +59,11 @@ const SpotForm = () => {
             history.push(`/spots/${res.spot.id}`);
         }
     }
+
+    // Will prevent not logged-in users fro accessing form manually.
+    if (!user) return (
+        <Redirect to="/" />
+      );
 
     return (
         <form onSubmit={handleSubmit}>
