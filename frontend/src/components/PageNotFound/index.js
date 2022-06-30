@@ -6,9 +6,13 @@ const PageNotFound = () => {
                 404 Page Not
             </h1>
             <h4>
-                So close, but you missed your shot! Shoot another path and try to make it into a valid page.
+                *Whistle* Travel!!!
             </h4>
-            <img src='https://k2d-artwork.s3-us-west-1.amazonaws.com/10175614.jpg'></img>
+            <div>
+                You traveled to a non-existent page.
+                Avoid this violation by going to a valid path!
+            </div>
+            <img src='https://cdn.vox-cdn.com/thumbor/ij0Ng1FcLNz0sjQV6DWRVanCWjc=/0x294:2775x2144/1400x1050/filters:focal(0x294:2775x2144):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/45568342/459394688.0.jpg'></img>
         </div>
     )
 }

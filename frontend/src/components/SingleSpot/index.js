@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getSpots, deleteSpot } from '../../store/spotReducer';
 import SpotEditForm from '../SpotEditForm';
+import PageNotFound from '../PageNotFound';
 
 const SingleSpot = () => {
     const { id } = useParams();
@@ -43,46 +44,56 @@ const SingleSpot = () => {
         dispatch(getSpots())
     }, [dispatch])
 
-    // if (!singleSpot.id) {
+    let content = null;
 
-    // }
+    if (!singleSpot) {
+        content = (
+            <PageNotFound />
+        )
+    } else {
+        content = (
+            <>
+                {(!showEditSpotForm && user === singleSpot?.userId) && (
+                    <>
+                        <button onClick={() => setShowEditSpotForm(true)}>Edit Court</button>
+                        <button onClick={onDelete}>Delete Court</button>
+                    </>
+                )}
+                {showEditSpotForm && (
+                    <SpotEditForm spotImages={spotImages} spot={singleSpot} id={id} hideForm={() => setShowEditSpotForm(false)} />
+                )}
+                <div>
+                    {singleSpot?.name}
+                    {singleSpot?.city}
+                    {singleSpot?.state}
+                </div>
+                <div>
+                    Insert First 5 Photos and specific styling based on id and display other photos on a modal.
+                    <br />
+                    If there are no photos, a button will appear where photos should be prompting user to upload at least 5 photos.
+                    <img src={spotImages[0]?.url} className='left-image' />
+                    <img src={spotImages[1]?.url} className='middle-image' />
+                    <img src={spotImages[2]?.url} className='middle-image' />
+                    <img src={spotImages[3]?.url} className='right-top-image' />
+                    <img src={spotImages[4]?.url} className='right-bot-image' />
+                </div>
+                <div>
+                    Hosted By {singleSpot?.User?.username}
+                    <br />
+                    {singleSpot?.price}
+                    <br />
+                    {singleSpot?.description}
+                </div>
+                <div>
+                    Reviews will go here
+                </div>
+            </>
+        )
+    }
 
     return (
         <div>
-            {(!showEditSpotForm && user === singleSpot?.userId) && (
-                <>
-                    <button onClick={() => setShowEditSpotForm(true)}>Edit Spot</button>
-                    <button onClick={onDelete}>Delete Court</button>
-                </>
-            )}
-            {showEditSpotForm && (
-                <SpotEditForm spotImages={spotImages} spot={singleSpot} id={id} hideForm={() => setShowEditSpotForm(false)} />
-            )}
-            <div>
-                {singleSpot?.name}
-                {singleSpot?.city}
-                {singleSpot?.state}
-            </div>
-            <div>
-                Insert First 5 Photos and specific styling based on id and display other photos on a modal.
-                <br />
-                If there are no photos, a button will appear where photos should be prompting user to upload at least 5 photos.
-                <img src={spotImages[0]?.url} className='left-image' />
-                <img src={spotImages[1]?.url} className='middle-image' />
-                <img src={spotImages[2]?.url} className='middle-image' />
-                <img src={spotImages[3]?.url} className='right-top-image' />
-                <img src={spotImages[4]?.url} className='right-bot-image' />
-            </div>
-            <div>
-                Hosted By {singleSpot?.User?.username}
-                <br />
-                {singleSpot?.price}
-                <br />
-                {singleSpot?.description}
-            </div>
-            <div>
-                Reviews will go here
-            </div>
+            {content}
         </div>
     )
 }
