@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import SpotList from "./components/SpotsList";
 import SingleSpot from "./components/SingleSpot";
 import SpotForm from './components/SpotForm';
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ function App() {
             <SingleSpot />
           </Route>
           <Route>
-            Page Not Found
+            <PageNotFound />
           </Route>
         </Switch>
       )}
