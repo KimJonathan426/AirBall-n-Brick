@@ -34,10 +34,11 @@ const actionGetSpots = (spots, images) => {
     }
 };
 
-const actionDeleteSpot = (spotId) => {
+const actionDeleteSpot = (spotId, imageIds) => {
     return {
         type: DELETE_SPOT,
-        spotId
+        spotId,
+        imageIds
     }
 };
 
@@ -89,8 +90,11 @@ export const deleteSpot = (payload) => async (dispatch) => {
         method: 'DELETE'
     });
 
-    if (response.message === 'Successfully Deleted') {
-        dispatch(actionDeleteSpot(payload.spotId));
+    const data = await response.json();
+
+    if (data.message === 'Successfully Deleted') {
+        dispatch(actionDeleteSpot(payload.spotId, payload.imageIds));
+        return data;
     }
 }
 
@@ -124,6 +128,10 @@ const spotReducer = (state = initialState, action) => {
         case DELETE_SPOT: {
             const newState = { ...state };
             delete newState.spots[action.spotId];
+
+            action.imageIds.forEach( imageId => {
+                delete newState.images[imageId.id];
+            });
             return newState;
         }
         default:
