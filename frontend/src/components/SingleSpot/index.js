@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getSpots, deleteSpot } from '../../store/spotReducer';
@@ -7,6 +7,7 @@ import SpotEditForm from '../SpotEditForm';
 const SingleSpot = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
+    const history = useHistory();
     const singleSpot = useSelector(state => state.spot.spots[id]);
     const images = useSelector(state => state.spot.images);
     const user = useSelector(state => state.session?.user?.id);
@@ -21,19 +22,30 @@ const SingleSpot = () => {
         e.preventDefault();
 
         const payload = {
-            spotId: singleSpot.id
+            spotId: singleSpot.id,
+            imageIds: [
+                spotImages[0],
+                spotImages[1],
+                spotImages[2],
+                spotImages[3],
+                spotImages[4],
+            ]
         }
 
         const res = await dispatch(deleteSpot(payload))
 
         if (res) {
-            res.redirect('/');
+            // history.push('/');
         }
     }
 
     useEffect(() => {
         dispatch(getSpots())
     }, [dispatch])
+
+    // if (!singleSpot.id) {
+
+    // }
 
     return (
         <div>

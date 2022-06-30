@@ -14,7 +14,7 @@ const SpotForm = () => {
     const [ country, setCountry ] = useState('');
     const [ name, setName ] = useState('');
     const [ description, setDescription ] = useState('');
-    const [ price, setPrice ] = useState();
+    const [ price, setPrice ] = useState(0);
     const [ url1, setUrl1 ] = useState('');
     const [ url2, setUrl2 ] = useState('');
     const [ url3, setUrl3 ] = useState('');
