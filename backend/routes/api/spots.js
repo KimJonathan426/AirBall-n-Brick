@@ -88,5 +88,13 @@ router.get('/:id/reviews', asyncHandler(async (req, res) => {
     });
 }));
 
+router.post('/:id/reviews', asyncHandler(async (req, res) => {
+    const { spotId, userId, review, rating } = req.body;
 
+    const createReview = await Review.create({ spotId, userId, review, rating });
+
+    const newReview = await Review.findByPk(createReview.id, { include: [User, Spot] });
+
+    return res.json({ newReview });
+}))
 module.exports = router;
