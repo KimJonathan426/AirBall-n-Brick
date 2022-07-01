@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Spot, Image } = require('../../db/models');
+const { User, Spot, Image, Review } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -72,7 +72,21 @@ router.delete('/:id', asyncHandler(async (req, res) => {
     await spot.destroy();
 
     return res.json({ message: 'Successfully Deleted' });
-}))
+}));
+
+// Review RESTful enpoints
+router.get('/:id/reviews', asyncHandler(async (req, res) => {
+    const reviews = await Review.findAll({
+        where: {
+            spotId: req.params.id
+        },
+        include: [User, Spot]
+    });
+
+    return res.json({
+        reviews
+    });
+}));
 
 
 module.exports = router;
