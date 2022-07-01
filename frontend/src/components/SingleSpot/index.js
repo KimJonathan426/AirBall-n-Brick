@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getSpots, deleteSpot } from '../../store/spotReducer';
 import SpotEditForm from '../SpotEditForm';
+import ReviewForm from '../ReviewForm';
 import SpotReviewList from '../SpotReviewList';
 
 const SingleSpot = () => {
@@ -89,6 +90,9 @@ const SingleSpot = () => {
                     {singleSpot?.description}
                 </div>
                 <div>
+                    Reviews go here
+                    Review Create button
+                    <ReviewForm spotId={id}/>
                     <SpotReviewList spotId={id}/>
                 </div>
             </>

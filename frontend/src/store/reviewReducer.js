@@ -1,10 +1,23 @@
 import { csrfFetch } from './csrf';
 
+// CREATE
+const ADD_REVIEW = 'reviews/addReview';
+
 // READ
 const GET_REVIEWS = 'reviews/getReview';
 
+// CLEAR
+const CLEAR_REVIEWS = 'reviews/clearReviews';
+
 
 // Thunk action creators
+const actionAddReview = (review) => {
+    return {
+        type: ADD_REVIEW,
+        review
+    }
+}
+
 const actionGetReviews = (reviews) => {
     return {
         type: GET_REVIEWS,
@@ -12,8 +25,27 @@ const actionGetReviews = (reviews) => {
     }
 }
 
+export const actionClearReviews = () => {
+    return {
+        type: CLEAR_REVIEWS,
+    }
+}
 
 // Thunk
+export const createReview = (payload) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${payload.spotId}/reviews`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionAddReview(data.newReview));
+        return data;
+    }
+}
+
 export const getReviews = (spotId) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
 
@@ -37,6 +69,14 @@ const reviewReducer = (state = initialState, action) => {
             });
             return newState;
         }
+        case ADD_REVIEW: {
+            const newState = { ...state };
+            newState[action.review.id] = action.review;
+            return newState;
+        }
+        case CLEAR_REVIEWS:
+            const clearState = {};
+            return clearState
         default:
             return state;
     }

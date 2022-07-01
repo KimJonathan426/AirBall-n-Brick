@@ -60,7 +60,7 @@ const SpotForm = () => {
         }
     }
 
-    // Will prevent not logged-in users fro accessing form manually.
+    // Will prevent not logged-in users from accessing form manually.
     if (!user) return (
         <Redirect to="/" />
       );
@@ -87,7 +87,7 @@ const SpotForm = () => {
             <input type='url' value={url3} onChange={updateUrl3} required />
             <input type='url' value={url4} onChange={updateUrl4} required />
             <input type='url' value={url5} onChange={updateUrl5} required />
-            <button type='submit'>Host New Spot</button>
+            <button type='submit'>Host New Court</button>
         </form>
     )
 }
