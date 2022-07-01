@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getSpots, deleteSpot } from '../../store/spotReducer';
 import SpotEditForm from '../SpotEditForm';
+import SpotReviewList from '../SpotReviewList';
 
 const SingleSpot = () => {
     const { id } = useParams();
@@ -88,7 +89,7 @@ const SingleSpot = () => {
                     {singleSpot?.description}
                 </div>
                 <div>
-                    Reviews will go here
+                    <SpotReviewList spotId={id}/>
                 </div>
             </>
         )
