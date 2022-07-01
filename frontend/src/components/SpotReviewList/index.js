@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getReviews, actionClearReviews } from '../../store/reviewReducer';
+import { getReviews, deleteReview, actionClearReviews } from '../../store/reviewReducer';
 
 const SpotReviewList = ({ user, spotId }) => {
     const dispatch = useDispatch();
@@ -14,10 +14,21 @@ const SpotReviewList = ({ user, spotId }) => {
         );
     }, [dispatch, spotId]);
 
-    console.log('reviews', reviews)
-
     const reviewArray = Object.values(reviews);
-    console.log('reviews state', reviews)
+
+    // const onDelete = async (e) => {
+    //     e.preventDefault();
+
+    //     const payload = {
+    //         spotId: singleSpot.id,
+    //     }
+
+    //     const res = await dispatch(deleteReview(payload));
+
+    //     // if (res) {
+    //     //     history.push('/');
+    //     // }
+    // }
 
     return (
         <div>
@@ -27,6 +38,12 @@ const SpotReviewList = ({ user, spotId }) => {
                     {review.User.username}
                     {review.rating}
                     {review.review}
+                    {review.userId === user && (
+                        <button onClick={async (e) => {
+                            e.preventDefault();
+                            await dispatch(deleteReview(review.id));
+                        }}>Delete Review</button>
+                    )}
                 </div>
             ))}
         </div>

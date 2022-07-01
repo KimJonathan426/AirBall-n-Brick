@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
 import { createReview } from '../../store/reviewReducer';
 
-const ReviewForm = ({ spotId }) => {
+const ReviewForm = ({ spotId, hideForm }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector(state => state.session.user);
@@ -29,14 +29,14 @@ const ReviewForm = ({ spotId }) => {
         const res = await dispatch(createReview(payload));
 
         if (res) {
-            // history.push(`/spots/${res.spot.id}`);
+            hideForm();
         }
     }
 
-    // Will prevent not logged-in users from accessing form manually.
-    // if (!user) return (
-    //     <Redirect to="/" />
-    // );
+    const handleCancelClick = (e) => {
+        e.preventDefault();
+        hideForm();
+    }
 
     return (
         <form onSubmit={handleSubmit}>
@@ -44,26 +44,27 @@ const ReviewForm = ({ spotId }) => {
             <textarea value={review} onChange={updateReview} required />
             <label>Rating</label>
             <label>
-                <input type='radio' name='rating' value={1} onChange={updateRating}  />
+                <input type='radio' name='rating' value={1} onChange={updateRating} />
                 1
             </label>
             <label>
-                <input type='radio' name='rating' value={2} onChange={updateRating}  />
+                <input type='radio' name='rating' value={2} onChange={updateRating} />
                 2
             </label>
             <label>
-                <input type='radio' name='rating' value={3} onChange={updateRating}  />
+                <input type='radio' name='rating' value={3} onChange={updateRating} />
                 3
             </label>
             <label>
-                <input type='radio' name='rating' value={4} onChange={updateRating}  />
+                <input type='radio' name='rating' value={4} onChange={updateRating} />
                 4
             </label>
             <label>
-                <input type='radio' name='rating' value={5} onChange={updateRating}  />
+                <input type='radio' name='rating' value={5} onChange={updateRating} />
                 5
             </label>
             <button type='submit'>Post Review</button>
+            <button type='button' onClick={handleCancelClick}>Cancel</button>
         </form>
     )
 }

@@ -55,8 +55,6 @@ const SpotEditForm = ({ spotImages, spot, id, hideForm }) => {
         const res = await dispatch(updateSpot(payload));
 
         if (res) {
-            // Should Hide Form
-            console.log('res', res);
             hideForm();
         }
     }

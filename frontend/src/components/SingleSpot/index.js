@@ -15,6 +15,7 @@ const SingleSpot = () => {
     const user = useSelector(state => state.session?.user?.id);
 
     const [showEditSpotForm, setShowEditSpotForm] = useState(false);
+    const [showReviewForm, setShowReviewForm] = useState(false);
 
     const imagesArray = Object.values(images);
 
@@ -64,7 +65,7 @@ const SingleSpot = () => {
                         <button onClick={onDelete}>Delete Court</button>
                     </>
                 )}
-                {showEditSpotForm && (
+                {(showEditSpotForm && user) && (
                     <SpotEditForm spotImages={spotImages} spot={singleSpot} id={id} hideForm={() => setShowEditSpotForm(false)} />
                 )}
                 <div>
@@ -92,8 +93,13 @@ const SingleSpot = () => {
                 <div>
                     Reviews go here
                     Review Create button
-                    <ReviewForm spotId={id}/>
-                    <SpotReviewList spotId={id}/>
+                    {(!showReviewForm && user) && (
+                        <button onClick={() => setShowReviewForm(true)}>Post a review</button>
+                    )}
+                    {(showReviewForm && user) && (
+                        <ReviewForm spotId={id} hideForm={() => setShowReviewForm(false)}/>
+                    )}
+                    <SpotReviewList user={user} spotId={id} />
                 </div>
             </>
         )
