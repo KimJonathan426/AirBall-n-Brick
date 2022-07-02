@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getSpots, deleteSpot } from '../../store/spotReducer';
 import SpotEditForm from '../SpotEditForm';
+import ReviewForm from '../ReviewForm';
+import SpotReviewList from '../SpotReviewList';
 
 const SingleSpot = () => {
     const { id } = useParams();
@@ -13,6 +15,7 @@ const SingleSpot = () => {
     const user = useSelector(state => state.session?.user?.id);
 
     const [showEditSpotForm, setShowEditSpotForm] = useState(false);
+    const [showReviewForm, setShowReviewForm] = useState(false);
 
     const imagesArray = Object.values(images);
 
@@ -62,7 +65,7 @@ const SingleSpot = () => {
                         <button onClick={onDelete}>Delete Court</button>
                     </>
                 )}
-                {showEditSpotForm && (
+                {(showEditSpotForm && user) && (
                     <SpotEditForm spotImages={spotImages} spot={singleSpot} id={id} hideForm={() => setShowEditSpotForm(false)} />
                 )}
                 <div>
@@ -88,7 +91,15 @@ const SingleSpot = () => {
                     {singleSpot?.description}
                 </div>
                 <div>
-                    Reviews will go here
+                    Reviews go here
+                    Review Create button
+                    {(!showReviewForm && user) && (
+                        <button onClick={() => setShowReviewForm(true)}>Post a review</button>
+                    )}
+                    {(showReviewForm && user) && (
+                        <ReviewForm spotId={id} hideForm={() => setShowReviewForm(false)}/>
+                    )}
+                    <SpotReviewList user={user} spotId={id} />
                 </div>
             </>
         )

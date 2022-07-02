@@ -1,10 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Spot, Image } = require('../../db/models');
-const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+const { User, Spot, Image, Review } = require('../../db/models');
 
 const router = express.Router();
 
@@ -45,7 +42,9 @@ router.put('/:id', asyncHandler(async (req, res) => {
     const { id, userId, address, city, state, country, name, description, price } = req.body;
     const { url1, url2, url3, url4, url5 } = req.body;
 
-    const spot = await Spot.findByPk(id)
+    const spot = await Spot.findByPk(id, {
+        include: [User]
+    });
     const images = await Image.findAll({
         where: {
             spotId: id
@@ -72,7 +71,30 @@ router.delete('/:id', asyncHandler(async (req, res) => {
     await spot.destroy();
 
     return res.json({ message: 'Successfully Deleted' });
-}))
+}));
 
+// Review RESTful enpoints
+router.get('/:id/reviews', asyncHandler(async (req, res) => {
+    const reviews = await Review.findAll({
+        where: {
+            spotId: req.params.id
+        },
+        include: [User, Spot]
+    });
+
+    return res.json({
+        reviews
+    });
+}));
+
+router.post('/:id/reviews', asyncHandler(async (req, res) => {
+    const { spotId, userId, review, rating } = req.body;
+
+    const createReview = await Review.create({ spotId, userId, review, rating });
+
+    const newReview = await Review.findByPk(createReview.id, { include: [User, Spot] });
+
+    return res.json({ newReview });
+}));
 
 module.exports = router;
