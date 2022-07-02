@@ -16,20 +16,6 @@ const SpotReviewList = ({ user, spotId }) => {
 
     const reviewArray = Object.values(reviews);
 
-    // const onDelete = async (e) => {
-    //     e.preventDefault();
-
-    //     const payload = {
-    //         spotId: singleSpot.id,
-    //     }
-
-    //     const res = await dispatch(deleteReview(payload));
-
-    //     // if (res) {
-    //     //     history.push('/');
-    //     // }
-    // }
-
     return (
         <div>
             Reviews
