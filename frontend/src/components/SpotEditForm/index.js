@@ -44,7 +44,7 @@ const SpotEditForm = ({ spotImages, spot, id, hideForm }) => {
         if (name.length > 155) errors.push('Name cannot exceed 155 characters.');
         if (description.length > 1000) errors.push('Description cannot exceed 1000 characters.');
 
-        if (Number(price) <= 0) errors.push('You cannot list your court for free or a negative price. Enter a valid price.');
+        if (Number(price) <= 0) errors.push('You cannot list your court for free or for a negative price. Enter a valid price.');
         if (Number(price) > 99999999.99) errors.push('Price cannot exceed value of 99,999,999.99');
 
         if (url1 && !(url1.endsWith('.jpg') || url1.endsWith('.img') || url1.endsWith('.png') || url1.endsWith('.jpeg'))) errors.push('Image 1 - Input a valid url image ending with either a .jpg, .jpeg, .img, or .png');

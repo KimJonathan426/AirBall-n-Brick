@@ -8,20 +8,20 @@ const SpotForm = () => {
     const history = useHistory();
     const user = useSelector(state => state.session.user);
 
-    const [ address, setAddress ] = useState('');
-    const [ city, setCity ] = useState('');
-    const [ state, setState ] = useState('');
-    const [ country, setCountry ] = useState('');
-    const [ name, setName ] = useState('');
-    const [ description, setDescription ] = useState('');
-    const [ price, setPrice ] = useState(0);
-    const [ url1, setUrl1 ] = useState('');
-    const [ url2, setUrl2 ] = useState('');
-    const [ url3, setUrl3 ] = useState('');
-    const [ url4, setUrl4 ] = useState('');
-    const [ url5, setUrl5 ] = useState('');
-    const [ validationErrors, setValidationErrors ] = useState([]);
-    const [ hasSubmitted, setHasSubmitted ] = useState(false);
+    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [country, setCountry] = useState('');
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [price, setPrice] = useState(0);
+    const [url1, setUrl1] = useState('');
+    const [url2, setUrl2] = useState('');
+    const [url3, setUrl3] = useState('');
+    const [url4, setUrl4] = useState('');
+    const [url5, setUrl5] = useState('');
+    const [validationErrors, setValidationErrors] = useState([]);
+    const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const updateAddress = (e) => setAddress(e.target.value);
     const updateCity = (e) => setCity(e.target.value);
@@ -92,7 +92,7 @@ const SpotForm = () => {
     // Will prevent not logged-in users from accessing form manually.
     if (!user) return (
         <Redirect to="/" />
-      );
+    );
 
     return (
         <form onSubmit={handleSubmit}>
