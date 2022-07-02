@@ -55,7 +55,7 @@ const SpotForm = () => {
         if (url4 && !(url4.endsWith('.jpg') || url4.endsWith('.img') || url4.endsWith('.png') || url4.endsWith('.jpeg'))) errors.push('Image 4 - Input a valid url image ending with either a .jpg, .jpeg, .img, or .png');
         if (url5 && !(url5.endsWith('.jpg') || url5.endsWith('.img') || url5.endsWith('.png') || url5.endsWith('.jpeg'))) errors.push('Image 5 - Input a valid url image ending with either a .jpg, .jpeg, .img, or .png');
 
-        setValidationErrors(errors)
+        setValidationErrors(errors);
     }, [address, city, state, country, name, description, price, url1, url2, url3, url4, url5]);
 
     const handleSubmit = async (e) => {
