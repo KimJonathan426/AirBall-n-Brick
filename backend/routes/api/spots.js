@@ -42,7 +42,9 @@ router.put('/:id', asyncHandler(async (req, res) => {
     const { id, userId, address, city, state, country, name, description, price } = req.body;
     const { url1, url2, url3, url4, url5 } = req.body;
 
-    const spot = await Spot.findByPk(id);
+    const spot = await Spot.findByPk(id, {
+        include: [User]
+    });
     const images = await Image.findAll({
         where: {
             spotId: id
