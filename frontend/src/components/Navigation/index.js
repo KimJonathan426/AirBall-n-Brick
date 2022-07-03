@@ -5,6 +5,8 @@ import ProfileButton from './ProfileButton';
 import DemoButton from '../DemoButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import logoImage from '../../images/logo-image.png';
+import logoText from '../../images/logo-text.png';
 import './Navigation.css';
 
 
@@ -15,7 +17,7 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <>
-        <NavLink to="/spots/new">Host a Court</NavLink>
+        <NavLink className='host-link' to="/spots/new">Host a Court</NavLink>
         <ProfileButton user={sessionUser} />
       </>
     );
@@ -30,12 +32,15 @@ function Navigation({ isLoaded }) {
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
+    <div className='nav-container'>
+      <NavLink className='logo-nav' exact to="/">
+        <img className='logo-image' src={logoImage} />
+        <img className='logo-text' src={logoText} />
+      </NavLink>
+      <div className='nav-buttons'>
         {isLoaded && sessionLinks}
-      </li>
-    </ul>
+      </div>
+    </div>
   );
 }
 

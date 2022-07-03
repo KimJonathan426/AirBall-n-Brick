@@ -1,1 +1,42 @@
-/* TODO - Navigation css styling */
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    border-bottom: 1px solid #d9e1ecc0;
+    width: 100%;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.logo-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height:80px;
+}
+
+.logo-text {
+    width: 125px;
+    height: 50px;
+    object-fit: cover;
+    object-position: -100px;
+}
+
+.logo-image {
+    width: 75px;
+    height: 75px;
+}
+
+.host-link {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.43;
+    color: #484848;
+    text-decoration: none;
+}
+
+/* .nav-button button {
+
+} */
