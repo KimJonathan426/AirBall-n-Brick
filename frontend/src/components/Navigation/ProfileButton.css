@@ -1,0 +1,45 @@
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    max-height: 80px;
+}
+
+.profile-menu {
+    background-color: #fff;
+    border: 1px solid #d9e1ecc0;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.profile-dropdown {
+    display: flex;
+    flex-direction: column;
+    color: rgb(59, 56, 56);
+    align-items: center;
+    justify-items: center;
+    max-width: 500px;
+    border: 1px solid #d9e1ecc0;
+    padding: 5px 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.logout-container {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+}
+
+.logout-button {
+    background-color: #fff;
+    color: #484848;
+    width: 100%;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: rgb(207, 83, 0, .05);
+}
