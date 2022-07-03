@@ -14,7 +14,10 @@
 .profile-dropdown {
     display: flex;
     flex-direction: column;
-    color: rgb(59, 56, 56);
+    color: rgb(113, 113, 113);
+    /* color: #222222; */
+    font-weight: bold;
+    font-size: 14px;
     align-items: center;
     justify-items: center;
     max-width: 500px;
