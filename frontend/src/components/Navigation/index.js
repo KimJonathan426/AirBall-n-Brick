@@ -16,10 +16,12 @@ function Navigation({ isLoaded }) {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <>
-        <NavLink className='host-link' to="/spots/new">Host a Court</NavLink>
+      <div className='session-logged-in'>
+        <div className='host-link-container'>
+          <NavLink className='host-link' to="/spots/new">Host a Court</NavLink>
+        </div>
         <ProfileButton user={sessionUser} />
-      </>
+      </div>
     );
   } else {
     sessionLinks = (
