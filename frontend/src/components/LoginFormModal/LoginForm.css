@@ -1,0 +1,41 @@
+.login-form {
+    color: white;
+    height: 635px;
+    width: 700px;
+    border: 2px solid black;
+    background-image: url('../../images/login-form-court.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.errors-container {
+    display: flex;
+    justify-content: center;
+}
+
+.credential-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 545px;
+    left: 98px;
+}
+
+.password-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 545px;
+    right: 102px;
+}
+
+.login-form-button {
+    padding: 5px;
+    width: 150px;
+    position: absolute;
+    top: 600px;
+    left: 275px;
+    cursor: pointer;
+}

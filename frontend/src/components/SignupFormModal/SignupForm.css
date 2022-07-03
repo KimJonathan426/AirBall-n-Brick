@@ -1,0 +1,46 @@
+.signup-form {
+    color: black;
+    height: 635px;
+    width: 700px;
+    border: 2px solid black;
+    background-image: url('../../images/signup-form-court.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.welcome-text {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    top: 10px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #f7f4ef;
+    height: 95%;
+    width: 40%;
+    border: 1px solid black;
+    border-radius: 30px;
+    position: absolute;
+    top: 2.5%;
+    right: 16px;
+}
+
+.email-container,
+.username-container,
+.signup-password-container,
+.confirmed-container {
+    text-align: center;
+}
+
+.signup-form-button {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 15px;
+    cursor: pointer;
+}
