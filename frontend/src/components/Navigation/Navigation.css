@@ -12,6 +12,7 @@
     height: 80px;
     padding-left: 80px;
     padding-right: 80px;
+    z-index: 1;
 }
 
 .logo-nav {
