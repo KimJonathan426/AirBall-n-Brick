@@ -42,7 +42,8 @@
     transition: background-color 0.3s ease-in;
 }
 
-.host-link:hover {
+.host-link:hover,
+.nav-buttons > button:hover {
     background-color: rgb(207, 83, 0, .05);
 }
 
@@ -56,6 +57,13 @@
     flex-direction: row;
 }
 
-/* .nav-button button {
-
-} */
+.nav-buttons > button {
+    background-color: #fff;
+    color: #484848;
+    margin-left: 25px;
+    padding: 15px;
+    border: 1px solid #d9e1ecc0;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in;
+}
