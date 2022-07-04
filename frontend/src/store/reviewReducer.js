@@ -127,7 +127,7 @@ const reviewReducer = (state = initialState, action) => {
             return newState;
         }
         case CLEAR_REVIEWS:
-            const clearState = { reviews: {}, reviewAvgs: {} };
+            const clearState = { reviews: {}, reviewAvgs: {...state.reviewAvgs} };
             return clearState;
         default:
             return state;
