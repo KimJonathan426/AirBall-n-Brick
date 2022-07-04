@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getSpots } from '../../store/spotReducer';
+import { getReviewAvg } from '../../store/reviewReducer';
 import './SpotsList.css';
+
 
 const SpotList = () => {
     const dispatch = useDispatch();
@@ -10,6 +12,7 @@ const SpotList = () => {
 
     useEffect(() => {
         dispatch(getSpots());
+        dispatch(getReviewAvg());
     }, [dispatch]);
 
     const spotArray = Object.values(spots.spots);
