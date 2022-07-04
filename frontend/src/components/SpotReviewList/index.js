@@ -14,7 +14,7 @@ const SpotReviewList = ({ user, spotId }) => {
         );
     }, [dispatch, spotId]);
 
-    const reviewArray = Object.values(reviews);
+    const reviewArray = Object.values(reviews.reviews);
 
     return (
         <div>
