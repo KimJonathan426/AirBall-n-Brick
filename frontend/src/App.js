@@ -10,7 +10,6 @@ import PageNotFound from "./components/PageNotFound";
 
 function App() {
   const dispatch = useDispatch();
-  
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
