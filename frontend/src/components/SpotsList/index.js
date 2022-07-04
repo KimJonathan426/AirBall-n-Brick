@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getSpots } from '../../store/spotReducer';
+import './SpotsList.css';
 
 const SpotList = () => {
     const dispatch = useDispatch();
@@ -17,26 +18,27 @@ const SpotList = () => {
     let spotImg;
 
     return (
-        <div>
-            <h1>Spots</h1>
-            <div>
-                {spotArray.map((spot) => {
-                    spotImg = imageArray.find(image => spot?.id === image?.spotId)
-                    return (
-                        <div key={spot?.id}>
-                            <NavLink to={`/spots/${spot?.id}`}>
-                                <img src={spotImg?.url} />
+        <div className='spots-list-container'>
+            {spotArray.map((spot) => {
+                spotImg = imageArray.find(image => spot?.id === image?.spotId)
+                return (
+                    <div className='spot-container' key={spot?.id}>
+                        <NavLink to={`/spots/${spot?.id}`}>
+                            <div className='spot-image'>
+                                <img id='center' src={spotImg?.url} />
+                            </div>
+                            <div className='spot-info'>
                                 <div>
-                                    {spot?.name}
-                                    {spot?.city}
-                                    {spot?.state}
+                                    {spot?.city}, {spot?.state}
+                                </div>
+                                <div>
                                     {spot?.price}
                                 </div>
-                            </NavLink>
-                        </div>
-                    )
-                })}
-            </div>
+                            </div>
+                        </NavLink>
+                    </div>
+                )
+            })}
         </div>
     )
 }
