@@ -4,7 +4,7 @@ import { getReviews, deleteReview, actionClearReviews } from '../../store/review
 
 const SpotReviewList = ({ user, spotId }) => {
     const dispatch = useDispatch();
-    const reviews = useSelector(state => state.review.reviews)
+    const reviews = useSelector(state => state.review)
 
     useEffect(() => {
         dispatch(getReviews(spotId));
@@ -20,11 +20,11 @@ const SpotReviewList = ({ user, spotId }) => {
         <div>
             Reviews
             {reviews && reviewArray.map(review => (
-                <div key={review?.id}>
-                    {review?.User.username}
-                    {review?.rating}
-                    {review?.review}
-                    {review?.userId === user && (
+                <div key={review.id}>
+                    {review.User.username}
+                    {review.rating}
+                    {review.review}
+                    {review.userId === user && (
                         <button onClick={async (e) => {
                             e.preventDefault();
                             await dispatch(deleteReview(review.id));
