@@ -41,7 +41,6 @@ function SignupFormPage() {
           <label>
             Email
           </label>
-          <br />
           <input
             type="text"
             value={email}
@@ -53,7 +52,6 @@ function SignupFormPage() {
           <label>
             Username
           </label>
-          <br />
           <input
             type="text"
             value={username}
@@ -65,7 +63,6 @@ function SignupFormPage() {
           <label>
             Password
           </label>
-          <br />
           <input
             type="password"
             value={password}
@@ -77,7 +74,6 @@ function SignupFormPage() {
           <label>
             Confirm Password
           </label>
-          <br />
           <input
             type="password"
             value={confirmPassword}

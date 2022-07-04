@@ -31,11 +31,9 @@
     right: 16px;
 }
 
-.email-container,
-.username-container,
-.signup-password-container,
-.confirmed-container {
-    text-align: center;
+.form-container > div {
+    display: flex;
+    flex-direction: column;
 }
 
 .signup-form-button {
