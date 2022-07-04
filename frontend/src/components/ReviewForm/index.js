@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createReview } from '../../store/reviewReducer';
+import { createReview, getReviewAvg } from '../../store/reviewReducer';
 
 const ReviewForm = ({ spotId, hideForm }) => {
     const dispatch = useDispatch();
@@ -40,6 +40,7 @@ const ReviewForm = ({ spotId, hideForm }) => {
 
         if (res) {
             hideForm();
+            dispatch(getReviewAvg());
         }
 
         setHasSubmitted(false);

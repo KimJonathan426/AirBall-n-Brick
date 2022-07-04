@@ -7,11 +7,30 @@
     margin: 120px auto 80px;
 }
 
+.edit-delete-buttons {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
 .edit-button,
 .delete-button {
-    width: 50%;
+    width: 35%;
     padding: 15px;
-    margin-bottom: 25px;
+    margin: 25px 50px;
+    border: 5px groove #CF5300;
+    border-radius: 10px;
+    background-color: rgb(58, 58, 58);
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.edit-button:active,
+.delete-button:active {
+    background-color: black;
 }
 
 .single-spot-image-container {
@@ -19,8 +38,9 @@
     grid-template-columns: 2fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 8px;
-    width: 1120px;
-    height: 560px;
+    max-width: 1120px;
+    max-height: 560px;
+    flex-grow: 15%;
 }
 
 .image-fit-main {
@@ -78,4 +98,24 @@
     height: 276px;
     grid-column: 3;
     grid-row: 2;
+}
+
+.spot-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+}
+
+.single-name-info {
+    font-size: 26px;
+    color: #222222;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.spot-sub-header {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
 }

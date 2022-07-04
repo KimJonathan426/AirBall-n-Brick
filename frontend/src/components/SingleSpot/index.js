@@ -2,9 +2,11 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getSpots, deleteSpot } from '../../store/spotReducer';
+import { getReviewAvg } from '../../store/reviewReducer';
 import SpotEditForm from '../SpotEditForm';
 import ReviewForm from '../ReviewForm';
 import SpotReviewList from '../SpotReviewList';
+import ratingStar from '../../images/rating-star.png';
 import './SingleSpot.css';
 
 const SingleSpot = () => {
@@ -13,13 +15,14 @@ const SingleSpot = () => {
     const history = useHistory();
     const singleSpot = useSelector(state => state.spot.spots[id]);
     const images = useSelector(state => state.spot.images);
+    const reviewAvgs = useSelector(state => state.review)
     const user = useSelector(state => state.session?.user?.id);
 
     const [showEditSpotForm, setShowEditSpotForm] = useState(false);
     const [showReviewForm, setShowReviewForm] = useState(false);
 
     const imagesArray = Object.values(images);
-
+    const spotAvg = reviewAvgs.reviewAvgs;
     const spotImages = imagesArray.filter(image => image.spotId === +id);
 
     const onDelete = async (e) => {
@@ -45,6 +48,7 @@ const SingleSpot = () => {
 
     useEffect(() => {
         dispatch(getSpots());
+        dispatch(getReviewAvg());
     }, [dispatch])
 
     let content = null;
@@ -61,18 +65,27 @@ const SingleSpot = () => {
         content = (
             <>
                 {(!showEditSpotForm && user === singleSpot?.userId) && (
-                    <>
+                    <div className='edit-delete-buttons'>
                         <button className='edit-button' onClick={() => setShowEditSpotForm(true)}>Edit Court</button>
                         <button className='delete-button' onClick={onDelete}>Delete Court</button>
-                    </>
+                    </div>
                 )}
                 {(showEditSpotForm && user) && (
                     <SpotEditForm spotImages={spotImages} spot={singleSpot} id={id} hideForm={() => setShowEditSpotForm(false)} />
                 )}
-                <div>
-                    {singleSpot?.name}
-                    {singleSpot?.city}
-                    {singleSpot?.state}
+                <div className='spot-header'>
+                    <div className='single-name-info'>
+                        {singleSpot?.name}
+                    </div>
+                    <div className='spot-sub-header'>
+                        <div>
+                            <img className='star-image' src={ratingStar} />
+                            {spotAvg[singleSpot?.id]}
+                        </div>
+                        <div>
+                            {singleSpot?.city}, {singleSpot?.state}, {singleSpot?.country}
+                        </div>
+                    </div>
                 </div>
                 <div className='single-spot-image-container'>
                     <div className='main-image'>

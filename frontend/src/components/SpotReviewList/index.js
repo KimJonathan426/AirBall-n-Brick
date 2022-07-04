@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getReviews, deleteReview, actionClearReviews } from '../../store/reviewReducer';
+import { getReviews, getReviewAvg, deleteReview, actionClearReviews } from '../../store/reviewReducer';
 
 const SpotReviewList = ({ user, spotId }) => {
     const dispatch = useDispatch();
@@ -28,6 +28,7 @@ const SpotReviewList = ({ user, spotId }) => {
                         <button onClick={async (e) => {
                             e.preventDefault();
                             await dispatch(deleteReview(review.id));
+                            dispatch(getReviewAvg());
                         }}>Delete Review</button>
                     )}
                 </div>
