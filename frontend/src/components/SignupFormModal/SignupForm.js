@@ -32,16 +32,15 @@ function SignupFormPage() {
     <form className='signup-form' onSubmit={handleSubmit}>
       <div className='form-container'>
         <div className='welcome-text'>Join The Community!</div>
-        <div className='signup-error-container'>
-          <ul>
+        <div>
+          <ul className='signup-errors-container'>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
         </div>
-        <div className='email-container'>
+        <div>
           <label>
             Email
           </label>
-          <br />
           <input
             type="text"
             value={email}
@@ -49,11 +48,10 @@ function SignupFormPage() {
             required
           />
         </div>
-        <div className='username-container'>
+        <div>
           <label>
             Username
           </label>
-          <br />
           <input
             type="text"
             value={username}
@@ -61,11 +59,10 @@ function SignupFormPage() {
             required
           />
         </div>
-        <div className='signup-password-container'>
+        <div>
           <label>
             Password
           </label>
-          <br />
           <input
             type="password"
             value={password}
@@ -73,11 +70,10 @@ function SignupFormPage() {
             required
           />
         </div>
-        <div className='confirmed-container'>
+        <div>
           <label>
             Confirm Password
           </label>
-          <br />
           <input
             type="password"
             value={confirmPassword}

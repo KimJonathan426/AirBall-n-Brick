@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
 import { createSpot } from '../../store/spotReducer';
+import hostCourt from '../../images/host-form-court.png';
+import './SpotForm.css';
 
 const SpotForm = () => {
     const dispatch = useDispatch();
@@ -95,42 +97,66 @@ const SpotForm = () => {
     );
 
     return (
-        <form onSubmit={handleSubmit}>
-            {(hasSubmitted && validationErrors.length > 0) && (
-                <ul className='errors'>
-                    {validationErrors.map(error => (
-                        <li key={error}>{error}</li>
-                    ))}
-                </ul>
-            )}
-            <label>Address</label>
-            <input type='text' value={address} onChange={updateAddress} required />
-            <label>City</label>
-            <input type='text' value={city} onChange={updateCity} required />
-            <label>State</label>
-            <input type='text' value={state} onChange={updateState} required />
-            <label>Country</label>
-            <input type='text' value={country} onChange={updateCountry} required />
-            <label>Name</label>
-            <input type='text' value={name} onChange={updateName} required />
-            <label>Description</label>
-            <textarea value={description} onChange={updateDescription} required />
-            <label>Price</label>
-            <input type='number' value={price} onChange={updatePrice} required />
-            <label>Image Urls</label>
-            <br />
-            <label>Image 1</label>
-            <input type='url' value={url1} onChange={updateUrl1} required />
-            <label>Image 2</label>
-            <input type='url' value={url2} onChange={updateUrl2} required />
-            <label>Image 3</label>
-            <input type='url' value={url3} onChange={updateUrl3} required />
-            <label>Image 4</label>
-            <input type='url' value={url4} onChange={updateUrl4} required />
-            <label>Image 5</label>
-            <input type='url' value={url5} onChange={updateUrl5} required />
-            <button type='submit'>Host New Court</button>
-        </form>
+        <div className='spot-form-container'>
+            <div className='left-side-image'>
+                <img src={hostCourt} />
+            </div>
+            <div className='right-side-form'>
+                <form className='spot-form' onSubmit={handleSubmit}>
+                    {(hasSubmitted && validationErrors.length > 0) && (
+                        <ul className='errors'>
+                            {validationErrors.map(error => (
+                                <li key={error}>{error}</li>
+                            ))}
+                        </ul>
+                    )}
+                    <div>
+                        <label>Address</label>
+                        <input type='text' value={address} onChange={updateAddress} required />
+                    </div>
+                    <div>
+                        <label>City</label>
+                        <input type='text' value={city} onChange={updateCity} required />
+                    </div>
+                    <div>
+                        <label>State</label>
+                        <input type='text' value={state} onChange={updateState} required />
+                    </div>
+                    <div>
+                        <label>Country</label>
+                        <input type='text' value={country} onChange={updateCountry} required />
+                    </div>
+                    <div>
+                        <label>Name</label>
+                        <input type='text' value={name} onChange={updateName} required />
+                    </div>
+                    <div>
+                        <label>Price</label>
+                        <input type='number' value={price} onChange={updatePrice} required />
+                    </div>
+                    <div>
+                        <label>Description</label>
+                        <textarea className='description-input' value={description} onChange={updateDescription} required />
+                    </div>
+                    <div className='image-input-container'>
+                        <label>Image Urls</label>
+                        <div className='image-inputs'>
+                            <label>Image 1</label>
+                            <input type='url' value={url1} onChange={updateUrl1} required />
+                            <label>Image 2</label>
+                            <input type='url' value={url2} onChange={updateUrl2} required />
+                            <label>Image 3</label>
+                            <input type='url' value={url3} onChange={updateUrl3} required />
+                            <label>Image 4</label>
+                            <input type='url' value={url4} onChange={updateUrl4} required />
+                            <label>Image 5</label>
+                            <input type='url' value={url5} onChange={updateUrl5} required />
+                        </div>
+                    </div>
+                    <button className='host-button' type='submit'>Host New Court</button>
+                </form>
+            </div>
+        </div>
     )
 }
 

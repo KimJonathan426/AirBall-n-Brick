@@ -1,4 +1,20 @@
 body {
-    margin: 80px 0px 0px 0px;
+    margin: 0px;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+}
+
+input,
+textarea {
+    border: 1px solid rgb(0, 0, 0, 0.5);
+    border-radius: 7px;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border: 1px solid rgb(207, 83, 0, 0.5);
+}
+
+label {
+    margin-bottom: 5px;
 }

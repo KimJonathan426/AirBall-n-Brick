@@ -33,9 +33,9 @@
 
 .login-form-button {
     padding: 5px;
-    width: 150px;
+    width: 100px;
     position: absolute;
     top: 600px;
-    left: 275px;
+    left: 300px;
     cursor: pointer;
 }
