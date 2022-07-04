@@ -112,7 +112,6 @@ const reviewReducer = (state = initialState, action) => {
         case GET_REVIEWAVG: {
             const newState = { ...state };
             action.avgRatings.forEach( spot => {
-                console.log('spot===', spot)
                 newState.reviewAvgs[spot.id] = spot.avgRate;
             })
             return newState;
