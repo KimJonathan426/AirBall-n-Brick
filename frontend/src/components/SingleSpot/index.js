@@ -17,12 +17,13 @@ const SingleSpot = () => {
     const images = useSelector(state => state.spot.images);
     const reviewAvgs = useSelector(state => state.review)
     const user = useSelector(state => state.session?.user?.id);
-
+    console.log('reviewAvg', reviewAvgs)
     const [showEditSpotForm, setShowEditSpotForm] = useState(false);
     const [showReviewForm, setShowReviewForm] = useState(false);
 
     const imagesArray = Object.values(images);
     const spotAvg = reviewAvgs.reviewAvgs;
+    const reviewLength = Object.values(reviewAvgs.reviews).length;
     const spotImages = imagesArray.filter(image => image.spotId === +id);
 
     const onDelete = async (e) => {
@@ -80,10 +81,20 @@ const SingleSpot = () => {
                     <div className='spot-sub-header'>
                         <div>
                             <img className='star-image' src={ratingStar} />
-                            {spotAvg[singleSpot?.id]}
+                            {console.log('spotAvg========', spotAvg[singleSpot?.id]?.avg)}
+                            {spotAvg[singleSpot?.id]?.avg && (
+                                <>
+                                    {' ' + spotAvg[singleSpot?.id]?.avg} | {spotAvg[singleSpot?.id]?.count} reviews
+                                </>
+                            )}
+                            {!spotAvg[singleSpot?.id]?.avg && (
+                                <>
+                                    {' New | 0 reviews'}
+                                </>
+                            )}
                         </div>
-                        <div>
-                            {singleSpot?.city}, {singleSpot?.state}, {singleSpot?.country}
+                        <div className='single-location-info'>
+                            {'| ' + singleSpot?.city}, {singleSpot?.state}, {singleSpot?.country}
                         </div>
                     </div>
                 </div>

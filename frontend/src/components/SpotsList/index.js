@@ -40,7 +40,7 @@ const SpotList = () => {
                                     </div>
                                     {reviewAvgs[spot?.id] && (
                                         <div className='star-text'>
-                                            {reviewAvgs[spot?.id]}
+                                            {reviewAvgs[spot?.id]?.avg}
                                             <img className='star-image' src={ratingStar} />
                                         </div>
                                     )}

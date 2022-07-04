@@ -25,7 +25,6 @@ router.get('/', asyncHandler(async (req, res) => {
         let avg = spot.ratings / spot.count;
         let rounded = Math.round(avg * 10) / 10;
         let standardizedAvg = rounded.toFixed(1);
-        delete spot['count'];
         delete spot['ratings']
         spot['avgRate'] = standardizedAvg;
     })

@@ -119,3 +119,11 @@
     flex-direction: row;
     margin-bottom: 20px;
 }
+
+.spot-sub-header > div {
+    color: #222222;
+}
+
+.single-location-info {
+    margin-left: 5px;
+}
