@@ -15,11 +15,9 @@
     display: flex;
     flex-direction: column;
     color: rgb(113, 113, 113);
-    /* color: #222222; */
     font-weight: bold;
     font-size: 14px;
     align-items: center;
-    justify-items: center;
     max-width: 500px;
     border: 1px solid #d9e1ecc0;
     padding: 5px 10px;
@@ -34,15 +32,12 @@
 }
 
 .logout-button {
-    background-color: #fff;
+    background-color: rgb(207, 83, 0, .5);
     color: #484848;
     width: 100%;
     border: none;
     border-radius: 15px;
-    padding: 10px;
+    padding: 5px;
+    margin-top: 5px;
     cursor: pointer;
-}
-
-.logout-button:hover {
-    background-color: rgb(207, 83, 0, .05);
 }
