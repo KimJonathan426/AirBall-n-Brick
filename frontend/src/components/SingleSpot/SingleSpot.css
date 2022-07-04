@@ -24,12 +24,13 @@
     background-color: rgb(58, 58, 58);
     color: white;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
 }
 
 .edit-button:active,
-.delete-button:active {
+.delete-button:active,
+.post-review-button:active {
     background-color: black;
 }
 
@@ -126,4 +127,94 @@
 
 .single-location-info {
     margin-left: 5px;
+}
+
+.single-spot-info {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    width: 100%;
+    height: fit-content;
+    padding-bottom: 35px;
+    border-bottom: 1px solid #d9e1ec;
+}
+
+.main-spot-content {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    color: #222222;
+}
+
+.host-name {
+    padding-bottom: 35px;
+    border-bottom: 1px solid #d9e1ec;
+    margin: 0px;
+}
+
+.spot-description {
+    width: 100%;
+    height: fit-content;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0px;
+    padding: 35px 0px;
+    word-wrap: break-word;
+}
+
+.hovering-content {
+    text-align: center;
+    margin: -1% auto;
+    height: 300px;
+    width: 30%;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+    position: relative;
+    top: 10px;
+    font-size: 36px;
+    text-decoration: underline;
+    text-decoration-color: #CF5300;
+}
+
+.spot-review-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.spot-review-container > h3 {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 35px;
+}
+
+.review-star-image {
+    width: fit-content;
+    height: fit-content;
+    object-fit: none;
+    position: relative;
+    bottom: 2px;
+    margin-right: 7px;
+}
+
+.post-review-button-container {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.post-review-button {
+    width: 25%;
+    padding: 15px;
+    border: 5px groove #CF5300;
+    border-radius: 10px;
+    background-color: rgb(58, 58, 58);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
 }

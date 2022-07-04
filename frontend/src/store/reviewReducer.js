@@ -86,7 +86,6 @@ export const getReviewAvg = () => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        console.log('data', data)
         dispatch(actionGetReviewAvg(data.avgRatingArray));
         return data;
     }

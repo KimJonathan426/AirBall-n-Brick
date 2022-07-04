@@ -17,13 +17,13 @@ const SingleSpot = () => {
     const images = useSelector(state => state.spot.images);
     const reviewAvgs = useSelector(state => state.review)
     const user = useSelector(state => state.session?.user?.id);
-    console.log('reviewAvg', reviewAvgs)
+
     const [showEditSpotForm, setShowEditSpotForm] = useState(false);
     const [showReviewForm, setShowReviewForm] = useState(false);
 
     const imagesArray = Object.values(images);
     const spotAvg = reviewAvgs.reviewAvgs;
-    const reviewLength = Object.values(reviewAvgs.reviews).length;
+
     const spotImages = imagesArray.filter(image => image.spotId === +id);
 
     const onDelete = async (e) => {
@@ -81,7 +81,6 @@ const SingleSpot = () => {
                     <div className='spot-sub-header'>
                         <div>
                             <img className='star-image' src={ratingStar} />
-                            {console.log('spotAvg========', spotAvg[singleSpot?.id]?.avg)}
                             {spotAvg[singleSpot?.id]?.avg && (
                                 <>
                                     {' ' + spotAvg[singleSpot?.id]?.avg} | {spotAvg[singleSpot?.id]?.count} reviews
@@ -115,18 +114,42 @@ const SingleSpot = () => {
                         <img src={spotImages[4]?.url} className='image-fit-sub right-bot' />
                     </div>
                 </div>
-                <div>
-                    Hosted By {singleSpot?.User?.username}
-                    <br />
-                    {singleSpot?.price}
-                    <br />
-                    {singleSpot?.description}
+                <div className='single-spot-info'>
+                    <div className='main-spot-content'>
+                        <h3 className='host-name'>
+                            Hosted By {singleSpot?.User?.username}
+                        </h3>
+                        <h5 className='spot-description'>
+                            {singleSpot?.description}
+                        </h5>
+                    </div>
+                    <div className='hovering-content'>
+                        <h5>
+                            Price Per Night
+                        </h5>
+                        <h6>
+                            {singleSpot?.price}
+                        </h6>
+                    </div>
                 </div>
-                <div>
-                    Reviews go here
-                    Review Create button
+                <div className='spot-review-container'>
+                    <h3>
+                        <img className='review-star-image' src={ratingStar} />
+                        {spotAvg[singleSpot?.id]?.avg && (
+                            <>
+                                {' ' + spotAvg[singleSpot?.id]?.avg} | {spotAvg[singleSpot?.id]?.count} reviews
+                            </>
+                        )}
+                        {!spotAvg[singleSpot?.id]?.avg && (
+                            <>
+                                {' New | 0 reviews'}
+                            </>
+                        )}
+                    </h3>
                     {(!showReviewForm && user) && (
-                        <button onClick={() => setShowReviewForm(true)}>Post a review</button>
+                        <div className='post-review-button-container'>
+                            <button className='post-review-button' onClick={() => setShowReviewForm(true)}>Post a review</button>
+                        </div>
                     )}
                     {(showReviewForm && user) && (
                         <ReviewForm spotId={id} hideForm={() => setShowReviewForm(false)} />
