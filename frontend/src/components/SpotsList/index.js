@@ -9,6 +9,7 @@ import './SpotsList.css';
 const SpotList = () => {
     const dispatch = useDispatch();
     const spots = useSelector(state => state.spot);
+    const reviews = useSelector(state => state.review)
 
     useEffect(() => {
         dispatch(getSpots());
@@ -16,7 +17,8 @@ const SpotList = () => {
     }, [dispatch]);
 
     const spotArray = Object.values(spots.spots);
-    const imageArray = Object.values(spots.images)
+    const imageArray = Object.values(spots.images);
+    const reviewAvgs = reviews.reviewAvgs;
 
     let spotImg;
 
@@ -31,7 +33,21 @@ const SpotList = () => {
                                 <img id='center' src={spotImg?.url} />
                             </div>
                             <div className='spot-info'>
-                                <div>{spot?.city}, {spot?.state}</div>
+                                <div>
+                                    <div>
+                                        {spot?.city}, {spot?.state}
+                                    </div>
+                                    {reviewAvgs[spot?.id] && (
+                                        <div>
+                                            {reviewAvgs[spot?.id]}
+                                        </div>
+                                    )}
+                                    {!reviewAvgs[spot?.id] && (
+                                        <div>
+                                            New
+                                        </div>
+                                    )}
+                                </div>
                                 <div>{spot?.price}</div>
                             </div>
                         </NavLink>
