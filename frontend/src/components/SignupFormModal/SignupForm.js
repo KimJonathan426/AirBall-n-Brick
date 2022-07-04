@@ -33,7 +33,7 @@ function SignupFormPage() {
       <div className='form-container'>
         <div className='welcome-text'>Join The Community!</div>
         <div>
-          <ul>
+          <ul className='signup-errors-container'>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
         </div>
