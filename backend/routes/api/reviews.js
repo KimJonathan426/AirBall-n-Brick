@@ -5,6 +5,32 @@ const { Review } = require('../../db/models');
 
 const router = express.Router();
 
+router.get('/', asyncHandler(async (req, res) => {
+    const reviews = await Review.findAll();
+
+    const avgRatings = {};
+    reviews.forEach( review => {
+        if (avgRatings[review.spotId]) {
+            avgRatings[review.spotId].ratings += review.rating;
+            avgRatings[review.spotId].count++;
+        } else {
+
+            avgRatings[review.spotId] = {'id': review.spotId, 'ratings': review.rating, 'count': 1};
+        }
+    });
+
+    const avgRatingArray = Object.values(avgRatings);
+
+    avgRatingArray.forEach( spot => {
+        let avg = spot.ratings / spot.count;
+        delete spot['count'];
+        delete spot['ratings']
+        spot['avgRate'] = avg;
+    })
+
+    return res.json({ avgRatingArray });
+}));
+
 router.delete('/:id', asyncHandler(async (req, res) => {
     const review = await Review.findByPk(req.params.id);
 

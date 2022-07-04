@@ -5,6 +5,7 @@ const ADD_REVIEW = 'reviews/addReview';
 
 // READ
 const GET_REVIEWS = 'reviews/getReview';
+const GET_REVIEWAVG = 'reviews/getReviewAvg';
 
 // DELETE
 const DELETE_REVIEW = 'reviews/deleteReview';
@@ -25,6 +26,13 @@ const actionGetReviews = (reviews) => {
     return {
         type: GET_REVIEWS,
         reviews
+    }
+}
+
+const actionGetReviewAvg = (avgRatings) => {
+    return {
+        type: GET_REVIEWAVG,
+        avgRatings
     }
 }
 
@@ -66,6 +74,16 @@ export const getReviews = (spotId) => async (dispatch) => {
     }
 }
 
+export const getReviewAvg = () => async (dispatch) => {
+    const response = await csrfFetch('/api/reviews');
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionGetReviewAvg(data.avgRatingArray));
+        return data;
+    }
+}
+
 export const deleteReview = (reviewId) => async (dispatch) => {
     const response = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: 'DELETE'
@@ -79,7 +97,7 @@ export const deleteReview = (reviewId) => async (dispatch) => {
     }
 }
 
-const initialState = {};
+const initialState = { reviews: {}, reviewAvgs: {} };
 
 // Reducer
 const reviewReducer = (state = initialState, action) => {
@@ -87,22 +105,30 @@ const reviewReducer = (state = initialState, action) => {
         case GET_REVIEWS: {
             const newState = { ...state };
             action.reviews.forEach( review => {
-                newState[review.id] = review;
+                newState.reviews[review.id] = review;
             });
+            return newState;
+        }
+        case GET_REVIEWAVG: {
+            const newState = { ...state };
+            action.avgRatings.forEach( spot => {
+                console.log('spot===', spot)
+                newState.reviewAvgs[spot.id] = spot.avgRate;
+            })
             return newState;
         }
         case ADD_REVIEW: {
             const newState = { ...state };
-            newState[action.review.id] = action.review;
+            newState.reviews[action.review.id] = action.review;
             return newState;
         }
         case DELETE_REVIEW: {
             const newState = { ...state };
-            delete newState[action.reviewId];
+            delete newState.reviews[action.reviewId];
             return newState;
         }
         case CLEAR_REVIEWS:
-            const clearState = {};
+            const clearState = { reviews: {}, reviewAvgs: {} };
             return clearState;
         default:
             return state;
