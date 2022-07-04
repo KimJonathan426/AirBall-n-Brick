@@ -44,7 +44,7 @@ const SpotList = () => {
                                             <img className='star-image' src={ratingStar} />
                                         </div>
                                     )}
-                                    {reviewAvgs && !reviewAvgs[spot?.id] && (
+                                    {!reviewAvgs[spot?.id] && (
                                         <div className='star-text'>
                                             New
                                             <img className='star-image' src={ratingStar} />
