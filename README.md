@@ -36,4 +36,20 @@ _For a link to the AirBallnBrick wiki, click here: [Wiki](https://github.com/Kim
 1. Clone the repo
 2. Open two terminals and cd into the frontend directory on one, and cd into the backend directory on the other
 3. Run an npm install on both directories
-4. Input the command "npm start" into each terminal to start the project locally.
+4. Input the command "npm start" into each terminal to start the project locally
+
+
+## Technologies Used
+- React
+- Redux
+- NodeJS
+- Express
+- PostgreSQL
+- Heroku
+
+## Future Implementations
+- Include update operation for review feature
+- Include a bookings feature
+- Include an image feature separate from the spot form with full CRUD
+- Implement edit forms as a modal
+- Implement a confirmation requirement for delete buttons
