@@ -4,8 +4,9 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotList from "./components/SpotsList";
+import SpotForm from "./components/SpotForm";
 import SingleSpot from "./components/SingleSpot";
-import SpotForm from './components/SpotForm';
+import About from "./components/About";
 import PageNotFound from "./components/PageNotFound";
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path='/'>
+          <Route exact path="/">
             <SpotList />
           </Route>
           <Route path="/spots/new">
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path="/spots/:id">
             <SingleSpot />
+          </Route>
+          <Route path="/about">
+            <About />
           </Route>
           <Route>
             <PageNotFound />

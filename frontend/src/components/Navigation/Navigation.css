@@ -63,6 +63,10 @@
     flex-direction: row;
 }
 
+.nav-buttons {
+    min-width: fit-content;
+}
+
 .nav-buttons > button {
     background-color: #fff;
     color: #484848;

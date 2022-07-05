@@ -39,6 +39,9 @@ function Navigation({ isLoaded }) {
         <img className='logo-image' src={logoImage} />
         <img className='logo-text' src={logoText} />
       </NavLink>
+      <NavLink exact to='/about'>
+        About
+      </NavLink>
       <div className='nav-buttons'>
         {isLoaded && sessionLinks}
       </div>
