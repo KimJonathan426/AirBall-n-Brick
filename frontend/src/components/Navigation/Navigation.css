@@ -9,6 +9,7 @@
     box-sizing: border-box;
     border-bottom: 1px solid #d9e1ecc0;
     width: 100%;
+    min-width: 650px;
     height: 80px;
     padding-left: 80px;
     padding-right: 80px;
@@ -34,7 +35,8 @@
     height: 75px;
 }
 
-.host-link {
+.host-link,
+.about-link-logged-in {
     font-size: 14px;
     font-weight: bold;
     line-height: 1.43;
@@ -49,7 +51,8 @@
 }
 
 .host-link:hover,
-.nav-buttons > button:hover {
+.nav-buttons > button:hover,
+.about-link-logged-out:hover {
     background-color: rgb(207, 83, 0, .05);
 }
 
@@ -67,7 +70,8 @@
     min-width: fit-content;
 }
 
-.nav-buttons > button {
+.nav-buttons > button,
+.about-link-logged-out {
     background-color: #fff;
     color: #484848;
     margin-left: 25px;
@@ -77,3 +81,20 @@
     cursor: pointer;
     transition: background-color 0.3s ease-in;
 }
+
+.about-link-logged-out {
+    font-size: 14px;
+}
+
+.about-link-logged-in-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+/* .about-link-logged-in {
+    font-size: 14px;
+    font-weight: bold;
+    color: #484848;
+
+} */
