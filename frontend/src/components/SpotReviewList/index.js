@@ -16,24 +16,23 @@ const SpotReviewList = ({ user, spotId, ratingStar }) => {
     }, [dispatch, spotId]);
 
     const reviewArray = Object.values(reviews.reviews);
-
-    let stars;
+    const reviewLength = Object.values(reviews.reviews).length;
 
     const assignStars = (rating) => {
         switch (rating) {
             case 1:
-                return stars = (
+                return (
                     <img className='single-review-star' src={ratingStar} />
                 )
             case 2:
-                return stars = (
+                return (
                     <>
                         <img className='single-review-star' src={ratingStar} />
                         <img className='single-review-star' src={ratingStar} />
                     </>
                 )
             case 3:
-                return stars =  (
+                return (
                     <>
                         <img className='single-review-star' src={ratingStar} />
                         <img className='single-review-star' src={ratingStar} />
@@ -41,7 +40,7 @@ const SpotReviewList = ({ user, spotId, ratingStar }) => {
                     </>
                 )
             case 4:
-                return stars = (
+                return (
                     <>
                         <img className='single-review-star' src={ratingStar} />
                         <img className='single-review-star' src={ratingStar} />
@@ -50,7 +49,7 @@ const SpotReviewList = ({ user, spotId, ratingStar }) => {
                     </>
                 )
             case 5:
-                return stars = (
+                return (
                     <>
                         <img className='single-review-star' src={ratingStar} />
                         <img className='single-review-star' src={ratingStar} />
@@ -78,8 +77,12 @@ const SpotReviewList = ({ user, spotId, ratingStar }) => {
                             <button className='delete-review-button' onClick={async (e) => {
                                 e.preventDefault();
                                 await dispatch(deleteReview(review.id));
-                                dispatch(actionClearReviewAvgs());
-                                dispatch(getReviewAvg());
+                                if (reviewLength === 1) {
+                                    dispatch(actionClearReviewAvgs());
+                                    dispatch(getReviewAvg());
+                                } else {
+                                    dispatch(getReviewAvg());
+                                }
                             }}>Delete Review</button>
                         </div>
                     )}
