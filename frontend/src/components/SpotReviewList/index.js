@@ -74,8 +74,8 @@ const SpotReviewList = ({ user, spotId, ratingStar }) => {
                         {review.review}
                     </div>
                     {review.userId === user && (
-                        <div>
-                            <button onClick={async (e) => {
+                        <div className='delete-review-button-container'>
+                            <button className='delete-review-button' onClick={async (e) => {
                                 e.preventDefault();
                                 await dispatch(deleteReview(review.id));
                                 dispatch(actionClearReviewAvgs());
