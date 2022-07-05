@@ -106,6 +106,10 @@ module.exports = {
         url: 'https://images.pexels.com/photos/2186255/pexels-photo-2186255.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1.jpg'
       },
       {
+        spotId: 5,
+        url: 'https://64.media.tumblr.com/a0e7c7db9e70bce7bd6f54a1c00c0c75/8b8e031b8c885111-04/s540x810/f2c557ae98d0151c0dcce8b92c7906d838bb2935.jpg'
+      },
+      {
         spotId: 6,
         url: 'https://2.bp.blogspot.com/-qpASKaWzU20/UofZZwppWuI/AAAAAAAAAdM/e27e2NUJNVo/s1600/nba-2k14-dallas-mavericks-hd-court-mod.jpg'
       },
@@ -144,14 +148,6 @@ module.exports = {
       {
         spotId: 7,
         url: 'https://thesource.com/wp-content/uploads/2021/09/rucker-park.jpeg'
-      },
-      {
-        spotId: 7,
-        url: 'https://64.media.tumblr.com/5bb61f9b587726e037e9fca0bc6d5036/tumblr_nj7puqVz6Q1qzyjm6o1_1280.jpg'
-      },
-      {
-        spotId: 7,
-        url: 'https://upload.wikimedia.org/wikipedia/commons/9/95/Rucker_Park_%28WTM_wikiWhat_027%29.jpg'
       },
       {
         spotId: 8,
@@ -250,6 +246,10 @@ module.exports = {
         url: 'https://p0.pikist.com/photos/151/715/basketball-ball-sport-game-competition-play-equipment-basket-leisure.jpg'
       },
       {
+        spotId: 12,
+        url: 'https://m.media-amazon.com/images/I/61t5-qqEBIL._AC_SL1000_.jpg'
+      },
+      {
         spotId: 13,
         url: 'https://c0.wallpaperflare.com/preview/225/222/575/basketball-court-net-rim.jpg'
       },
@@ -266,6 +266,10 @@ module.exports = {
         url: 'https://cityofsantamonica.getbynder.com/m/5db598b84e0e50a0/Standard_Image-Person-Playing-Basketball-on-a-Basketball-Court-With-Palm-Trees-in-the-Background-at-Ocean-View-Park.jpg'
       },
       {
+        spotId: 13,
+        url: 'https://c4.wallpaperflare.com/wallpaper/920/72/965/basketball-beach-palm-trees-los-angeles-wallpaper-preview.jpg'
+      },
+      {
         spotId: 14,
         url: 'https://thumbs.dreamstime.com/b/basketball-hoop-net-basketball-court-bright-blue-sky-arizona-basketball-hoop-146035978.jpg'
       },
@@ -276,6 +280,14 @@ module.exports = {
       {
         spotId: 14,
         url: 'https://realhoopers.com/wp-content/uploads/2020/11/playing-basketball-double-rim.jpg'
+      },
+      {
+        spotId: 14,
+        url: 'https://thestadiumreviews.com/wp-content/uploads/2022/02/Why-are-there-Double-Rim-Basketball-Hoops.jpg'
+      },
+      {
+        spotId: 14,
+        url: 'https://www.hoopsbeast.com/wp-content/uploads/2022/05/double-rim-hoop.jpg'
       },
       {
         spotId: 15,
@@ -292,6 +304,10 @@ module.exports = {
       {
         spotId: 15,
         url: 'https://shenanigang.com/wp-content/uploads/2019/07/Drake-Court-780x575.png'
+      },
+      {
+        spotId: 15,
+        url: 'https://i2-prod.mirror.co.uk/incoming/article21352682.ece/ALTERNATES/s615b/0_Inside-Drakes-mansion.jpg'
       },
     ], {});
   },
