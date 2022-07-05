@@ -26,4 +26,6 @@ _For a link to the AirBallnBrick wiki, click here: [Wiki](https://github.com/Kim
   Spot Page
 </h3>
 
-<img align="center" src="https://user-images.githubusercontent.com/100963461/177252214-791f915a-d415-4eb5-baac-2372139dd035.PNG" />
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/100963461/177252214-791f915a-d415-4eb5-baac-2372139dd035.PNG" />
+</p>
