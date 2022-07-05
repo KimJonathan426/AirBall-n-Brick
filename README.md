@@ -70,5 +70,6 @@ One issue I encountered was when the DOM updates dynamically, there is a small t
 </p>
 
 <p align="right">
-  <img src="https://user-images.githubusercontent.com/100963461/177258316-20da3b02-950d-4b26-855b-5835b0fc94bb.PNG" />
+  <img src="https://user-images.githubusercontent.com/100963461/177313467-59429aaa-9f26-4490-8cca-e8470f9d1109.PNG" />
 </p>
+
