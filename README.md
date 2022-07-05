@@ -7,9 +7,9 @@ AirBallnBrick is a airBnB clone that allows users to discover, rent, and list ba
 _For a link to the AirBallnBrick wiki, click here: [Wiki](https://github.com/KimJonathan426/AirBall-n-Brick/wiki)._
 
 ## Previews
-~~~js  
+
 <p align="center">
   Home Page
 </p>
-~~~js
+
 ![Home Page](https://user-images.githubusercontent.com/100963461/177250785-1d8e7a41-ea4d-424f-a2a6-2a814ae50d19.PNG)
