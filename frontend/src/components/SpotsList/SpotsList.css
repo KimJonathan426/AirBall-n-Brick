@@ -19,6 +19,8 @@
     display: flex;
     width: 300px;
     height: 285px;
+    border-radius: 15px;
+    margin-bottom: 12px;
     overflow: hidden;
 }
 
@@ -26,9 +28,58 @@
     width: 100%;
     height: 285px;
     object-fit: cover;
-    object-position: 50% 50%;
 }
 
 .spot-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100px;
     font-size: 14px;
+}
+
+.location-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(72, 72, 72);
+}
+
+.star-text {
+    font-weight: normal;
+    color: #222222;
+}
+
+.star-image {
+    width: 15px;
+    height: 13px;
+    object-fit: cover;
+    position: relative;
+    bottom: -1px;
+    margin-left: 2px;
+}
+
+.name-info {
+    width: 300px;
+    height: 40%;
+    color: #696969;
+    line-height: 20px;
+    text-overflow: ellipsis;
+}
+
+.price-info {
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(72, 72, 72);
+    position: relative;
+    bottom: 0px;
+}
+
+.price-info > span {
+    font-size: 14px;
+    font-weight: normal;
+    color: #222222;
 }

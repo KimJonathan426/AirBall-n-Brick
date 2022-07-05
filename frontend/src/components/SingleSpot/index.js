@@ -2,9 +2,12 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getSpots, deleteSpot } from '../../store/spotReducer';
+import { getReviewAvg } from '../../store/reviewReducer';
 import SpotEditForm from '../SpotEditForm';
 import ReviewForm from '../ReviewForm';
 import SpotReviewList from '../SpotReviewList';
+import ratingStar from '../../images/rating-star.png';
+import './SingleSpot.css';
 
 const SingleSpot = () => {
     const { id } = useParams();
@@ -12,12 +15,14 @@ const SingleSpot = () => {
     const history = useHistory();
     const singleSpot = useSelector(state => state.spot.spots[id]);
     const images = useSelector(state => state.spot.images);
+    const reviewAvgs = useSelector(state => state.review)
     const user = useSelector(state => state.session?.user?.id);
 
     const [showEditSpotForm, setShowEditSpotForm] = useState(false);
     const [showReviewForm, setShowReviewForm] = useState(false);
 
     const imagesArray = Object.values(images);
+    const spotAvg = reviewAvgs.reviewAvgs;
 
     const spotImages = imagesArray.filter(image => image.spotId === +id);
 
@@ -44,6 +49,7 @@ const SingleSpot = () => {
 
     useEffect(() => {
         dispatch(getSpots());
+        dispatch(getReviewAvg());
     }, [dispatch])
 
     let content = null;
@@ -60,53 +66,102 @@ const SingleSpot = () => {
         content = (
             <>
                 {(!showEditSpotForm && user === singleSpot?.userId) && (
-                    <>
-                        <button onClick={() => setShowEditSpotForm(true)}>Edit Court</button>
-                        <button onClick={onDelete}>Delete Court</button>
-                    </>
+                    <div className='edit-delete-buttons'>
+                        <button className='edit-button' onClick={() => setShowEditSpotForm(true)}>Edit Court</button>
+                        <button className='delete-button' onClick={onDelete}>Delete Court</button>
+                    </div>
                 )}
                 {(showEditSpotForm && user) && (
                     <SpotEditForm spotImages={spotImages} spot={singleSpot} id={id} hideForm={() => setShowEditSpotForm(false)} />
                 )}
-                <div>
-                    {singleSpot?.name}
-                    {singleSpot?.city}
-                    {singleSpot?.state}
+                <div className='spot-header'>
+                    <div className='single-name-info'>
+                        {singleSpot?.name}
+                    </div>
+                    <div className='spot-sub-header'>
+                        <div>
+                            <img className='star-image' src={ratingStar} />
+                            {spotAvg[singleSpot?.id]?.avg && (
+                                <>
+                                    {' ' + spotAvg[singleSpot?.id]?.avg} | {spotAvg[singleSpot?.id]?.count} reviews
+                                </>
+                            )}
+                            {!spotAvg[singleSpot?.id]?.avg && (
+                                <>
+                                    {' New | 0 reviews'}
+                                </>
+                            )}
+                        </div>
+                        <div className='single-location-info'>
+                            {'| ' + singleSpot?.city}, {singleSpot?.state}, {singleSpot?.country}
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    Insert First 5 Photos and specific styling based on id and display other photos on a modal.
-                    <br />
-                    If there are no photos, a button will appear where photos should be prompting user to upload at least 5 photos.
-                    <img src={spotImages[0]?.url} className='left-image' />
-                    <img src={spotImages[1]?.url} className='middle-image' />
-                    <img src={spotImages[2]?.url} className='middle-image' />
-                    <img src={spotImages[3]?.url} className='right-top-image' />
-                    <img src={spotImages[4]?.url} className='right-bot-image' />
+                <div className='single-spot-image-container'>
+                    <div className='main-image'>
+                        <img src={spotImages[0]?.url} className='image-fit-main' />
+                    </div>
+                    <div className='middle-image-top'>
+                        <img src={spotImages[1]?.url} className='image-fit-sub' />
+                    </div>
+                    <div className='middle-image-bottom'>
+                        <img src={spotImages[2]?.url} className='image-fit-sub' />
+                    </div>
+                    <div className='right-image-top'>
+                        <img src={spotImages[3]?.url} className='image-fit-sub right-top' />
+                    </div>
+                    <div className='right-image-bottom'>
+                        <img src={spotImages[4]?.url} className='image-fit-sub right-bot' />
+                    </div>
                 </div>
-                <div>
-                    Hosted By {singleSpot?.User?.username}
-                    <br />
-                    {singleSpot?.price}
-                    <br />
-                    {singleSpot?.description}
+                <div className='single-spot-info'>
+                    <div className='main-spot-content'>
+                        <h3 className='host-name'>
+                            Hosted By {singleSpot?.User?.username}
+                        </h3>
+                        <h5 className='spot-description'>
+                            {singleSpot?.description}
+                        </h5>
+                    </div>
+                    <div className='hovering-content'>
+                        <h5>
+                            Price Per Night
+                        </h5>
+                        <h6>
+                            {singleSpot?.price}
+                        </h6>
+                    </div>
                 </div>
-                <div>
-                    Reviews go here
-                    Review Create button
+                <div className='spot-review-container'>
+                    <h3>
+                        <img className='review-star-image' src={ratingStar} />
+                        {spotAvg[singleSpot?.id]?.avg && (
+                            <>
+                                {' ' + spotAvg[singleSpot?.id]?.avg} | {spotAvg[singleSpot?.id]?.count} reviews
+                            </>
+                        )}
+                        {!spotAvg[singleSpot?.id]?.avg && (
+                            <>
+                                {' New | 0 reviews'}
+                            </>
+                        )}
+                    </h3>
                     {(!showReviewForm && user) && (
-                        <button onClick={() => setShowReviewForm(true)}>Post a review</button>
+                        <div className='post-review-button-container'>
+                            <button className='post-review-button' onClick={() => setShowReviewForm(true)}>Post a review</button>
+                        </div>
                     )}
                     {(showReviewForm && user) && (
-                        <ReviewForm spotId={id} hideForm={() => setShowReviewForm(false)}/>
+                        <ReviewForm spotId={id} hideForm={() => setShowReviewForm(false)} />
                     )}
-                    <SpotReviewList user={user} spotId={id} />
+                    <SpotReviewList user={user} spotId={id} ratingStar={ratingStar} />
                 </div>
             </>
         )
     }
 
     return (
-        <div>
+        <div className='single-spot-container'>
             {content}
         </div>
     )

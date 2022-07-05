@@ -22,3 +22,8 @@ label {
 a {
     text-decoration: none;
 }
+
+.star-text {
+    font-weight: normal;
+    color: #222222;
+}

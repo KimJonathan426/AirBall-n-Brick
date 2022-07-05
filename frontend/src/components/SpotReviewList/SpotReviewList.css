@@ -1,0 +1,23 @@
+.spot-reviews-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8%;
+    width: 100%;
+    margin-top: 35px;
+}
+
+.single-review {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 41%;
+    height: 212px;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+.review-body {
+    height: 125px;
+    overflow: auto;
+}

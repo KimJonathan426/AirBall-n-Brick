@@ -12,6 +12,7 @@ const DELETE_REVIEW = 'reviews/deleteReview';
 
 // CLEAR
 const CLEAR_REVIEWS = 'reviews/clearReviews';
+const CLEAR_REVIEWAVGS = 'reviews/clearReviewAvgs';
 
 
 // Thunk action creators
@@ -46,6 +47,12 @@ const actionDeleteReview = (reviewId) => {
 export const actionClearReviews = () => {
     return {
         type: CLEAR_REVIEWS,
+    }
+}
+
+export const actionClearReviewAvgs = () => {
+    return {
+        type: CLEAR_REVIEWAVGS,
     }
 }
 
@@ -110,11 +117,11 @@ const reviewReducer = (state = initialState, action) => {
             return newState;
         }
         case GET_REVIEWAVG: {
-            const newState = { ...state };
+            const newState1 = { ...state };
             action.avgRatings.forEach( spot => {
-                newState.reviewAvgs[spot.id] = spot.avgRate;
+                newState1.reviewAvgs[spot.id] = {'avg': spot.avgRate, 'count': spot.count};
             })
-            return newState;
+            return newState1;
         }
         case ADD_REVIEW: {
             const newState = { ...state };
@@ -127,8 +134,11 @@ const reviewReducer = (state = initialState, action) => {
             return newState;
         }
         case CLEAR_REVIEWS:
-            const clearState = { reviews: {}, reviewAvgs: {} };
+            const clearState = { reviews: {}, reviewAvgs: {...state.reviewAvgs} };
             return clearState;
+        case CLEAR_REVIEWAVGS:
+            const clearAvgState = { reviews: { ...state.reviews }, reviewAvgs: {} };
+            return clearAvgState;
         default:
             return state;
     }

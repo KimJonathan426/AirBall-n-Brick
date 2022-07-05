@@ -23,9 +23,10 @@ router.get('/', asyncHandler(async (req, res) => {
 
     avgRatingArray.forEach( spot => {
         let avg = spot.ratings / spot.count;
-        delete spot['count'];
+        let rounded = Math.round(avg * 10) / 10;
+        let standardizedAvg = rounded.toFixed(1);
         delete spot['ratings']
-        spot['avgRate'] = avg;
+        spot['avgRate'] = standardizedAvg;
     })
 
     return res.json({ avgRatingArray });
