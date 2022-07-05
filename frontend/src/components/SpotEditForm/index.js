@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateSpot } from '../../store/spotReducer';
+import './SpotEditForm.css'
 
 const SpotEditForm = ({ spotImages, spot, id, hideForm }) => {
     const dispatch = useDispatch();
@@ -94,14 +95,16 @@ const SpotEditForm = ({ spotImages, spot, id, hideForm }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            {(hasSubmitted && validationErrors.length > 0) && (
-                <ul className='errors'>
-                    {validationErrors.map(error => (
-                        <li key={error}>{error}</li>
-                    ))}
-                </ul>
-            )}
+        <form className='spot-edit-form-container' onSubmit={handleSubmit}>
+            <div className='spot-edit-errors-container'>
+                {(hasSubmitted && validationErrors.length > 0) && (
+                    <ul className='spot-edit-form-errors'>
+                        {validationErrors.map(error => (
+                            <li key={error}>{error}</li>
+                        ))}
+                    </ul>
+                )}
+            </div>
             <label>Address</label>
             <input type='text' value={address} onChange={updateAddress} required />
             <label>City</label>
@@ -116,14 +119,27 @@ const SpotEditForm = ({ spotImages, spot, id, hideForm }) => {
             <textarea value={description} onChange={updateDescription} required />
             <label>Price</label>
             <input type='number' value={price} onChange={updatePrice} required />
-            <label>Image Urls</label>
-            <input type='url' value={url1} onChange={updateUrl1} required />
-            <input type='url' value={url2} onChange={updateUrl2} required />
-            <input type='url' value={url3} onChange={updateUrl3} required />
-            <input type='url' value={url4} onChange={updateUrl4} required />
-            <input type='url' value={url5} onChange={updateUrl5} required />
-            <button type='submit'>Update Spot</button>
-            <button type='button' onClick={handleCancelClick}>Cancel</button>
+            <div className='edit-image-container'>
+                <label>Image Urls</label>
+                <div className='edit-image-inputs'>
+                    <label>Image 1</label>
+                    <input type='url' value={url1} onChange={updateUrl1} required />
+                    <label>Image 2</label>
+                    <input type='url' value={url2} onChange={updateUrl2} required />
+                    <label>Image 3</label>
+                    <input type='url' value={url3} onChange={updateUrl3} required />
+                    <label>Image 4</label>
+                    <input type='url' value={url4} onChange={updateUrl4} required />
+                    <label>Image 5</label>
+                    <input type='url' value={url5} onChange={updateUrl5} required />
+                </div>
+            </div>
+            <div className='update-spot-button-container'>
+                <button className='update-spot-button' type='submit'>Update Spot</button>
+            </div>
+            <div className='cancel-update-button-container'>
+                <button className='cancel-update-button' type='button' onClick={handleCancelClick}>Cancel</button>
+            </div>
         </form>
     )
 }
