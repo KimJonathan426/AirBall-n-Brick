@@ -52,6 +52,7 @@ _For a link to the AirBallnBrick wiki, click here: [Wiki](https://github.com/Kim
 - Include update operation for review feature
 - Include a bookings feature
 - Include an image feature separate from the spot form with full CRUD
+- Custom radio buttons to match stars
 - Implement edit forms as a modal
 - Implement a confirmation requirement for delete buttons
 
