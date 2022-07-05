@@ -128,7 +128,7 @@ const SingleSpot = () => {
                             Price Per Night
                         </h5>
                         <h6>
-                            {singleSpot?.price}
+                            ${singleSpot?.price}
                         </h6>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createReview, getReviewAvg } from '../../store/reviewReducer';
+import './ReviewForm.css'
 
 const ReviewForm = ({ spotId, hideForm }) => {
     const dispatch = useDispatch();
@@ -52,39 +53,41 @@ const ReviewForm = ({ spotId, hideForm }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            {(hasSubmitted && validationErrors.length > 0) && (
-                <ul className='errors'>
-                    {validationErrors.map(error => (
-                        <li key={error}>{error}</li>
-                    ))}
-                </ul>
-            )}
+        <form className="review-form-container" onSubmit={handleSubmit}>
+            <div className='review-error-container'>
+                {(hasSubmitted && validationErrors.length > 0) && (
+                    <ul className='review-form-errors'>
+                        {validationErrors.map(error => (
+                            <li key={error}>{error}</li>
+                        ))}
+                    </ul>
+                )}
+            </div>
             <label>Review</label>
-            <textarea value={review} onChange={updateReview} required />
+            <textarea className='review-body' value={review} onChange={updateReview} required />
             <label>Rating</label>
-            <label>
-                <input type='radio' name='rating' value={1} onChange={updateRating} />
-                1
-            </label>
-            <label>
-                <input type='radio' name='rating' value={2} onChange={updateRating} />
-                2
-            </label>
-            <label>
-                <input type='radio' name='rating' value={3} onChange={updateRating} />
-                3
-            </label>
-            <label>
-                <input type='radio' name='rating' value={4} onChange={updateRating} />
-                4
-            </label>
-            <label>
-                <input type='radio' name='rating' value={5} onChange={updateRating} />
-                5
-            </label>
-            <button type='submit'>Post Review</button>
-            <button type='button' onClick={handleCancelClick}>Cancel</button>
+            <div className='review-radio'>
+                <div className='radio-inputs'>
+                    <input type='radio' name='rating' value={1} onChange={updateRating} />
+                    <input type='radio' name='rating' value={2} onChange={updateRating} />
+                    <input type='radio' name='rating' value={3} onChange={updateRating} />
+                    <input type='radio' name='rating' value={4} onChange={updateRating} />
+                    <input type='radio' name='rating' value={5} onChange={updateRating} />
+                </div>
+                <div className='radio-labels'>
+                    <label>1</label>
+                    <label>2</label>
+                    <label>3</label>
+                    <label>4</label>
+                    <label>5</label>
+                </div>
+            </div>
+            <div className='post-review-submit-container'>
+                <button className='post-review-submit' type='submit'>Post Review</button>
+            </div>
+            <div className='cancel-review-button-container'>
+                <button className='cancel-review-button' type='button' onClick={handleCancelClick}>Cancel</button>
+            </div>
         </form>
     )
 }
