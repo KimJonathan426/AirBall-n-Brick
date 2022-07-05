@@ -17,6 +17,9 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <div className='session-logged-in'>
+        <div className='about-link-logged-in-container'>
+          <NavLink className='about-link-logged-in' exact to='/about'>About</NavLink>
+        </div>
         <div className='host-link-container'>
           <NavLink className='host-link' to="/spots/new">Host a Court</NavLink>
         </div>
@@ -26,6 +29,7 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
+        <NavLink className='about-link-logged-out' exact to='/about'>About</NavLink>
         <DemoButton />
         <LoginFormModal />
         <SignupFormModal />
