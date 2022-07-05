@@ -154,7 +154,7 @@ const SingleSpot = () => {
                     {(showReviewForm && user) && (
                         <ReviewForm spotId={id} hideForm={() => setShowReviewForm(false)} />
                     )}
-                    <SpotReviewList user={user} spotId={id} />
+                    <SpotReviewList user={user} spotId={id} ratingStar={ratingStar} />
                 </div>
             </>
         )
