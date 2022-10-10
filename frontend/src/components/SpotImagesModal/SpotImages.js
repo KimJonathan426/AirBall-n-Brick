@@ -4,18 +4,23 @@ import { getSingleSpot } from "../../store/spotReducer";
 import DeleteImage from "../DeleteImage";
 import Loading from "../Loading";
 
-const SpotImages = ({ setShowModal, user, spot }) => {
+const SpotImages = ({ setRefresh, setShowModal, user, spot }) => {
     const dispatch = useDispatch();
-    const images = useSelector(state => state.spot.images)
+    const imagesFromState = useSelector(state => state.spot.images)
 
     const [open, setOpen] = useState(true);
+    const [images, setImages] = useState(true);
     const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        setImages(Object.values(imagesFromState));
+    }, [imagesFromState])
 
     useEffect(() => {
         const fetchData = async () => {
-            await dispatch(getSingleSpot(spot.id))
+            const res = await dispatch(getSingleSpot(spot.id))
 
+            setImages(res?.images)
             setLoading(true);
         }
 
@@ -29,6 +34,7 @@ const SpotImages = ({ setShowModal, user, spot }) => {
 
         setTimeout(() => {
             setShowModal(false);
+            setRefresh(true);
         }, 500)
     }
 
@@ -39,7 +45,7 @@ const SpotImages = ({ setShowModal, user, spot }) => {
                     <button onClick={closeModal} className='exit-modal'><span>❮</span></button>
                     <div className='show-all-photos-container'>
                         <div className='wrapper'>
-                            {Object.values(images).map(image =>
+                            {images.map(image =>
                                 <div className='show-all-single-image' key={image.id} id={`image-${image.id}`}>
                                     <img src={image.url} alt='spot image' />
                                     {user === spot.userId &&

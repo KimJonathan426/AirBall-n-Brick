@@ -24,6 +24,7 @@ const SingleSpot = () => {
     const [showEditSpotForm, setShowEditSpotForm] = useState(false);
     const [showImagesForm, setShowImagesForm] = useState(false);
     const [showReviewForm, setShowReviewForm] = useState(false);
+    const [refresh, setRefresh] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const spotImages = Object.values(images);
@@ -50,11 +51,12 @@ const SingleSpot = () => {
             await dispatch(getSingleSpot(id));
             await dispatch(getReviewAvg());
 
+            setRefresh(false);
             setLoading(true);
         }
 
         fetchData();
-    }, [dispatch, id])
+    }, [dispatch, id, refresh])
 
 
     return (
@@ -114,7 +116,7 @@ const SingleSpot = () => {
                             <img src={spotImages[4]?.url} className='image-fit-sub right-bot' />
                         </div>
                         <div className='show-all-photos'>
-                            <SpotImagesModal user={user} spot={singleSpot} />
+                            <SpotImagesModal refresh={refresh} setRefresh={setRefresh} user={user} spot={singleSpot} />
                         </div>
                     </div>
                     <div className='single-spot-info'>
