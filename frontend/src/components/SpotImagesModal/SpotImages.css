@@ -39,17 +39,24 @@
 
 .all-photos-modal-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100vw;
     height: 100vh;
     overflow: auto;
     min-height: fit-content;
+    position: relative;
 }
 
 .animate-modal {
     position: relative;
     background-color: white;
     animation: modaltakeover 1s forwards;
+}
+
+.animate-modal-close {
+    position: relative;
+    background-color: white;
+    animation: modaltakedown 1s forwards;
 }
 
 @keyframes modaltakeover {
@@ -64,14 +71,26 @@
     }
 }
 
+@keyframes modaltakedown {
+    from {
+        bottom: -80px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: -2000px;
+        opacity: 0;
+    }
+}
+
 
 .show-all-photos-container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     margin-top: 80px;
     margin-bottom: 160px;
-    margin-left: 284px;
-    width: 1136px;
+    margin-right: 390px;
+    width: 100%;
     height: fit-content;
     box-sizing: border-box;
 }
@@ -118,4 +137,28 @@
     object-fit: cover;
     width: 370px;
     height: 250px;
+}
+
+.exit-modal {
+    background-color: rgb(255, 255, 255);
+    font-size: 15px;
+    width: 40px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    position: sticky;
+    top: 20px;
+    left: 30px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.exit-modal > span {
+    position: relative;
+    top: -1px;
+    left: -1px;
+}
+
+.exit-modal:hover {
+    background-color: #EBEBEB;
 }

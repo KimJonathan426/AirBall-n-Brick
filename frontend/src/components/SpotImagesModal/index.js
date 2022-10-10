@@ -17,7 +17,7 @@ function SpotImagesModal({ images }) {
             </button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <SpotImages images={images} />
+                    <SpotImages setShowModal={setShowModal} images={images} />
                 </Modal>
             )}
         </>
