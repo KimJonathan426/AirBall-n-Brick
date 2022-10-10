@@ -84,6 +84,18 @@ router.post('/:id/images/new', multipleMulterUpload("images"), asyncHandler(asyn
     });
 }));
 
+router.delete('/images/:id/delete', asyncHandler(async (req, res) => {
+
+    const allImages = await Image.findAll();
+    const image = await Image.findByPk(req.params.id);
+
+    console.log('allImages', allImages)
+
+    await image.destroy();
+
+    return res.json({ message: 'Successfully Deleted' });
+}));
+
 router.put('/:id', asyncHandler(async (req, res) => {
     const { id, address, city, state, country, name, description, price } = req.body;
 
