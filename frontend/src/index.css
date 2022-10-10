@@ -27,3 +27,31 @@ a {
     font-weight: normal;
     color: #222222;
 }
+
+.spot-forms-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 297px;
+    height: 18px;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: transparent;
+    box-sizing: border-box;
+    cursor: wait !important;
+}
+
+.spot-forms-loading > img {
+    width: 200px;
+    position: relative;
+    left: -4px;
+}
+
+.update-disabled {
+    cursor: wait !important;
+}
+
+.cancel-disabled {
+    opacity: 0.4;
+    cursor: wait !important;
+}
