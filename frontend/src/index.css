@@ -55,3 +55,7 @@ a {
     opacity: 0.4;
     cursor: wait !important;
 }
+
+.no-display {
+    display: none;
+}

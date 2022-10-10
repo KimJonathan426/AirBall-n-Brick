@@ -4,7 +4,7 @@ import SpotImages from './SpotImages';
 import showPhotosSvg from '../../images/show-photos.svg';
 import './SpotImages.css'
 
-function SpotImagesModal({ images }) {
+function SpotImagesModal({ user, spot }) {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -17,7 +17,7 @@ function SpotImagesModal({ images }) {
             </button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <SpotImages setShowModal={setShowModal} images={images} />
+                    <SpotImages setShowModal={setShowModal} user={user} spot={spot} />
                 </Modal>
             )}
         </>

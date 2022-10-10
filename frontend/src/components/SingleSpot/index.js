@@ -114,7 +114,7 @@ const SingleSpot = () => {
                             <img src={spotImages[4]?.url} className='image-fit-sub right-bot' />
                         </div>
                         <div className='show-all-photos'>
-                            <SpotImagesModal images={spotImages}/>
+                            <SpotImagesModal user={user} spot={singleSpot} />
                         </div>
                     </div>
                     <div className='single-spot-info'>
