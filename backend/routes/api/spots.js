@@ -18,6 +18,22 @@ router.get('/', asyncHandler(async (_req, res) => {
     });
 }));
 
+router.get('/single-spot/:spotId', asyncHandler(async (req, res) => {
+    const spotId = req.params.spotId;
+
+    const spot = await Spot.findByPk(spotId, {
+        include: [User]
+    });
+    const images = await Image.findAll({where: {
+            spotId: spotId
+        }})
+
+    return res.json({
+        spot,
+        images
+    });
+}));
+
 router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res) => {
     const { userId, address, city, state, country, name, description, price } = req.body;
     const images = await multiplePublicFileUpload(req.files);
