@@ -104,6 +104,29 @@ export const createSpot = (payload) => async (dispatch) => {
     }
 }
 
+export const createImages = (payload) => async (dispatch) => {
+    const { id, images } = payload;
+    const formData = new FormData();
+
+    if (images && images.length !== 0) {
+        for (var i = 0; i < images.length; i++) {
+          formData.append("images", images[i]);
+        }
+      }
+
+    const response = await csrfFetch(`/api/spots/${id}/images/new`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'multipart/form-data' },
+        body: formData
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionAddImages(data.spotImages));
+        return data.spotImages;
+    }
+}
+
 export const updateSpot = (payload) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${payload.id}`, {
         method: 'PUT',
