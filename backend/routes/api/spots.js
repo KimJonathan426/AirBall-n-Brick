@@ -98,12 +98,18 @@ router.get('/:spotId/images', asyncHandler(async (req, res) => {
     });
 }));
 
-router.delete('/images/:id/delete', asyncHandler(async (req, res) => {
+router.delete('/:spotId/images/:imageId/delete', asyncHandler(async (req, res) => {
 
-    // const allImages = await Image.findAll();
-    const image = await Image.findByPk(req.params.id);
+    const image = await Image.findByPk(req.params.imageId);
+    const allImages = await Image.findAll({
+        where: {
+            spotId: req.params.spotId
+        }
+    });
 
-    // console.log('allImages', allImages)
+    if (allImages.length < 6) {
+        return res.json({ message: 'Cannot delete, you must have a minimum of 5 images.' });
+    }
 
     await image.destroy();
 

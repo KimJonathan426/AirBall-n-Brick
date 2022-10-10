@@ -173,8 +173,10 @@ export const deleteSpot = (payload) => async (dispatch) => {
     }
 }
 
-export const deleteImage = (imageId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/images/${imageId}/delete`, {
+export const deleteImage = (payload) => async (dispatch) => {
+    const { spotId, imageId } = payload;
+
+    const response = await csrfFetch(`/api/spots/${spotId}/images/${imageId}/delete`, {
         method: 'DELETE'
     });
 
@@ -183,6 +185,8 @@ export const deleteImage = (imageId) => async (dispatch) => {
     if (data.message === 'Successfully Deleted') {
         dispatch(actionDeleteImage(imageId));
         return data;
+    } else {
+        return data
     }
 }
 

@@ -1,0 +1,12 @@
+.delete-image-error-box {
+    position: relative;
+    width: auto;
+}
+
+.delete-image-error {
+    position: fixed;
+    top: 90px;
+    left: 180px;
+    background-color: #fff;
+    z-index: 5;
+}
