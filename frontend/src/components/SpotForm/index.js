@@ -17,11 +17,11 @@ const SpotForm = () => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState(0);
-    const [url1, setUrl1] = useState('');
-    const [url2, setUrl2] = useState('');
-    const [url3, setUrl3] = useState('');
-    const [url4, setUrl4] = useState('');
-    const [url5, setUrl5] = useState('');
+    const [image1, setImage1] = useState(null);
+    const [image2, setImage2] = useState(null);
+    const [image3, setImage3] = useState(null);
+    const [image4, setImage4] = useState(null);
+    const [image5, setImage5] = useState(null);
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -32,11 +32,47 @@ const SpotForm = () => {
     const updateName = (e) => setName(e.target.value);
     const updateDescription = (e) => setDescription(e.target.value);
     const updatePrice = (e) => setPrice(e.target.value);
-    const updateUrl1 = (e) => setUrl1(e.target.value);
-    const updateUrl2 = (e) => setUrl2(e.target.value);
-    const updateUrl3 = (e) => setUrl3(e.target.value);
-    const updateUrl4 = (e) => setUrl4(e.target.value);
-    const updateUrl5 = (e) => setUrl5(e.target.value);
+
+    const updateFile1 = (e) => {
+        const file1 = e.target.files[0];
+        if (file1) {
+            setImage1(file1);
+        } else {
+            setImage1(null);
+        }
+    };
+    const updateFile2 = (e) => {
+        const file2 = e.target.files[0];
+        if (file2) {
+            setImage2(file2);
+        } else {
+            setImage2(null);
+        }
+    };
+    const updateFile3 = (e) => {
+        const file3 = e.target.files[0];
+        if (file3) {
+            setImage3(file3);
+        } else {
+            setImage3(null);
+        }
+    };
+    const updateFile4 = (e) => {
+        const file4 = e.target.files[0];
+        if (file4) {
+            setImage4(file4);
+        } else {
+            setImage4(null);
+        }
+    };
+    const updateFile5 = (e) => {
+        const file5 = e.target.files[0];
+        if (file5) {
+            setImage5(file5);
+        } else {
+            setImage5(null);
+        }
+    };
 
     useEffect(() => {
         const errors = [];
@@ -51,20 +87,28 @@ const SpotForm = () => {
         if (Number(price) <= 0) errors.push('You cannot list your court for free or a negative price. Enter a valid price.');
         if (Number(price) > 99999999.99) errors.push('Price cannot exceed value of 99,999,999.99');
 
-        if (url1 && !(url1.endsWith('.jpg') || url1.endsWith('.img') || url1.endsWith('.png') || url1.endsWith('.jpeg'))) errors.push('Image 1 - Input a valid url image ending with either a .jpg, .jpeg, .img, or .png');
-        if (url2 && !(url2.endsWith('.jpg') || url2.endsWith('.img') || url2.endsWith('.png') || url2.endsWith('.jpeg'))) errors.push('Image 2 - Input a valid url image ending with either a .jpg, .jpeg, .img, or .png');
-        if (url3 && !(url3.endsWith('.jpg') || url3.endsWith('.img') || url3.endsWith('.png') || url3.endsWith('.jpeg'))) errors.push('Image 3 - Input a valid url image ending with either a .jpg, .jpeg, .img, or .png');
-        if (url4 && !(url4.endsWith('.jpg') || url4.endsWith('.img') || url4.endsWith('.png') || url4.endsWith('.jpeg'))) errors.push('Image 4 - Input a valid url image ending with either a .jpg, .jpeg, .img, or .png');
-        if (url5 && !(url5.endsWith('.jpg') || url5.endsWith('.img') || url5.endsWith('.png') || url5.endsWith('.jpeg'))) errors.push('Image 5 - Input a valid url image ending with either a .jpg, .jpeg, .img, or .png');
+        if (!image1 && !(image1?.name?.toLowerCase()?.endsWith('.jpg') || image1?.name?.toLowerCase()?.endsWith('.img') || image1?.name?.toLowerCase()?.endsWith('.png') || image1?.name?.toLowerCase()?.endsWith('.jpeg'))) errors.push('Image 1 - Input a valid image ending with either a .jpg, .jpeg, .img, or .png');
+        if (!image2 && !(image2?.name?.toLowerCase()?.endsWith('.jpg') || image2?.name?.toLowerCase()?.endsWith('.img') || image2?.name?.toLowerCase()?.endsWith('.png') || image2?.name?.toLowerCase()?.endsWith('.jpeg'))) errors.push('Image 2 - Input a valid image ending with either a .jpg, .jpeg, .img, or .png');
+        if (!image3 && !(image3?.name?.toLowerCase()?.endsWith('.jpg') || image3?.name?.toLowerCase()?.endsWith('.img') || image3?.name?.toLowerCase()?.endsWith('.png') || image3?.name?.toLowerCase()?.endsWith('.jpeg'))) errors.push('Image 3 - Input a valid image ending with either a .jpg, .jpeg, .img, or .png');
+        if (!image4 && !(image4?.name?.toLowerCase()?.endsWith('.jpg') || image4?.name?.toLowerCase()?.endsWith('.img') || image4?.name?.toLowerCase()?.endsWith('.png') || image4?.name?.toLowerCase()?.endsWith('.jpeg'))) errors.push('Image 4 - Input a valid image ending with either a .jpg, .jpeg, .img, or .png');
+        if (!image5 && !(image5?.name?.toLowerCase()?.endsWith('.jpg') || image5?.name?.toLowerCase()?.endsWith('.img') || image5?.name?.toLowerCase()?.endsWith('.png') || image5?.name?.toLowerCase()?.endsWith('.jpeg'))) errors.push('Image 5 - Input a valid image ending with either a .jpg, .jpeg, .img, or .png');
 
         setValidationErrors(errors);
-    }, [address, city, state, country, name, description, price, url1, url2, url3, url4, url5]);
+    }, [address, city, state, country, name, description, price, image1, image2, image3, image4, image5]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
 
         if (validationErrors.length) return alert('Cannot submit, some errors need to be fixed!');
+
+        const images = {
+            '0': image1,
+            '1': image2,
+            '2': image3,
+            '3': image4,
+            '4': image5
+        };
 
         const payload = {
             userId: user.id,
@@ -75,11 +119,7 @@ const SpotForm = () => {
             name,
             description,
             price,
-            url1,
-            url2,
-            url3,
-            url4,
-            url5
+            images
         };
 
         const res = await dispatch(createSpot(payload));
@@ -90,6 +130,7 @@ const SpotForm = () => {
 
         setHasSubmitted(false);
     }
+
 
     // Will prevent not logged-in users from accessing form manually.
     if (!user) return (
@@ -139,18 +180,18 @@ const SpotForm = () => {
                         <textarea className='description-input' value={description} onChange={updateDescription} required />
                     </div>
                     <div className='image-input-container'>
-                        <label>Image Urls</label>
+                        <label>Multiple Upload</label>
                         <div className='image-inputs'>
                             <label>Image 1</label>
-                            <input type='url' value={url1} onChange={updateUrl1} required />
+                                <input type="file" onChange={updateFile1} />
                             <label>Image 2</label>
-                            <input type='url' value={url2} onChange={updateUrl2} required />
+                                <input type="file" onChange={updateFile2} />
                             <label>Image 3</label>
-                            <input type='url' value={url3} onChange={updateUrl3} required />
+                                <input type="file" onChange={updateFile3} />
                             <label>Image 4</label>
-                            <input type='url' value={url4} onChange={updateUrl4} required />
+                                <input type="file" onChange={updateFile4} />
                             <label>Image 5</label>
-                            <input type='url' value={url5} onChange={updateUrl5} required />
+                                <input type="file" onChange={updateFile5} />
                         </div>
                     </div>
                     <button className='host-button' type='submit'>Host New Court</button>

@@ -55,16 +55,32 @@ export const getSpots = () => async (dispatch) => {
 };
 
 export const createSpot = (payload) => async (dispatch) => {
+    const { userId, address, city, state, country, name, description, price, images } = payload;
+    const formData = new FormData();
+    formData.append('userId', userId);
+    formData.append('address', address);
+    formData.append('city', city);
+    formData.append('state', state);
+    formData.append('country', country);
+    formData.append('name', name);
+    formData.append('description', description);
+    formData.append('price', price);
+    formData.append('images', images[0])
+    formData.append('images', images[1])
+    formData.append('images', images[2])
+    formData.append('images', images[3])
+    formData.append('images', images[4])
+
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        headers: { 'Content-Type': 'multipart/form-data' },
+        body: formData
     });
 
     if (response.ok) {
         const data = await response.json();
         dispatch(actionAddSpot(data.spot));
-        dispatch(actionAddImages(data.images));
+        dispatch(actionAddImages(data.spotImages));
         return data;
     }
 }

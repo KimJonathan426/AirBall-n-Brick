@@ -1,5 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
+const { multiplePublicFileUpload, multipleMulterUpload } = require('../../awsS3');
 
 const { User, Spot, Image, Review } = require('../../db/models');
 
@@ -17,24 +18,23 @@ router.get('/', asyncHandler(async (_req, res) => {
     });
 }));
 
-router.post('/', asyncHandler(async (req, res) => {
+router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res) => {
     const { userId, address, city, state, country, name, description, price } = req.body;
-    const { url1, url2, url3, url4, url5 } = req.body;
+    const images = await multiplePublicFileUpload(req.files);
 
     const spot = await Spot.create({ userId, address, city, state, country, name, description, price });
 
     const spotId = spot.id;
-    const image1 = await Image.create({ spotId, url: url1 });
-    const image2 = await Image.create({ spotId, url: url2 });
-    const image3 = await Image.create({ spotId, url: url3 });
-    const image4 = await Image.create({ spotId, url: url4 });
-    const image5 = await Image.create({ spotId, url: url5 });
+    const spotImages = [];
 
-    const images = [image1, image2, image3, image4, image5];
+    for (let image of images) {
+        const spotImage = await Image.create({ spotId, url: image });
+        spotImages.push(spotImage);
+    }
 
     return res.json({
         spot,
-        images
+        spotImages
     });
 }));
 
