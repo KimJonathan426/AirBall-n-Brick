@@ -1,34 +1,40 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { createImages } from '../../store/spotReducer';
+import loadingGif from '../../images/host-court-loading.gif';
 import './SpotImagesForm.css'
 
 const SpotImagesForm = ({ id, hideForm }) => {
     const dispatch = useDispatch();
 
     const [images, setImages] = useState([]);
+    const [disabled, setDisabled] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const updateFiles = (e) => {
+        setValidationErrors([]);
         const files = e.target.files;
         setImages(files);
     };
 
-
-    useEffect(() => {
-        const errors = [];
-
-        // if (address.length > 100) errors.push('Address cannot exceed 100 characters.');
-
-        setValidationErrors(errors)
-    }, []);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
+        setDisabled(true);
 
-        if (validationErrors.length) return alert('Cannot submit, some errors need to be fixed!');
+        const errors = [];
+
+        for (let i = 0; i < images.length; i++) {
+            if (images[i]?.type?.slice(0, 5) !== 'image') errors.push('Please make sure all files are valid images')
+        }
+
+        setValidationErrors(errors)
+
+        if (validationErrors.length || errors.length ) {
+            setDisabled(false);
+            return alert('Cannot submit, some errors need to be fixed!');
+        }
 
         const payload = {
             id,
@@ -61,17 +67,25 @@ const SpotImagesForm = ({ id, hideForm }) => {
                 )}
             </div>
             <label>Multiple Image Upload</label>
-                <input
-                    type="file"
-                    multiple
-                    onChange={updateFiles} />
+            <input
+                type="file"
+                multiple
+                onChange={updateFiles} />
 
             <div className='update-spot-button-container'>
-                <button className='update-spot-button' type='submit'>Add Images</button>
+                {disabled ?
+                    <button disabled={disabled} className={disabled ? 'update-spot-button update-disabled' : 'update-spot-button'} type='submit'>
+                        <div className='spot-forms-loading'>
+                            <img src={loadingGif} alt='loading...' />
+                        </div>
+                    </button>
+                    :
+                    <button className='update-spot-button' type='submit'>Add Images</button>
+                }
             </div>
 
             <div className='cancel-update-button-container'>
-                <button className='cancel-update-button' type='button' onClick={handleCancelClick}>Cancel</button>
+                <button disabled={disabled} className={disabled ? 'cancel-update-button cancel-disabled' : 'cancel-update-button'} type='button' onClick={handleCancelClick}>Cancel</button>
             </div>
         </form>
     )
