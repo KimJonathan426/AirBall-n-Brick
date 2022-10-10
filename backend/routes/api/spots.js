@@ -10,7 +10,19 @@ router.get('/', asyncHandler(async (_req, res) => {
     const spots = await Spot.findAll({
         include: [User]
     });
-    const images = await Image.findAll();
+
+    images = [];
+
+    for (let spot of spots) {
+        const spotImages = await Image.findAll({
+            where: {
+                spotId: spot.id
+            },
+            limit: 5
+        });
+
+        images.push(...spotImages)
+    }
 
     return res.json({
         spots,
@@ -24,9 +36,11 @@ router.get('/single-spot/:spotId', asyncHandler(async (req, res) => {
     const spot = await Spot.findByPk(spotId, {
         include: [User]
     });
-    const images = await Image.findAll({where: {
+    const images = await Image.findAll({
+        where: {
             spotId: spotId
-        }})
+        }
+    })
 
     return res.json({
         spot,
