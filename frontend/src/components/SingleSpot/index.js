@@ -72,7 +72,7 @@ const SingleSpot = () => {
                     </div>
                 )}
                 {(showEditSpotForm && user) && (
-                    <SpotEditForm spotImages={spotImages} spot={singleSpot} id={id} hideForm={() => setShowEditSpotForm(false)} />
+                    <SpotEditForm spot={singleSpot} id={id} hideForm={() => setShowEditSpotForm(false)} />
                 )}
                 <div className='spot-header'>
                     <div className='single-name-info'>

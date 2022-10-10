@@ -96,7 +96,6 @@ export const updateSpot = (payload) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(actionAddSpot(data.spot));
-        dispatch(actionAddImages(data.images));
         return data;
     }
 }
