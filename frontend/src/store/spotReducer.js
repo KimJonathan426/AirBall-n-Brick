@@ -6,6 +6,7 @@ const ADD_IMAGES = 'spots/addImage';
 
 // READ
 const GET_SPOTS = 'spots/getSpot';
+const GET_SINGLE_SPOT = 'spots/getSingleSpot';
 
 // DELETE
 const DELETE_SPOT = 'spots/deleteSpot';
@@ -34,6 +35,14 @@ const actionGetSpots = (spots, images) => {
     }
 };
 
+const actionGetSingleSpot = (spot, images) => {
+    return {
+        type: GET_SINGLE_SPOT,
+        spot,
+        images
+    }
+};
+
 const actionDeleteSpot = (spotId, imageIds) => {
     return {
         type: DELETE_SPOT,
@@ -50,6 +59,16 @@ export const getSpots = () => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(actionGetSpots(data.spots, data.images));
+        return data;
+    }
+};
+
+export const getSingleSpot = (spotId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/single-spot/${spotId}`);
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionGetSingleSpot(data.spot, data.images));
         return data;
     }
 };
@@ -81,7 +100,7 @@ export const createSpot = (payload) => async (dispatch) => {
         const data = await response.json();
         dispatch(actionAddSpot(data.spot));
         dispatch(actionAddImages(data.spotImages));
-        return data;
+        return data.spot.id;
     }
 }
 
@@ -119,11 +138,21 @@ const initialState = { spots: {}, images: {} };
 const spotReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SPOTS: {
-            const newState = { ...state };
+            const newState = { spots: {}, images: {} };
             action.spots.forEach( spot => {
                 newState.spots[spot.id] = spot;
             });
             action.images.forEach( image => {
+                newState.images[image.id] = image;
+            });
+            return newState;
+        }
+        case GET_SINGLE_SPOT: {
+            const newState = {spots: {}, images: {}};
+
+            newState.spots[action.spot.id] = action.spot;
+
+            action.images.forEach(image => {
                 newState.images[image.id] = image;
             });
             return newState;
@@ -145,7 +174,7 @@ const spotReducer = (state = initialState, action) => {
             delete newState.spots[action.spotId];
 
             action.imageIds.forEach( imageId => {
-                delete newState.images[imageId.id];
+                delete newState.images[imageId];
             });
             return newState;
         }
