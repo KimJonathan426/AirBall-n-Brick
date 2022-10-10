@@ -1,0 +1,121 @@
+.show-all-photos-btn {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    width: auto;
+    touch-action: manipulation;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    outline: none;
+    padding: 7px 15px;
+    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+    -webkit-tap-highlight-color: transparent;
+    border-color: #222222;
+    background: #FFFFFF;
+    color: #222222;
+}
+
+.show-all-photos-btn-content {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.show-photos-svg {
+    width: 16px;
+    height: 16px;
+}
+
+.show-all-photos-btn-text {
+    margin-left: 8px;
+}
+
+.all-photos-modal-container {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    min-height: fit-content;
+}
+
+.animate-modal {
+    position: relative;
+    background-color: white;
+    animation: modaltakeover 1s forwards;
+}
+
+@keyframes modaltakeover {
+    from {
+        bottom: -2000px;
+        opacity: 0;
+    }
+
+    to {
+        bottom: -80px;
+        opacity: 1;
+    }
+}
+
+
+.show-all-photos-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 80px;
+    margin-bottom: 160px;
+    margin-left: 284px;
+    width: 1136px;
+    height: fit-content;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 370px 370px;
+    grid-auto-rows: 250px;
+    gap: 10px;
+    width: 370px;
+
+}
+
+.wrapper div:nth-child(3n + 1) {
+    grid-column-end: span 2;
+    grid-row-end: span 2;
+    width: 748px;
+    height: 508px;
+}
+
+.wrapper div:nth-child(3n + 1)>img {
+    object-fit: cover;
+    width: 748px;
+    height: 508px;
+}
+
+.wrapper div:nth-child(3n + 2) {
+    width: 370px;
+    height: 250px;
+}
+
+.wrapper div:nth-child(3n + 2)>img {
+    object-fit: cover;
+    width: 370px;
+    height: 250px;
+}
+
+.wrapper div:nth-child(3n + 3) {
+    width: 370px;
+    height: 250px;
+}
+
+.wrapper div:nth-child(3n + 3)>img {
+    object-fit: cover;
+    width: 370px;
+    height: 250px;
+}
