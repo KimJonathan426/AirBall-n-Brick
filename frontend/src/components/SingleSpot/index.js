@@ -2,15 +2,17 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getSingleSpot, deleteSpot } from '../../store/spotReducer';
+import { getBookings } from '../../store/bookingReducer';
 import { getReviewAvg } from '../../store/reviewReducer';
 import SpotEditForm from '../SpotEditForm';
 import ReviewForm from '../ReviewForm';
 import SpotReviewList from '../SpotReviewList';
 import ratingStar from '../../images/rating-star.png';
 import SpotImagesModal from '../SpotImagesModal';
+import SpotImagesForm from '../SpotImagesForm';
+import BookingForm from '../BookingForm';
 import Loading from '../Loading';
 import './SingleSpot.css';
-import SpotImagesForm from '../SpotImagesForm';
 
 const SingleSpot = () => {
     const { id } = useParams();
@@ -18,7 +20,8 @@ const SingleSpot = () => {
     const history = useHistory();
     const spotState = useSelector(state => state.spot.spots);
     const images = useSelector(state => state.spot.images);
-    const reviewAvgs = useSelector(state => state.review)
+    const reviewAvgs = useSelector(state => state.review);
+    const bookingState = useSelector(state => state.booking);
     const user = useSelector(state => state.session?.user?.id);
 
     const [showEditSpotForm, setShowEditSpotForm] = useState(false);
@@ -50,6 +53,7 @@ const SingleSpot = () => {
         const fetchData = async () => {
             await dispatch(getSingleSpot(id));
             await dispatch(getReviewAvg());
+            await dispatch(getBookings(id))
 
             setRefresh(false);
             setLoading(true);
@@ -129,12 +133,10 @@ const SingleSpot = () => {
                             </h5>
                         </div>
                         <div className='hovering-content'>
-                            <h5>
-                                Price Per Night
-                            </h5>
-                            <h6>
-                                ${Number(singleSpot?.price)?.toFixed(2)}
-                            </h6>
+                            <div className='hovering-content-title'>
+                                ${Number(singleSpot?.price)?.toFixed(2)} <span>night</span>
+                            </div>
+                            <BookingForm />
                         </div>
                     </div>
                     <div className='spot-review-container'>
