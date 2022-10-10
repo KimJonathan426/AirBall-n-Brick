@@ -5,7 +5,6 @@ import './SpotEditForm.css'
 
 const SpotEditForm = ({ spot, id, hideForm }) => {
     const dispatch = useDispatch();
-    const user = useSelector(state => state.session.user);
 
     const [address, setAddress] = useState(spot.address);
     const [city, setCity] = useState(spot.city);
@@ -49,7 +48,6 @@ const SpotEditForm = ({ spot, id, hideForm }) => {
 
         const payload = {
             id,
-            userId: user.id,
             address,
             city,
             state,
