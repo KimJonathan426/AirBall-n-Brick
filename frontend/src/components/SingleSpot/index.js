@@ -10,6 +10,7 @@ import ratingStar from '../../images/rating-star.png';
 import SpotImagesModal from '../SpotImagesModal';
 import Loading from '../Loading';
 import './SingleSpot.css';
+import SpotImagesForm from '../SpotImagesForm';
 
 const SingleSpot = () => {
     const { id } = useParams();
@@ -21,6 +22,7 @@ const SingleSpot = () => {
     const user = useSelector(state => state.session?.user?.id);
 
     const [showEditSpotForm, setShowEditSpotForm] = useState(false);
+    const [showImagesForm, setShowImagesForm] = useState(false);
     const [showReviewForm, setShowReviewForm] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -59,14 +61,18 @@ const SingleSpot = () => {
         <div className='single-spot-container'>
             {loading ? singleSpot ?
                 <>
-                    {(!showEditSpotForm && user === singleSpot?.userId) && (
+                    {(!showEditSpotForm && !showImagesForm && user === singleSpot?.userId) && (
                         <div className='edit-delete-buttons'>
                             <button className='edit-button' onClick={() => setShowEditSpotForm(true)}>Edit Court</button>
+                            <button className='edit-button' onClick={() => setShowImagesForm(true)}>Add Images</button>
                             <button className='delete-button' onClick={onDelete}>Delete Court</button>
                         </div>
                     )}
                     {(showEditSpotForm && user) && (
                         <SpotEditForm spot={singleSpot} id={id} hideForm={() => setShowEditSpotForm(false)} />
+                    )}
+                    {(showImagesForm && user) && (
+                        <SpotImagesForm id={id} hideForm={() => setShowImagesForm(false)} />
                     )}
                     <div className='spot-header'>
                         <div className='single-name-info'>
@@ -125,7 +131,7 @@ const SingleSpot = () => {
                                 Price Per Night
                             </h5>
                             <h6>
-                                ${singleSpot?.price}
+                                ${Number(singleSpot?.price)?.toFixed(2)}
                             </h6>
                         </div>
                     </div>
