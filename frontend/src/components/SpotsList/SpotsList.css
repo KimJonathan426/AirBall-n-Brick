@@ -42,9 +42,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
-    color: rgb(72, 72, 72);
+    color: #222222;
 }
 
 .star-text {
@@ -71,9 +71,9 @@
 
 .price-info {
     margin-top: 8px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
-    color: rgb(72, 72, 72);
+    color: #222222;
     position: relative;
     bottom: 0px;
 }
@@ -81,5 +81,4 @@
 .price-info > span {
     font-size: 14px;
     font-weight: normal;
-    color: #222222;
 }
