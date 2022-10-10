@@ -22,12 +22,78 @@
     border-radius: 15px;
     margin-bottom: 12px;
     overflow: hidden;
+    position: relative;
 }
 
-#center {
+.hide-image {
+    display: none;
+}
+
+.center {
     width: 100%;
     height: 285px;
     object-fit: cover;
+    position: absolute;
+}
+
+.left-arrow {
+    display: none;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    font-size: 15px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    position: absolute;
+    top: 125px;
+    left: 15px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.left-arrow > span {
+    position: relative;
+    top: -2px;
+    right: 1px;
+}
+.right-arrow {
+    display: none;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    font-size: 15px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    position: absolute;
+    top: 125px;
+    right: 15px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.right-arrow > span {
+    position: relative;
+    top: -2px;
+    left: 1px;
+}
+
+.center:hover~.right-arrow,
+.center:hover~.left-arrow {
+    display: block;
+}
+
+.left-arrow:hover {
+    display: block;
+    background-color: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+}
+
+.right-arrow:hover {
+    display: block;
+    background-color: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
 }
 
 .spot-info {
