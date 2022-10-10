@@ -53,8 +53,8 @@ export const getBookings = (spotId) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(actionGetBookings(data));
-        return data;
+        dispatch(actionGetBookings(data.bookings));
+        return data.bookings;
     }
 }
 
