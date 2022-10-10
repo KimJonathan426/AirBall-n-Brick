@@ -10,6 +10,7 @@ const GET_SINGLE_SPOT = 'spots/getSingleSpot';
 
 // DELETE
 const DELETE_SPOT = 'spots/deleteSpot';
+const DELETE_IMAGE = 'spots/deleteImage';
 
 
 // Thunk action creators
@@ -51,6 +52,13 @@ const actionDeleteSpot = (spotId, imageIds) => {
     }
 };
 
+const actionDeleteImage = (imageId) => {
+    return {
+        type: DELETE_IMAGE,
+        imageId
+    }
+};
+
 
 // Thunks
 export const getSpots = () => async (dispatch) => {
@@ -70,6 +78,16 @@ export const getSingleSpot = (spotId) => async (dispatch) => {
         const data = await response.json();
         dispatch(actionGetSingleSpot(data.spot, data.images));
         return data;
+    }
+};
+
+export const getSpotImages = (spotId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}/images`);
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionAddImages(data.images));
+        return data.images;
     }
 };
 
@@ -155,6 +173,19 @@ export const deleteSpot = (payload) => async (dispatch) => {
     }
 }
 
+export const deleteImage = (imageId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/images/${imageId}/delete`, {
+        method: 'DELETE'
+    });
+
+    const data = await response.json();
+
+    if (data.message === 'Successfully Deleted') {
+        dispatch(actionDeleteImage(imageId));
+        return data;
+    }
+}
+
 const initialState = { spots: {}, images: {} };
 
 // Reducer
@@ -196,9 +227,15 @@ const spotReducer = (state = initialState, action) => {
             const newState = { ...state };
             delete newState.spots[action.spotId];
 
-            action.imageIds.forEach( imageId => {
-                delete newState.images[imageId];
-            });
+            // action.imageIds.forEach( imageId => {
+            //     delete newState.images[imageId];
+            // });
+            return newState;
+        }
+        case DELETE_IMAGE: {
+            const newState = { ...state }
+            delete newState.images[action.imageId];
+
             return newState;
         }
         default:

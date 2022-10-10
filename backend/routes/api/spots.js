@@ -84,12 +84,26 @@ router.post('/:id/images/new', multipleMulterUpload("images"), asyncHandler(asyn
     });
 }));
 
+router.get('/:spotId/images', asyncHandler(async (req, res) => {
+    const spotId = req.params.spotId;
+
+    const images = await Image.findAll({
+        where: {
+            spotId: spotId
+        }
+    })
+
+    return res.json({
+        images
+    });
+}));
+
 router.delete('/images/:id/delete', asyncHandler(async (req, res) => {
 
-    const allImages = await Image.findAll();
+    // const allImages = await Image.findAll();
     const image = await Image.findByPk(req.params.id);
 
-    console.log('allImages', allImages)
+    // console.log('allImages', allImages)
 
     await image.destroy();
 
