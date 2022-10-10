@@ -30,6 +30,7 @@
     align-items: center;
     background-color: #FCFBF4;
     height: 100%;
+    max-height: 1063px;
     border-radius: 25px 0px 0px 25px;
     overflow: auto;
 }
@@ -77,8 +78,8 @@
 }
 
 .image-input-container > label {
-    font-weight: bold;
-    color: #555361;
+    font-weight: 600;
+    color: #222222;
 }
 
 .image-inputs {
@@ -87,7 +88,7 @@
     border: 1px solid black;
     justify-content: center;
     padding: 25px 50px 10px 50px;
-    width: 300px;
+    width: 320px;
     height: fit-content;
 }
 

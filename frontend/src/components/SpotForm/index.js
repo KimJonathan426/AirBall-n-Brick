@@ -180,7 +180,7 @@ const SpotForm = () => {
                         <textarea className='description-input' value={description} onChange={updateDescription} required />
                     </div>
                     <div className='image-input-container'>
-                        <label>Multiple Upload</label>
+                        <label>Basketball Court Images</label>
                         <div className='image-inputs'>
                             <label>Image 1</label>
                                 <input type="file" onChange={updateFile1} />
