@@ -7,8 +7,9 @@ import SpotEditForm from '../SpotEditForm';
 import ReviewForm from '../ReviewForm';
 import SpotReviewList from '../SpotReviewList';
 import ratingStar from '../../images/rating-star.png';
-import './SingleSpot.css';
+import SpotImagesModal from '../SpotImagesModal';
 import Loading from '../Loading';
+import './SingleSpot.css';
 
 const SingleSpot = () => {
     const { id } = useParams();
@@ -105,6 +106,9 @@ const SingleSpot = () => {
                         </div>
                         <div className='right-image-bottom'>
                             <img src={spotImages[4]?.url} className='image-fit-sub right-bot' />
+                        </div>
+                        <div className='show-all-photos'>
+                            <SpotImagesModal images={spotImages}/>
                         </div>
                     </div>
                     <div className='single-spot-info'>
