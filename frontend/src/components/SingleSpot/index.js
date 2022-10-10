@@ -83,17 +83,17 @@ const SingleSpot = () => {
                                 <img className='star-image' src={ratingStar} />
                                 {spotAvg[singleSpot?.id]?.avg && (
                                     <>
-                                        {' ' + spotAvg[singleSpot?.id]?.avg} | {spotAvg[singleSpot?.id]?.count} reviews
+                                        {' ' + spotAvg[singleSpot?.id]?.avg} <span className='divider'>·</span> {spotAvg[singleSpot?.id]?.count} reviews
                                     </>
                                 )}
                                 {!spotAvg[singleSpot?.id]?.avg && (
                                     <>
-                                        {' New | 0 reviews'}
+                                        {' New '} <span className='divider'>·</span>  {' 0 reviews'}
                                     </>
                                 )}
                             </div>
                             <div className='single-location-info'>
-                                {'| ' + singleSpot?.city}, {singleSpot?.state}, {singleSpot?.country}
+                                <span className='divider'>·</span> {singleSpot?.city}, {singleSpot?.state}, {singleSpot?.country}
                             </div>
                         </div>
                     </div>
@@ -140,12 +140,12 @@ const SingleSpot = () => {
                             <img className='review-star-image' src={ratingStar} />
                             {spotAvg[singleSpot?.id]?.avg && (
                                 <>
-                                    {' ' + spotAvg[singleSpot?.id]?.avg} | {spotAvg[singleSpot?.id]?.count} reviews
+                                    {' ' + spotAvg[singleSpot?.id]?.avg} <span>&nbsp;·&nbsp;</span> {spotAvg[singleSpot?.id]?.count} reviews
                                 </>
                             )}
                             {!spotAvg[singleSpot?.id]?.avg && (
                                 <>
-                                    {' New | 0 reviews'}
+                                    {' New'} <span>&nbsp;·&nbsp;</span> {'0 reviews'}
                                 </>
                             )}
                         </h3>

@@ -7,6 +7,11 @@
     margin: 120px auto 80px;
 }
 
+.divider {
+    font-size: 16px;
+    font-weight: bold;
+}
+
 .edit-delete-buttons {
     display: flex;
     flex-direction: row;
