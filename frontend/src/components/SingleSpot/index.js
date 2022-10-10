@@ -136,7 +136,7 @@ const SingleSpot = () => {
                             <div className='hovering-content-title'>
                                 ${Number(singleSpot?.price)?.toFixed(2)} <span>night</span>
                             </div>
-                            <BookingForm spotId={singleSpot?.id} />
+                            <BookingForm user={user} spotId={singleSpot?.id} />
                         </div>
                     </div>
                     <div className='spot-review-container'>

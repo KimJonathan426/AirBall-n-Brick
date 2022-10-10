@@ -3,11 +3,11 @@ import 'react-date-range/dist/theme/default.css';
 import { DateRange } from 'react-date-range';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import './BookingForm.css';
-import { getBookings } from '../../store/bookingReducer';
+import { getBookings, createBooking } from '../../store/bookingReducer';
 import Loading from '../Loading';
+import './BookingForm.css';
 
-const BookingForm = ({ spotId }) => {
+const BookingForm = ({ user, spotId }) => {
     const dispatch = useDispatch();
 
     const [disabledDates, setDisabledDates] = useState([]);
@@ -15,8 +15,8 @@ const BookingForm = ({ spotId }) => {
 
     const [state, setState] = useState([
         {
-            startDate: new Date(),
-            endDate: new Date(),
+            startDate: null,
+            endDate: null,
             key: 'selection'
         }
     ]);
@@ -30,7 +30,6 @@ const BookingForm = ({ spotId }) => {
                 const dates = [];
 
                 for (let booking of Object.values(spotBookings)) {
-                    console.log('yes')
                     const startDate = new Date(booking.startDate);
                     const endDate = new Date(booking.endDate);
 
@@ -51,6 +50,23 @@ const BookingForm = ({ spotId }) => {
         fetchData();
     }, [dispatch])
 
+    const submitBooking = async (e) => {
+        console.log(state[0].startDate)
+        console.log(state[0].endDate)
+        const payload = {
+            userId: user,
+            spotId,
+            startDate: state.startDate,
+            endDate: state.endDate
+        };
+
+        const res = await dispatch(createBooking(payload));
+
+        if (res) {
+            console.log('worked');
+        }
+    }
+
 
     return (
         loading ?
@@ -64,10 +80,11 @@ const BookingForm = ({ spotId }) => {
                     minDate={new Date()}
                     disabledDates={disabledDates}
                 />
-                <form>
-
-
-                </form>
+                {user ?
+                    <button className='reserve-btn' onClick={submitBooking}>Reserve</button>
+                    :
+                    <button  disabled={true} className='reserve-btn reserve-disabled'>Log in to reserve</button>
+                }
             </>
             :
             <Loading />

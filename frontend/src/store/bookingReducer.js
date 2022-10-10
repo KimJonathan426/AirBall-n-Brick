@@ -43,6 +43,7 @@ export const createBooking = (payload) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
+        console.log('DATAR', data)
         dispatch(actionAddBooking(data));
         return data;
     }
