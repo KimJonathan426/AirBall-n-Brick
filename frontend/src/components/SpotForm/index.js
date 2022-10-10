@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
 import { createSpot } from '../../store/spotReducer';
 import hostCourt from '../../images/host-form-court.png';
+import hostCourtLoading from '../../images/host-court-loading.gif';
 import './SpotForm.css';
 
 const SpotForm = () => {
@@ -22,6 +23,7 @@ const SpotForm = () => {
     const [image3, setImage3] = useState(null);
     const [image4, setImage4] = useState(null);
     const [image5, setImage5] = useState(null);
+    const [disabled, setDisabled] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -99,8 +101,12 @@ const SpotForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
+        setDisabled(true);
 
-        if (validationErrors.length) return alert('Cannot submit, some errors need to be fixed!');
+        if (validationErrors.length) {
+            setDisabled(false);
+            return alert('Cannot submit, some errors need to be fixed!');
+        }
 
         const images = {
             '0': image1,
@@ -125,7 +131,7 @@ const SpotForm = () => {
         const res = await dispatch(createSpot(payload));
 
         if (res) {
-            history.push(`/spots/${res.spot.id}`);
+            history.push(`/spots/${res}`);
         }
 
         setHasSubmitted(false);
@@ -183,18 +189,26 @@ const SpotForm = () => {
                         <label>Basketball Court Images</label>
                         <div className='image-inputs'>
                             <label>Image 1</label>
-                                <input type="file" onChange={updateFile1} />
+                            <input type="file" onChange={updateFile1} />
                             <label>Image 2</label>
-                                <input type="file" onChange={updateFile2} />
+                            <input type="file" onChange={updateFile2} />
                             <label>Image 3</label>
-                                <input type="file" onChange={updateFile3} />
+                            <input type="file" onChange={updateFile3} />
                             <label>Image 4</label>
-                                <input type="file" onChange={updateFile4} />
+                            <input type="file" onChange={updateFile4} />
                             <label>Image 5</label>
-                                <input type="file" onChange={updateFile5} />
+                            <input type="file" onChange={updateFile5} />
                         </div>
                     </div>
-                    <button className='host-button' type='submit'>Host New Court</button>
+                    {disabled ?
+                        <button disabled className='host-button-disabled' type='submit'>
+                            <div className='host-loading'>
+                                <img src={hostCourtLoading} alt='loading...' />
+                            </div>
+                        </button>
+                        :
+                        <button className='host-button' type='submit'>Host New Court</button>
+                    }
                 </form>
             </div>
         </div>
