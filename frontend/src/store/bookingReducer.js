@@ -35,6 +35,8 @@ const actionDeleteBooking = (bookingId) => {
 
 // Thunk
 export const createBooking = (payload) => async (dispatch) => {
+    console.log('reached thunk')
+    console.log('payload', payload)
     const response = await csrfFetch(`/api/bookings/new`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

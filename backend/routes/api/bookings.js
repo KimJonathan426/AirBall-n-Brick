@@ -18,9 +18,10 @@ router.get('/:spotId', asyncHandler(async (req, res) => {
     });
 }));
 
-router.post('/bookings/new', asyncHandler(async (req, res) => {
+router.post('/new', asyncHandler(async (req, res) => {
     const { userId, spotId, startDate, endDate } = req.body;
-
+    console.log('reached post route##############')
+    console.log('startDater', startDate)
     const booking = await Booking.create({ userId, spotId, startDate, endDate })
     console.log('BOOKER', booking)
     return res.json({
