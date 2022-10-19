@@ -56,8 +56,8 @@ const BookingForm = ({ user, spotId }) => {
         const payload = {
             userId: user,
             spotId,
-            startDate: state.startDate,
-            endDate: state.endDate
+            startDate: state[0].startDate,
+            endDate: state[0].endDate
         };
 
         const res = await dispatch(createBooking(payload));
