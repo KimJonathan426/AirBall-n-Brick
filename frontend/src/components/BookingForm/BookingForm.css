@@ -7,6 +7,56 @@
     height: 250px;
 }
 
+.rdrDateDisplayWrapper {
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid rgb(151, 150, 150);
+    position: relative;
+    height: 56px;
+}
+
+.rdrDateDisplayWrapper::after {
+    content: "";
+    background: rgb(151, 150, 150);
+    position: absolute;
+    top: 0;
+    left: 154px;
+    height: 100%;
+    width: 1px;
+}
+
+.rdrDateInput {
+    border: none;
+    box-shadow: none;
+    text-align: left;
+}
+
+.rdrDateInput > input {
+    height: 18px;
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 18px;
+    color: #222222;
+}
+
+.check-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 211px;
+    font-size: 10px;
+    line-height: 12px;
+    color: rgb(34, 34, 34);
+    position: absolute;
+    top: 85px;
+    left: 37px;
+    z-index: 1;
+}
+
+/* .rdrDateDisplayItemActive {
+    border-right: 1px solid rgb(151, 150, 150);
+} */
+
+
 .reserve-btn {
     background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
     width: 100%;

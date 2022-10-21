@@ -51,8 +51,6 @@ const BookingForm = ({ user, spotId }) => {
     }, [dispatch])
 
     const submitBooking = async (e) => {
-        console.log(state[0].startDate)
-        console.log(state[0].endDate)
         const payload = {
             userId: user,
             spotId,
@@ -71,6 +69,10 @@ const BookingForm = ({ user, spotId }) => {
     return (
         loading ?
             <>
+                <div className='check-labels'>
+                    <label>CHECK-IN</label>
+                    <label>CHECKOUT</label>
+                </div>
                 <DateRange
                     className='calendar'
                     editableDateInputs={true}
@@ -79,11 +81,12 @@ const BookingForm = ({ user, spotId }) => {
                     ranges={state}
                     minDate={new Date()}
                     disabledDates={disabledDates}
+                    dateDisplayFormat='MM/d/yyyy'
                 />
                 {user ?
                     <button className='reserve-btn' onClick={submitBooking}>Reserve</button>
                     :
-                    <button  disabled={true} className='reserve-btn reserve-disabled'>Log in to reserve</button>
+                    <button disabled={true} className='reserve-btn reserve-disabled'>Log in to reserve</button>
                 }
             </>
             :
