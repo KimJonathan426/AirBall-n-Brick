@@ -47,43 +47,6 @@
     position: relative;
 }
 
-.animate-modal {
-    position: relative;
-    background-color: white;
-    animation: modaltakeover 1s forwards;
-}
-
-.animate-modal-close {
-    position: relative;
-    background-color: white;
-    animation: modaltakedown 1s forwards;
-}
-
-@keyframes modaltakeover {
-    from {
-        bottom: -2000px;
-        opacity: 0;
-    }
-
-    to {
-        bottom: -80px;
-        opacity: 1;
-    }
-}
-
-@keyframes modaltakedown {
-    from {
-        bottom: -80px;
-        opacity: 1;
-    }
-
-    to {
-        bottom: -2000px;
-        opacity: 0;
-    }
-}
-
-
 .show-all-photos-container {
     display: flex;
     justify-content: center;
