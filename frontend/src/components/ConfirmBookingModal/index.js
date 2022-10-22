@@ -54,57 +54,112 @@ function ConfirmBookingModal({ userId, spotId, price, startDate, endDate, setSho
 
 
     return (
-        <section className='price-container'>
-            <h2 className='confirm-booking-header'>
-                Confirm Booking
-            </h2>
-            <div className='price-list'>
-                <h2 className='price-list-header'>
-                    Your trip
+        open ?
+            <section className='price-container animate-modal'>
+                <h2 className='confirm-booking-header'>
+                    Confirm Booking
                 </h2>
-                <h3 className='detail-headers'>
-                    Dates
-                </h3>
-                <div className='date-booking-info'>
-                    {date}
+                <div className='price-list'>
+                    <h2 className='price-list-header'>
+                        Your trip
+                    </h2>
+                    <h3 className='detail-headers'>
+                        Dates
+                    </h3>
+                    <div className='date-booking-info'>
+                        {date}
+                    </div>
+                    <h3 className='detail-headers'>
+                        Price Details
+                    </h3>
+                    <div className='price-booking-info'>
+                        <div>
+                            ${Number(price).toLocaleString('en-US', { minimumFractionDigits: 2 })} x {nights} nights
+                        </div>
+                        <div>
+                            ${(price * nights).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                        </div>
+                    </div>
+                    <div className='price-booking-info'>
+                        <div>
+                            Service fee
+                        </div>
+                        <div>
+                            ${(serviceFee).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        </div>
+                    </div>
                 </div>
-                <h3 className='detail-headers'>
-                    Price Details
-                </h3>
-                <div className='price-booking-info'>
+                <div className='price-total'>
                     <div>
-                        ${Number(price).toLocaleString('en-US', { minimumFractionDigits: 2 })} x {nights} nights
+                        Total
                     </div>
                     <div>
-                        ${(price * nights).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                        ${(price * nights + serviceFee).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </div>
                 </div>
-                <div className='price-booking-info'>
+                <div className='confirm-booking-btns'>
                     <div>
-                        Service fee
+                        <button className='cancel-booking' onClick={closeModal}>Cancel</button>
                     </div>
                     <div>
-                        ${(serviceFee).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        <button className='confirm-booking' onClick={submitBooking} >Confirm</button>
                     </div>
                 </div>
-            </div>
-            <div className='price-total'>
-                <div>
-                    Total
-                </div>
-                <div>
-                    ${(price * nights + serviceFee).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                </div>
-            </div>
-            <div className='confirm-booking-btns'>
-                <div>
-                    <button className='cancel-booking' onClick={closeModal}>Cancel</button>
-                </div>
-                <div>
-                    <button className='confirm-booking' onClick={submitBooking} >Confirm</button>
-                </div>
-            </div>
-        </section>
+            </section>
+            :
+            <>
+                <section className='price-container animate-modal-close'>
+                    <h2 className='confirm-booking-header'>
+                        Confirm Booking
+                    </h2>
+                    <div className='price-list'>
+                        <h2 className='price-list-header'>
+                            Your trip
+                        </h2>
+                        <h3 className='detail-headers'>
+                            Dates
+                        </h3>
+                        <div className='date-booking-info'>
+                            {date}
+                        </div>
+                        <h3 className='detail-headers'>
+                            Price Details
+                        </h3>
+                        <div className='price-booking-info'>
+                            <div>
+                                ${Number(price).toLocaleString('en-US', { minimumFractionDigits: 2 })} x {nights} nights
+                            </div>
+                            <div>
+                                ${(price * nights).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                            </div>
+                        </div>
+                        <div className='price-booking-info'>
+                            <div>
+                                Service fee
+                            </div>
+                            <div>
+                                ${(serviceFee).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                            </div>
+                        </div>
+                    </div>
+                    <div className='price-total'>
+                        <div>
+                            Total
+                        </div>
+                        <div>
+                            ${(price * nights + serviceFee).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        </div>
+                    </div>
+                    <div className='confirm-booking-btns'>
+                        <div>
+                            <button className='cancel-booking' onClick={closeModal}>Cancel</button>
+                        </div>
+                        <div>
+                            <button className='confirm-booking' onClick={submitBooking} >Confirm</button>
+                        </div>
+                    </div>
+                </section>
+            </>
     );
 }
 
