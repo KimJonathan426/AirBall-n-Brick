@@ -65,7 +65,7 @@ const SpotList = () => {
                                 {spot.name}
                             </div>
                             <div className='price-info'>
-                                ${spot.price.substring(0, spot.price.length - 3)}
+                                ${Number(spot.price).toLocaleString('en-US', {maximumFractionDigits: 0})}
                                 <span> night</span>
                             </div>
                         </div>
