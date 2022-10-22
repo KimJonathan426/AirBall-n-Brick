@@ -1,17 +1,21 @@
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
+import { Modal } from '../../context/Modal';
 import { DateRange } from 'react-date-range';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getBookings, createBooking } from '../../store/bookingReducer';
+import { getBookings } from '../../store/bookingReducer';
+import ConfirmBookingModal from '../ConfirmBookingModal';
 import Loading from '../Loading';
 import './BookingForm.css';
 
-const BookingForm = ({ user, spotId }) => {
+const BookingForm = ({ user, spotId, price }) => {
     const dispatch = useDispatch();
 
+    const [disabled, setDisabled] = useState(true);
     const [disabledDates, setDisabledDates] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     const [state, setState] = useState([
         {
@@ -50,41 +54,39 @@ const BookingForm = ({ user, spotId }) => {
         fetchData();
     }, [dispatch])
 
-    const submitBooking = async (e) => {
-        const payload = {
-            userId: user,
-            spotId,
-            startDate: state[0].startDate,
-            endDate: state[0].endDate
-        };
-
-        const res = await dispatch(createBooking(payload));
-
-        if (res) {
-            console.log('worked');
+    useEffect(() => {
+        if (state[0].startDate && state[0].endDate) {
+            setDisabled(false);
         }
-    }
+    }, [state[0].startDate, state[0].endDate])
 
 
     return (
         loading ?
             <>
-                <div className='check-labels'>
-                    <label>CHECK-IN</label>
-                    <label>CHECKOUT</label>
+                <label className='check-in-label'></label>
+                <label className='check-out-label'></label>
+                <div className='calendar-container'>
+                    <DateRange
+                        className='calendar'
+                        editableDateInputs={true}
+                        onChange={item => setState([item.selection])}
+                        moveRangeOnFirstSelection={false}
+                        ranges={state}
+                        minDate={new Date()}
+                        disabledDates={disabledDates}
+                        dateDisplayFormat='MM/d/yyyy'
+                    />
                 </div>
-                <DateRange
-                    className='calendar'
-                    editableDateInputs={true}
-                    onChange={item => setState([item.selection])}
-                    moveRangeOnFirstSelection={false}
-                    ranges={state}
-                    minDate={new Date()}
-                    disabledDates={disabledDates}
-                    dateDisplayFormat='MM/d/yyyy'
-                />
                 {user ?
-                    <button className='reserve-btn' onClick={submitBooking}>Reserve</button>
+                    <>
+                        <button disabled={disabled} className={disabled ? 'reserve-btn reserve-disabled' : 'reserve-btn'} onClick={() => setShowModal(true)}>Reserve</button>
+                        {showModal && (
+                            <Modal onClose={() => setShowModal(false)}>
+                                <ConfirmBookingModal userId={user} spotId={spotId} price={price} startDate={state[0].startDate} endDate={state[0].endDate} setShowModal={setShowModal}/>
+                            </Modal>
+                        )}
+                    </>
                     :
                     <button disabled={true} className='reserve-btn reserve-disabled'>Log in to reserve</button>
                 }

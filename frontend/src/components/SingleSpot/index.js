@@ -134,9 +134,9 @@ const SingleSpot = () => {
                         </div>
                         <div className='hovering-content'>
                             <div className='hovering-content-title'>
-                                ${Number(singleSpot?.price)?.toFixed(2)} <span>night</span>
+                                ${Number(singleSpot?.price)?.toLocaleString('en-US', {maximumFractionDigits: 0})} <span>night</span>
                             </div>
-                            <BookingForm user={user} spotId={singleSpot?.id} />
+                            <BookingForm user={user} spotId={singleSpot?.id} price={singleSpot?.price}/>
                         </div>
                     </div>
                     <div className='spot-review-container'>
