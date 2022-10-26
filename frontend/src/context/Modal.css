@@ -7,6 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 20;
   }
 
   #modal-background {
@@ -24,13 +25,19 @@
   }
 
   .animate-modal {
-    position: relative;
+    position: absolute;
     background-color: white;
     animation: modaltakeover .5s forwards;
 }
 
+  .animate-modal-auth {
+    position: absolute;
+    background-color: white;
+    animation: modalauth .5s forwards;
+}
+
 .animate-modal-close {
-    position: relative;
+    position: absolute;
     background-color: white;
     animation: modaltakedown .5s forwards;
 }
@@ -42,7 +49,19 @@
     }
 
     to {
-        bottom: -80px;
+        bottom: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes modalauth {
+    from {
+        bottom: -2000px;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 0px;
         opacity: 1;
     }
 }
