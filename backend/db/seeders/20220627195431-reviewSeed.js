@@ -12,7 +12,7 @@ module.exports = {
         {
         userId: 1,
         spotId: 1,
-        review: 'It was such a great experience to play in the same court as the GOAT lebron did. I could feel the energy from the ring he brought the cavs boosting my shot percentage',
+        review: 'It was such a great experience to play in the same court as the GOAT LeBron did. I could feel the energy from the ring he brought the cavs boosting my shot percentage',
         rating: 5,
       },
         {
@@ -66,7 +66,7 @@ module.exports = {
         {
         userId: 6,
         spotId: 3,
-        review: "Curry > Lebron",
+        review: "Curry > LeBron",
         rating: 1,
       },
         {

@@ -115,7 +115,7 @@ module.exports = {
         city: 'Long Beach',
         state: 'California',
         country: 'United States of America',
-        name: 'Port of Long Beach, Michael Jordans Private Yacht w/ Basketball Court',
+        name: "Port of Long Beach, Michael Jordan's Private Yacht w/ Basketball Court",
         description: "Michael Jordan's $80 million Yacht comes with basketball court! Cruise the ocean and take in the views while you sink in some shots.",
         price: 175000
       },
@@ -155,7 +155,7 @@ module.exports = {
         city: 'Toronto',
         state: 'Ontario',
         country: 'Canada',
-        name: 'Drakes Private Court',
+        name: 'OVO Private Court',
         description: "October's Very Own, Drake, opens his near-NBA regulation-size court with custom designs to the public. Shoot from the balcony overseeing the court or take a break from hooping and grab a drink at the bar.",
         price: 125000
       },
