@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import DemoButton from '../DemoButton';
@@ -12,6 +12,22 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
+  const currentLocation = useLocation();
+
+  const [navFixed, setNavFixed] = useState(false);
+
+  useEffect(() => {
+    switch (currentLocation.pathname) {
+      case `/`:
+        setNavFixed(true);
+        break;
+      default:
+        setNavFixed(false);
+        break;
+    }
+
+
+  }, [currentLocation])
 
   let sessionLinks;
   if (sessionUser) {
@@ -38,7 +54,7 @@ function Navigation({ isLoaded }) {
   }
 
   return (
-    <div className='nav-container'>
+    <div className={navFixed ? 'nav-container-fixed' : 'nav-container'}>
       <NavLink className='logo-nav' exact to="/">
         <img className='logo-image' src={logoImage} />
         <img className='logo-text' src={logoText} />
