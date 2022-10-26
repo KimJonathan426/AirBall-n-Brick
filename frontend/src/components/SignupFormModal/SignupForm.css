@@ -1,8 +1,11 @@
 .signup-form {
+    position: relative;
     color: black;
     height: 635px;
     width: 700px;
-    border: 2px solid black;
+    border: 1px solid black;
+    border-radius: 8px;
+    box-shadow: rgb(0 0 0 / 28%) 0px 8px 28px;
     background-image: url('../../images/signup-form-court.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;

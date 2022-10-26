@@ -29,7 +29,7 @@ function SignupFormPage() {
   };
 
   return (
-    <form className='signup-form' onSubmit={handleSubmit}>
+    <form className='signup-form animate-modal-auth' onSubmit={handleSubmit}>
       <div className='form-container'>
         <div className='welcome-text'>Join The Community!</div>
         <div>

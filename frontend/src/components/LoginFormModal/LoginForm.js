@@ -22,7 +22,7 @@ function LoginForm() {
   };
 
   return (
-    <form className='login-form' onSubmit={handleSubmit}>
+    <form className='login-form animate-modal-auth' onSubmit={handleSubmit}>
       <div className='errors-container'>
         <ul>
           {errors.map((error, idx) => (
