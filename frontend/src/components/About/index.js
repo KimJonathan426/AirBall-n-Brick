@@ -5,9 +5,30 @@ const About = () => {
 
     return (
         <div className='about-page-container'>
+            <div className='about-description'>
+                <h2>
+                    Welcome to AirBallnBrick!
+                </h2>
+                <h4>
+                    This project is a clone of AirBnB that was inspired by the game of basketball.
+                    Here you can view a variety of court listings ranging anywhere from official NBA arenas to courts on a boat!
+                    Basketball can be played everywhere and this website gives its users an interface
+                    to explore the abundant amount of courts the world has to offer. Explore and find your perfect court today!
+                </h4>
+                <h4>
+                    The website was created by Jonathan Kim,
+                    using a React / Redux frontend, and NodeJS / Express backend.
+                </h4>
+                <h4>
+                    Thank you for visiting my site!
+                </h4>
+            </div>
             <div className='about-image-container'>
-                <img className='about-image' src='https://media-exp1.licdn.com/dms/image/C4D03AQFmy3MqHiWloQ/profile-displayphoto-shrink_800_800/0/1613671537681?e=1660780800&v=beta&t=faPlh0ayVNYxdm48UztCTHdUen2lCv-XY1GxeStze4M' />
-                <span>Jonathan Kim | Kim.Jonathan426@gmail.com</span>
+                <img className='about-image' src='https://airballnbrick.s3.amazonaws.com/Portfolio-photo-option-1.jpg' />
+                <div className='about-me'>
+                    <span>Jonathan Kim</span>
+                    <span>Kim.Jonathan426@gmail.com</span>
+                </div>
             </div>
             <div className='about-tech-container'>
                 <h4>React</h4>
@@ -27,24 +48,6 @@ const About = () => {
                         <img className='github-link' src="https://cdn-icons-png.flaticon.com/512/25/25231.png" />
                     </a>
                 </div>
-            </div>
-            <div className='about-description'>
-                <h2>
-                    Welcome to AirBallnBrick!
-                </h2>
-                <h4>
-                    This project is a clone of AirBnB that was inspired by the game of basketball.
-                    Here you can view a variety of court listings ranging anywhere from official NBA arenas to courts on a boat!
-                    Basketball can be played everywhere and this website gives its users an interface
-                    to explore the abundant amount of courts the world has to offer.
-                </h4>
-                <h4>
-                    The website was created by Jonathan Kim,
-                    using a React / Redux frontend, and NodeJS / Express backend.
-                </h4>
-                <h4>
-                    Thank you for visiting my site, find the perfect court for you!
-                </h4>
             </div>
         </div>
     )
