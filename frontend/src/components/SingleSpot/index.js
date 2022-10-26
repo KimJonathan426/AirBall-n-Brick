@@ -87,9 +87,14 @@ const SingleSpot = () => {
                         <div className='spot-sub-header'>
                             <div>
                                 <img className='star-image' src={ratingStar} />
-                                {spotAvg[singleSpot?.id]?.avg && (
+                                {spotAvg[singleSpot?.id]?.avg && spotAvg[singleSpot?.id]?.count > 1 && (
                                     <>
                                         {' ' + spotAvg[singleSpot?.id]?.avg} <span className='divider'>·</span> {spotAvg[singleSpot?.id]?.count} reviews
+                                    </>
+                                )}
+                                {spotAvg[singleSpot?.id]?.avg && spotAvg[singleSpot?.id]?.count === 1 && (
+                                    <>
+                                        {' ' + spotAvg[singleSpot?.id]?.avg} <span className='divider'>·</span> 1 review
                                     </>
                                 )}
                                 {!spotAvg[singleSpot?.id]?.avg && (
