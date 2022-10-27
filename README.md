@@ -2,7 +2,7 @@
 
 _For a live version of AirBallnBrick, click here: [AirBallnBrick](https://airball-n-brick.herokuapp.com/)._
 
-AirBallnBrick is a airBnB clone that allows users to discover, rent, and list basketball courts for use.
+AirBallnBrick is an Airbnb clone that allows users to discover, rent, and list a variety of different basketball courts around the world.
 
 _For a link to the AirBallnBrick wiki, click here: [Wiki](https://github.com/KimJonathan426/AirBall-n-Brick/wiki)._
 
