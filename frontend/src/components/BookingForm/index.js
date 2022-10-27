@@ -14,6 +14,7 @@ const BookingForm = ({ user, spotId, price }) => {
 
     const [disabled, setDisabled] = useState(true);
     const [disabledDates, setDisabledDates] = useState([]);
+    const [addDisabledDate, setAddDisabledDate] = useState(false);
     const [loading, setLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
 
@@ -48,11 +49,12 @@ const BookingForm = ({ user, spotId, price }) => {
                 setDisabledDates(dates);
             }
 
+            setAddDisabledDate(false);
             setLoading(true);
         }
 
         fetchData();
-    }, [dispatch])
+    }, [dispatch, addDisabledDate])
 
     useEffect(() => {
         if (state[0].startDate && state[0].endDate) {
@@ -62,7 +64,7 @@ const BookingForm = ({ user, spotId, price }) => {
 
 
     return (
-        loading ?
+        loading && !addDisabledDate ?
             <>
                 <label className='check-in-label'></label>
                 <label className='check-out-label'></label>
@@ -75,15 +77,17 @@ const BookingForm = ({ user, spotId, price }) => {
                         ranges={state}
                         minDate={new Date()}
                         disabledDates={disabledDates}
+                        startDatePlaceholder='Start'
+                        endDatePlaceholder='End'
                         dateDisplayFormat='MM/d/yyyy'
                     />
                 </div>
                 {user ?
                     <>
-                        <button disabled={disabled} className={disabled ? 'reserve-btn reserve-disabled' : 'reserve-btn'} onClick={() => setShowModal(true)}>Reserve</button>
+                        <button disabled={disabled} className={(disabled) ? 'reserve-btn reserve-disabled' : 'reserve-btn'} onClick={() => setShowModal(true)}>Reserve</button>
                         {showModal && (
                             <Modal onClose={() => setShowModal(false)}>
-                                <ConfirmBookingModal userId={user} spotId={spotId} price={price} startDate={state[0].startDate} endDate={state[0].endDate} setShowModal={setShowModal}/>
+                                <ConfirmBookingModal userId={user} spotId={spotId} price={price} state={state} setState={setState} setShowModal={setShowModal} setAddDisabledDate={setAddDisabledDate} />
                             </Modal>
                         )}
                     </>
