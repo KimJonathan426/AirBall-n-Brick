@@ -1,10 +1,11 @@
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { getSingleSpot, deleteSpot } from '../../store/spotReducer';
+import { getSingleSpot } from '../../store/spotReducer';
 import { getBookings } from '../../store/bookingReducer';
 import { getReviewAvg } from '../../store/reviewReducer';
 import SpotEditForm from '../SpotEditForm';
+import ConfirmDeleteSpotModal from '../ConfirmDeleteSpotModal';
 import ReviewForm from '../ReviewForm';
 import SpotReviewList from '../SpotReviewList';
 import ratingStar from '../../images/rating-star.png';
@@ -17,7 +18,6 @@ import './SingleSpot.css';
 const SingleSpot = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
     const spotState = useSelector(state => state.spot.spots);
     const images = useSelector(state => state.spot.images);
     const reviewAvgs = useSelector(state => state.review);
@@ -33,21 +33,6 @@ const SingleSpot = () => {
     const spotImages = Object.values(images);
     const singleSpot = spotState[id];
     const spotAvg = reviewAvgs.reviewAvgs;
-
-    const onDelete = async (e) => {
-        e.preventDefault();
-
-        const payload = {
-            spotId: singleSpot.id,
-            imageIds: Object.keys(images)
-        }
-
-        const res = await dispatch(deleteSpot(payload));
-
-        if (res) {
-            history.push('/');
-        }
-    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -71,7 +56,7 @@ const SingleSpot = () => {
                         <div className='edit-delete-buttons'>
                             <button className='edit-button' onClick={() => setShowEditSpotForm(true)}>Edit Court</button>
                             <button className='edit-button' onClick={() => setShowImagesForm(true)}>Add Images</button>
-                            <button className='delete-button' onClick={onDelete}>Delete Court</button>
+                            <ConfirmDeleteSpotModal spotId={singleSpot?.id}/>
                         </div>
                     )}
                     {(showEditSpotForm && user) && (
