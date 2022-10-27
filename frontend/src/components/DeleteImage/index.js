@@ -20,7 +20,6 @@ const DeleteImage = ({ spotId, imageId }) => {
         if (res.message === 'Successfully Deleted') {
             const ele = document.getElementById(`image-${imageId}`);
             ele.classList = 'no-display';
-            // await dispatch(getSpotImages(spotId));
         } else {
             setErrors([res.message]);
         }
