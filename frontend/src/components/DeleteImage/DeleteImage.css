@@ -4,9 +4,19 @@
 }
 
 .delete-image-error {
+    width: 100%;
     position: fixed;
-    top: 90px;
-    left: 180px;
+    top: -15px;
+    left: 0px;
     background-color: #fff;
-    z-index: 5;
+    z-index: 3;
+}
+
+.delete-image-error > li {
+    position: relative;
+    left: 0%;
+    width: 748px;
+    margin: 25px auto;
+    background-color: #fff;
+    box-sizing: border-box;
 }
