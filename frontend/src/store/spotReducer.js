@@ -160,15 +160,15 @@ export const updateSpot = (payload) => async (dispatch) => {
     }
 }
 
-export const deleteSpot = (payload) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${payload.spotId}`, {
+export const deleteSpot = (spotId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE'
     });
 
     const data = await response.json();
 
     if (data.message === 'Successfully Deleted') {
-        dispatch(actionDeleteSpot(payload.spotId, payload.imageIds));
+        dispatch(actionDeleteSpot(spotId));
         return data;
     }
 }
@@ -231,9 +231,6 @@ const spotReducer = (state = initialState, action) => {
             const newState = { ...state };
             delete newState.spots[action.spotId];
 
-            // action.imageIds.forEach( imageId => {
-            //     delete newState.images[imageId];
-            // });
             return newState;
         }
         case DELETE_IMAGE: {
