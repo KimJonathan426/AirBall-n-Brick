@@ -1,0 +1,8 @@
+.trips-container {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 1120px;
+    margin: 80px 0px;
+    padding: 0 40px;
+}
