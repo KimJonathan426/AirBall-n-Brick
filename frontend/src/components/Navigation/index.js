@@ -43,12 +43,14 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className={navFixed ? 'nav-container-fixed' : 'nav-container'}>
-      <NavLink className='logo-nav' exact to="/">
-        <img className='logo-image' src={logoImage} />
-        <img className='logo-text' src={logoText} />
-      </NavLink>
-      <div>
-        {isLoaded && sessionLinks}
+      <div className='nav-inner'>
+        <NavLink className='logo-nav' exact to="/">
+          <img className='logo-image' src={logoImage} />
+          <img className='logo-text' src={logoText} />
+        </NavLink>
+        <div>
+          {isLoaded && sessionLinks}
+        </div>
       </div>
     </div>
   );
