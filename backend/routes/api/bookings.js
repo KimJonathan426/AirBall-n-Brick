@@ -18,6 +18,18 @@ router.get('/:spotId', asyncHandler(async (req, res) => {
     });
 }));
 
+router.get('/trips/:userId', asyncHandler(async (req, res) => {
+    const bookings = await Booking.findAll({
+        where: {
+            userId: req.params.userId
+        }
+    });
+
+    return res.json({
+        bookings
+    });
+}));
+
 router.post('/new', asyncHandler(async (req, res) => {
     const { userId, spotId, startDate, endDate } = req.body;
 
