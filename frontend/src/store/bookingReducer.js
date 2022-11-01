@@ -58,6 +58,15 @@ export const getBookings = (spotId) => async (dispatch) => {
     }
 }
 
+export const getUserBookings = (userId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/bookings/trips/${userId}`);
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionGetBookings(data.bookings));
+        return data.bookings;
+    }
+}
 
 export const deleteReview = (bookingId) => async (dispatch) => {
     const response = await csrfFetch(`/api/bookings/${bookingId}`, {
