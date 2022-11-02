@@ -37,6 +37,7 @@
     max-width: 1600px;
     height: 80px;
     padding: 0 40px;
+    margin: 0 auto;
     box-sizing: border-box;
 }
 
