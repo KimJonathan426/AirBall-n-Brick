@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { Booking } = require('../../db/models');
+const { Booking, Image } = require('../../db/models');
 
 const router = express.Router();
 
@@ -33,7 +33,18 @@ router.get('/trips/:userId', asyncHandler(async (req, res) => {
 router.post('/new', asyncHandler(async (req, res) => {
     const { userId, spotId, startDate, endDate } = req.body;
 
-    const booking = await Booking.create({ userId, spotId, startDate, endDate })
+    const image = await Image.findOne({
+        where: {
+            spotId: spotId
+        },
+        order: [
+            ['id', 'ASC']
+        ]
+    });
+
+    const url = image.url;
+
+    const booking = await Booking.create({ userId, spotId, startDate, endDate, url });
 
     return res.json({
         booking
