@@ -32,7 +32,7 @@ function App() {
           <Route path="/spots/:id">
             <SingleSpot />
           </Route>
-          <Route path="/trips/:userId">
+          <Route path="/trips/v1">
             <Trips />
           </Route>
           <Route path="/about">
