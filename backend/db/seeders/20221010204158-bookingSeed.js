@@ -15,7 +15,8 @@ module.exports = {
      userId: 1,
      spotId: 1,
      startDate: new Date(),
-     endDate: futureDate
+     endDate: futureDate,
+     url: 'https://airballnbrick.s3.amazonaws.com/Cavs+Arena.jpg'
    }], {});
   },
 
