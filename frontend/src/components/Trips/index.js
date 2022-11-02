@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getUserBookings } from '../../store/bookingReducer';
 import Loading from '../Loading';
+import wavingHand from '../../images/hand-image.svg';
 import './Trips.css';
 
 const Trips = () => {
@@ -49,20 +50,46 @@ const Trips = () => {
 
 
     return (
-        user ? loading ?
+        loading ? user ?
             <div className='trips-container'>
-                <h1 className='trips-header'>Trips</h1>
-                <div>
-                    Trips Content
-                </div>
-                <div>
-                    Where you've been
+                <div className='trips-content'>
+                    <h1 className='trips-header'>Trips</h1>
+                    <div className='booked-trips-container'>
+                        <div className='booked-trips'>
+                            <div className='no-booked-trips'>
+                                <div className='waving-hand-box'>
+                                    <img className='waving-hand' src={wavingHand} />
+                                </div>
+                                <div className='no-booked-trips-info-1'>
+                                    <span>
+                                        No trips booked...yet!
+                                    </span>
+                                </div>
+                                <div className='no-booked-trips-info-2'>
+                                    <span>
+                                        Time to dust off your shoes and start planning your next game
+                                    </span>
+                                </div>
+                                <div className='start-searching-box'>
+                                    <Link to='/' className='start-searching-link'>
+                                        <span>Start searching</span>
+                                    </Link>
+                                </div>
+                            </div>
+                            <div className='no-booked-trips-image-box'>
+                                Image
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        Where you've been
+                    </div>
                 </div>
             </div>
             :
-            <Loading />
-            :
             <div className='trips-container'>Prompt Login Screen Here</div>
+            :
+            <Loading />
     )
 }
 

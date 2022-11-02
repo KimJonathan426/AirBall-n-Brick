@@ -1,8 +1,165 @@
 .trips-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     height: fit-content;
-    width: 1120px;
-    margin: 80px 0px;
-    padding: 0 40px;
+    width: 100%;
+    margin: 80px 0;
+}
+
+.trips-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1440px;
+    padding-left: 80px;
+    padding-right: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+.trips-header {
+    padding-top: 36px;
+    padding-bottom: 24px;
+    margin: 0;
+    color: #222222;
+    line-height: 36px;
+}
+
+.booked-trips-container {
+    width: 100%;
+    max-width: 1440px;
+    height: fit-content;
+    padding: 24px 0;
+    box-sizing: border-box;
+}
+
+.booked-trips {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    width: 100%;
+    height: 100%;
+    grid-column-gap: 16px;
+    overflow: hidden;
+    border: 1px solid #DDDDDD;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.no-booked-trips {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    grid-column: span 1;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.waving-hand-box {
+    width: 48px;
+    height: 48px;
+    margin-top: 8px;
+    margin-bottom: 24px;
+}
+
+.waving-hand {
+    width: 48px;
+    height: 48px;
+}
+
+.no-booked-trips-info-1,
+.no-booked-trips-info-2 {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.start-searching-box {
+    width: 100%;
+    max-width: 1120px;
+    margin-top: 16px;
+}
+
+.start-searching-link {
+    display: inline-block;
+    width: 100%;
+    max-width: 1120px;
+    padding: 14px 24px;
+    border-radius: 8px;
+    margin: 0;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+    outline: none;
+    color: #FFF;
+    background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: transform 0.2s ease-in-out;
+}
+
+.start-searching-link:active {
+    background: #FF385C;
+    transform: scale(0.95);
+}
+
+.start-searching-link > span {
+    display: block;
+    position: relative;
+}
+
+@media screen and (min-width: 1100px) {
+    .booked-trips {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media screen and (min-width: 744px) {
+
+    .booked-trips {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .no-booked-trips {
+        align-items: flex-start;
+        padding: 32px;
+    }
+
+    .no-booked-trips-info-1,
+    .no-booked-trips-info-2 {
+        text-align: left;
+        margin-bottom: 8px;
+    }
+
+    .start-searching-box {
+        width: auto;
+    }
+}
+
+.no-booked-trips-info-1>span {
+    color: #222222;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 22px;
+    max-width: 100%;
+    --view-to-view-transition-element-opacity: 0;
+    --view-to-view-transition-element-visibility: hidden;
+}
+
+.no-booked-trips-info-2>span {
+    color: #717171;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    --view-to-view-transition-element-opacity: 0;
+    --view-to-view-transition-element-visibility: hidden;
+}
+
+
+.no-booked-trips-image-box {
+    grid-column: span 2;
 }
