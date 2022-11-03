@@ -14,12 +14,12 @@ function Navigation({ isLoaded }) {
   const [navFixed, setNavFixed] = useState(false);
 
   useEffect(() => {
-    switch (currentLocation.pathname) {
-      case `/`:
-        setNavFixed(true);
+    switch (currentLocation.pathname.startsWith('/spots')) {
+      case true:
+        setNavFixed(false);
         break;
       default:
-        setNavFixed(false);
+        setNavFixed(true);
         break;
     }
 
