@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { Booking, Image } = require('../../db/models');
+const { Booking, Spot, User, Image } = require('../../db/models');
 
 const router = express.Router();
 
@@ -22,7 +22,8 @@ router.get('/trips/:userId', asyncHandler(async (req, res) => {
     const bookings = await Booking.findAll({
         where: {
             userId: req.params.userId
-        }
+        },
+        include: [User, Spot]
     });
 
     return res.json({
