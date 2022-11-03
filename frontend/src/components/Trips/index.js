@@ -77,7 +77,15 @@ const Trips = () => {
                                 </div>
                             </div>
                             <div className='no-booked-trips-image-box'>
-                                Image
+                                <div className='trips-picture-box'>
+                                    <picture>
+                                        <source srcSet="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-320.webp 1x" media="(max-width: 743px)"/>
+                                        <source srcSet="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-320.webp 1x" media="(min-width: 743.1px) and (max-width: 1127px)"/>
+                                        <source srcSet="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-720.webp 1x" media="(min-width: 1127.1px) and (max-width: 1439px)"/>
+                                        <source srcSet="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-1200.webp 1x" media="(min-width: 1439.1px)"/>
+                                        <img className='main-picture' src="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-720.webp"/>
+                                    </picture>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -12,8 +12,8 @@
     flex-direction: column;
     width: 100%;
     max-width: 1440px;
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 24px;
+    padding-right: 24px;
     margin-left: auto;
     margin-right: auto;
     box-sizing: border-box;
@@ -33,6 +33,7 @@
     height: fit-content;
     padding: 24px 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .booked-trips {
@@ -53,6 +54,7 @@
     align-items: center;
     justify-content: center;
     grid-column: span 1;
+    min-width: 180px;
     padding: 24px;
     box-sizing: border-box;
 }
@@ -112,13 +114,12 @@
     position: relative;
 }
 
-@media screen and (min-width: 1100px) {
-    .booked-trips {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
 @media screen and (min-width: 744px) {
+
+    .trips-content {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
 
     .booked-trips {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -137,6 +138,18 @@
 
     .start-searching-box {
         width: auto;
+    }
+}
+
+@media screen and (min-width: 1128px) {
+
+    .trips-content {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+
+    .booked-trips {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 
@@ -159,7 +172,44 @@
     --view-to-view-transition-element-visibility: hidden;
 }
 
-
 .no-booked-trips-image-box {
-    grid-column: span 2;
+    grid-column: span 1;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.trips-picture-box {
+    display: inline-block;
+    vertical-align: bottom;
+    height: 100%;
+    width: auto;
+    min-height: 1px;
+    background-position: 50% 50% !important;
+    background-repeat: no-repeat !important;
+    box-sizing: border-box;
+}
+
+.main-picture {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    vertical-align: bottom;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 744px) {
+
+    .no-booked-trips-image-box {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1128px) {
+
+    .no-booked-trips-image-box {
+        grid-column: span 2;
+    }
 }
