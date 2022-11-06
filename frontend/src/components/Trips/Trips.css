@@ -37,7 +37,7 @@
     overflow: hidden;
 }
 
-.booked-trips {
+.no-booked-trips {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     width: 100%;
@@ -49,7 +49,7 @@
     box-sizing: border-box;
 }
 
-.no-booked-trips {
+.no-booked-trips-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -158,7 +158,7 @@
     box-sizing: border-box;
 }
 
-.previous-trips-header {
+.inner-trips-header {
     display: block;
     max-width: 100%;
     white-space: nowrap;
@@ -173,7 +173,7 @@
     box-sizing: border-box;
 }
 
-.previous-trips-container {
+.inner-trips-container {
     display: flex;
     align-items: stretch;
     justify-content: flex-start;
@@ -186,7 +186,7 @@
     box-sizing: border-box;
 }
 
-.previous-trips-list {
+.inner-trips-list {
     display: block;
     list-style-type: none;
     margin-block-start: 0;
@@ -198,7 +198,7 @@
     text-overflow: ellipsis;
 }
 
-.previous-trips-item {
+.inner-trips-item {
     display: flex;
     align-items: center;
     width: 100%;
@@ -207,7 +207,7 @@
     box-sizing: border-box;
 }
 
-.previous-trips-image-box {
+.inner-trips-image-box {
     flex: 0 0 auto;
     width: 72px;
     height: 72px;
@@ -217,7 +217,7 @@
     position: relative;
 }
 
-.previous-trips-image {
+.inner-trips-image {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -227,12 +227,12 @@
     box-sizing: border-box;
 }
 
-.previous-trips-info-box {
+.inner-trips-info-box {
     width: 100%;
     overflow: hidden;
 }
 
-.previous-trips-info-1 {
+.inner-trips-info-1 {
     width: 100%;
     color: #222222;
     line-height: 20px;
@@ -240,7 +240,7 @@
     box-sizing: border-box;
 }
 
-.previous-trips-info-2 {
+.inner-trips-info-2 {
     width: 100%;
     color: #717171;
     line-height: 20px;
@@ -250,8 +250,8 @@
     box-sizing: border-box;
 }
 
-.previous-trips-info-1>span,
-.previous-trips-info-2>span {
+.inner-trips-info-1>span,
+.inner-trips-info-2>span {
     display: block;
     width: 100%;
     white-space: nowrap;
@@ -266,11 +266,11 @@
         padding-right: 40px;
     }
 
-    .booked-trips {
+    .no-booked-trips {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .no-booked-trips {
+    .no-booked-trips-inner {
         align-items: flex-start;
         padding: 32px;
     }
@@ -285,7 +285,7 @@
         width: auto;
     }
 
-    .previous-trips-list {
+    .inner-trips-list {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-column-gap: 16px;
@@ -300,7 +300,7 @@
         padding-right: 80px;
     }
 
-    .booked-trips {
+    .no-booked-trips {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
@@ -308,7 +308,7 @@
         grid-column: span 2;
     }
 
-    .previous-trips-list {
+    .inner-trips-list {
         grid-template-columns: repeat(3, 1fr);
     }
 }
