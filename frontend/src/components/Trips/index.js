@@ -76,69 +76,106 @@ const Trips = () => {
             <div className='trips-container'>
                 <div className='trips-content'>
                     <h1 className='trips-header'>Trips</h1>
-                    <div className='booked-trips-container'>
-                        <div className='booked-trips'>
-                            <div className='no-booked-trips'>
-                                <div className='waving-hand-box'>
-                                    <img className='waving-hand' src={wavingHand} />
-                                </div>
-                                <div className='no-booked-trips-info-1'>
-                                    <span>
-                                        No trips booked...yet!
-                                    </span>
-                                </div>
-                                <div className='no-booked-trips-info-2'>
-                                    <span>
-                                        Time to dust off your shoes and start planning your next game
-                                    </span>
-                                </div>
-                                <div className='start-searching-box'>
-                                    <Link to='/' className='start-searching-link'>
-                                        <span>Start searching</span>
-                                    </Link>
-                                </div>
+                    {activeTrips.length > 0 ?
+                        <>
+                            <div className='inner-trips-container'>
+                                <ul className='inner-trips-list'>
+                                    {activeTrips.map(trip => (
+                                        <Link key={trip.id} to={`/spots/${trip.spotId}`}>
+                                            <li className='inner-trips-item'>
+                                                <div className='inner-trips-image-box'>
+                                                    <img className='inner-trips-image' src={trip.url} />
+                                                </div>
+                                                <div className='inner-trips-info-box'>
+                                                    <div className='inner-trips-info-1'>
+                                                        <span>
+                                                            {trip.Spot.name}
+                                                        </span>
+                                                    </div>
+                                                    <div className='inner-trips-info-2'>
+                                                        <span>
+                                                            Hosted By {trip.User.username}
+                                                        </span>
+                                                    </div>
+                                                    <div className='inner-trips-info-2'>
+                                                        <span>
+                                                            {trip.date}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </Link>
+                                    ))}
+                                </ul>
                             </div>
-                            <div className='no-booked-trips-image-box'>
-                                <div className='trips-picture-box'>
-                                    <picture>
-                                        <source srcSet="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-320.webp 1x" media="(max-width: 743px)" />
-                                        <source srcSet="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-320.webp 1x" media="(min-width: 743.1px) and (max-width: 1127px)" />
-                                        <source srcSet="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-720.webp 1x" media="(min-width: 1127.1px) and (max-width: 1439px)" />
-                                        <source srcSet="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-1200.webp 1x" media="(min-width: 1439.1px)" />
-                                        <img className='main-picture' src="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-720.webp" />
-                                    </picture>
+                        </>
+                        :
+                        <div className='no-booked-trips-container'>
+                            <div className='no-booked-trips'>
+                                <div className='no-booked-trips-inner'>
+                                    <div className='waving-hand-box'>
+                                        <img className='waving-hand' src={wavingHand} />
+                                    </div>
+                                    <div className='no-booked-trips-info-1'>
+                                        <span>
+                                            No trips booked...yet!
+                                        </span>
+                                    </div>
+                                    <div className='no-booked-trips-info-2'>
+                                        <span>
+                                            Time to dust off your shoes and start planning your next game
+                                        </span>
+                                    </div>
+                                    <div className='start-searching-box'>
+                                        <Link to='/' className='start-searching-link'>
+                                            <span>Start searching</span>
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div className='no-booked-trips-image-box'>
+                                    <div className='trips-picture-box'>
+                                        <picture>
+                                            <source srcSet="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-320.webp 1x" media="(max-width: 743px)" />
+                                            <source srcSet="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-320.webp 1x" media="(min-width: 743.1px) and (max-width: 1127px)" />
+                                            <source srcSet="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-720.webp 1x" media="(min-width: 1127.1px) and (max-width: 1439px)" />
+                                            <source srcSet="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-1200.webp 1x" media="(min-width: 1439.1px)" />
+                                            <img className='main-picture' src="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-720.webp" />
+                                        </picture>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {pastTrips &&
+                    }
+                    {pastTrips.length > 0 &&
                         <>
-                            <h1 className='previous-trips-header'>Where you've been</h1>
-                            <div className='previous-trips-container'>
-                                <ul className='previous-trips-list'>
+                            <h1 className='inner-trips-header'>Where you've been</h1>
+                            <div className='inner-trips-container'>
+                                <ul className='inner-trips-list'>
                                     {pastTrips.map(trip => (
-                                        <li key={trip.id} className='previous-trips-item'>
-                                            <div className='previous-trips-image-box'>
-                                                <img className='previous-trips-image' src={trip.url} />
-                                            </div>
-                                            <div className='previous-trips-info-box'>
-                                                <div className='previous-trips-info-1'>
-                                                    <span>
-                                                        {trip.Spot.name}
-                                                    </span>
+                                        <Link key={trip.id} to={`/spots/${trip.spotId}`}>
+                                            <li className='inner-trips-item'>
+                                                <div className='inner-trips-image-box'>
+                                                    <img className='inner-trips-image' src={trip.url} />
                                                 </div>
-                                                <div className='previous-trips-info-2'>
-                                                    <span>
-                                                        Hosted By {trip.User.username}
-                                                    </span>
+                                                <div className='inner-trips-info-box'>
+                                                    <div className='inner-trips-info-1'>
+                                                        <span>
+                                                            {trip.Spot.name}
+                                                        </span>
+                                                    </div>
+                                                    <div className='inner-trips-info-2'>
+                                                        <span>
+                                                            Hosted By {trip.User.username}
+                                                        </span>
+                                                    </div>
+                                                    <div className='inner-trips-info-2'>
+                                                        <span>
+                                                            {trip.date}
+                                                        </span>
+                                                    </div>
                                                 </div>
-                                                <div className='previous-trips-info-2'>
-                                                    <span>
-                                                        {trip.date}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        </Link>
                                     ))}
                                 </ul>
                             </div>
