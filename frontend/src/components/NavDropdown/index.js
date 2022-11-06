@@ -38,7 +38,7 @@ const NavDropdown = ({ sessionUser }) => {
                 <div className='dropdown-options'>
                     {sessionUser ?
                         <>
-                            {/* <button>Trips</button> */}
+                            <NavLink to="/trips/v1">Trips</NavLink>
                             <NavLink to="/spots/new">Host a Court</NavLink>
                             {/* <button>Manage Listings</button> */}
                             <div className='dropdown-divider' />
