@@ -8,7 +8,7 @@ import SpotEditForm from '../SpotEditForm';
 import ConfirmDeleteSpotModal from '../ConfirmDeleteSpotModal';
 import ReviewForm from '../ReviewForm';
 import SpotReviewList from '../SpotReviewList';
-import ratingStar from '../../images/rating-star.png';
+import ratingStar from '../../images/rating-star.svg';
 import SpotImagesModal from '../SpotImagesModal';
 import SpotImagesForm from '../SpotImagesForm';
 import BookingForm from '../BookingForm';
@@ -121,6 +121,9 @@ const SingleSpot = () => {
                             <h5 className='spot-description'>
                                 {singleSpot?.description}
                             </h5>
+                            <div>
+                                Bookings
+                            </div>
                         </div>
                         <div className='hovering-content'>
                             <div className='hovering-content-title'>

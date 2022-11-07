@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { getSpots } from '../../store/spotReducer';
 import { getReviewAvg } from '../../store/reviewReducer';
 import HomeImages from '../HomeImages';
-import ratingStar from '../../images/rating-star.png';
+import ratingStar from '../../images/rating-star.svg';
 import Loading from '../Loading';
 import './SpotsList.css';
 

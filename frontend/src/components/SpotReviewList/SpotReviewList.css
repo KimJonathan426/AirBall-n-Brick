@@ -17,15 +17,17 @@
     margin-bottom: 40px;
 }
 
-.single-review > h3 > img {
+.single-review-star {
+    width: 16px;
+    height: 16px;
+    object-fit: cover;
     margin-left: 10px;
-    position: relative;
-    bottom: -5px;
 }
 
 .review-body {
     height: 125px;
     font-size: 16px;
+    line-height: 24px;
     color: #222222;
     overflow: auto;
     word-wrap: break-word;

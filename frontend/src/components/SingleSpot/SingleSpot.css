@@ -153,6 +153,7 @@
 }
 
 .host-name {
+    font-size: 22px;
     padding-bottom: 35px;
     border-bottom: 1px solid #d9e1ec;
     margin: 0px;
@@ -163,6 +164,7 @@
     height: fit-content;
     font-size: 16px;
     font-weight: normal;
+    line-height: 24px;
     margin: 0px;
     padding: 35px 0px;
     word-wrap: break-word;
@@ -207,9 +209,9 @@
 }
 
 .review-star-image {
-    width: fit-content;
-    height: fit-content;
-    object-fit: none;
+    width: 16px;
+    height: 16px;
+    object-fit: cover;
     position: relative;
     bottom: 2px;
     margin-right: 7px;
