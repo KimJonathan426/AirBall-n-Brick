@@ -119,6 +119,7 @@
     font-weight: 600;
     color: #222222;
     margin-bottom: 12px;
+    word-wrap: break-word;
 }
 
 .spot-sub-header {
@@ -134,7 +135,11 @@
 }
 
 .single-location-info {
+    max-width: 900px;
     margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .single-spot-info {
@@ -160,6 +165,9 @@
     padding-bottom: 35px;
     border-bottom: 1px solid #d9e1ec;
     margin: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .spot-description {
