@@ -10,10 +10,12 @@ const router = express.Router();
 
 const validateSignup = [
     check('email')
+        .toLowerCase()
         .exists({ checkFalsy: true })
         .isEmail()
         .withMessage('Please provide a valid email.'),
     check('username')
+        .toLowerCase()
         .exists({ checkFalsy: true })
         .isLength({ min: 4 })
         .withMessage('Please provide a username with at least 4 characters.'),
@@ -34,7 +36,10 @@ router.post(
     validateSignup,
     asyncHandler(async (req, res) => {
         const { email, password, username } = req.body;
-        const user = await User.signup({ email, username, password });
+
+        const standardEmail = email.toLowerCase();
+
+        const user = await User.signup({ email: standardEmail, username, password });
 
         await setTokenCookie(res, user);
 

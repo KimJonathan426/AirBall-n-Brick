@@ -6,67 +6,67 @@ module.exports = {
     return queryInterface.bulkInsert('Users', [
       {
         email: 'demo@user.io',
-        username: 'Demo-lition',
+        username: 'demo-lition',
         hashedPassword: bcrypt.hashSync('password')
       },
       {
         email: 'user1@user.io',
-        username: 'FakeUser1',
+        username: 'fakeuser1',
         hashedPassword: bcrypt.hashSync('password2')
       },
       {
         email: 'user2@user.io',
-        username: 'FakeUser2',
+        username: 'fakeuser2',
         hashedPassword: bcrypt.hashSync('password3')
       },
       {
-        email: 'DemoUser@email.com',
-        username: 'Demo User',
+        email: 'demouser@email.com',
+        username: 'demo user',
         hashedPassword: bcrypt.hashSync('DemoPassword')
       },
       {
-        email: 'Abel@LebronTheGOAT.com',
-        username: 'Abel James',
-        hashedPassword: bcrypt.hashSync('LeGM')
+        email: 'abel@lebronthegoat.com',
+        username: 'abel james',
+        hashedPassword: bcrypt.hashSync('Legoat')
       },
       {
-        email: 'Labbit@BabyFaceAssassin.com',
-        username: 'Eddie Curry',
+        email: 'labbit@babyfaceassassin.com',
+        username: 'eddie curry',
         hashedPassword: bcrypt.hashSync('NightNight')
       },
       {
-        email: 'dChungster@LukaMagic.com',
-        username: 'David Dončić',
+        email: 'dchungster@lukamagic.com',
+        username: 'david dončić',
         hashedPassword: bcrypt.hashSync('HadToGetRidOfPorzinger')
       },
       {
-        email: 'Lynnsane@Linning.com',
-        username: 'Lynnsanity',
+        email: 'lynnsane@linning.com',
+        username: 'lynnsanity',
         hashedPassword: bcrypt.hashSync('CarmeloRuinedMyCareer')
       },
       {
-        email: 'Jontan@GreekFreak.com',
-        username: 'Jontantetokounmpo',
+        email: 'jontan@greekfreak.com',
+        username: 'jontantetokounmpo',
         hashedPassword: bcrypt.hashSync('TheHumbleKing')
       },
       {
-        email: 'Undisputed@GOAT.com',
-        username: 'Michael Jordan',
+        email: 'undisputed@gOAT.com',
+        username: 'michael jordan',
         hashedPassword: bcrypt.hashSync('Personal')
       },
       {
-        email: 'Assist@Help.com',
-        username: 'John Stockton',
+        email: 'assist@help.com',
+        username: 'john stockton',
         hashedPassword: bcrypt.hashSync('AssistsOnAssists')
       },
       {
-        email: 'Average@Joe.com',
-        username: 'Average Player',
+        email: 'average@joe.com',
+        username: 'average player',
         hashedPassword: bcrypt.hashSync('Alright')
       },
       {
-        email: 'Drizzy@OVO.com',
-        username: 'Drake',
+        email: 'drizzy@ovo.com',
+        username: 'drake',
         hashedPassword: bcrypt.hashSync('Toronto')
       },
 
@@ -76,7 +76,7 @@ module.exports = {
   down: (queryInterface, Sequelize) => {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Users', {
-      username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] }
+      username: { [Op.in]: ['demo-lition', 'fakeuser1', 'fakeuser2'] }
     }, {});
   }
 };
