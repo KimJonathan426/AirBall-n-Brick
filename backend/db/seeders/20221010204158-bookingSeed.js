@@ -8,16 +8,17 @@ module.exports = {
 
       Example:
       */
-    const futureDate = new Date();
-    futureDate.setDate(futureDate.getDate() + 3);
+    // const futureDate = new Date();
+    // futureDate.setDate(futureDate.getDate() + 3);
 
-   return queryInterface.bulkInsert('Bookings', [{
-     userId: 4,
-     spotId: 1,
-     startDate: new Date(),
-     endDate: futureDate,
-     url: 'https://airballnbrick.s3.amazonaws.com/Cavs+Arena.jpg'
-   },
+   return queryInterface.bulkInsert('Bookings', [
+  //   {
+  //    userId: 4,
+  //    spotId: 1,
+  //    startDate: new Date(),
+  //    endDate: futureDate,
+  //    url: 'https://airballnbrick.s3.amazonaws.com/Cavs+Arena.jpg'
+  //  },
    {
     userId: 4,
     spotId: 1,
