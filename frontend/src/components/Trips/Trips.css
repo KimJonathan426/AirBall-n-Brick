@@ -201,6 +201,12 @@
 }
 
 .inner-trips-item {
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.inner-trips-link {
     display: flex;
     align-items: center;
     width: 100%;
