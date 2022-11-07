@@ -54,6 +54,7 @@
     margin-bottom: 160px;
     margin-right: 390px;
     width: 100%;
+    min-width: 500px;
     height: fit-content;
     box-sizing: border-box;
 }

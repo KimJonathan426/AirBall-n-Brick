@@ -5,6 +5,8 @@
 
 .delete-image-error {
     width: 100%;
+    min-width: 912px;
+    height: 74px;
     position: fixed;
     top: -15px;
     left: 0px;
@@ -15,7 +17,7 @@
 .delete-image-error > li {
     position: relative;
     left: 0%;
-    width: 748px;
+    width: 500px;
     margin: 25px auto;
     background-color: #fff;
     box-sizing: border-box;
