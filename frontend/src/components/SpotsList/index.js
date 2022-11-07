@@ -46,18 +46,18 @@ const SpotList = () => {
                         <HomeImages images={imageDict[spot.id]} />
                         <div className='spot-info'>
                             <div className='location-info'>
-                                <div>
+                                <div className='spot-location'>
                                     {spot.city}, {spot.state}
                                 </div>
                                 {reviewAvgs[spot.id] ?
                                     <div className='star-text'>
-                                        {reviewAvgs[spot.id].avg}
                                         <img className='star-image' src={ratingStar} />
+                                        {reviewAvgs[spot.id].avg}
                                     </div>
                                     :
                                     <div className='star-text'>
-                                        New
                                         <img className='star-image' src={ratingStar} />
+                                        New
                                     </div>
                                 }
                             </div>

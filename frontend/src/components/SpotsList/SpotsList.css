@@ -118,6 +118,14 @@
     color: #222222;
 }
 
+.spot-location {
+    display: block;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .star-text {
     font-weight: normal;
     color: #222222;
@@ -129,17 +137,22 @@
     object-fit: cover;
     position: relative;
     bottom: -1px;
-    margin-left: 2px;
+    margin-right: 3px;
 }
 
 .name-info {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
     width: 300px;
     height: 40%;
     color: #717171;
     font-size: 15px;
     font-weight: 400;
     line-height: 20px;
+    word-wrap: break-word;
     text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .price-info {
