@@ -121,9 +121,9 @@ const SingleSpot = () => {
                             <h5 className='spot-description'>
                                 {singleSpot?.description}
                             </h5>
-                            <div>
-                                Bookings
-                            </div>
+                            {/* <div>
+                                You have an active booking scheduled at this spot...
+                            </div> */}
                         </div>
                         <div className='hovering-content'>
                             <div className='hovering-content-title'>
@@ -133,7 +133,7 @@ const SingleSpot = () => {
                         </div>
                     </div>
                     <div className='spot-review-container'>
-                        <h3>
+                        <h3 className='spot-review-header'>
                             <img className='review-star-image' src={ratingStar} />
                             {spotAvg[singleSpot?.id]?.avg && (
                                 <>

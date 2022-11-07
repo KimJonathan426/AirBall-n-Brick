@@ -19,7 +19,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: 37px;
+    margin-left: 24px;
 }
 
 .spot-delete-label {
@@ -31,7 +31,7 @@
 }
 
 .spot-delete-input {
-    width: 350px;
+    width: 380px;
     padding: 5px 10px 5px 10px
 }
 

@@ -12,16 +12,19 @@
 
 .confirm-booking-header {
     font-size: 32px;
+    font-weight: bold;
     margin-left: 20px;
     margin-top: 20px;
 }
 
 .price-list-header {
     font-size: 22px;
+    font-weight: 600;
 }
 
 .detail-headers {
     font-size: 16px;
+    font-weight: bold;
     margin-bottom: 0;
 }
 

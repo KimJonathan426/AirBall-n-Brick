@@ -116,14 +116,16 @@
 
 .single-name-info {
     font-size: 26px;
+    font-weight: 600;
     color: #222222;
-    font-weight: bold;
     margin-bottom: 12px;
 }
 
 .spot-sub-header {
     display: flex;
     flex-direction: row;
+    font-size: 14px;
+    font-weight: 600;
     margin-bottom: 20px;
 }
 
@@ -154,6 +156,7 @@
 
 .host-name {
     font-size: 22px;
+    font-weight: 600;
     padding-bottom: 35px;
     border-bottom: 1px solid #d9e1ec;
     margin: 0px;
@@ -186,12 +189,13 @@
 }
 
 .hovering-content-title {
+    font-weight: 600;
     margin-bottom: 20px;
 }
 
 .hovering-content-title > span {
     font-size: 16px;
-    font-weight: normal;
+    font-weight: 400;
 }
 
 .spot-review-container {
@@ -208,19 +212,24 @@
     margin-top: 35px;
 }
 
+.spot-review-header {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 600;
+}
+
 .review-star-image {
     width: 16px;
     height: 16px;
     object-fit: cover;
-    position: relative;
-    bottom: 2px;
-    margin-right: 7px;
+    margin-right: 10px;
 }
 
 .post-review-button-container {
     display: flex;
-    width: 100%;
     justify-content: flex-start;
+    width: 100%;
 }
 
 .post-review-button {

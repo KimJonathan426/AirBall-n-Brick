@@ -70,6 +70,7 @@
     margin: 0;
     text-align: inherit;
     font-size: 14px;
+    font-weight: 400;
     line-height: 18px;
     white-space: nowrap;
     user-select: auto;
@@ -78,7 +79,7 @@
 }
 
 .dropdown-options > *:nth-child(1) {
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .dropdown-options > button:hover,

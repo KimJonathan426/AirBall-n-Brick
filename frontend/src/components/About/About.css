@@ -24,8 +24,8 @@
 .about-me {
     display: flex;
     flex-direction: column;
-    font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: normal;
     margin-top: 10px;
 }
 
@@ -78,4 +78,12 @@
     width: 75%;
     height: fit-content;
     word-wrap: break-word;
+    line-height: 24px;
+    font-weight: 400;
+    min-width: 300px;
+}
+
+.about-header {
+    font-weight: 600;
+    min-width: 180px;
 }

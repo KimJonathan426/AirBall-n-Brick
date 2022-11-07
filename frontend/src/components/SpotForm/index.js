@@ -153,7 +153,7 @@ const SpotForm = () => {
                     {(hasSubmitted && validationErrors.length > 0) && (
                         <ul className='errors'>
                             {validationErrors.map(error => (
-                                <li key={error}>{error}</li>
+                                <li className='spot-form-errors' key={error}>{error}</li>
                             ))}
                         </ul>
                     )}

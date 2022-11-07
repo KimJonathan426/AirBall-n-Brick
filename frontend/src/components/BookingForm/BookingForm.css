@@ -50,14 +50,14 @@
     content: "CHECK-IN \00a0\00a0\00a0\00a0\00a0\00a0\00a0"
         "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"
         "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"
-        "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"
+        "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"
         "CHECKOUT";
     font-size: 10px;
     line-height: 12px;
     color: rgb(34, 34, 34);
     position: absolute;
     top: 15px;
-    left: 11px;
+    left: 12px;
 }
 
 .reserve-btn {

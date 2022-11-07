@@ -114,7 +114,7 @@
     flex-direction: row;
     justify-content: space-between;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: 600;
     color: #222222;
 }
 
@@ -135,7 +135,9 @@
 .name-info {
     width: 300px;
     height: 40%;
-    color: #696969;
+    color: #717171;
+    font-size: 15px;
+    font-weight: 400;
     line-height: 20px;
     text-overflow: ellipsis;
 }
@@ -143,7 +145,7 @@
 .price-info {
     margin-top: 8px;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: 600;
     color: #222222;
     position: relative;
     bottom: 0px;
