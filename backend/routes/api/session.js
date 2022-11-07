@@ -10,7 +10,6 @@ const router = express.Router();
 
 const validateLogin = [
     check('credential')
-        .toLowerCase()
         .exists({ checkFalsy: true })
         .notEmpty()
         .withMessage('Please provide a valid email or username.'),
@@ -26,7 +25,6 @@ router.post(
     validateLogin,
     asyncHandler(async (req, res, next) => {
         const { credential, password } = req.body;
-
         const user = await User.login({ credential, password });
 
         if (!user) {
