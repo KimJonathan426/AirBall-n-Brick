@@ -160,6 +160,7 @@
 }
 
 .host-name {
+    width: 100%;
     font-size: 22px;
     font-weight: 600;
     padding-bottom: 35px;
