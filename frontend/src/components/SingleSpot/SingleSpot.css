@@ -2,9 +2,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 1120px;
+    width: 100%;
     height: fit-content;
+    padding-left: 24px;
+    padding-right: 24px;
     margin: 120px auto 80px;
+    box-sizing: border-box;
+}
+
+.single-spot-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
 }
 
 .divider {
@@ -44,23 +57,27 @@
     grid-template-columns: 2fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 8px;
-    max-width: 1120px;
-    max-height: 560px;
-    flex-grow: 15%;
+    width: 100%;
+    height: 560px;
     position: relative;
+    box-sizing: border-box;
 }
 
 .image-fit-main {
+    position: absolute;
     width: 100%;
-    height: 560px;
+    min-height: 560px;
     object-fit: cover;
     border-radius: 20px 0 0 20px;
+    box-sizing: border-box;
 }
 
 .image-fit-sub {
+    position: absolute;
     width: 100%;
-    height: 276px;
+    min-height: 276px;
     object-fit: cover;
+    box-sizing: border-box;
 }
 
 .right-top {
@@ -72,39 +89,49 @@
 }
 
 .main-image {
-    width: 560px;
+    position: relative;
+    width: 100%;
     height: 560px;
     grid-column: 1;
     grid-row: 1 / 3;
+    overflow: hidden;
 }
 
 
 .middle-image-top {
-    width: 272px;
+    position: relative;
+    width: 100%;
     height: 276px;
     grid-column: 2;
     grid-row: 1;
+    overflow: hidden;
 }
 
 .middle-image-bottom {
-    width: 272px;
+    position: relative;
+    width: 100%;
     height: 276px;
     grid-column: 2;
     grid-row: 2;
+    overflow: hidden;
 }
 
 .right-image-top {
-    width: 272px;
+    position: relative;
+    width: 100%;
     height: 276px;
     grid-column: 3;
     grid-row: 1;
+    overflow: hidden;
 }
 
 .right-image-bottom {
-    width: 272px;
+    position: relative;
+    width: 100%;
     height: 276px;
     grid-column: 3;
     grid-row: 2;
+    overflow: hidden;
 }
 
 .spot-header {
@@ -118,20 +145,28 @@
     font-size: 26px;
     font-weight: 600;
     color: #222222;
+    min-width: 350px;
     margin-bottom: 12px;
     word-wrap: break-word;
+    box-sizing: border-box;
 }
 
 .spot-sub-header {
-    display: flex;
+    display: inline-flex;
+    flex-wrap: wrap;
     flex-direction: row;
+    width: 100%;
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 20px;
 }
 
-.spot-sub-header > div {
-    color: #222222;
+.spot-review-avg {
+    min-width: fit-content;
+}
+
+.spot-review-count {
+    min-width: fit-content;
 }
 
 .single-location-info {
