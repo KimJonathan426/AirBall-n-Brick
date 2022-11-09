@@ -5,6 +5,7 @@ import { DateRangePicker } from 'react-date-range';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getBookings } from '../../store/bookingReducer';
+import $ from 'jquery';
 import ConfirmBookingModal from '../ConfirmBookingModal';
 import Loading from '../Loading';
 import './BookingForm.css';
@@ -57,8 +58,39 @@ const BookingForm = ({ user, spotId, price }) => {
     }, [dispatch, addDisabledDate])
 
     useEffect(() => {
+        $(function () {
+                    const dateElement = document.getElementsByClassName('rdrDateDisplayWrapper')[0];
+                    const startInput = document.getElementsByClassName('rdrDateInput')[0]?.childNodes[0];
+                    const endInput = document.getElementsByClassName('rdrDateInput')[1]?.childNodes[0];
+
+                    startInput?.setAttribute('readonly', '')
+                    endInput?.setAttribute('disabled', '')
+                    endInput?.classList.add('rdrDisabled')
+
+                    const newElement = document.createElement('div');
+                    const textNode = document.createTextNode('Select dates');
+
+                    newElement.className= 'select-dates';
+                    newElement.appendChild(textNode);
+
+                    dateElement?.insertBefore(newElement, dateElement.firstChild);
+            });
+    }, [loading, addDisabledDate]);
+
+    useEffect(() => {
+        if (state[0].startDate) {
+            $(function () {
+                const ele = document.getElementsByClassName('rdrDateInput')[1]?.childNodes[0];
+                ele?.removeAttribute('disabled');
+                ele?.setAttribute('readonly', '');
+                ele?.classList.remove('rdrDisabled')
+            })
+        }
+
         if (state[0].startDate && state[0].endDate) {
             setDisabled(false);
+        } else {
+            setDisabled(true);
         }
     }, [state[0].startDate, state[0].endDate])
 
