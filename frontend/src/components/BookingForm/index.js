@@ -1,7 +1,7 @@
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { Modal } from '../../context/Modal';
-import { DateRange } from 'react-date-range';
+import { DateRangePicker } from 'react-date-range';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getBookings } from '../../store/bookingReducer';
@@ -69,11 +69,16 @@ const BookingForm = ({ user, spotId, price }) => {
                 <label className='check-in-label'></label>
                 <label className='check-out-label'></label>
                 <div className='calendar-container'>
-                    <DateRange
+                    <DateRangePicker
                         className='calendar'
                         editableDateInputs={true}
                         onChange={item => setState([item.selection])}
                         moveRangeOnFirstSelection={false}
+                        showSelectionPreview={true}
+                        months={2}
+                        direction="horizontal"
+                        preventSnapRefocus={true}
+                        calendarFocus="forwards"
                         ranges={state}
                         minDate={new Date()}
                         disabledDates={disabledDates}
