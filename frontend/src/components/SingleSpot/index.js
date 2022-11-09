@@ -50,118 +50,129 @@ const SingleSpot = () => {
 
     return (
         <div className='single-spot-container'>
-            {loading ? singleSpot ?
-                <>
-                    {(!showEditSpotForm && !showImagesForm && user === singleSpot?.userId) && (
-                        <div className='edit-delete-buttons'>
-                            <button className='edit-button' onClick={() => setShowEditSpotForm(true)}>Edit Court</button>
-                            <button className='edit-button' onClick={() => setShowImagesForm(true)}>Add Images</button>
-                            <ConfirmDeleteSpotModal spotId={singleSpot?.id}/>
-                        </div>
-                    )}
-                    {(showEditSpotForm && user) && (
-                        <SpotEditForm spot={singleSpot} id={id} hideForm={() => setShowEditSpotForm(false)} />
-                    )}
-                    {(showImagesForm && user) && (
-                        <SpotImagesForm id={id} hideForm={() => setShowImagesForm(false)} />
-                    )}
-                    <div className='spot-header'>
-                        <div className='single-name-info'>
-                            {singleSpot?.name}
-                        </div>
-                        <div className='spot-sub-header'>
-                            <div>
-                                <img className='star-image' src={ratingStar} />
-                                {spotAvg[singleSpot?.id]?.avg && spotAvg[singleSpot?.id]?.count > 1 && (
-                                    <>
-                                        {' ' + spotAvg[singleSpot?.id]?.avg} <span className='divider'>·</span> {spotAvg[singleSpot?.id]?.count} reviews
-                                    </>
-                                )}
-                                {spotAvg[singleSpot?.id]?.avg && spotAvg[singleSpot?.id]?.count === 1 && (
-                                    <>
-                                        {' ' + spotAvg[singleSpot?.id]?.avg} <span className='divider'>·</span> 1 review
-                                    </>
-                                )}
-                                {!spotAvg[singleSpot?.id]?.avg && (
-                                    <>
-                                        {' New '} <span className='divider'>·</span>  {' 0 reviews'}
-                                    </>
-                                )}
+            <div className='single-spot-content'>
+                {loading ? singleSpot ?
+                    <>
+                        {(!showEditSpotForm && !showImagesForm && user === singleSpot?.userId) && (
+                            <div className='edit-delete-buttons'>
+                                <button className='edit-button' onClick={() => setShowEditSpotForm(true)}>Edit Court</button>
+                                <button className='edit-button' onClick={() => setShowImagesForm(true)}>Add Images</button>
+                                <ConfirmDeleteSpotModal spotId={singleSpot?.id} />
                             </div>
-                            <div className='single-location-info'>
-                                <span className='divider'>·</span> {singleSpot?.city}, {singleSpot?.state}, {singleSpot?.country}
+                        )}
+                        {(showEditSpotForm && user) && (
+                            <SpotEditForm spot={singleSpot} id={id} hideForm={() => setShowEditSpotForm(false)} />
+                        )}
+                        {(showImagesForm && user) && (
+                            <SpotImagesForm id={id} hideForm={() => setShowImagesForm(false)} />
+                        )}
+                        <div className='spot-header'>
+                            <div className='single-name-info'>
+                                {singleSpot.name}
+                            </div>
+                            <div className='spot-sub-header'>
+                                <div className='spot-review-avg'>
+                                    <img className='star-image' src={ratingStar} />
+                                    {!spotAvg[singleSpot.id]?.avg ?
+                                        <>
+                                            {' New '}
+                                        </>
+                                        :
+                                        <>
+                                            {' ' + spotAvg[singleSpot.id]?.avg}
+                                        </>
+                                    }
+                                </div>
+                                <div className='spot-review-count'>
+                                    {!spotAvg[singleSpot.id]?.avg ?
+                                        <>
+                                            <span className='divider'>&nbsp;·</span>  {' 0 reviews'}
+                                        </>
+                                        : spotAvg[singleSpot.id]?.avg && spotAvg[singleSpot.id]?.count === 1 ?
+                                            <>
+                                                <span className='divider'>&nbsp;·</span> 1 review
+                                            </>
+                                            :
+                                            <>
+                                                <span className='divider'>&nbsp;·</span> {spotAvg[singleSpot.id]?.count} reviews
+                                            </>
+                                    }
+                                </div>
+                                <div className='single-location-info'>
+                                    <span className='divider'>·</span> {singleSpot?.city}, {singleSpot?.state}, {singleSpot?.country}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className='single-spot-image-container'>
-                        <div className='main-image'>
-                            <img src={spotImages[0]?.url} className='image-fit-main' />
+                        <div className='single-spot-image-container'>
+                            <div className='main-image'>
+                                <img src={spotImages[0]?.url} className='image-fit-main' />
+                            </div>
+                            <div className='middle-image-top'>
+                                <img src={spotImages[1]?.url} className='image-fit-sub' />
+                            </div>
+                            <div className='middle-image-bottom'>
+                                <img src={spotImages[2]?.url} className='image-fit-sub' />
+                            </div>
+                            <div className='right-image-top'>
+                                <img src={spotImages[3]?.url} className='image-fit-sub right-top' />
+                            </div>
+                            <div className='right-image-bottom'>
+                                <img src={spotImages[4]?.url} className='image-fit-sub right-bot' />
+                            </div>
+                            <div className='show-all-photos'>
+                                <SpotImagesModal refresh={refresh} setRefresh={setRefresh} user={user} spot={singleSpot} />
+                            </div>
                         </div>
-                        <div className='middle-image-top'>
-                            <img src={spotImages[1]?.url} className='image-fit-sub' />
-                        </div>
-                        <div className='middle-image-bottom'>
-                            <img src={spotImages[2]?.url} className='image-fit-sub' />
-                        </div>
-                        <div className='right-image-top'>
-                            <img src={spotImages[3]?.url} className='image-fit-sub right-top' />
-                        </div>
-                        <div className='right-image-bottom'>
-                            <img src={spotImages[4]?.url} className='image-fit-sub right-bot' />
-                        </div>
-                        <div className='show-all-photos'>
-                            <SpotImagesModal refresh={refresh} setRefresh={setRefresh} user={user} spot={singleSpot} />
-                        </div>
-                    </div>
-                    <div className='single-spot-info'>
-                        <div className='main-spot-content'>
-                            <h3 className='host-name'>
-                                Hosted By {singleSpot?.User?.username}
-                            </h3>
-                            <h5 className='spot-description'>
-                                {singleSpot?.description}
-                            </h5>
-                            {/* <div>
+                        <div className='single-spot-info'>
+                            <div className='main-spot-content'>
+                                <h3 className='host-name'>
+                                    Hosted By {singleSpot.User.username}
+                                </h3>
+                                <h5 className='spot-description'>
+                                    {singleSpot.description}
+                                </h5>
+                                {/* <div>
                                 You have an active booking scheduled at this spot...
                             </div> */}
-                        </div>
-                        <div className='hovering-content'>
-                            <div className='hovering-content-title'>
-                                ${Number(singleSpot?.price)?.toLocaleString('en-US', {maximumFractionDigits: 0})} <span>night</span>
                             </div>
-                            <BookingForm user={user} spotId={singleSpot?.id} price={singleSpot?.price}/>
-                        </div>
-                    </div>
-                    <div className='spot-review-container'>
-                        <h3 className='spot-review-header'>
-                            <img className='review-star-image' src={ratingStar} />
-                            {spotAvg[singleSpot?.id]?.avg && (
-                                <>
-                                    {' ' + spotAvg[singleSpot?.id]?.avg} <span>&nbsp;·&nbsp;</span> {spotAvg[singleSpot?.id]?.count} reviews
-                                </>
-                            )}
-                            {!spotAvg[singleSpot?.id]?.avg && (
-                                <>
-                                    {' New'} <span>&nbsp;·&nbsp;</span> {'0 reviews'}
-                                </>
-                            )}
-                        </h3>
-                        {(!showReviewForm && user) && (
-                            <div className='post-review-button-container'>
-                                <button className='post-review-button' onClick={() => setShowReviewForm(true)}>Post a review</button>
+                            <div className='hovering-content'>
+                                <div className='hovering-content-title'>
+                                    ${Number(singleSpot.price)?.toLocaleString('en-US', { maximumFractionDigits: 0 })} <span>night</span>
+                                </div>
+                                <BookingForm user={user} spotId={singleSpot?.id} price={singleSpot.price} />
                             </div>
-                        )}
-                        {(showReviewForm && user) && (
-                            <ReviewForm spotId={id} hideForm={() => setShowReviewForm(false)} />
-                        )}
-                        <SpotReviewList user={user} spotId={id} ratingStar={ratingStar} />
-                    </div>
-                </>
-                :
-                <div>Spot doesn't exist, please return <Link to='/'>Home</Link></div>
-                :
-                <Loading />
-            }
+                        </div>
+                        <div className='spot-review-container'>
+                            <h3 className='spot-review-header'>
+                                <img className='review-star-image' src={ratingStar} />
+                                {spotAvg[singleSpot.id]?.avg && (
+                                    <>
+                                        {' ' + spotAvg[singleSpot.id]?.avg} <span>&nbsp;·&nbsp;</span> {spotAvg[singleSpot.id]?.count} reviews
+                                    </>
+                                )}
+                                {!spotAvg[singleSpot.id]?.avg && (
+                                    <>
+                                        {' New'} <span>&nbsp;·&nbsp;</span> {'0 reviews'}
+                                    </>
+                                )}
+                            </h3>
+                            {(!showReviewForm && user) && (
+                                <div className='post-review-button-container'>
+                                    <button className='post-review-button' onClick={() => setShowReviewForm(true)}>Post a review</button>
+                                </div>
+                            )}
+                            {(showReviewForm && user) && (
+                                <ReviewForm spotId={id} hideForm={() => setShowReviewForm(false)} />
+                            )}
+                            <SpotReviewList user={user} spotId={id} ratingStar={ratingStar} />
+                        </div>
+                    </>
+                    :
+                    <div>Spot doesn't exist, please return <Link to='/'>Home</Link></div>
+                    :
+                    <Loading />
+                }
+            </div>
         </div>
     )
 }
