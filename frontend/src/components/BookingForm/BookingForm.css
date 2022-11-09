@@ -1,24 +1,155 @@
-.calendar {
-    width: 320px;
-    margin: none;
-}
-
 .calendar-container {
+    position: relative;
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 660px;
+    height: 468px;
+    max-width: 660px;
+    padding: 24px 32px 16px;
+    box-sizing: border-box;
+    background-color: red;
+}
+
+.calendar {
+    position: absolute;
+    top: 24px;
+    left: 10px;
+    width: 100%;
+    margin: none;
+    box-sizing: border-box;
+}
+
+.rdrDefinedRangesWrapper,
+.rdrMonthAndYearPickers {
+    display: none;
+}
+
+.rdrDayDisabled {
+    background-color: #FFF;
+}
+
+.rdrDayNumber {
+    color: #222222;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.rdrDayDisabled > .rdrDayNumber {
+    text-decoration: line-through !important;
+    color: #B0B0B0;
+}
+
+.rdrDayPassive > .rdrDayNumber {
+    display: none;
+}
+
+.rdrStartEdge,
+.rdrEndEdge {
+    background-color: #222222;
+}
+
+.rdrInRange {
+    background-color: #F7F7F7;
+}
+
+.rdrDay:not(.rdrDayPassive) .rdrInRange ~ .rdrDayNumber span {
+    color: #222222;
+}
+
+.rdrDayStartPreview,
+.rdrDayEndPreview {
+    border: 1px solid #222222;
+}
+
+.rdrDayInPreview {
+    border-color: #222222;
+}
+
+.rdrDay {
+    height: 45px;
+}
+
+.rdrWeekDay {
+    color: #717171;
+    font-weight: 600;
+}
+
+.rdrCalendarWrapper {
+    position: relative;
+}
+
+.rdrMonthAndYearWrapper {
+    width: calc(100% - 15px);
+    position: absolute;
+    top: 68px;
+    left: 7px;
+}
+
+.rdrMonthAndYearWrapper > button {
+    background-color: transparent;
+}
+
+.rdrMonthAndYearWrapper > button > i {
+    display: none;
+}
+
+.rdrPprevButton:hover {
+    background-color: #F7F7F7;
+    border-radius: 50%;
+    background-image: url("../../images/left-arrow.svg");
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.rdrPprevButton {
+    background-image: url("../../images/left-arrow.svg");
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.rdrNextButton:hover {
+    background-color: #F7F7F7;
+    border-radius: 50%;
+    background-image: url("../../images/right-arrow.svg");
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.rdrNextButton {
+    background-image: url("../../images/right-arrow.svg");
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.rdrMonthName {
+    font-size: 16px;
+    color: #222222;
+    text-align: center;
+    margin-top: 22px;
 }
 
 .rdrMonth {
-    width: 320px;
-    height: 250px;
-    padding: 0 0 20px 0;
+    padding: 0 13px;
+    max-width: 320px;
+    box-sizing: border-box;
 }
 
 .rdrDateDisplayWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     background-color: white;
-    border-radius: 8px;
-    border: 1px solid rgb(151, 150, 150);
     position: relative;
+    width: 100%;
     height: 56px;
 }
 
@@ -27,7 +158,7 @@
     background: rgb(151, 150, 150);
     position: absolute;
     top: 0;
-    left: 154px;
+    right: 180px;
     height: 100%;
     width: 1px;
 }
@@ -36,28 +167,59 @@
     border: none;
     box-shadow: none;
     text-align: left;
+    border-radius: 8px;
+    margin: 0em !important;
+}
+
+.rdrDateDisplay {
+    height: 56px;
+    width: 320px;
+    border: 1px solid rgb(151, 150, 150);
+    border-radius: 8px;
+    margin: 0em;
+    margin-right: 20px;
+    box-sizing: border-box;
 }
 
 .rdrDateInput > input {
-    height: 18px;
-    margin-top: 15px;
-    font-size: 14px;
-    line-height: 18px;
+    padding-top: 15px;
+    height: 100%;
+    font-size: 16px;
     color: #222222;
+    text-indent: 10px;
+    line-height: 3em;
+    box-sizing: border-box;
 }
 
 .rdrDateDisplay::after {
     content: "CHECK-IN \00a0\00a0\00a0\00a0\00a0\00a0\00a0"
         "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"
         "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"
-        "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"
+        "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"
         "CHECKOUT";
     font-size: 10px;
     line-height: 12px;
     color: rgb(34, 34, 34);
     position: absolute;
-    top: 15px;
-    left: 12px;
+    top: 12px;
+    right: 109px;
+}
+
+.rdrDisabled {
+    background-color: #F7F7F7 !important;
+    color: rgb(176, 176, 176) !important;
+    border-radius: 0 8px 8px 0;
+    -webkit-text-fill-color: rgb(221, 221, 221) !important;
+}
+
+.rdrDisabled.rdrDateDisplay::after {
+    color: rgb(176, 176, 176) !important;
+}
+
+.select-dates {
+    margin-left: 22px;
+    font-size: 22px;
+    font-weight: 600;
 }
 
 .reserve-btn {
