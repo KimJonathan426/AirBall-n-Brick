@@ -7,8 +7,10 @@
     height: 468px;
     max-width: 660px;
     padding: 24px 32px 16px;
+    border-radius: 16px;
+    background-color: #fff;
+    box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px;
     box-sizing: border-box;
-    background-color: red;
 }
 
 .calendar {
@@ -191,6 +193,19 @@
     box-sizing: border-box;
 }
 
+.rdrDateDisplay > span:nth-child(1) > input:focus {
+    border: 2px solid black !important;
+    border-radius: 8px 0 0 8px !important;
+    border-right: 3px solid black !important;
+    text-indent: 8px;
+}
+
+.rdrDateDisplay > span:nth-child(2) > input:focus {
+    border: 2px solid black !important;
+    border-radius: 0 8px 8px 0 !important;
+    text-indent: 8px;
+}
+
 .rdrDateDisplay::after {
     content: "CHECK-IN \00a0\00a0\00a0\00a0\00a0\00a0\00a0"
         "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"
@@ -210,10 +225,6 @@
     color: rgb(176, 176, 176) !important;
     border-radius: 0 8px 8px 0;
     -webkit-text-fill-color: rgb(221, 221, 221) !important;
-}
-
-.rdrDisabled.rdrDateDisplay::after {
-    color: rgb(176, 176, 176) !important;
 }
 
 .select-dates {
