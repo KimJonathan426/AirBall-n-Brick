@@ -27,6 +27,19 @@ const BookingForm = ({ user, spotId, price }) => {
         }
     ]);
 
+    window.onclick = function (event) {
+        if (!event.target.matches('.calendar-container')) {
+            var calendar = document.getElementsByClassName("calendar-container");
+            var i;
+            for (i = 0; i < calendar.length; i++) {
+                var hideCalendar = calendar[i];
+                if (hideCalendar.classList.contains('visible')) {
+                    hideCalendar.classList.remove('visible');
+                }
+            }
+        }
+    }
+
     useEffect(() => {
         const fetchData = async () => {
             const spotBookings = await dispatch(getBookings(spotId))
@@ -67,13 +80,17 @@ const BookingForm = ({ user, spotId, price }) => {
                     endInput?.setAttribute('disabled', '')
                     endInput?.classList.add('rdrDisabled')
 
-                    const newElement = document.createElement('div');
-                    const textNode = document.createTextNode('Select dates');
+                    const repeatElement = document.getElementsByClassName('select-dates')[0];
 
-                    newElement.className= 'select-dates';
-                    newElement.appendChild(textNode);
+                    if (!repeatElement) {
+                        const newElement = document.createElement('div');
+                        const textNode = document.createTextNode('Select dates');
 
-                    dateElement?.insertBefore(newElement, dateElement.firstChild);
+                        newElement.className= 'select-dates';
+                        newElement.appendChild(textNode);
+
+                        dateElement?.insertBefore(newElement, dateElement.firstChild);
+                    }
             });
     }, [loading, addDisabledDate]);
 
@@ -119,6 +136,9 @@ const BookingForm = ({ user, spotId, price }) => {
                         dateDisplayFormat='MM/d/yyyy'
                     />
                 </div>
+                {/* {!state[0].startDate && !state[0].endDate && (
+                    <button>Check availability</button>
+                )} */}
                 {user ?
                     <>
                         <button disabled={disabled} className={(disabled) ? 'reserve-btn reserve-disabled' : 'reserve-btn'} onClick={() => setShowModal(true)}>Reserve</button>
