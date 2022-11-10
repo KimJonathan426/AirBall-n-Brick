@@ -1,5 +1,4 @@
 .calendar-container {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,6 +10,10 @@
     background-color: #fff;
     box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px;
     box-sizing: border-box;
+    position: relative;
+    top: -20px;
+    right: 310px;
+    visibility: hidden;
 }
 
 .calendar {
@@ -163,6 +166,7 @@
     right: 180px;
     height: 100%;
     width: 1px;
+    visibility: visible;
 }
 
 .rdrDateInput {
@@ -181,6 +185,7 @@
     margin: 0em;
     margin-right: 20px;
     box-sizing: border-box;
+    visibility: visible;
 }
 
 .rdrDateInput > input {
@@ -249,4 +254,8 @@
 .reserve-disabled {
     cursor: not-allowed;
     opacity: 0.6;
+}
+
+.visible {
+    visibility: visible;
 }
