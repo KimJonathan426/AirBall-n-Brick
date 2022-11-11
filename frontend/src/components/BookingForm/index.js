@@ -111,6 +111,13 @@ const BookingForm = ({ user, spotId, price }) => {
                 ele?.setAttribute('readonly', '');
                 ele?.classList.remove('rdrDisabled')
             })
+        } else if (!state[0].startDate) {
+            $(function () {
+                const ele = document.getElementsByClassName('rdrDateInput')[1]?.childNodes[0];
+                ele?.removeAttribute('readonly');
+                ele?.setAttribute('disabled', '');
+                ele?.classList.add('rdrDisabled')
+            })
         }
 
         if (state[0].startDate && state[0].endDate) {
