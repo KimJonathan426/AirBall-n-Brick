@@ -1,18 +1,15 @@
-.calendar-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 660px;
-    height: 468px;
-    max-width: 660px;
-    padding: 24px 32px 16px;
-    border-radius: 16px;
-    background-color: #fff;
-    box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px;
-    box-sizing: border-box;
+.calendar-container-visible {
+    height: fit-content;
     position: relative;
     top: -20px;
-    right: 310px;
+    right: 308px;
+}
+
+.calendar-container-hidden {
+    height: fit-content;
+    position: relative;
+    top: -20px;
+    right: 308px;
     visibility: hidden;
 }
 
@@ -23,6 +20,20 @@
     width: 100%;
     margin: none;
     box-sizing: border-box;
+}
+
+.rdrCalendarWrapper {
+    width: 660px;
+    height: 468px;
+    padding: 24px 32px 16px;
+    border-radius: 16px;
+    background-color: #fff;
+    box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px;
+    box-sizing: border-box;
+    position: relative;
+    top: -24px;
+    right: 10px;
+    z-index: 1;
 }
 
 .rdrDefinedRangesWrapper,
@@ -163,10 +174,12 @@
     background: rgb(151, 150, 150);
     position: absolute;
     top: 0;
-    right: 180px;
+    right: 160px;
     height: 100%;
     width: 1px;
     visibility: visible;
+    z-index: 1;
+
 }
 
 .rdrDateInput {
@@ -180,12 +193,13 @@
 .rdrDateDisplay {
     height: 56px;
     width: 320px;
+    min-width: 320px;
     border: 1px solid rgb(151, 150, 150);
     border-radius: 8px;
     margin: 0em;
-    margin-right: 20px;
     box-sizing: border-box;
     visibility: visible;
+    z-index: 1;
 }
 
 .rdrDateInput > input {
@@ -211,18 +225,25 @@
     text-indent: 8px;
 }
 
-.rdrDateDisplay::after {
-    content: "CHECK-IN \00a0\00a0\00a0\00a0\00a0\00a0\00a0"
-        "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"
-        "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"
-        "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"
-        "CHECKOUT";
+.rdrDateDisplay > span:nth-child(1)::after {
+    content: "CHECK-IN";
+    width: 58px;
     font-size: 10px;
     line-height: 12px;
     color: rgb(34, 34, 34);
     position: absolute;
     top: 12px;
-    right: 109px;
+    left: 12px;
+}
+
+.rdrDateDisplay > span:nth-child(2)::after {
+    content: "CHECKOUT";
+    font-size: 10px;
+    line-height: 12px;
+    color: rgb(34, 34, 34);
+    position: absolute;
+    top: 12px;
+    left: 12px;
 }
 
 .rdrDisabled {
@@ -233,14 +254,33 @@
 }
 
 .select-dates {
-    margin-left: 22px;
     font-size: 22px;
     font-weight: 600;
 }
 
-.reserve-btn {
+.calendar-btns-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 150px;
+}
+
+.check-btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 122px;
+    position: relative;
+    top: 20px;
+    left: 308px;
+}
+
+.reserve-btn,
+.check-btn {
     background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
-    width: 100%;
+    width: 320px;
     padding: 14px 24px;
     border: none;
     border-radius: 8px;
@@ -251,11 +291,25 @@
     cursor: pointer;
 }
 
+
 .reserve-disabled {
     cursor: not-allowed;
-    opacity: 0.6;
+    background: linear-gradient(to right, rgb(230, 30, 77, 0.6) 0%, rgb(227, 28, 95, 0.6) 50%, rgb(215, 4, 102, 0.6) 100%);
+}
+
+.reserve-note {
+    display: flex;
+    justify-content: center;
+    width: 320px;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 10px 0 0 0;
 }
 
 .visible {
-    visibility: visible;
+    visibility: visible !important;
+}
+
+.hidden {
+    visibility: hidden !important;
 }
