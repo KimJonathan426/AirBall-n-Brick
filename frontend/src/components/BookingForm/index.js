@@ -1,23 +1,36 @@
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
+import { useRef } from 'react';
 import { Modal } from '../../context/Modal';
 import { DateRangePicker } from 'react-date-range';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getBookings } from '../../store/bookingReducer';
 import $ from 'jquery';
+import listenForOutsideClicks from '../ListenForOutsideClicks';
 import ConfirmBookingModal from '../ConfirmBookingModal';
 import Loading from '../Loading';
 import './BookingForm.css';
 
 const BookingForm = ({ user, spotId, price }) => {
     const dispatch = useDispatch();
+    const bookingRef = useRef(null);
 
-    const [disabled, setDisabled] = useState(true);
+    const [reserve, setReserve] = useState(false);
+    const [listening, setListening] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const [disabledDates, setDisabledDates] = useState([]);
     const [addDisabledDate, setAddDisabledDate] = useState(false);
     const [loading, setLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const toggle = () => setIsOpen(!isOpen);
+
+    useEffect(listenForOutsideClicks(
+        listening,
+        setListening,
+        bookingRef,
+        setIsOpen)
+    );
 
     const [state, setState] = useState([
         {
@@ -26,19 +39,6 @@ const BookingForm = ({ user, spotId, price }) => {
             key: 'selection'
         }
     ]);
-
-    window.onclick = function (event) {
-        if (!event.target.matches('.calendar-container')) {
-            var calendar = document.getElementsByClassName("calendar-container");
-            var i;
-            for (i = 0; i < calendar.length; i++) {
-                var hideCalendar = calendar[i];
-                if (hideCalendar.classList.contains('visible')) {
-                    hideCalendar.classList.remove('visible');
-                }
-            }
-        }
-    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -72,26 +72,37 @@ const BookingForm = ({ user, spotId, price }) => {
 
     useEffect(() => {
         $(function () {
-                    const dateElement = document.getElementsByClassName('rdrDateDisplayWrapper')[0];
-                    const startInput = document.getElementsByClassName('rdrDateInput')[0]?.childNodes[0];
-                    const endInput = document.getElementsByClassName('rdrDateInput')[1]?.childNodes[0];
+            const dateElement = document.getElementsByClassName('rdrDateDisplayWrapper')[0];
+            const startInput = document.getElementsByClassName('rdrDateInput')[0]?.childNodes[0];
+            const endInput = document.getElementsByClassName('rdrDateInput')[1]?.childNodes[0];
 
-                    startInput?.setAttribute('readonly', '')
-                    endInput?.setAttribute('disabled', '')
-                    endInput?.classList.add('rdrDisabled')
+            startInput?.setAttribute('readonly', '')
+            endInput?.setAttribute('disabled', '')
+            endInput?.classList.add('rdrDisabled')
 
-                    const repeatElement = document.getElementsByClassName('select-dates')[0];
+            const open = (e) => {
+                e.preventDefault();
 
-                    if (!repeatElement) {
-                        const newElement = document.createElement('div');
-                        const textNode = document.createTextNode('Select dates');
+                setIsOpen(true);
+            }
 
-                        newElement.className= 'select-dates';
-                        newElement.appendChild(textNode);
+            startInput?.addEventListener('click', open);
+            endInput?.addEventListener('click', open);
 
-                        dateElement?.insertBefore(newElement, dateElement.firstChild);
-                    }
-            });
+
+
+            const repeatElement = document.getElementsByClassName('select-dates')[0];
+
+            if (!repeatElement) {
+                const newElement = document.createElement('div');
+                const textNode = document.createTextNode('Select dates');
+
+                newElement.className = 'select-dates';
+                newElement.appendChild(textNode);
+
+                dateElement?.insertBefore(newElement, dateElement.firstChild);
+            }
+        });
     }, [loading, addDisabledDate]);
 
     useEffect(() => {
@@ -105,19 +116,19 @@ const BookingForm = ({ user, spotId, price }) => {
         }
 
         if (state[0].startDate && state[0].endDate) {
-            setDisabled(false);
+            setReserve(true);
         } else {
-            setDisabled(true);
+            setReserve(false);
         }
     }, [state[0].startDate, state[0].endDate])
 
-
+    console.log(isOpen)
     return (
         loading && !addDisabledDate ?
             <>
                 <label className='check-in-label'></label>
                 <label className='check-out-label'></label>
-                <div className='calendar-container'>
+                <div ref={bookingRef} className={isOpen ? 'calendar-container-visible ' : 'calendar-container-hidden'}>
                     <DateRangePicker
                         className='calendar'
                         editableDateInputs={true}
@@ -135,22 +146,24 @@ const BookingForm = ({ user, spotId, price }) => {
                         endDatePlaceholder='End'
                         dateDisplayFormat='MM/d/yyyy'
                     />
+                    {!reserve ? (
+                        <button className='check-btn visible' onClick={toggle}>Check availability</button>
+                    )
+                        :
+                        user ?
+                            <>
+                                <button className='reserve-btn' onClick={() => setShowModal(true)}>Reserve</button>
+                                {showModal && (
+                                    <Modal onClose={() => setShowModal(false)}>
+                                        <ConfirmBookingModal userId={user} spotId={spotId} price={price} state={state} setState={setState} setShowModal={setShowModal} setAddDisabledDate={setAddDisabledDate} />
+                                    </Modal>
+                                )}
+                            </>
+                            :
+                            <button disabled={true} className='reserve-btn reserve-disabled'>Log in to reserve</button>
+                    }
                 </div>
-                {/* {!state[0].startDate && !state[0].endDate && (
-                    <button>Check availability</button>
-                )} */}
-                {user ?
-                    <>
-                        <button disabled={disabled} className={(disabled) ? 'reserve-btn reserve-disabled' : 'reserve-btn'} onClick={() => setShowModal(true)}>Reserve</button>
-                        {showModal && (
-                            <Modal onClose={() => setShowModal(false)}>
-                                <ConfirmBookingModal userId={user} spotId={spotId} price={price} state={state} setState={setState} setShowModal={setShowModal} setAddDisabledDate={setAddDisabledDate} />
-                            </Modal>
-                        )}
-                    </>
-                    :
-                    <button disabled={true} className='reserve-btn reserve-disabled'>Log in to reserve</button>
-                }
+
             </>
             :
             <Loading />
