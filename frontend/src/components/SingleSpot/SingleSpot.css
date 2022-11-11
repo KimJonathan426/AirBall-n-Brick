@@ -185,12 +185,14 @@
     height: fit-content;
     padding-bottom: 35px;
     border-bottom: 1px solid #d9e1ec;
+    position: relative;
 }
 
 .main-spot-content {
     display: flex;
     flex-direction: column;
     width: 60%;
+    margin-right: 20px;
     color: #222222;
 }
 
@@ -219,17 +221,19 @@
 
 .hovering-content {
     text-align: left;
-    margin: -1% auto;
-    height: 500px;
-    width: 30%;
+    margin: -1% 0 -1% auto;
+    height: fit-content;
+    max-height: 450px;
+    width: 370px;
     border: 1px solid rgb(221, 221, 221);
     border-radius: 12px;
     padding: 24px;
     box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-    position: relative;
-    top: 10px;
+    position: sticky;
+    top: 0px;
     font-size: 22px;
     font-weight: bold;
+    box-sizing: border-box;
 }
 
 .hovering-content-title {
