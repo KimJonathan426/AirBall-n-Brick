@@ -80,14 +80,14 @@ const BookingForm = ({ user, spotId, price }) => {
             endInput?.setAttribute('disabled', '')
             endInput?.classList.add('rdrDisabled')
 
-            const open = (e) => {
+            const openCalendar = (e) => {
                 e.preventDefault();
 
                 setIsOpen(true);
             }
 
-            startInput?.addEventListener('click', open);
-            endInput?.addEventListener('click', open);
+            startInput?.addEventListener('click', openCalendar);
+            endInput?.addEventListener('click', openCalendar);
 
             const repeatElement = document.getElementsByClassName('select-dates')[0];
 
@@ -120,6 +120,24 @@ const BookingForm = ({ user, spotId, price }) => {
         }
     }, [state[0].startDate, state[0].endDate])
 
+    const clearDates = (e) => {
+        e.preventDefault()
+
+        setState([
+            {
+                startDate: null,
+                endDate: null,
+                key: 'selection'
+            }
+        ]);
+    };
+
+    const closeCalendar = (e) => {
+        e.preventDefault();
+
+        setIsOpen(false);
+    }
+
 
     return (
         loading && !addDisabledDate ?
@@ -150,10 +168,11 @@ const BookingForm = ({ user, spotId, price }) => {
                         </div>
                     )}
 
-                    <div className={isOpen ? 'clear-close-container visible' : 'none'}>
-                        <button className='clear-btn'>Clear dates</button>
-                        <button className='close-btn'>Close</button>
+                    <div className={isOpen ? reserve ? 'clear-close-container-1 visible' : 'clear-close-container-2 visible' : 'none'}>
+                        <button className='clear-btn' onClick={clearDates}>Clear dates</button>
+                        <button className='close-btn' onClick={closeCalendar}>Close</button>
                     </div>
+
                 </div>
 
                 {reserve && user && (
