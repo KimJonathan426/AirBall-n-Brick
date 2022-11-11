@@ -81,8 +81,8 @@ const Trips = () => {
                             <div className='inner-trips-container'>
                                 <ul className='inner-trips-list'>
                                     {activeTrips.map(trip => (
-                                        <li className='inner-trips-item'>
-                                            <Link className='inner-trips-link' key={trip.id} to={`/spots/${trip.spotId}`}>
+                                        <li key={trip.id} className='inner-trips-item'>
+                                            <Link className='inner-trips-link' to={`/spots/${trip.spotId}`}>
                                                 <div className='inner-trips-image-box'>
                                                     <img className='inner-trips-image' src={trip.url} />
                                                 </div>
@@ -152,8 +152,8 @@ const Trips = () => {
                             <div className='inner-trips-container'>
                                 <ul className='inner-trips-list'>
                                     {pastTrips.map(trip => (
-                                        <li className='inner-trips-item'>
-                                            <Link className='inner-trips-link' key={trip.id} to={`/spots/${trip.spotId}`}>
+                                        <li key={trip.id} className='inner-trips-item'>
+                                            <Link className='inner-trips-link' to={`/spots/${trip.spotId}`}>
                                                 <div className='inner-trips-image-box'>
                                                     <img className='inner-trips-image' src={trip.url} />
                                                 </div>
