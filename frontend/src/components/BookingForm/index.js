@@ -72,7 +72,6 @@ const BookingForm = ({ user, spotId, price }) => {
 
     useEffect(() => {
         $(function () {
-            const dateElement = document.getElementsByClassName('rdrDateDisplayWrapper')[0];
             const startInput = document.getElementsByClassName('rdrDateInput')[0]?.childNodes[0];
             const endInput = document.getElementsByClassName('rdrDateInput')[1]?.childNodes[0];
 
@@ -89,19 +88,52 @@ const BookingForm = ({ user, spotId, price }) => {
             startInput?.addEventListener('click', openCalendar);
             endInput?.addEventListener('click', openCalendar);
 
+        });
+    }, [loading, addDisabledDate]);
+
+    useEffect(() => {
+        $(function () {
+            const dateElement = document.getElementsByClassName('rdrDateDisplayWrapper')[0];
             const repeatElement = document.getElementsByClassName('select-dates')[0];
 
             if (!repeatElement) {
                 const newElement = document.createElement('div');
-                const textNode = document.createTextNode('Select dates');
+                const textElement = document.createElement('span');
+                textElement.innerText = 'Select dates'
 
                 newElement.className = 'select-dates';
-                newElement.appendChild(textNode);
+                newElement.appendChild(textElement);
 
                 dateElement?.insertBefore(newElement, dateElement.firstChild);
             }
+
+            if (repeatElement && state[0].startDate && state[0].endDate) {
+                const startDate = state[0].startDate;
+                const endDate = state[0].endDate;
+
+                const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                const startDateMonth = months[startDate.getMonth()];
+                const startDateDay = startDate.getDate();
+                const startDateYear = startDate.getFullYear();
+                const endDateMonth = months[endDate.getMonth()];
+                const endDateDay = endDate.getDate();
+                const endDateYear = endDate.getFullYear();
+
+                const nights = Math.ceil((state[0].endDate.getTime() - state[0].startDate.getTime()) / (1000 * 3600 * 24)) + 1;
+                const date = `${startDateMonth} ${startDateDay}, ${startDateYear} – ${endDateMonth} ${endDateDay}, ${endDateYear}`;
+
+                const dateNode = document.createElement('span');
+                dateNode.innerText = date;
+                dateNode.className = 'select-dates-date'
+
+                if (nights > 1) repeatElement.innerText = nights + ' nights'
+                else repeatElement.innerText = nights + ' night'
+
+                repeatElement.appendChild(dateNode)
+            }
+
         });
-    }, [loading, addDisabledDate]);
+    }, [loading, addDisabledDate, state[0].startDate, state[0].endDate])
 
     useEffect(() => {
         if (state[0].startDate) {

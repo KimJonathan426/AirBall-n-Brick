@@ -254,8 +254,18 @@
 }
 
 .select-dates {
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
     font-size: 22px;
     font-weight: 600;
+}
+
+.select-dates-date {
+    color: #717171;
+    font-size: 14px;
+    font-weight: 400;
+    padding-top: 8px;
 }
 
 .calendar-btns-container {
