@@ -89,8 +89,6 @@ const BookingForm = ({ user, spotId, price }) => {
             startInput?.addEventListener('click', open);
             endInput?.addEventListener('click', open);
 
-
-
             const repeatElement = document.getElementsByClassName('select-dates')[0];
 
             if (!repeatElement) {
@@ -122,7 +120,7 @@ const BookingForm = ({ user, spotId, price }) => {
         }
     }, [state[0].startDate, state[0].endDate])
 
-    console.log(isOpen)
+
     return (
         loading && !addDisabledDate ?
             <>
@@ -146,23 +144,30 @@ const BookingForm = ({ user, spotId, price }) => {
                         endDatePlaceholder='End'
                         dateDisplayFormat='MM/d/yyyy'
                     />
-                    {!reserve ? (
+                    {!reserve && (
+                    <div className='check-btn-container visible'>
                         <button className='check-btn visible' onClick={toggle}>Check availability</button>
-                    )
-                        :
-                        user ?
-                            <>
-                                <button className='reserve-btn' onClick={() => setShowModal(true)}>Reserve</button>
-                                {showModal && (
-                                    <Modal onClose={() => setShowModal(false)}>
-                                        <ConfirmBookingModal userId={user} spotId={spotId} price={price} state={state} setState={setState} setShowModal={setShowModal} setAddDisabledDate={setAddDisabledDate} />
-                                    </Modal>
-                                )}
-                            </>
-                            :
-                            <button disabled={true} className='reserve-btn reserve-disabled'>Log in to reserve</button>
-                    }
+                    </div>
+                    )}
                 </div>
+
+                {reserve && user && (
+                    <div className='calendar-btns-container visible'>
+                        <button className='reserve-btn visible' onClick={() => setShowModal(true)}>Reserve</button>
+                        <div className='reserve-note visible'>You won't be charged yet</div>
+                        {showModal && (
+                            <Modal onClose={() => setShowModal(false)}>
+                                <ConfirmBookingModal userId={user} spotId={spotId} price={price} state={state} setState={setState} setShowModal={setShowModal} setAddDisabledDate={setAddDisabledDate} />
+                            </Modal>
+                        )}
+                    </div>
+                )}
+                {reserve && !user && (
+                    <div className='calendar-btns-container visible'>
+                        <button disabled={true} className='reserve-btn reserve-disabled visible'>Reserve</button>
+                        <div className='reserve-note visible'>Log in to reserve</div>
+                    </div>
+                )}
 
             </>
             :
