@@ -35,6 +35,20 @@ const findBookings = (
         else current.push(booking);
     }
 
+    previous.sort((a, b) => {
+        const date1 = new Date(a.startDate);
+        const date2 = new Date(b.startDate);
+
+        return date1 - date2;
+    });
+
+    upcoming.sort((a, b) => {
+        const date1 = new Date(a.startDate);
+        const date2 = new Date(b.startDate);
+
+        return date1 - date2;
+    });
+
     setPreviousBookings(previous);
     setCurrentBookings(current);
     setUpcomingBookings(upcoming);
