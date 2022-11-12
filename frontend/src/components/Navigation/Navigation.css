@@ -8,7 +8,7 @@
     box-sizing: border-box;
     border-bottom: 1px solid #d9e1ecc0;
     width: 100%;
-    min-width: 650px;
+    min-width: 600px;
     height: 80px;
     z-index: 10;
 }
@@ -23,7 +23,7 @@
     box-sizing: border-box;
     border-bottom: 1px solid #d9e1ecc0;
     width: 100%;
-    min-width: 650px;
+    min-width: 600px;
     height: 80px;
     z-index: 10;
 }
@@ -34,6 +34,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    min-width: 600px;
     max-width: 1600px;
     height: 80px;
     padding: 0 40px;
