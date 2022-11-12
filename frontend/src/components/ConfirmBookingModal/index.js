@@ -7,6 +7,7 @@ function ConfirmBookingModal({ userId, spotId, price, state, setState, setShowMo
     const dispatch = useDispatch();
 
     const [open, setOpen] = useState(true);
+    const [disabled, setDisabled] = useState(false);
 
     const startDate = state[0].startDate;
     const endDate = state[0].endDate;
@@ -32,6 +33,8 @@ function ConfirmBookingModal({ userId, spotId, price, state, setState, setShowMo
     const submitBooking = async (e) => {
         e.preventDefault();
 
+        setDisabled(true);
+
         const payload = {
             userId,
             spotId,
@@ -52,6 +55,8 @@ function ConfirmBookingModal({ userId, spotId, price, state, setState, setShowMo
                 }
             ])
         }
+
+        setDisabled(false);
     }
 
     const closeModal = (e) => {
@@ -120,7 +125,7 @@ function ConfirmBookingModal({ userId, spotId, price, state, setState, setShowMo
                         <button className='cancel-booking' onClick={closeModal}>Cancel</button>
                     </div>
                     <div>
-                        <button className='confirm-booking' onClick={submitBooking} >Confirm</button>
+                        <button disabled={disabled} className={disabled ? 'confirm-booking-disabled' : 'confirm-booking'} onClick={submitBooking} >Confirm</button>
                     </div>
                 </div>
             </section>
@@ -173,7 +178,7 @@ function ConfirmBookingModal({ userId, spotId, price, state, setState, setShowMo
                             <button className='cancel-booking' onClick={closeModal}>Cancel</button>
                         </div>
                         <div>
-                            <button className='confirm-booking' onClick={submitBooking} >Confirm</button>
+                            <button disabled={disabled} className={disabled ? 'confirm-booking-disabled' : 'confirm-booking'} onClick={submitBooking} >Confirm</button>
                         </div>
                     </div>
                 </section>

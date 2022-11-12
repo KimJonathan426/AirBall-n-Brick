@@ -100,6 +100,19 @@
 
 .cancel-booking:active,
 .confirm-booking:active {
-    padding: 13px 23px;
-    width: 97%;
+    transform: scale(0.96);
+}
+
+.confirm-booking-disabled {
+    background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+    width: 100%;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: wait;
+    opacity: 0.6;
 }
