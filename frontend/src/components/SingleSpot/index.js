@@ -13,6 +13,7 @@ import ratingStar from '../../images/rating-star.svg';
 import SpotImagesModal from '../SpotImagesModal';
 import SpotImagesForm from '../SpotImagesForm';
 import BookingForm from '../BookingForm';
+import AirCover from '../AirCover';
 import Loading from '../Loading';
 import './SingleSpot.css';
 
@@ -141,6 +142,7 @@ const SingleSpot = () => {
                                 <h5 className='spot-description'>
                                     {singleSpot.description}
                                 </h5>
+                                <AirCover />
                                 {previousBookings.length &&
                                     <div className='previous-bookings content-divider'>
                                         <h2 className='single-spot-header'>You've stayed here before</h2>
