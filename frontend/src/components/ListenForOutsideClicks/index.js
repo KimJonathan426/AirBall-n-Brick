@@ -12,7 +12,7 @@ export default function listenForOutsideClicks(
       document.addEventListener(`click`, (evt) => {
         const cur = bookingRef.current;
         const node = evt.target;
-        if (cur.contains(node)) return;
+        if (cur?.contains(node)) return;
         setIsOpen(false);
       });
     });
