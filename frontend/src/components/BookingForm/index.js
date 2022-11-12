@@ -19,6 +19,7 @@ const BookingForm = ({ user, spotId, price }) => {
     const [reserve, setReserve] = useState(false);
     const [listening, setListening] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [focusedRange, setFocusedRange] = useState([0, 0]);
     const [disabledDates, setDisabledDates] = useState([]);
     const [addDisabledDate, setAddDisabledDate] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -72,9 +73,11 @@ const BookingForm = ({ user, spotId, price }) => {
 
     useEffect(() => {
         $(function () {
+            const dateDisplay = document.getElementsByClassName('rdrDateDisplay')[0];
             const startInput = document.getElementsByClassName('rdrDateInput')[0]?.childNodes[0];
             const endInput = document.getElementsByClassName('rdrDateInput')[1]?.childNodes[0];
 
+            dateDisplay?.classList.add('visible')
             startInput?.setAttribute('readonly', '')
             endInput?.setAttribute('disabled', '')
             endInput?.classList.add('rdrDisabled')
@@ -130,6 +133,8 @@ const BookingForm = ({ user, spotId, price }) => {
                 else repeatElement.innerText = nights + ' night'
 
                 repeatElement.appendChild(dateNode)
+            } else if (repeatElement && !state[0].startDate && !state[0].endDate) {
+                repeatElement.innerText = 'Select dates'
             }
 
         });
@@ -161,6 +166,8 @@ const BookingForm = ({ user, spotId, price }) => {
 
     const clearDates = (e) => {
         e.preventDefault()
+
+        setFocusedRange([0, 0]);
 
         setState([
             {
@@ -194,6 +201,8 @@ const BookingForm = ({ user, spotId, price }) => {
                         direction="horizontal"
                         preventSnapRefocus={true}
                         calendarFocus="forwards"
+                        focusedRange={focusedRange}
+                        onRangeFocusChange={setFocusedRange}
                         ranges={state}
                         minDate={new Date()}
                         disabledDates={disabledDates}
