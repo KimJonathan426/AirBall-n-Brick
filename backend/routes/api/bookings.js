@@ -53,5 +53,13 @@ router.post('/new', asyncHandler(async (req, res) => {
     });
 }));
 
+router.delete('/:id', asyncHandler(async (req, res) => {
+    const booking = await Booking.findByPk(req.params.id);
+
+    await booking.destroy();
+
+    return res.json({ message: 'Successfully Deleted' });
+}));
+
 
 module.exports = router;
