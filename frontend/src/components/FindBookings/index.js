@@ -28,7 +28,8 @@ const findBookings = (
         const endDateMonth = months[endDate.getMonth()];
         const endDateYear = endDate.getFullYear();
 
-        booking['date'] = `${startDateMonth} ${startDateDay}, ${startDateYear} – ${endDateMonth} ${endDateDay}, ${endDateYear}`;
+        booking['start'] = `${startDateMonth} ${startDateDay}, ${startDateYear}`;
+        booking['end'] =  `${endDateMonth} ${endDateDay}, ${endDateYear}`;
 
         if (currentDate > endDate) previous.push(booking);
         else if (currentDate < startDate) upcoming.push(booking);
