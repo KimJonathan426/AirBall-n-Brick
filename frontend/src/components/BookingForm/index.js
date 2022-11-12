@@ -12,7 +12,7 @@ import ConfirmBookingModal from '../ConfirmBookingModal';
 import Loading from '../Loading';
 import './BookingForm.css';
 
-const BookingForm = ({ user, spotId, price, canceled, setCanceled }) => {
+const BookingForm = ({ user, spotId, price, canceled, setCanceled, fixed }) => {
     const dispatch = useDispatch();
     const bookingRef = useRef(null);
     const bookingState = useSelector(state => state.booking)
@@ -23,6 +23,10 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled }) => {
     const [focusedRange, setFocusedRange] = useState([0, 0]);
     const [disabledDates, setDisabledDates] = useState([]);
     const [addDisabledDate, setAddDisabledDate] = useState(false);
+    const [mainDisplayNum, ] = useState(fixed ? 1 : 0)
+    const [startInputNum, ] = useState(fixed ? 2 : 0)
+    const [endInputNum, ] = useState(fixed ? 3 : 1)
+
     const [loading, setLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
@@ -75,9 +79,9 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled }) => {
 
     useEffect(() => {
         $(function () {
-            const dateDisplay = document.getElementsByClassName('rdrDateDisplay')[0];
-            const startInput = document.getElementsByClassName('rdrDateInput')[0]?.childNodes[0];
-            const endInput = document.getElementsByClassName('rdrDateInput')[1]?.childNodes[0];
+            const dateDisplay = document.getElementsByClassName('rdrDateDisplay')[mainDisplayNum];
+            const startInput = document.getElementsByClassName('rdrDateInput')[startInputNum]?.childNodes[0];
+            const endInput = document.getElementsByClassName('rdrDateInput')[endInputNum]?.childNodes[0];
 
             dateDisplay?.classList.add('visible')
             startInput?.setAttribute('readonly', '')
@@ -98,8 +102,8 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled }) => {
 
     useEffect(() => {
         $(function () {
-            const dateElement = document.getElementsByClassName('rdrDateDisplayWrapper')[0];
-            const repeatElement = document.getElementsByClassName('select-dates')[0];
+            const dateElement = document.getElementsByClassName('rdrDateDisplayWrapper')[mainDisplayNum];
+            const repeatElement = document.getElementsByClassName('select-dates')[mainDisplayNum];
 
             if (!repeatElement) {
                 const newElement = document.createElement('div');
@@ -145,14 +149,14 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled }) => {
     useEffect(() => {
         if (state[0].startDate) {
             $(function () {
-                const ele = document.getElementsByClassName('rdrDateInput')[1]?.childNodes[0];
+                const ele = document.getElementsByClassName('rdrDateInput')[endInputNum]?.childNodes[0];
                 ele?.removeAttribute('disabled');
                 ele?.setAttribute('readonly', '');
                 ele?.classList.remove('rdrDisabled')
             })
         } else if (!state[0].startDate) {
             $(function () {
-                const ele = document.getElementsByClassName('rdrDateInput')[1]?.childNodes[0];
+                const ele = document.getElementsByClassName('rdrDateInput')[endInputNum]?.childNodes[0];
                 ele?.removeAttribute('readonly');
                 ele?.setAttribute('disabled', '');
                 ele?.classList.add('rdrDisabled')
