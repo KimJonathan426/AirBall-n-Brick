@@ -306,7 +306,8 @@
     background: linear-gradient(to right, rgb(230, 30, 77, 0.6) 0%, rgb(227, 28, 95, 0.6) 50%, rgb(215, 4, 102, 0.6) 100%);
 }
 
-.reserve-note {
+.reserve-note-charge,
+.reserve-note-log {
     display: flex;
     justify-content: center;
     width: 320px;

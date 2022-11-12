@@ -232,7 +232,7 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, fixed }) => {
                 {reserve && user && (
                     <div className='calendar-btns-container visible'>
                         <button className='reserve-btn visible' onClick={() => setShowModal(true)}>Reserve</button>
-                        <div className='reserve-note visible'>You won't be charged yet</div>
+                        <div className='reserve-note-charge visible'>You won't be charged yet</div>
                         {showModal && (
                             <Modal onClose={() => setShowModal(false)}>
                                 <ConfirmBookingModal userId={user} spotId={spotId} price={price} state={state} setState={setState} setShowModal={setShowModal} setAddDisabledDate={setAddDisabledDate} />
@@ -242,8 +242,8 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, fixed }) => {
                 )}
                 {reserve && !user && (
                     <div className='calendar-btns-container visible'>
-                        <button disabled={true} className='reserve-btn reserve-disabled visible'>Reserve</button>
-                        <div className='reserve-note visible'>Log in to reserve</div>
+                        <button disabled={true} className='reserve-btn reserve-disabled visible'><span>Reserve</span></button>
+                        <div className='reserve-note-log visible'>Log in to reserve</div>
                     </div>
                 )}
 

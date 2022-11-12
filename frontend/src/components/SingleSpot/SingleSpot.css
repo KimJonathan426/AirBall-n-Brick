@@ -511,6 +511,31 @@
         left: -24px;
     }
 
+    .calendar-btns-container {
+        position: relative;
+        height: fit-content;
+        top: -1027px;
+        left: -24px;
+        box-sizing: border-box;
+    }
+
+    .reserve-btn {
+        width: 200px;
+    }
+
+    .reserve-disabled > span {
+        display: none;
+    }
+
+    .reserve-disabled::after {
+        content: 'Log in to reserve';
+    }
+
+    .reserve-note-charge,
+    .reserve-note-log {
+        display: none;
+    }
+
     .check-btn {
         width: 200px;
     }
