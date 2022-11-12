@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { deleteSpot } from "../../store/spotReducer";
+import { deleteBooking } from "../../store/bookingReducer";
 import './CancelBooking.css'
 
 
@@ -9,11 +8,11 @@ function CancelBooking({ booking, setShowModal }) {
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(true);
-  const [disabled, setDisabled] = useState(true);
 
   const onDelete = async (e) => {
     e.preventDefault();
 
+    await dispatch(deleteBooking(booking.id));
   }
 
   const closeModal = (e) => {
