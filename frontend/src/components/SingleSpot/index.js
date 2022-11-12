@@ -146,7 +146,7 @@ const SingleSpot = () => {
                                 <AirCover />
                                 {previousBookings.length > 0 &&
                                     <div className='previous-bookings content-divider'>
-                                        <h2 className='single-spot-header'>You've stayed here before</h2>
+                                        <h2 className='single-spot-header'>You've played here before</h2>
                                         {previousBookings.map(booking =>
                                             <div key={booking.id} className='single-booking-prev'>
                                                 <div className='booking-date'>
@@ -173,7 +173,7 @@ const SingleSpot = () => {
                                 }
                                 {currentBookings.length > 0 &&
                                     <div className='current-bookings content-divider'>
-                                        <h2 className='single-spot-header'>Your active stay</h2>
+                                        <h2 className='single-spot-header'>Your active booking</h2>
                                         {currentBookings.map(booking =>
                                             <div key={booking.id} className='single-booking-current'>
                                                 <div className='booking-date'>
