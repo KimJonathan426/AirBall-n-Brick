@@ -47,10 +47,18 @@
     transition: all 0.2s ease-in-out;
 }
 
-.booking-cancel-return:active,
-.booking-cancel-confirm:active {
-    background-color: black;
-    transform: scale(0.96);
+.booking-cancel-disabled {
+    width: 40%;
+    padding: 15px;
+    border: 5px groove #CF5300;
+    border-radius: 10px;
+    background-color: rgb(58, 58, 58);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    box-sizing: border-box;
+    cursor: wait;
+    opacity: 0.6;
 }
 
 .cancel-booking-btn {
@@ -63,6 +71,14 @@
     border: 3px groove #CF5300;
     border-radius: 8px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.booking-cancel-return:active,
+.booking-cancel-confirm:active,
+.cancel-booking-btn:active {
+    background-color: black;
+    transform: scale(0.96);
 }
 
 .cancel-image {

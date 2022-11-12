@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { deleteBooking } from "../../store/bookingReducer";
 import './CancelBooking.css'
@@ -8,11 +8,18 @@ function CancelBooking({ booking, setShowModal }) {
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(true);
+  const [disabled, setDisabled] = useState(false);
 
   const onDelete = async (e) => {
     e.preventDefault();
 
-    await dispatch(deleteBooking(booking.id));
+    setDisabled(true);
+
+    const res = await dispatch(deleteBooking(booking.id));
+
+    if (!res) {
+      setDisabled(false);
+    }
   }
 
   const closeModal = (e) => {
@@ -41,7 +48,7 @@ function CancelBooking({ booking, setShowModal }) {
         </div>
         <div className='booking-cancel-btns'>
           <button className='booking-cancel-return' onClick={closeModal}>Return</button>
-          <button className='booking-cancel-confirm' onClick={onDelete}>Cancel Booking</button>
+          <button disabled={disabled} className={disabled ? 'booking-cancel-disabled' : 'booking-cancel-confirm'} onClick={onDelete}>Cancel Booking</button>
         </div>
       </div>
 
