@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { getSingleSpot } from '../../store/spotReducer';
 import { getBookings } from '../../store/bookingReducer';
 import { getReviewAvg } from '../../store/reviewReducer';
+import findBookings from '../FindBookings';
 import SpotEditForm from '../SpotEditForm';
 import ConfirmDeleteSpotModal from '../ConfirmDeleteSpotModal';
 import ReviewForm from '../ReviewForm';
@@ -27,6 +28,9 @@ const SingleSpot = () => {
     const [showEditSpotForm, setShowEditSpotForm] = useState(false);
     const [showImagesForm, setShowImagesForm] = useState(false);
     const [showReviewForm, setShowReviewForm] = useState(false);
+    const [previousBookings, setPreviousBookings] = useState([]);
+    const [currentBookings, setCurrentBookings] = useState([]);
+    const [upcomingBookings, setUpcomingBookings] = useState([]);
     const [refresh, setRefresh] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -38,7 +42,7 @@ const SingleSpot = () => {
         const fetchData = async () => {
             await dispatch(getSingleSpot(id));
             await dispatch(getReviewAvg());
-            await dispatch(getBookings(id))
+            await dispatch(getBookings(id));
 
             setRefresh(false);
             setLoading(true);
@@ -46,6 +50,12 @@ const SingleSpot = () => {
 
         fetchData();
     }, [dispatch, id, refresh])
+
+    useEffect(() => {
+        if (user) {
+            findBookings(Object.values(bookingState), user, setPreviousBookings, setCurrentBookings, setUpcomingBookings);
+        }
+    }, [bookingState, user])
 
 
     return (
@@ -131,9 +141,36 @@ const SingleSpot = () => {
                                 <h5 className='spot-description'>
                                     {singleSpot.description}
                                 </h5>
-                                {/* <div>
-                                You have an active booking scheduled at this spot...
-                            </div> */}
+                                {previousBookings.length &&
+                                    <div className='previous-bookings content-divider'>
+                                        <h2 className='single-spot-header'>You've stayed here before...</h2>
+                                        {previousBookings.map( booking =>
+                                            <div key={booking.id}>
+                                                {booking.date}
+                                            </div>
+                                        )}
+                                    </div>
+                                }
+                                {currentBookings.length &&
+                                    <div className='current-bookings content-divider'>
+                                        <h2 className='single-spot-header'>Your active stay...</h2>
+                                        {currentBookings.map( booking =>
+                                            <div key={booking.id}>
+                                                {booking.date}
+                                            </div>
+                                        )}
+                                    </div>
+                                }
+                                {upcomingBookings.length &&
+                                    <div className='upcoming-bookings content-divider'>
+                                        <h2 className='single-spot-header'>Your upcoming bookings</h2>
+                                        {upcomingBookings.map( booking =>
+                                            <div key={booking.id}>
+                                                {booking.date}
+                                            </div>
+                                        )}
+                                    </div>
+                                }
                             </div>
                             <div className='hovering-content'>
                                 <div className='hovering-content-title'>
