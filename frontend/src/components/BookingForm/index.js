@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { Modal } from '../../context/Modal';
 import { DateRangePicker } from 'react-date-range';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getBookings } from '../../store/bookingReducer';
 import $ from 'jquery';
 import listenForOutsideClicks from '../ListenForOutsideClicks';
@@ -12,9 +12,10 @@ import ConfirmBookingModal from '../ConfirmBookingModal';
 import Loading from '../Loading';
 import './BookingForm.css';
 
-const BookingForm = ({ user, spotId, price }) => {
+const BookingForm = ({ user, spotId, price, canceled, setCanceled }) => {
     const dispatch = useDispatch();
     const bookingRef = useRef(null);
+    const bookingState = useSelector(state => state.booking)
 
     const [reserve, setReserve] = useState(false);
     const [listening, setListening] = useState(false);
@@ -43,13 +44,13 @@ const BookingForm = ({ user, spotId, price }) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const spotBookings = await dispatch(getBookings(spotId))
+            await dispatch(getBookings(spotId))
 
-            if (spotBookings) {
+            if (bookingState) {
 
                 const dates = [];
 
-                for (let booking of Object.values(spotBookings)) {
+                for (let booking of Object.values(bookingState)) {
                     const startDate = new Date(booking.startDate);
                     const endDate = new Date(booking.endDate);
 
@@ -65,11 +66,12 @@ const BookingForm = ({ user, spotId, price }) => {
             }
 
             setAddDisabledDate(false);
+            setCanceled(false);
             setLoading(true);
         }
 
         fetchData();
-    }, [dispatch, addDisabledDate])
+    }, [dispatch, addDisabledDate, canceled])
 
     useEffect(() => {
         $(function () {

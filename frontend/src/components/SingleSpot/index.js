@@ -33,6 +33,7 @@ const SingleSpot = () => {
     const [previousBookings, setPreviousBookings] = useState([]);
     const [currentBookings, setCurrentBookings] = useState([]);
     const [upcomingBookings, setUpcomingBookings] = useState([]);
+    const [canceled, setCanceled] = useState(false);
     const [refresh, setRefresh] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -223,7 +224,7 @@ const SingleSpot = () => {
                                                         </div>
                                                     </div>
                                                     <div className='booking-btns'>
-                                                        <CancelBookingModal booking={booking} />
+                                                        <CancelBookingModal booking={booking} canceled={canceled} setCanceled={setCanceled} />
                                                     </div>
                                                 </div>
                                             )}
@@ -235,7 +236,7 @@ const SingleSpot = () => {
                                 <div className='hovering-content-title'>
                                     ${Number(singleSpot.price)?.toLocaleString('en-US', { maximumFractionDigits: 0 })} <span>night</span>
                                 </div>
-                                <BookingForm user={user} spotId={singleSpot?.id} price={singleSpot.price} />
+                                <BookingForm user={user} spotId={singleSpot?.id} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} />
                             </div>
                         </div>
                         <div className='spot-review-container'>
