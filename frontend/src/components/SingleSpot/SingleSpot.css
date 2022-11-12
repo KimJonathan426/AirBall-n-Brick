@@ -3,17 +3,20 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    min-width: 600px;
     height: fit-content;
     padding-left: 24px;
     padding-right: 24px;
     margin: 120px auto 80px;
     box-sizing: border-box;
+    position: relative;
 }
 
 .single-spot-content {
     display: flex;
     flex-direction: column;
     width: 100%;
+    min-width: 600px;
     max-width: 1120px;
     margin-left: auto;
     margin-right: auto;
@@ -35,6 +38,7 @@
 .edit-button,
 .delete-button {
     width: 35%;
+    min-width: 101px;
     padding: 15px;
     margin: 25px 50px;
     border: 5px groove #CF5300;
@@ -139,6 +143,7 @@
     flex-direction: column;
     width: 100%;
     height: fit-content;
+    box-sizing: border-box;
 }
 
 .single-name-info {
@@ -186,6 +191,7 @@
     padding-bottom: 35px;
     border-bottom: 1px solid #d9e1ec;
     position: relative;
+    box-sizing: border-box;
 }
 
 .main-spot-content {
@@ -252,6 +258,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .spot-review-container > h3 {
@@ -353,4 +360,163 @@
 .booking-check {
     display: flex;
     justify-content: space-between;
+}
+
+.booking-form-bottom-fixed {
+    display: block;
+    width: 100%;
+    min-width: 600px;
+    height: 80px;
+    padding: 16px 0px;
+    border-top: 1px solid #d9e1ec;
+    position: fixed;
+    bottom: 0;
+    background-color: #FFF;
+    box-sizing: border-box;
+}
+
+.bottom-fixed-title {
+    position: fixed;
+    bottom: 54px;
+    left: 24px;
+    font-weight: 600;
+}
+
+.bottom-fixed-title > span {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+
+@media screen and (max-width: 743px) {
+    .middle-image-top,
+    .middle-image-bottom,
+    .right-image-top,
+    .right-image-bottom {
+        display: none;
+    }
+
+    .single-spot-container {
+        margin-top: 80px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .single-spot-image-container {
+        display: flex;
+        width: 100%;
+        height: calc(100vw - 200px);
+        min-width: 600px;
+        min-height: 400px;
+        position: relative;
+        box-sizing: border-box;
+        order: -1;
+    }
+
+    .main-image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .image-fit-main {
+        border-radius: 0;
+        width: 100%;
+        min-height: 400px;
+        height: calc(100vw - 200px);
+    }
+
+    .spot-edit-form-container {
+        margin-top: 40px;
+    }
+
+    .spot-header {
+        padding: 24px 0;
+        margin: 0 24px;
+        width: calc(100% - 48px);
+        border-bottom: 1px solid #d9e1ec;
+    }
+
+    .single-spot-info {
+        display: flex;
+        flex-direction: column;
+        margin-top: 0;
+        margin-left: 24px;
+        margin-right: 24px;
+        width: calc(100% - 48px);
+    }
+
+    .host-name {
+        padding: 24px 0;
+    }
+
+    .main-spot-content {
+        width: 100%;
+    }
+
+    .spot-review-container {
+        margin-left: 24px;
+        margin-right: 24px;
+        width: calc(100% - 48px);
+    }
+
+    .hovering-content {
+        display: none;
+    }
+
+    .calendar-container-visible,
+    .calendar-container-hidden {
+        right: 0;
+        top: calc(-80vh - 17px);
+        width: 100%;
+        min-width: 600px;
+        height: 80vh;
+    }
+
+    .rdrCalendarWrapper {
+        width: 100%;
+        min-width: 600px;
+        height: 80vh;
+    }
+
+    .rdrDateDisplay {
+        width: 250px;
+        min-width: 250px;
+        height: 46px;
+        position: relative;
+        top: calc(80vh + 5px);
+        right: calc(100% - 248px);
+    }
+
+    .rdrDateInput > input {
+        padding-top: 10px;
+    }
+
+    .rdrDateDisplay > span:nth-child(1)::after {
+        top: 7px;
+    }
+
+    .rdrDateDisplay > span:nth-child(2)::after {
+        top: 7px;
+    }
+
+    .rdrDateDisplayWrapper::after {
+        height: 45px;
+        top: calc(80vh + 5px);
+        left: 122px;
+    }
+
+    .check-btn-container {
+        height: 47px;
+        top: calc(80vh + 16px);
+        left: -24px;
+    }
+
+    .check-btn {
+        width: 200px;
+    }
+
+    .booking-form-bottom {
+        display: block;
+    }
+
 }

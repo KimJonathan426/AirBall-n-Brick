@@ -236,7 +236,7 @@ const SingleSpot = () => {
                                 <div className='hovering-content-title'>
                                     ${Number(singleSpot.price)?.toLocaleString('en-US', { maximumFractionDigits: 0 })} <span>night</span>
                                 </div>
-                                <BookingForm user={user} spotId={singleSpot?.id} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} />
+                                <BookingForm user={user} spotId={singleSpot?.id} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} fixed={false} />
                             </div>
                         </div>
                         <div className='spot-review-container'>
@@ -262,6 +262,12 @@ const SingleSpot = () => {
                                 <ReviewForm spotId={id} hideForm={() => setShowReviewForm(false)} />
                             )}
                             <SpotReviewList user={user} spotId={id} ratingStar={ratingStar} />
+                        </div>
+                        <div className='booking-form-bottom-fixed'>
+                            <BookingForm user={user} spotId={singleSpot?.id} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} fixed={true} />
+                        </div>
+                        <div className='bottom-fixed-title'>
+                            ${Number(singleSpot.price)?.toLocaleString('en-US', { maximumFractionDigits: 0 })} <span>night</span>
                         </div>
                     </>
                     :
