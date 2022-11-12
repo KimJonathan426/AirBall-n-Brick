@@ -340,6 +340,7 @@
 .booking-date-current {
     display: flex;
     flex-direction: column;
+
 }
 
 .booking-check {
