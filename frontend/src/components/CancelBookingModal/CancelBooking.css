@@ -44,11 +44,13 @@
     font-size: 16px;
     cursor: pointer;
     box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
 }
 
-.booking-cancel-reserve:active,
+.booking-cancel-return:active,
 .booking-cancel-confirm:active {
     background-color: black;
+    transform: scale(0.96);
 }
 
 .cancel-booking-btn {
