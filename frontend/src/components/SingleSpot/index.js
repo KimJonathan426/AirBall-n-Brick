@@ -143,20 +143,54 @@ const SingleSpot = () => {
                                 </h5>
                                 {previousBookings.length &&
                                     <div className='previous-bookings content-divider'>
-                                        <h2 className='single-spot-header'>You've stayed here before...</h2>
-                                        {previousBookings.map( booking =>
-                                            <div key={booking.id}>
-                                                {booking.date}
+                                        <h2 className='single-spot-header'>You've stayed here before</h2>
+                                        {previousBookings.map(booking =>
+                                            <div key={booking.id} className='single-booking'>
+                                                <div className='booking-date-current'>
+                                                    <div className='booking-check'>
+                                                        <div>
+                                                            From:
+                                                        </div>
+                                                        <div>
+                                                            {booking.start}
+                                                        </div>
+                                                    </div>
+                                                    <div className='booking-check'>
+                                                        <div>
+                                                            To:
+                                                        </div>
+                                                        <div>
+                                                            {booking.end}
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         )}
                                     </div>
                                 }
                                 {currentBookings.length &&
                                     <div className='current-bookings content-divider'>
-                                        <h2 className='single-spot-header'>Your active stay...</h2>
-                                        {currentBookings.map( booking =>
-                                            <div key={booking.id}>
-                                                {booking.date}
+                                        <h2 className='single-spot-header'>Your active stay</h2>
+                                        {currentBookings.map(booking =>
+                                            <div key={booking.id} className='single-booking'>
+                                                <div className='booking-date-current'>
+                                                    <div className='booking-check'>
+                                                        <div>
+                                                            Check-in:
+                                                        </div>
+                                                        <div>
+                                                            {booking.start}
+                                                        </div>
+                                                    </div>
+                                                    <div className='booking-check'>
+                                                        <div>
+                                                            Checkout:
+                                                        </div>
+                                                        <div>
+                                                            {booking.end}
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         )}
                                     </div>
@@ -164,11 +198,33 @@ const SingleSpot = () => {
                                 {upcomingBookings.length &&
                                     <div className='upcoming-bookings content-divider'>
                                         <h2 className='single-spot-header'>Your upcoming bookings</h2>
-                                        {upcomingBookings.map( booking =>
-                                            <div key={booking.id}>
-                                                {booking.date}
-                                            </div>
-                                        )}
+                                        <div className='booking-list'>
+                                            {upcomingBookings.map(booking =>
+                                                <div key={booking.id} className='single-booking'>
+                                                    <div className='booking-date'>
+                                                        <div className='booking-check'>
+                                                            <div>
+                                                                Check-in:
+                                                            </div>
+                                                            <div>
+                                                                {booking.start}
+                                                            </div>
+                                                        </div>
+                                                        <div className='booking-check'>
+                                                            <div>
+                                                                Checkout:
+                                                            </div>
+                                                            <div>
+                                                                {booking.end}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className='booking-btns'>
+                                                        <button>Cancel Booking</button>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
                                 }
                             </div>
