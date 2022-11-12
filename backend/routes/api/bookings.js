@@ -10,7 +10,8 @@ router.get('/:spotId', asyncHandler(async (req, res) => {
     const bookings = await Booking.findAll({
         where: {
             spotId: req.params.spotId
-        }
+        },
+        include: [Spot]
     });
 
     return res.json({
