@@ -14,6 +14,7 @@ import SpotImagesModal from '../SpotImagesModal';
 import SpotImagesForm from '../SpotImagesForm';
 import BookingForm from '../BookingForm';
 import AirCover from '../AirCover';
+import CancelBookingModal from '../CancelBookingModal';
 import Loading from '../Loading';
 import './SingleSpot.css';
 
@@ -143,12 +144,12 @@ const SingleSpot = () => {
                                     {singleSpot.description}
                                 </h5>
                                 <AirCover />
-                                {previousBookings.length &&
+                                {previousBookings.length > 0 &&
                                     <div className='previous-bookings content-divider'>
                                         <h2 className='single-spot-header'>You've stayed here before</h2>
                                         {previousBookings.map(booking =>
-                                            <div key={booking.id} className='single-booking'>
-                                                <div className='booking-date-current'>
+                                            <div key={booking.id} className='single-booking-prev'>
+                                                <div className='booking-date'>
                                                     <div className='booking-check'>
                                                         <div>
                                                             From:
@@ -170,12 +171,12 @@ const SingleSpot = () => {
                                         )}
                                     </div>
                                 }
-                                {currentBookings.length &&
+                                {currentBookings.length > 0 &&
                                     <div className='current-bookings content-divider'>
                                         <h2 className='single-spot-header'>Your active stay</h2>
                                         {currentBookings.map(booking =>
-                                            <div key={booking.id} className='single-booking'>
-                                                <div className='booking-date-current'>
+                                            <div key={booking.id} className='single-booking-current'>
+                                                <div className='booking-date'>
                                                     <div className='booking-check'>
                                                         <div>
                                                             Check-in:
@@ -197,7 +198,7 @@ const SingleSpot = () => {
                                         )}
                                     </div>
                                 }
-                                {upcomingBookings.length &&
+                                {upcomingBookings.length > 0 &&
                                     <div className='upcoming-bookings content-divider'>
                                         <h2 className='single-spot-header'>Your upcoming bookings</h2>
                                         <div className='booking-list'>
@@ -222,7 +223,7 @@ const SingleSpot = () => {
                                                         </div>
                                                     </div>
                                                     <div className='booking-btns'>
-                                                        <button>Cancel Booking</button>
+                                                        <CancelBookingModal booking={booking} />
                                                     </div>
                                                 </div>
                                             )}

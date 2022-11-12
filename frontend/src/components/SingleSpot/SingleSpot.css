@@ -224,6 +224,7 @@
     margin: -1% 0 -1% auto;
     height: fit-content;
     max-height: 450px;
+    min-width: 370px;
     width: 370px;
     border: 1px solid rgb(221, 221, 221);
     border-radius: 12px;
@@ -331,16 +332,22 @@
     box-sizing: border-box;
 }
 
+.single-booking-prev,
+.single-booking-current {
+    width: 275px;
+    min-width: 250px;
+    padding: 12px;
+    border: 1px solid #222222;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, rgb(230, 30, 77, 0.3) 0%, rgb(227, 28, 94, 0.2) 30%, rgb(215, 4, 102, 0.3) 100%);
+    box-sizing: border-box;
+}
+
 .booking-date {
     display: flex;
     flex-direction: column;
     padding-bottom: 10px;
-}
-
-.booking-date-current {
-    display: flex;
-    flex-direction: column;
-
 }
 
 .booking-check {
