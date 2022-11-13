@@ -363,7 +363,7 @@
 }
 
 .booking-form-bottom-fixed {
-    display: block;
+    display: none;
     width: 100%;
     min-width: 600px;
     height: 80px;
@@ -376,6 +376,7 @@
 }
 
 .bottom-fixed-title {
+    display: none;
     position: fixed;
     bottom: 54px;
     left: 26px;
@@ -476,7 +477,7 @@
         width: 100%;
         min-width: 600px;
         height: 80vh;
-        padding: 24px 0;
+        padding: 24px 0 0 0;
     }
 
     .rdrMonthAndYearWrapper {
@@ -517,12 +518,15 @@
 
     .rdrMonthsHorizontal {
         flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
         overflow: auto;
+        height: 100%;
     }
 
     .rdrMonth {
         width: 100%;
-        max-width: 743px;
+        max-width: 550px;
         margin-bottom: 20px;
         height: fit-content;
     }
@@ -539,16 +543,19 @@
 
     .select-dates {
         padding-left: 24px;
+        height: 53px;
     }
 
     .clear-close-container-1 {
+        position: relative;
         top: 20px;
-        left: 491px;
+        right: -525px;
     }
 
     .clear-close-container-2 {
+        position: relative;
         top: -27px;
-        left: 491px;
+        right: -525px;
     }
 
     .check-btn-container {
@@ -586,7 +593,8 @@
         width: 200px;
     }
 
-    .booking-form-bottom {
+    .booking-form-bottom-fixed,
+    .bottom-fixed-title {
         display: block;
     }
 

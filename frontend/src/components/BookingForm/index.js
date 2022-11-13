@@ -16,8 +16,8 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, fixed }) => {
     const dispatch = useDispatch();
     const bookingRef = useRef(null);
     const bookingState = useSelector(state => state.booking)
-
     const [reserve, setReserve] = useState(false);
+    const [months, setMonths] = useState(2);
     const [listening, setListening] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [focusedRange, setFocusedRange] = useState([0, 0]);
@@ -104,6 +104,24 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, fixed }) => {
         $(function () {
             const dateElement = document.getElementsByClassName('rdrDateDisplayWrapper')[mainDisplayNum];
             const repeatElement = document.getElementsByClassName('select-dates')[mainDisplayNum];
+            const monthsElement = document.getElementsByClassName('rdrMonths')[mainDisplayNum];
+            const repeatButton = document.getElementById('load-more-btn');
+
+            if (fixed && !repeatButton && monthsElement) {
+                const loadMoreBtn = document.createElement('button');
+                loadMoreBtn.innerText = 'Load more dates';
+
+                const loadMoreMonths = (e) => {
+                    e.preventDefault();
+
+                    setMonths(months => months + 2);
+                };
+
+                loadMoreBtn.setAttribute('id', 'load-more-btn');
+                loadMoreBtn.addEventListener('click', loadMoreMonths);
+
+                monthsElement.appendChild(loadMoreBtn);
+            }
 
             if (!repeatElement) {
                 const newElement = document.createElement('div');
@@ -203,7 +221,7 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, fixed }) => {
                         onChange={item => setState([item.selection])}
                         moveRangeOnFirstSelection={false}
                         showSelectionPreview={true}
-                        months={2}
+                        months={months}
                         direction="horizontal"
                         preventSnapRefocus={true}
                         calendarFocus="forwards"
