@@ -81,8 +81,20 @@
     transform: scale(0.96);
 }
 
-.cancel-image {
+.cancel-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 250px;
+    max-height: 150px;
     border-radius: 8px;
     margin: 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.cancel-image {
+    object-fit: cover;
+    width: 100%;
+    border-radius: 8px;
 }

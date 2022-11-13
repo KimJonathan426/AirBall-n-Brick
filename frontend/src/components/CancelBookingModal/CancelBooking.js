@@ -44,7 +44,9 @@ function CancelBooking({ booking, setShowModal, setCanceled }) {
           <div>
             {booking.Spot.name}
           </div>
-          <img className='cancel-image' src={booking.url} alt='main spot' />
+          <div className='cancel-image-container'>
+            <img className='cancel-image' src={booking.url} alt='main spot' />
+          </div>
           <div>
             {booking.start} – {booking.end}
           </div>
