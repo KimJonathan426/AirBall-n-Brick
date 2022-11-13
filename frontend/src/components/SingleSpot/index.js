@@ -13,6 +13,7 @@ import ratingStar from '../../images/rating-star.svg';
 import SpotImagesModal from '../SpotImagesModal';
 import SpotImagesForm from '../SpotImagesForm';
 import BookingForm from '../BookingForm';
+import BookingFormFixed from '../BookingFormFixed';
 import AirCover from '../AirCover';
 import CancelBookingModal from '../CancelBookingModal';
 import Loading from '../Loading';
@@ -33,6 +34,13 @@ const SingleSpot = () => {
     const [previousBookings, setPreviousBookings] = useState([]);
     const [currentBookings, setCurrentBookings] = useState([]);
     const [upcomingBookings, setUpcomingBookings] = useState([]);
+    const [stateTransfer, setStateTransfer] = useState([
+        {
+            startDate: null,
+            endDate: null,
+            key: 'selection'
+        }
+    ]);
     const [canceled, setCanceled] = useState(false);
     const [refresh, setRefresh] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -236,7 +244,7 @@ const SingleSpot = () => {
                                 <div className='hovering-content-title'>
                                     ${Number(singleSpot.price)?.toLocaleString('en-US', { maximumFractionDigits: 0 })} <span>night</span>
                                 </div>
-                                <BookingForm user={user} spotId={singleSpot?.id} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} fixed={false} />
+                                <BookingForm user={user} spotId={singleSpot?.id} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} stateTransfer={stateTransfer} setStateTransfer={setStateTransfer} />
                             </div>
                         </div>
                         <div className='spot-review-container'>
@@ -264,7 +272,7 @@ const SingleSpot = () => {
                             <SpotReviewList user={user} spotId={id} ratingStar={ratingStar} />
                         </div>
                         <div className='booking-form-bottom-fixed'>
-                            <BookingForm user={user} spotId={singleSpot?.id} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} fixed={true} />
+                            <BookingFormFixed user={user} spotId={singleSpot?.id} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} stateTransfer={stateTransfer} setStateTransfer={setStateTransfer} />
                         </div>
                         <div className='bottom-fixed-title'>
                             ${Number(singleSpot.price)?.toLocaleString('en-US', { maximumFractionDigits: 0 })} <span>night</span>

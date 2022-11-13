@@ -12,20 +12,16 @@ import ConfirmBookingModal from '../ConfirmBookingModal';
 import Loading from '../Loading';
 import './BookingForm.css';
 
-const BookingForm = ({ user, spotId, price, canceled, setCanceled, fixed }) => {
+const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer, setStateTransfer }) => {
     const dispatch = useDispatch();
     const bookingRef = useRef(null);
     const bookingState = useSelector(state => state.booking)
     const [reserve, setReserve] = useState(false);
-    const [months, setMonths] = useState(2);
     const [listening, setListening] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [focusedRange, setFocusedRange] = useState([0, 0]);
     const [disabledDates, setDisabledDates] = useState([]);
     const [addDisabledDate, setAddDisabledDate] = useState(false);
-    const [mainDisplayNum, ] = useState(fixed ? 1 : 0)
-    const [startInputNum, ] = useState(fixed ? 2 : 0)
-    const [endInputNum, ] = useState(fixed ? 3 : 1)
 
     const [loading, setLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -38,13 +34,7 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, fixed }) => {
         setIsOpen)
     );
 
-    const [state, setState] = useState([
-        {
-            startDate: null,
-            endDate: null,
-            key: 'selection'
-        }
-    ]);
+    const [state, setState] = useState(stateTransfer);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -79,9 +69,17 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, fixed }) => {
 
     useEffect(() => {
         $(function () {
-            const dateDisplay = document.getElementsByClassName('rdrDateDisplay')[mainDisplayNum];
-            const startInput = document.getElementsByClassName('rdrDateInput')[startInputNum]?.childNodes[0];
-            const endInput = document.getElementsByClassName('rdrDateInput')[endInputNum]?.childNodes[0];
+            const calendarElement = document.getElementsByClassName('rdrDateDisplayWrapper')[0];
+
+            if (calendarElement && !calendarElement.classList.contains('fixed-wrapper')) {
+                calendarElement.classList.add('hovering-wrapper');
+            } else {
+                calendarElement.classList.add('fixed-wrapper');
+            }
+
+            const dateDisplay = document.getElementsByClassName('rdrDateDisplay')[0];
+            const startInput = document.getElementsByClassName('rdrDateInput')[0]?.childNodes[0];
+            const endInput = document.getElementsByClassName('rdrDateInput')[1]?.childNodes[0];
 
             dateDisplay?.classList.add('visible')
             startInput?.setAttribute('readonly', '')
@@ -102,28 +100,10 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, fixed }) => {
 
     useEffect(() => {
         $(function () {
-            const dateElement = document.getElementsByClassName('rdrDateDisplayWrapper')[mainDisplayNum];
-            const repeatElement = document.getElementsByClassName('select-dates')[mainDisplayNum];
-            const monthsElement = document.getElementsByClassName('rdrMonths')[mainDisplayNum];
-            const repeatButton = document.getElementById('load-more-btn');
+            const dateElement = document.getElementsByClassName('rdrDateDisplayWrapper')[0];
+            const repeatElement = document.getElementsByClassName('select-dates')[0];
 
-            if (fixed && !repeatButton && monthsElement) {
-                const loadMoreBtn = document.createElement('button');
-                loadMoreBtn.innerText = 'Load more dates';
-
-                const loadMoreMonths = (e) => {
-                    e.preventDefault();
-
-                    setMonths(months => months + 2);
-                };
-
-                loadMoreBtn.setAttribute('id', 'load-more-btn');
-                loadMoreBtn.addEventListener('click', loadMoreMonths);
-
-                monthsElement.appendChild(loadMoreBtn);
-            }
-
-            if (!repeatElement) {
+            if (dateElement && !dateElement.classList.contains('fixed-wrapper') && !repeatElement) {
                 const newElement = document.createElement('div');
                 const textElement = document.createElement('span');
                 textElement.innerText = 'Select dates'
@@ -131,7 +111,7 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, fixed }) => {
                 newElement.className = 'select-dates';
                 newElement.appendChild(textElement);
 
-                dateElement?.insertBefore(newElement, dateElement.firstChild);
+                dateElement.insertBefore(newElement, dateElement.firstChild);
             }
 
             if (repeatElement && state[0].startDate && state[0].endDate) {
@@ -167,14 +147,14 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, fixed }) => {
     useEffect(() => {
         if (state[0].startDate) {
             $(function () {
-                const ele = document.getElementsByClassName('rdrDateInput')[endInputNum]?.childNodes[0];
+                const ele = document.getElementsByClassName('rdrDateInput')[1]?.childNodes[0];
                 ele?.removeAttribute('disabled');
                 ele?.setAttribute('readonly', '');
                 ele?.classList.remove('rdrDisabled')
             })
         } else if (!state[0].startDate) {
             $(function () {
-                const ele = document.getElementsByClassName('rdrDateInput')[endInputNum]?.childNodes[0];
+                const ele = document.getElementsByClassName('rdrDateInput')[1]?.childNodes[0];
                 ele?.removeAttribute('readonly');
                 ele?.setAttribute('disabled', '');
                 ele?.classList.add('rdrDisabled')
@@ -188,6 +168,14 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, fixed }) => {
         }
     }, [state[0].startDate, state[0].endDate])
 
+    useEffect(() => {
+        setStateTransfer(state);
+    }, [state])
+
+    useEffect(() => {
+        setState(stateTransfer);
+    }, [stateTransfer])
+
     const clearDates = (e) => {
         e.preventDefault()
 
@@ -200,6 +188,7 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, fixed }) => {
                 key: 'selection'
             }
         ]);
+
     };
 
     const closeCalendar = (e) => {
@@ -221,7 +210,7 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, fixed }) => {
                         onChange={item => setState([item.selection])}
                         moveRangeOnFirstSelection={false}
                         showSelectionPreview={true}
-                        months={months}
+                        months={2}
                         direction="horizontal"
                         preventSnapRefocus={true}
                         calendarFocus="forwards"

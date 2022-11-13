@@ -368,7 +368,7 @@
 .booking-form-bottom-fixed {
     display: none;
     width: 100%;
-    min-width: 600px;
+    min-width: 500px;
     height: 80px;
     padding: 16px 0px;
     border-top: 1px solid #d9e1ec;
@@ -472,15 +472,16 @@
         right: 2px;
         top: calc(-80vh - 17px);
         width: 100%;
-        min-width: 600px;
+        min-width: 400px;
         height: 80vh;
     }
 
     .rdrCalendarWrapper {
         width: 100%;
-        min-width: 600px;
+        min-width: 400px;
         height: 80vh;
         padding: 24px 0 0 0;
+        box-sizing: border-box;
     }
 
     .rdrMonthAndYearWrapper {
@@ -569,17 +570,18 @@
 
     .check-btn-container {
         width: 100%;
+        min-width: 510px;
         height: 47px;
-        top: calc(80vh + 17px);
+        top: calc(80vh + 27px);
         left: 2px;
     }
 
     .calendar-btns-container {
         width: 100%;
-        min-width: 600px;
+        min-width: 510px;
         height: fit-content;
         position: fixed;
-        bottom: 16px;
+        bottom: 6px;
         left: 0px;
         box-sizing: border-box;
     }
@@ -587,6 +589,7 @@
     .reserve-btn,
     .reserve-disabled {
         width: 200px;
+        height: 44px;
         margin-right: 24px;
     }
 
@@ -605,6 +608,7 @@
 
     .check-btn {
         width: 200px;
+        height: 44px;
         margin-right: 24px;
     }
 
