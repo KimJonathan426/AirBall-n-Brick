@@ -74,7 +74,7 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer
             if (calendarElement && !calendarElement.classList.contains('fixed-wrapper')) {
                 calendarElement.classList.add('hovering-wrapper');
             } else {
-                calendarElement.classList.add('fixed-wrapper');
+                calendarElement?.classList.add('fixed-wrapper');
             }
 
             const dateDisplay = document.getElementsByClassName('rdrDateDisplay')[0];
