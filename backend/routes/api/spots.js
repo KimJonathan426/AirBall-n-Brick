@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { multiplePublicFileUpload, multipleMulterUpload } = require('../../awsS3');
 
-const { User, Spot, Image, Review } = require('../../db/models');
+const { User, Spot, Image, Review, Booking } = require('../../db/models');
 
 const router = express.Router();
 
@@ -104,14 +104,33 @@ router.delete('/:spotId/images/:imageId/delete', asyncHandler(async (req, res) =
     const allImages = await Image.findAll({
         where: {
             spotId: req.params.spotId
-        }
+        },
+        order: [
+            ['id', 'ASC']
+        ]
     });
+
+    const urlMain = allImages[0].url;
+    const url = allImages[1].url;
+    const destroyedUrl = image.url;
 
     if (allImages.length < 6) {
         return res.json({ message: 'Cannot delete, you must have a minimum of 5 images.' });
     }
 
     await image.destroy();
+
+    if (destroyedUrl === urlMain) {
+        const spotBookings = await Booking.findAll({
+            where: {
+                spotId: req.params.spotId
+            }
+        });
+
+        for (let booking of spotBookings) {
+            await booking.update({ url })
+        }
+    }
 
     return res.json({ message: 'Successfully Deleted' });
 }));
