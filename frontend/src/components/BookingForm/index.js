@@ -261,7 +261,7 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, fixed }) => {
                 )}
                 {reserve && !user && (
                     <div className='calendar-btns-container visible'>
-                        <button disabled={true} className='reserve-btn reserve-disabled visible'><span>Reserve</span></button>
+                        <button disabled={true} className='reserve-disabled visible'><span>Reserve</span></button>
                         <div className='reserve-note-log visible'>Log in to reserve</div>
                     </div>
                 )}

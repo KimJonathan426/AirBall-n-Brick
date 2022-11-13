@@ -84,6 +84,7 @@
     font-size: 16px;
     cursor: pointer;
     box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
 }
 
 .cancel-update-button-container {
@@ -104,4 +105,11 @@
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.update-spot-button:active,
+.cancel-update-button:active {
+    transform: scale(0.96);
+    background-color: #000000;
 }

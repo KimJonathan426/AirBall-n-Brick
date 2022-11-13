@@ -48,12 +48,14 @@
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 
 .edit-button:active,
 .delete-button:active,
 .post-review-button:active {
     background-color: black;
+    transform: scale(0.96);
 }
 
 .single-spot-image-container {
@@ -298,6 +300,7 @@
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 
 .show-all-photos {
@@ -572,7 +575,8 @@
         box-sizing: border-box;
     }
 
-    .reserve-btn {
+    .reserve-btn,
+    .reserve-disabled {
         width: 200px;
     }
 

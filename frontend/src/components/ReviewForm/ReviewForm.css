@@ -83,6 +83,7 @@
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 
 .cancel-review-button-container {
@@ -102,4 +103,11 @@
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.post-review-submit:active,
+.cancel-review-button:active {
+    transform: scale(0.96);
+    background-color: #000000;
 }

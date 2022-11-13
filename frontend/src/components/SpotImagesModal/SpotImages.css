@@ -1,5 +1,4 @@
 .show-all-photos-btn {
-    cursor: pointer;
     display: inline-block;
     margin: 0px;
     position: relative;
@@ -15,11 +14,15 @@
     border-style: solid;
     outline: none;
     padding: 7px 15px;
-    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+    transition: all 0.2s ease-in-out;
     -webkit-tap-highlight-color: transparent;
     border-color: #222222;
     background: #FFFFFF;
-    color: #222222;
+    cursor: pointer;
+}
+
+.show-all-photos-btn:active {
+    transform: scale(0.96);
 }
 
 .show-all-photos-btn-content {

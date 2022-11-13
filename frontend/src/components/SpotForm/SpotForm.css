@@ -108,13 +108,11 @@
     margin-top: 30px;
     margin-bottom: 30px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 
 .host-button:active {
-    margin-top: 32px;
-    margin-bottom: 32px;
-    padding: 18px;
-    width: 155px;
+    transform: scale(0.96);
 }
 
 .host-button-disabled {
