@@ -1,12 +1,9 @@
-import { useState } from 'react';
 import { useDispatch } from 'react-redux'
-import { deleteImage, getSpotImages } from "../../store/spotReducer";
+import { deleteImage } from "../../store/spotReducer";
 import './DeleteImage.css';
 
-const DeleteImage = ({ spotId, imageId }) => {
+const DeleteImage = ({ spotId, imageId, setErrors }) => {
     const dispatch = useDispatch();
-
-    const [errors, setErrors] = useState([]);
 
     const onDelete = async () => {
 
@@ -26,16 +23,7 @@ const DeleteImage = ({ spotId, imageId }) => {
     }
 
     return (
-        <>
-            <button className='delete-image-btn' onClick={onDelete}>Delete Image</button>
-            {errors.length > 0 &&
-            <section className='delete-image-error-box'>
-                <ul className='spot-edit-form-errors delete-image-error'>
-                    <li>{errors}</li>
-                </ul>
-            </section>
-            }
-        </>
+        <button className='delete-image-btn' onClick={onDelete}>Delete Image</button>
     )
 }
 
