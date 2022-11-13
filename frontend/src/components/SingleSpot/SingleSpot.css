@@ -378,7 +378,7 @@
 .bottom-fixed-title {
     position: fixed;
     bottom: 54px;
-    left: 24px;
+    left: 26px;
     font-weight: 600;
 }
 
@@ -465,7 +465,7 @@
 
     .calendar-container-visible,
     .calendar-container-hidden {
-        right: 0;
+        right: 2px;
         top: calc(-80vh - 17px);
         width: 100%;
         min-width: 600px;
@@ -476,6 +476,11 @@
         width: 100%;
         min-width: 600px;
         height: 80vh;
+        padding: 24px 0;
+    }
+
+    .rdrMonthAndYearWrapper {
+        display: none;
     }
 
     .rdrDateDisplay {
@@ -484,7 +489,7 @@
         height: 46px;
         position: relative;
         top: calc(80vh + 5px);
-        right: calc(100% - 248px);
+        right: calc(100% - 276px);
     }
 
     .rdrDateInput > input {
@@ -499,10 +504,51 @@
         top: 7px;
     }
 
+    .rdrDateDisplayWrapper {
+        padding-bottom: 20px;
+        border-bottom: 1px solid #d9e1ec;
+    }
+
     .rdrDateDisplayWrapper::after {
         height: 45px;
         top: calc(80vh + 5px);
-        left: 122px;
+        left: 150px;
+    }
+
+    .rdrMonthsHorizontal {
+        flex-direction: column;
+        overflow: auto;
+    }
+
+    .rdrMonth {
+        width: 100%;
+        max-width: 743px;
+        margin-bottom: 20px;
+        height: fit-content;
+    }
+
+    .rdrMonthName {
+        text-align: left;
+        margin-bottom: 10px;
+        margin-top: 12px;
+    }
+
+    .rdrDay {
+        height: 55px;
+    }
+
+    .select-dates {
+        padding-left: 24px;
+    }
+
+    .clear-close-container-1 {
+        top: 20px;
+        left: 491px;
+    }
+
+    .clear-close-container-2 {
+        top: -27px;
+        left: 491px;
     }
 
     .check-btn-container {

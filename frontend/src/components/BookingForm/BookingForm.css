@@ -316,6 +316,17 @@
     margin: 10px 0 0 0;
 }
 
+.load-months-container {
+    /* display: none; */
+    position: absolute;
+    width: 100%;
+    height: 48px;
+    background-color: #D70466;
+    margin: 16px;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
 .clear-close-container-1 {
     width: fit-content;
     position: relative;

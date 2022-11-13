@@ -216,6 +216,7 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, fixed }) => {
                         endDatePlaceholder='End'
                         dateDisplayFormat='MM/d/yyyy'
                     />
+
                     {!reserve && (
                         <div className='check-btn-container visible'>
                             <button className='check-btn visible' onClick={toggle}>Check availability</button>
