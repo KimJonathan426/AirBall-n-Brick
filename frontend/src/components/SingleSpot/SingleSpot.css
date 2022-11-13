@@ -550,15 +550,21 @@
     }
 
     .clear-close-container-1 {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
         position: relative;
         top: 20px;
-        right: -525px;
+        right: 8px;
     }
 
     .clear-close-container-2 {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
         position: relative;
         top: -27px;
-        right: -525px;
+        right: 8px;
     }
 
     .check-btn-container {
