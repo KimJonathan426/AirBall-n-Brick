@@ -98,19 +98,19 @@ const BookingFormFixed = ({ user, spotId, price, canceled, setCanceled, stateTra
             const monthsElement = document.getElementsByClassName('rdrMonths')[1];
             const repeatButton = document.getElementById('load-more-btn');
 
-            // const dateElement = document.getElementsByClassName('hovering-wrapper')[0];
-            // const repeatElement = document.getElementsByClassName('select-dates')[0];
+            const dateElement = document.getElementsByClassName('fixed-wrapper')[0];
+            const repeatElement = document.getElementsByClassName('fixed-dates')[0];
 
-            // if (dateElement && !repeatElement) {
-            //     const newElement = document.createElement('div');
-            //     const textElement = document.createElement('span');
-            //     textElement.innerText = 'Select dates'
+            if (dateElement && !repeatElement) {
+                const newElement = document.createElement('div');
+                const textElement = document.createElement('span');
+                textElement.innerText = 'Select dates'
 
-            //     newElement.className = 'select-dates';
-            //     newElement.appendChild(textElement);
+                newElement.className = 'select-dates fixed-dates';
+                newElement.appendChild(textElement);
 
-            //     dateElement.insertBefore(newElement, dateElement.firstChild);
-            // }
+                dateElement.insertBefore(newElement, dateElement.firstChild);
+            }
 
             if (!repeatButton && monthsElement) {
                 const loadMoreBtn = document.createElement('button');
@@ -127,6 +127,34 @@ const BookingFormFixed = ({ user, spotId, price, canceled, setCanceled, stateTra
 
                 monthsElement.appendChild(loadMoreBtn);
             }
+
+            if (repeatElement && state[0].startDate && state[0].endDate) {
+                const startDate = state[0].startDate;
+                const endDate = state[0].endDate;
+
+                const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                const startDateMonth = months[startDate.getMonth()];
+                const startDateDay = startDate.getDate();
+                const startDateYear = startDate.getFullYear();
+                const endDateMonth = months[endDate.getMonth()];
+                const endDateDay = endDate.getDate();
+                const endDateYear = endDate.getFullYear();
+
+                const nights = Math.ceil((state[0].endDate.getTime() - state[0].startDate.getTime()) / (1000 * 3600 * 24)) + 1;
+                const date = `${startDateMonth} ${startDateDay}, ${startDateYear} – ${endDateMonth} ${endDateDay}, ${endDateYear}`;
+
+                const dateNode = document.createElement('span');
+                dateNode.innerText = date;
+                dateNode.className = 'select-dates-date'
+
+                if (nights > 1) repeatElement.innerText = nights + ' nights'
+                else repeatElement.innerText = nights + ' night'
+
+                repeatElement.appendChild(dateNode)
+            } else if (repeatElement && !state[0].startDate && !state[0].endDate) {
+                repeatElement.innerText = 'Select dates'
+            }
+
         });
     }, [loading, addDisabledDate, state[0].startDate, state[0].endDate])
 

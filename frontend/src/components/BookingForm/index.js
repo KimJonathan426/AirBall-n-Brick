@@ -101,14 +101,14 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer
     useEffect(() => {
         $(function () {
             const dateElement = document.getElementsByClassName('rdrDateDisplayWrapper')[0];
-            const repeatElement = document.getElementsByClassName('select-dates')[0];
+            const repeatElement = document.getElementsByClassName('hover-dates')[0];
 
             if (dateElement && !dateElement.classList.contains('fixed-wrapper') && !repeatElement) {
                 const newElement = document.createElement('div');
                 const textElement = document.createElement('span');
                 textElement.innerText = 'Select dates'
 
-                newElement.className = 'select-dates';
+                newElement.className = 'select-dates hover-dates';
                 newElement.appendChild(textElement);
 
                 dateElement.insertBefore(newElement, dateElement.firstChild);
