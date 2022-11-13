@@ -232,7 +232,7 @@ const SingleSpot = () => {
                                                         </div>
                                                     </div>
                                                     <div className='booking-btns'>
-                                                        <CancelBookingModal booking={booking} canceled={canceled} setCanceled={setCanceled} />
+                                                        <CancelBookingModal booking={booking} canceled={canceled} setCanceled={setCanceled} spotName={singleSpot.name} />
                                                     </div>
                                                 </div>
                                             )}

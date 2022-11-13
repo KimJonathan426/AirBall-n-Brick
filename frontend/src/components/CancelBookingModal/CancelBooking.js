@@ -4,7 +4,7 @@ import { deleteBooking } from "../../store/bookingReducer";
 import './CancelBooking.css'
 
 
-function CancelBooking({ booking, setShowModal, setCanceled }) {
+function CancelBooking({ booking, setShowModal, setCanceled, spotName }) {
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(true);
@@ -42,7 +42,7 @@ function CancelBooking({ booking, setShowModal, setCanceled }) {
         <h2 className='booking-cancel-header'>Cancel Booking?</h2>
         <div className='confirm-cancel-container'>
           <div>
-            {booking.Spot.name}
+            {spotName}
           </div>
           <div className='cancel-image-container'>
             <img className='cancel-image' src={booking.url} alt='main spot' />
