@@ -9,7 +9,7 @@ import Loading from '../Loading';
 import './BookingEditForm.css';
 
 
-const BookingEditForm = ({ bookings, bookingInfo, setShowModal, setEdited, setAddDisabledDate }) => {
+const BookingEditForm = ({ bookings, bookingInfo, price, setShowModal, setEdited, setAddDisabledDate }) => {
     const dispatch = useDispatch();
 
     const startDate = new Date(bookingInfo.startDate);
@@ -19,7 +19,9 @@ const BookingEditForm = ({ bookings, bookingInfo, setShowModal, setEdited, setAd
     const [disabledDates, setDisabledDates] = useState([]);
     const [disabled, setDisabled] = useState(true);
     const [selectDates, setSelectDates] = useState('');
-    const [nights, setNights] = useState('Select dates');
+    const [nights, setNights] = useState(0);
+    const [nightsHeader, setNightsHeader] = useState('Select dates')
+    const [serviceFee, setServiceFee] = useState(0);
 
     const [loading, setLoading] = useState(false);
 
@@ -33,24 +35,24 @@ const BookingEditForm = ({ bookings, bookingInfo, setShowModal, setEdited, setAd
 
     useEffect(() => {
         const fetchData = async () => {
-                const dates = [];
+            const dates = [];
 
-                for (let booking of bookings) {
-                    if (booking.id === bookingInfo.id) {
-                        continue;
-                    }
-
-                    const bookingStart = new Date(booking.startDate);
-                    const bookingEnd = new Date(booking.endDate);
-
-                    const date = new Date(bookingStart.getTime());
-
-                    while (date <= bookingEnd) {
-                        dates.push(new Date(date));
-                        date.setDate(date.getDate() + 1);
-                    }
-
+            for (let booking of bookings) {
+                if (booking.id === bookingInfo.id) {
+                    continue;
                 }
+
+                const bookingStart = new Date(booking.startDate);
+                const bookingEnd = new Date(booking.endDate);
+
+                const date = new Date(bookingStart.getTime());
+
+                while (date <= bookingEnd) {
+                    dates.push(new Date(date));
+                    date.setDate(date.getDate() + 1);
+                }
+
+            }
 
             setDisabledDates(dates);
             setLoading(true);
@@ -60,27 +62,28 @@ const BookingEditForm = ({ bookings, bookingInfo, setShowModal, setEdited, setAd
     }, [dispatch])
 
     useEffect(() => {
-            if (state[0].startDate && state[0].endDate) {
-                const startDate = state[0].startDate;
-                const endDate = state[0].endDate;
+        if (state[0].startDate && state[0].endDate) {
+            const startDate = state[0].startDate;
+            const endDate = state[0].endDate;
 
-                const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                const startDateMonth = months[startDate.getMonth()];
-                const startDateDay = startDate.getDate();
-                const startDateYear = startDate.getFullYear();
-                const endDateMonth = months[endDate.getMonth()];
-                const endDateDay = endDate.getDate();
-                const endDateYear = endDate.getFullYear();
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const startDateMonth = months[startDate.getMonth()];
+            const startDateDay = startDate.getDate();
+            const startDateYear = startDate.getFullYear();
+            const endDateMonth = months[endDate.getMonth()];
+            const endDateDay = endDate.getDate();
+            const endDateYear = endDate.getFullYear();
 
-                const nights = Math.ceil((state[0].endDate.getTime() - state[0].startDate.getTime()) / (1000 * 3600 * 24)) + 1;
-                const date = `${startDateMonth} ${startDateDay}, ${startDateYear} – ${endDateMonth} ${endDateDay}, ${endDateYear}`;
+            const nights = Math.ceil((state[0].endDate.getTime() - state[0].startDate.getTime()) / (1000 * 3600 * 24)) + 1;
+            const date = `${startDateMonth} ${startDateDay}, ${startDateYear} – ${endDateMonth} ${endDateDay}, ${endDateYear}`;
+            setServiceFee(price * nights * .142);
+            setNights(nights)
+            setSelectDates(date);
 
-                setSelectDates(date);
+            if (nights > 1) setNightsHeader(`${nights} nights`);
+            else setNightsHeader(`${nights} night`);
 
-                if (nights > 1) setNights(`${nights} nights`);
-                else setNights(`${nights} night`);
-
-            }
+        }
     }, [loading, state[0].startDate, state[0].endDate]);
 
     useEffect(() => {
@@ -115,7 +118,9 @@ const BookingEditForm = ({ bookings, bookingInfo, setShowModal, setEdited, setAd
 
         setFocusedRange([0, 0]);
         setSelectDates('');
-        setNights('Select dates');
+        setServiceFee('');
+        setNights(0);
+        setNightsHeader('Select dates');
 
         setState([
             {
@@ -151,7 +156,7 @@ const BookingEditForm = ({ bookings, bookingInfo, setShowModal, setEdited, setAd
                 <label className='check-in-label'></label>
                 <label className='check-out-label'></label>
                 <div className='select-dates-edit'>
-                    {nights}
+                    {nightsHeader}
                     <span>{selectDates}</span>
                 </div>
                 <div className='calendar-edit-container'>
@@ -178,8 +183,45 @@ const BookingEditForm = ({ bookings, bookingInfo, setShowModal, setEdited, setAd
                     <div className='calendar-edit-btn-container'>
                         <button disabled={disabled} className={disabled ? 'save-disabled' : 'save-btn'} onClick={saveBooking} >Save</button>
                         <div>
-                        <button className='clear-btn' onClick={clearDates}>Clear dates</button>
-                        <button className='close-btn' onClick={() => setShowModal(false)}>Close</button>
+                            <button className='clear-btn' onClick={clearDates}>Clear dates</button>
+                            <button className='close-btn' onClick={() => setShowModal(false)}>Close</button>
+                        </div>
+                    </div>
+                    <div className='edit-booking-details'>
+                        <div className='price-list'>
+                            <h3 className='detail-headers'>
+                                Price Details
+                            </h3>
+                            <div className='price-booking-info'>
+                                {nights === 1 ?
+                                    <div>
+                                        ${Number(price).toLocaleString('en-US', { minimumFractionDigits: 2 })} x 1 night
+                                    </div>
+                                    :
+                                    <div>
+                                        ${Number(price).toLocaleString('en-US', { minimumFractionDigits: 2 })} x {nights} nights
+                                    </div>
+                                }
+                                <div>
+                                    ${Number(price * nights).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                                </div>
+                            </div>
+                            <div className='price-booking-info'>
+                                <div>
+                                    Service fee
+                                </div>
+                                <div>
+                                    ${Number(serviceFee).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                </div>
+                            </div>
+                        </div>
+                        <div className='price-total'>
+                            <div>
+                                Total
+                            </div>
+                            <div>
+                                ${Number(price * nights + serviceFee).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                            </div>
                         </div>
                     </div>
                 </div>

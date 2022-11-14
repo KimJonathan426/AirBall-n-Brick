@@ -119,3 +119,7 @@
     transform: scale(0.96);
     background-color: #000000;
 }
+
+.edit-booking-details {
+    padding: 0 24px 24px 24px;
+}

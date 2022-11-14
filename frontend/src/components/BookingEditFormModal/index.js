@@ -3,7 +3,7 @@ import { Modal } from '../../context/Modal';
 import BookingEditForm from './BookingEditForm';
 import './BookingEditForm.css'
 
-function BookingEditFormModal({ bookings, bookingInfo, setEdited, setAddDisabledDate }) {
+function BookingEditFormModal({ bookings, bookingInfo, price, setEdited, setAddDisabledDate }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -11,7 +11,7 @@ function BookingEditFormModal({ bookings, bookingInfo, setEdited, setAddDisabled
       <button className='edit-booking-btn' onClick={() => setShowModal(true)}>Edit Booking</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <BookingEditForm bookings={bookings} bookingInfo={bookingInfo} setShowModal={setShowModal} setEdited={setEdited} setAddDisabledDate={setAddDisabledDate} />
+          <BookingEditForm bookings={bookings} bookingInfo={bookingInfo} price={price} setShowModal={setShowModal} setEdited={setEdited} setAddDisabledDate={setAddDisabledDate} />
         </Modal>
       )}
     </>
