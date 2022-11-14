@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createImages } from '../../store/spotReducer';
 import loadingGif from '../../images/host-court-loading.gif';
@@ -8,9 +8,18 @@ const SpotImagesForm = ({ id, hideForm }) => {
     const dispatch = useDispatch();
 
     const [images, setImages] = useState([]);
-    const [disabled, setDisabled] = useState(false);
+    const [uploading, setUploading] = useState(false);
+    const [disabled, setDisabled] = useState(true);
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
+
+    useEffect(() => {
+        if (images.length) {
+            setDisabled(false);
+        } else {
+            setDisabled(true);
+        }
+    }, [images])
 
     const updateFiles = (e) => {
         setValidationErrors([]);
@@ -21,7 +30,8 @@ const SpotImagesForm = ({ id, hideForm }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
-        setDisabled(true);
+        setUploading(true);
+        setDisabled()
 
         const errors = [];
 
@@ -32,7 +42,7 @@ const SpotImagesForm = ({ id, hideForm }) => {
         setValidationErrors(errors)
 
         if (validationErrors.length || errors.length ) {
-            setDisabled(false);
+            setUploading(false);
             return alert('Cannot submit, some errors need to be fixed!');
         }
 
@@ -47,6 +57,7 @@ const SpotImagesForm = ({ id, hideForm }) => {
             hideForm();
         }
 
+        setUploading(false);
         setHasSubmitted(false);
     }
 
@@ -73,19 +84,19 @@ const SpotImagesForm = ({ id, hideForm }) => {
                 onChange={updateFiles} />
 
             <div className='update-spot-button-container'>
-                {disabled ?
-                    <button disabled={disabled} className={disabled ? 'update-spot-button update-disabled' : 'update-spot-button'} type='submit'>
+                {uploading ?
+                    <button disabled={uploading} className='update-disabled' type='submit'>
                         <div className='spot-forms-loading'>
                             <img src={loadingGif} alt='loading...' />
                         </div>
                     </button>
                     :
-                    <button className='update-spot-button' type='submit'>Add Images</button>
+                    <button disabled={disabled} className={disabled ? 'update-disabled' : 'update-spot-button'} type='submit'>Add Images</button>
                 }
             </div>
 
             <div className='cancel-update-button-container'>
-                <button disabled={disabled} className={disabled ? 'cancel-update-button cancel-disabled' : 'cancel-update-button'} type='button' onClick={handleCancelClick}>Cancel</button>
+                <button className='cancel-update-button' type='button' onClick={handleCancelClick}>Cancel</button>
             </div>
         </form>
     )
