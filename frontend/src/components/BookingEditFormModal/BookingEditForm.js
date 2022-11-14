@@ -3,13 +3,13 @@ import 'react-date-range/dist/theme/default.css';
 import { DateRangePicker } from 'react-date-range';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { editBooking } from '../../store/bookingReducer';
+import { updateBooking } from '../../store/bookingReducer';
 import $ from 'jquery';
 import Loading from '../Loading';
 import './BookingEditForm.css';
 
 
-const BookingEditForm = ({ bookings, bookingInfo, setShowModal, setEdited }) => {
+const BookingEditForm = ({ bookings, bookingInfo, setShowModal, setEdited, setAddDisabledDate }) => {
     const dispatch = useDispatch();
 
     const startDate = new Date(bookingInfo.startDate);
@@ -126,8 +126,22 @@ const BookingEditForm = ({ bookings, bookingInfo, setShowModal, setEdited }) => 
         ]);
     };
 
-    const updateBooking = (e) => {
+    const saveBooking = async (e) => {
         e.preventDefault();
+
+        const payload = {
+            id: bookingInfo.id,
+            startDate: state[0].startDate,
+            endDate: state[0].endDate
+        }
+
+        const res = await dispatch(updateBooking(payload));
+
+        if (res) {
+            setAddDisabledDate(true);
+            setEdited(true);
+            setShowModal(false);
+        }
     }
 
 
@@ -162,7 +176,7 @@ const BookingEditForm = ({ bookings, bookingInfo, setShowModal, setEdited }) => 
                     />
 
                     <div className='calendar-edit-btn-container'>
-                        <button disabled={disabled} className={disabled ? 'save-disabled' : 'save-btn'} onClick={updateBooking} >Save</button>
+                        <button disabled={disabled} className={disabled ? 'save-disabled' : 'save-btn'} onClick={saveBooking} >Save</button>
                         <div>
                         <button className='clear-btn' onClick={clearDates}>Clear dates</button>
                         <button className='close-btn' onClick={() => setShowModal(false)}>Close</button>
