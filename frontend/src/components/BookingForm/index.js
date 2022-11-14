@@ -12,7 +12,7 @@ import ConfirmBookingModal from '../ConfirmBookingModal';
 import Loading from '../Loading';
 import './BookingForm.css';
 
-const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer, setStateTransfer }) => {
+const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer, setStateTransfer, edited, setEdited, addDisabledDate, setAddDisabledDate }) => {
     const dispatch = useDispatch();
     const bookingRef = useRef(null);
     const bookingState = useSelector(state => state.booking)
@@ -21,7 +21,6 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer
     const [isOpen, setIsOpen] = useState(false);
     const [focusedRange, setFocusedRange] = useState([0, 0]);
     const [disabledDates, setDisabledDates] = useState([]);
-    const [addDisabledDate, setAddDisabledDate] = useState(false);
 
     const [loading, setLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -61,11 +60,12 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer
 
             setAddDisabledDate(false);
             setCanceled(false);
+            setEdited(false);
             setLoading(true);
         }
 
         fetchData();
-    }, [dispatch, addDisabledDate, canceled])
+    }, [dispatch, addDisabledDate, canceled, edited])
 
     useEffect(() => {
         $(function () {
@@ -199,7 +199,7 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer
 
 
     return (
-        loading && !addDisabledDate ?
+        loading ?
             <>
                 <label className='check-in-label'></label>
                 <label className='check-out-label'></label>

@@ -11,7 +11,7 @@ import listenForOutsideClicks from '../ListenForOutsideClicks';
 import ConfirmBookingModal from '../ConfirmBookingModal';
 import Loading from '../Loading';
 
-const BookingFormFixed = ({ user, spotId, price, canceled, setCanceled, stateTransfer, setStateTransfer }) => {
+const BookingFormFixed = ({ user, spotId, price, canceled, setCanceled, stateTransfer, setStateTransfer, edited, setEdited, addDisabledDate, setAddDisabledDate }) => {
     const dispatch = useDispatch();
     const bookingRef = useRef(null);
     const bookingState = useSelector(state => state.booking)
@@ -21,7 +21,6 @@ const BookingFormFixed = ({ user, spotId, price, canceled, setCanceled, stateTra
     const [isOpen, setIsOpen] = useState(false);
     const [focusedRange, setFocusedRange] = useState([0, 0]);
     const [disabledDates, setDisabledDates] = useState([]);
-    const [addDisabledDate, setAddDisabledDate] = useState(false);
     const [loading, setLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
@@ -60,11 +59,12 @@ const BookingFormFixed = ({ user, spotId, price, canceled, setCanceled, stateTra
 
             setAddDisabledDate(false);
             setCanceled(false);
+            setEdited(false);
             setLoading(true);
         }
 
         fetchData();
-    }, [dispatch, addDisabledDate, canceled])
+    }, [dispatch, addDisabledDate, canceled, edited])
 
     useEffect(() => {
         $(function () {
@@ -213,7 +213,7 @@ const BookingFormFixed = ({ user, spotId, price, canceled, setCanceled, stateTra
 
 
     return (
-        loading && !addDisabledDate ?
+        loading ?
             <>
                 <label className='check-in-label'></label>
                 <label className='check-out-label'></label>
