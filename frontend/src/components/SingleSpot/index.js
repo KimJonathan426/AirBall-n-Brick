@@ -235,8 +235,8 @@ const SingleSpot = () => {
                                                         </div>
                                                     </div>
                                                     <div className='booking-btns'>
-                                                        <CancelBookingModal booking={booking} canceled={canceled} setCanceled={setCanceled} spotName={singleSpot.name} />
                                                         <BookingEditFormModal bookings={Object.values(bookingState)} bookingInfo={booking} price={singleSpot.price} setEdited={setEdited} setAddDisabledDate={setAddDisabledDate} />
+                                                        <CancelBookingModal booking={booking} canceled={canceled} setCanceled={setCanceled} spotName={singleSpot.name} />
                                                     </div>
                                                 </div>
                                             )}
