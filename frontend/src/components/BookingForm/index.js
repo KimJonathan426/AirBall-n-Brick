@@ -75,7 +75,7 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer
                 key: 'selection'
             }
         ])
-    }, [addDisabledDate, edited])
+    }, [edited])
 
     useEffect(() => {
         $(function () {
@@ -144,7 +144,7 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer
                 dateNode.className = 'select-dates-date'
 
                 if (days > 1) repeatElement.innerText = days + ' days'
-                else repeatElement.innerText = days + ' night'
+                else repeatElement.innerText = days + ' day'
 
                 repeatElement.appendChild(dateNode)
             } else if (repeatElement && !state[0].startDate && !state[0].endDate) {
