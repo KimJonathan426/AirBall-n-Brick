@@ -14,7 +14,7 @@ const SpotEditForm = ({ spot, id, hideForm }) => {
     const [name, setName] = useState(spot.name);
     const [description, setDescription] = useState(spot.description);
     const [price, setPrice] = useState(spot.price);
-    const [disabled, setDisabled] = useState(false);
+    const [disabled, setDisabled] = useState(true);
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -42,10 +42,19 @@ const SpotEditForm = ({ spot, id, hideForm }) => {
         setValidationErrors(errors)
     }, [address, city, state, country, name, description, price]);
 
+    useEffect(() => {
+        if (address === spot.address && city === spot.city && state === spot.state && country === spot.country
+            && name === spot.name && description === spot.description && price === spot.price) {
+            setDisabled(true);
+        } else {
+            setDisabled(false);
+        }
+    }, [disabled, address, spot.address, city, spot.city, state, spot.state, country, spot.country,
+        name, spot.name, description, spot.description, price, spot.price])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
-        setDisabled(true);
 
         if (validationErrors.length) {
             setDisabled(false);
@@ -110,19 +119,11 @@ const SpotEditForm = ({ spot, id, hideForm }) => {
             <input type='number' value={price} onChange={updatePrice} required />
 
             <div className='update-spot-button-container'>
-                {disabled ?
-                    <button disabled={disabled} className={disabled ? 'update-spot-button update-disabled' : 'update-spot-button'} type='submit'>
-                        <div className='spot-forms-loading'>
-                            <img src={loadingGif} alt='loading...' />
-                        </div>
-                    </button>
-                    :
-                    <button className='update-spot-button' type='submit'>Update Spot</button>
-                }
+                    <button disabled={disabled} className={disabled ? 'update-spot-disabled' : 'update-spot-button'} type='submit'>Update Spot</button>
             </div>
 
             <div className='cancel-update-button-container'>
-                <button disabled={disabled} className={disabled ? 'cancel-update-button cancel-disabled' : 'cancel-update-button'} type='button' onClick={handleCancelClick}>Cancel</button>
+                <button className={'cancel-update-button'} type='button' onClick={handleCancelClick}>Cancel</button>
             </div>
         </form>
     )
