@@ -180,13 +180,6 @@ const BookingEditForm = ({ bookings, bookingInfo, price, setShowModal, setEdited
                         dateDisplayFormat='MM/d/yyyy'
                     />
 
-                    <div className='calendar-edit-btn-container'>
-                        <button disabled={disabled} className={disabled ? 'save-disabled' : 'save-btn'} onClick={saveBooking} >Save</button>
-                        <div>
-                            <button className='clear-btn' onClick={clearDates}>Clear dates</button>
-                            <button className='close-btn' onClick={() => setShowModal(false)}>Close</button>
-                        </div>
-                    </div>
                     <div className='edit-booking-details'>
                         <div className='price-list'>
                             <h3 className='detail-headers'>
@@ -224,8 +217,14 @@ const BookingEditForm = ({ bookings, bookingInfo, price, setShowModal, setEdited
                             </div>
                         </div>
                     </div>
+                    <div className='calendar-edit-btn-container'>
+                        <button disabled={disabled} className={disabled ? 'save-disabled' : 'save-btn'} onClick={saveBooking} >Save</button>
+                        <div>
+                            <button className='clear-btn' onClick={clearDates}>Clear dates</button>
+                            <button className='close-btn' onClick={() => setShowModal(false)}>Close</button>
+                        </div>
+                    </div>
                 </div>
-
             </div>
             :
             <Loading />
