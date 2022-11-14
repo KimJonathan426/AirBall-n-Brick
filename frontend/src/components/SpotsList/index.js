@@ -66,7 +66,7 @@ const SpotList = () => {
                             </div>
                             <div className='price-info'>
                                 ${Number(spot.price).toLocaleString('en-US', {maximumFractionDigits: 0})}
-                                <span> night</span>
+                                <span> day</span>
                             </div>
                         </div>
                     </NavLink>

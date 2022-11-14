@@ -19,8 +19,8 @@ const BookingEditForm = ({ bookings, bookingInfo, price, setShowModal, setEdited
     const [disabledDates, setDisabledDates] = useState([]);
     const [disabled, setDisabled] = useState(true);
     const [selectDates, setSelectDates] = useState('');
-    const [nights, setNights] = useState(0);
-    const [nightsHeader, setNightsHeader] = useState('Select dates')
+    const [days, setDays] = useState(0);
+    const [daysHeader, setDaysHeader] = useState('Select dates')
     const [serviceFee, setServiceFee] = useState(0);
 
     const [loading, setLoading] = useState(false);
@@ -74,14 +74,14 @@ const BookingEditForm = ({ bookings, bookingInfo, price, setShowModal, setEdited
             const endDateDay = endDate.getDate();
             const endDateYear = endDate.getFullYear();
 
-            const nights = Math.ceil((state[0].endDate.getTime() - state[0].startDate.getTime()) / (1000 * 3600 * 24)) + 1;
+            const days = Math.ceil((state[0].endDate.getTime() - state[0].startDate.getTime()) / (1000 * 3600 * 24)) + 1;
             const date = `${startDateMonth} ${startDateDay}, ${startDateYear} – ${endDateMonth} ${endDateDay}, ${endDateYear}`;
-            setServiceFee(price * nights * .142);
-            setNights(nights)
+            setServiceFee(price * days * .142);
+            setDays(days)
             setSelectDates(date);
 
-            if (nights > 1) setNightsHeader(`${nights} nights`);
-            else setNightsHeader(`${nights} night`);
+            if (days > 1) setDaysHeader(`${days} days`);
+            else setDaysHeader(`${days} day`);
 
         }
     }, [loading, state[0].startDate, state[0].endDate]);
@@ -119,8 +119,8 @@ const BookingEditForm = ({ bookings, bookingInfo, price, setShowModal, setEdited
         setFocusedRange([0, 0]);
         setSelectDates('');
         setServiceFee('');
-        setNights(0);
-        setNightsHeader('Select dates');
+        setDays(0);
+        setDaysHeader('Select dates');
 
         setState([
             {
@@ -156,7 +156,7 @@ const BookingEditForm = ({ bookings, bookingInfo, price, setShowModal, setEdited
                 <label className='check-in-label'></label>
                 <label className='check-out-label'></label>
                 <div className='select-dates-edit'>
-                    {nightsHeader}
+                    {daysHeader}
                     <span>{selectDates}</span>
                 </div>
                 <div className='calendar-edit-container'>
@@ -193,17 +193,17 @@ const BookingEditForm = ({ bookings, bookingInfo, price, setShowModal, setEdited
                                 Price Details
                             </h3>
                             <div className='price-booking-info'>
-                                {nights === 1 ?
+                                {days === 1 ?
                                     <div>
-                                        ${Number(price).toLocaleString('en-US', { minimumFractionDigits: 2 })} x 1 night
+                                        ${Number(price).toLocaleString('en-US', { minimumFractionDigits: 2 })} x 1 day
                                     </div>
                                     :
                                     <div>
-                                        ${Number(price).toLocaleString('en-US', { minimumFractionDigits: 2 })} x {nights} nights
+                                        ${Number(price).toLocaleString('en-US', { minimumFractionDigits: 2 })} x {days} days
                                     </div>
                                 }
                                 <div>
-                                    ${Number(price * nights).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                                    ${Number(price * days).toLocaleString('en-US', { minimumFractionDigits: 2 })}
                                 </div>
                             </div>
                             <div className='price-booking-info'>
@@ -220,7 +220,7 @@ const BookingEditForm = ({ bookings, bookingInfo, price, setShowModal, setEdited
                                 Total
                             </div>
                             <div>
-                                ${Number(price * nights + serviceFee).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                ${Number(price * days + serviceFee).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                             </div>
                         </div>
                     </div>

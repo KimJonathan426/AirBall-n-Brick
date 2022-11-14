@@ -246,7 +246,7 @@ const SingleSpot = () => {
                             </div>
                             <div className='hovering-content'>
                                 <div className='hovering-content-title'>
-                                    ${Number(singleSpot.price)?.toLocaleString('en-US', { maximumFractionDigits: 0 })} <span>night</span>
+                                    ${Number(singleSpot.price)?.toLocaleString('en-US', { maximumFractionDigits: 0 })} <span>day</span>
                                 </div>
                                 <BookingForm user={user} spotId={singleSpot?.id} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} stateTransfer={stateTransfer} setStateTransfer={setStateTransfer} edited={edited} setEdited={setEdited} addDisabledDate={addDisabledDate} setAddDisabledDate={setAddDisabledDate}/>
                             </div>
@@ -279,7 +279,7 @@ const SingleSpot = () => {
                             <BookingFormFixed user={user} spotId={singleSpot?.id} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} stateTransfer={stateTransfer} setStateTransfer={setStateTransfer} edited={edited} setEdited={setEdited} addDisabledDate={addDisabledDate} setAddDisabledDate={setAddDisabledDate}/>
                         </div>
                         <div className='bottom-fixed-title'>
-                            ${Number(singleSpot.price)?.toLocaleString('en-US', { maximumFractionDigits: 0 })} <span>night</span>
+                            ${Number(singleSpot.price)?.toLocaleString('en-US', { maximumFractionDigits: 0 })} <span>day</span>
                         </div>
                     </>
                     :

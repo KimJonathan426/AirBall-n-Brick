@@ -19,8 +19,8 @@ function ConfirmBookingModal({ userId, spotId, price, state, setState, setShowMo
     const endDateDay = endDate.getDate();
     const endDateYear = endDate.getFullYear();
 
-    const nights = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)) + 1;
-    const serviceFee = (price * nights) * .142;
+    const days = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)) + 1;
+    const serviceFee = (price * days) * .142;
 
     let date = `${startDateMonth} ${startDateDay} – ${endDateDay}`;
 
@@ -90,17 +90,17 @@ function ConfirmBookingModal({ userId, spotId, price, state, setState, setShowMo
                         Price Details
                     </h3>
                     <div className='price-booking-info'>
-                        {nights === 1 ?
+                        {days === 1 ?
                             <div>
-                                ${Number(price).toLocaleString('en-US', { minimumFractionDigits: 2 })} x 1 night
+                                ${Number(price).toLocaleString('en-US', { minimumFractionDigits: 2 })} x 1 day
                             </div>
                             :
                             <div>
-                                ${Number(price).toLocaleString('en-US', { minimumFractionDigits: 2 })} x {nights} nights
+                                ${Number(price).toLocaleString('en-US', { minimumFractionDigits: 2 })} x {days} days
                             </div>
                         }
                         <div>
-                            ${(price * nights).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                            ${(price * days).toLocaleString('en-US', { minimumFractionDigits: 2 })}
                         </div>
                     </div>
                     <div className='price-booking-info'>
@@ -117,7 +117,7 @@ function ConfirmBookingModal({ userId, spotId, price, state, setState, setShowMo
                         Total
                     </div>
                     <div>
-                        ${(price * nights + serviceFee).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        ${(price * days + serviceFee).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </div>
                 </div>
                 <div className='confirm-booking-btns'>
@@ -150,10 +150,10 @@ function ConfirmBookingModal({ userId, spotId, price, state, setState, setShowMo
                         </h3>
                         <div className='price-booking-info'>
                             <div>
-                                ${Number(price).toLocaleString('en-US', { minimumFractionDigits: 2 })} x {nights} nights
+                                ${Number(price).toLocaleString('en-US', { minimumFractionDigits: 2 })} x {days} days
                             </div>
                             <div>
-                                ${(price * nights).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                                ${(price * days).toLocaleString('en-US', { minimumFractionDigits: 2 })}
                             </div>
                         </div>
                         <div className='price-booking-info'>
@@ -170,7 +170,7 @@ function ConfirmBookingModal({ userId, spotId, price, state, setState, setShowMo
                             Total
                         </div>
                         <div>
-                            ${(price * nights + serviceFee).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                            ${(price * days + serviceFee).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                         </div>
                     </div>
                     <div className='confirm-booking-btns'>

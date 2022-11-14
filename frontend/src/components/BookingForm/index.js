@@ -68,6 +68,16 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer
     }, [dispatch, addDisabledDate, canceled, edited])
 
     useEffect(() => {
+        setState([
+            {
+                startDate: null,
+                endDate: null,
+                key: 'selection'
+            }
+        ])
+    }, [addDisabledDate, edited])
+
+    useEffect(() => {
         $(function () {
             const calendarElement = document.getElementsByClassName('rdrDateDisplayWrapper')[0];
 
@@ -126,15 +136,15 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer
                 const endDateDay = endDate.getDate();
                 const endDateYear = endDate.getFullYear();
 
-                const nights = Math.ceil((state[0].endDate.getTime() - state[0].startDate.getTime()) / (1000 * 3600 * 24)) + 1;
+                const days = Math.ceil((state[0].endDate.getTime() - state[0].startDate.getTime()) / (1000 * 3600 * 24)) + 1;
                 const date = `${startDateMonth} ${startDateDay}, ${startDateYear} – ${endDateMonth} ${endDateDay}, ${endDateYear}`;
 
                 const dateNode = document.createElement('span');
                 dateNode.innerText = date;
                 dateNode.className = 'select-dates-date'
 
-                if (nights > 1) repeatElement.innerText = nights + ' nights'
-                else repeatElement.innerText = nights + ' night'
+                if (days > 1) repeatElement.innerText = days + ' days'
+                else repeatElement.innerText = days + ' night'
 
                 repeatElement.appendChild(dateNode)
             } else if (repeatElement && !state[0].startDate && !state[0].endDate) {
