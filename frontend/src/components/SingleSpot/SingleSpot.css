@@ -467,8 +467,9 @@
         display: none;
     }
 
-    .calendar-container-visible,
-    .calendar-container-hidden {
+
+    .booking-form-bottom-fixed .calendar-container-visible,
+    .booking-form-bottom-fixed .calendar-container-hidden {
         right: 2px;
         top: calc(-80vh - 17px);
         width: 100%;
@@ -476,7 +477,7 @@
         height: 80vh;
     }
 
-    .rdrCalendarWrapper {
+    .booking-form-bottom-fixed .rdrCalendarWrapper {
         width: 100%;
         min-width: 400px;
         height: 80vh;
@@ -484,11 +485,11 @@
         box-sizing: border-box;
     }
 
-    .rdrMonthAndYearWrapper {
+    .booking-form-bottom-fixed .rdrMonthAndYearWrapper {
         display: none;
     }
 
-    .rdrDateDisplay {
+    .booking-form-bottom-fixed .rdrDateDisplay {
         width: 250px;
         min-width: 250px;
         height: 46px;
@@ -497,30 +498,30 @@
         right: calc(100% - 276px);
     }
 
-    .rdrDateInput > input {
+    .booking-form-bottom-fixed .rdrDateInput > input {
         padding-top: 10px;
     }
 
-    .rdrDateDisplay > span:nth-child(1)::after {
+    .booking-form-bottom-fixed .rdrDateDisplay > span:nth-child(1)::after {
         top: 7px;
     }
 
-    .rdrDateDisplay > span:nth-child(2)::after {
+    .booking-form-bottom-fixed .rdrDateDisplay > span:nth-child(2)::after {
         top: 7px;
     }
 
-    .rdrDateDisplayWrapper {
+    .booking-form-bottom-fixed .rdrDateDisplayWrapper {
         padding-bottom: 20px;
         border-bottom: 1px solid #d9e1ec;
     }
 
-    .rdrDateDisplayWrapper::after {
+    .booking-form-bottom-fixed .rdrDateDisplayWrapper::after {
         height: 45px;
         top: calc(80vh + 5px);
         left: 150px;
     }
 
-    .rdrMonthsHorizontal {
+    .booking-form-bottom-fixed .rdrMonthsHorizontal {
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
@@ -528,29 +529,29 @@
         height: 100%;
     }
 
-    .rdrMonth {
+    .booking-form-bottom-fixed .rdrMonth {
         width: 100%;
         max-width: 550px;
         margin-bottom: 20px;
         height: fit-content;
     }
 
-    .rdrMonthName {
+    .booking-form-bottom-fixed .rdrMonthName {
         text-align: left;
         margin-bottom: 10px;
         margin-top: 12px;
     }
 
-    .rdrDay {
+    .booking-form-bottom-fixed .rdrDay {
         height: 55px;
     }
 
-    .select-dates {
+    .booking-form-bottom-fixed .select-dates {
         padding-left: 24px;
         height: 53px;
     }
 
-    .clear-close-container-1 {
+    .booking-form-bottom-fixed .clear-close-container-1 {
         display: flex;
         justify-content: flex-end;
         width: 100%;
@@ -559,7 +560,7 @@
         right: 8px;
     }
 
-    .clear-close-container-2 {
+    .booking-form-bottom-fixed .clear-close-container-2 {
         display: flex;
         justify-content: flex-end;
         width: 100%;
@@ -568,7 +569,7 @@
         right: 8px;
     }
 
-    .check-btn-container {
+    .booking-form-bottom-fixed .check-btn-container {
         width: 100%;
         min-width: 510px;
         height: 47px;
@@ -576,7 +577,7 @@
         left: 2px;
     }
 
-    .calendar-btns-container {
+    .booking-form-bottom-fixed .calendar-btns-container {
         width: 100%;
         min-width: 510px;
         height: fit-content;
@@ -586,27 +587,27 @@
         box-sizing: border-box;
     }
 
-    .reserve-btn,
-    .reserve-disabled {
+    .booking-form-bottom-fixed .reserve-btn,
+    .booking-form-bottom-fixed .reserve-disabled {
         width: 200px;
         height: 44px;
         margin-right: 24px;
     }
 
-    .reserve-disabled > span {
+    .booking-form-bottom-fixed .reserve-disabled > span {
         display: none;
     }
 
-    .reserve-disabled::after {
+    .booking-form-bottom-fixed .reserve-disabled::after {
         content: 'Log in to reserve';
     }
 
-    .reserve-note-charge,
-    .reserve-note-log {
+    .booking-form-bottom-fixed .reserve-note-charge,
+    .booking-form-bottom-fixed .reserve-note-log {
         display: none;
     }
 
-    .check-btn {
+    .booking-form-bottom-fixed .check-btn {
         width: 200px;
         height: 44px;
         margin-right: 24px;
