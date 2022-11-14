@@ -53,6 +53,18 @@ router.post('/new', asyncHandler(async (req, res) => {
     });
 }));
 
+router.put('/:id', asyncHandler(async (req, res) => {
+    const { id, startDate, endDate } = req.body;
+
+    const booking = await Booking.findByPk(id);
+
+    await booking.update({ startDate, endDate });
+
+    return res.json({
+        booking
+    });
+}));
+
 router.delete('/:id', asyncHandler(async (req, res) => {
     const booking = await Booking.findByPk(req.params.id);
 
