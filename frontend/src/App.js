@@ -7,6 +7,7 @@ import SpotList from "./components/SpotsList";
 import SpotForm from "./components/SpotForm";
 import SingleSpot from "./components/SingleSpot";
 import Trips from "./components/Trips";
+import HostDashboard from "./components/HostDashboard";
 import About from "./components/About";
 import PageNotFound from "./components/PageNotFound";
 
@@ -34,6 +35,9 @@ function App() {
           </Route>
           <Route path="/trips/v1">
             <Trips />
+          </Route>
+          <Route path="/hosting">
+            <HostDashboard />
           </Route>
           <Route path="/about">
             <About />
