@@ -26,12 +26,13 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer
     const [showModal, setShowModal] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
 
-    useEffect(listenForOutsideClicks(
-        listening,
-        setListening,
-        bookingRef,
-        setIsOpen)
-    );
+    useEffect(() => {
+        listenForOutsideClicks(
+            listening,
+            setListening,
+            bookingRef,
+            setIsOpen)
+    }, [listening]);
 
     const [state, setState] = useState(stateTransfer);
 
@@ -65,7 +66,8 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer
         }
 
         fetchData();
-    }, [dispatch, addDisabledDate, canceled, edited])
+        // eslint-disable-next-line
+    }, [dispatch, addDisabledDate, canceled, edited, setAddDisabledDate, setCanceled, setEdited, spotId])
 
     useEffect(() => {
         setState([
@@ -152,7 +154,7 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer
             }
 
         });
-    }, [loading, addDisabledDate, state[0].startDate, state[0].endDate])
+    }, [loading, addDisabledDate, state])
 
     useEffect(() => {
         if (state[0].startDate) {
@@ -176,11 +178,11 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer
         } else {
             setReserve(false);
         }
-    }, [state[0].startDate, state[0].endDate])
+    }, [state])
 
     useEffect(() => {
         setStateTransfer(state);
-    }, [state])
+    }, [state, setStateTransfer])
 
     useEffect(() => {
         setState(stateTransfer);
