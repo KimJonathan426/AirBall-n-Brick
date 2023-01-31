@@ -1,7 +1,7 @@
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { DateRangePicker } from 'react-date-range';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateBooking } from '../../store/bookingReducer';
 import $ from 'jquery';
@@ -12,8 +12,8 @@ import './BookingEditForm.css';
 const BookingEditForm = ({ bookings, bookingInfo, price, setShowModal, setEdited, setAddDisabledDate }) => {
     const dispatch = useDispatch();
 
-    const startDate = new Date(bookingInfo.startDate);
-    const endDate = new Date(bookingInfo.endDate);
+    const startDate = useMemo(() => new Date(bookingInfo.startDate), [bookingInfo.startDate]);
+    const endDate = useMemo(() => new Date(bookingInfo.endDate),  [bookingInfo.endDate]);
 
     const [focusedRange, setFocusedRange] = useState([0, 0]);
     const [disabledDates, setDisabledDates] = useState([]);
@@ -59,7 +59,7 @@ const BookingEditForm = ({ bookings, bookingInfo, price, setShowModal, setEdited
         }
 
         fetchData();
-    }, [dispatch])
+    }, [dispatch, bookings, bookingInfo.id])
 
     useEffect(() => {
         if (state[0].startDate && state[0].endDate) {
@@ -84,7 +84,7 @@ const BookingEditForm = ({ bookings, bookingInfo, price, setShowModal, setEdited
             else setDaysHeader(`${days} day`);
 
         }
-    }, [loading, state[0].startDate, state[0].endDate]);
+    }, [loading, price, state]);
 
     useEffect(() => {
         if (state[0].startDate?.getTime() === startDate.getTime() && state[0].endDate?.getTime() === endDate.getTime()) {
@@ -111,7 +111,7 @@ const BookingEditForm = ({ bookings, bookingInfo, price, setShowModal, setEdited
             })
         }
 
-    }, [state[0].startDate, state[0].endDate]);
+    }, [state, startDate, endDate]);
 
     const clearDates = (e) => {
         e.preventDefault()
