@@ -27,7 +27,7 @@ const SpotImages = ({ setRefresh, setShowModal, user, spot }) => {
         }
 
         fetchData();
-    }, [dispatch])
+    }, [dispatch, spot.id])
 
     const closeModal = (e) => {
         e.preventDefault();
@@ -59,7 +59,7 @@ const SpotImages = ({ setRefresh, setShowModal, user, spot }) => {
                             <div className='wrapper'>
                                 {images.map(image =>
                                     <div className='show-all-single-image' key={image.id} id={`image-${image.id}`}>
-                                        <img src={image.url} alt='spot image' />
+                                        <img src={image.url} alt='listing' />
                                         {user === spot.userId &&
                                             <DeleteImage spotId={spot.id} imageId={image.id} setErrors={setErrors} />
                                         }
@@ -81,7 +81,7 @@ const SpotImages = ({ setRefresh, setShowModal, user, spot }) => {
                             <div className='wrapper'>
                                 {images.map(image =>
                                     <div className='show-all-single-image' key={image.id} id={`image-${image.id}`}>
-                                        <img src={image.url} alt='spot image' />
+                                        <img src={image.url} alt='listing' />
                                     </div>
                                 )}
                             </div>
