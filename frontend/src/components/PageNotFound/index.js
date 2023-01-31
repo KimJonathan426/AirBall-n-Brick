@@ -4,21 +4,24 @@ import './PageNotFound.css'
 const PageNotFound = () => {
 
     return (
-        <div className='page-not-found'>
-            <h4>
-                *Whistle* Travel!!!
-            </h4>
-            <div>
-                You traveled to a non-existent page.
-                Avoid this violation by going to a valid path!
+        <div className='page-not-found-container'>
+            <div className='not-found-main'>
+                <div className='not-found-text'>
+                    <h1>
+                        Oops!
+                    </h1>
+                    <h2>
+                        You traveled to a non-existent page.
+                        Avoid this violation by going to a valid page!
+                    </h2>
+                    <h3>
+                        Error code: 404
+                    </h3>
+                </div>
+                <div className='not-found-image'>
+                    <img className='travel-image' src='https://airballnbrick.s3.amazonaws.com/NBA+Travel+Violation.png' alt='referee travel violation call' />
+                </div>
             </div>
-            <h1>
-                404
-            </h1>
-            <h1>
-                Page Not Found
-            </h1>
-            <img className='travel-image' src='https://cdn.vox-cdn.com/thumbor/ij0Ng1FcLNz0sjQV6DWRVanCWjc=/0x294:2775x2144/1400x1050/filters:focal(0x294:2775x2144):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/45568342/459394688.0.jpg'></img>
         </div>
     )
 }
