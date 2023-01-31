@@ -100,7 +100,7 @@ const SingleSpot = () => {
                             </div>
                             <div className='spot-sub-header'>
                                 <div className='spot-review-avg'>
-                                    <img className='star-image' src={ratingStar} />
+                                    <img className='star-image' src={ratingStar} alt='star' />
                                     {!spotAvg[singleSpot.id]?.avg ?
                                         <>
                                             {' New '}
@@ -133,19 +133,19 @@ const SingleSpot = () => {
                         </div>
                         <div className='single-spot-image-container'>
                             <div className='main-image'>
-                                <img src={spotImages[0]?.url} className='image-fit-main' />
+                                <img src={spotImages[0]?.url} className='image-fit-main' alt='listing' />
                             </div>
                             <div className='middle-image-top'>
-                                <img src={spotImages[1]?.url} className='image-fit-sub' />
+                                <img src={spotImages[1]?.url} className='image-fit-sub' alt='listing' />
                             </div>
                             <div className='middle-image-bottom'>
-                                <img src={spotImages[2]?.url} className='image-fit-sub' />
+                                <img src={spotImages[2]?.url} className='image-fit-sub' alt='listing' />
                             </div>
                             <div className='right-image-top'>
-                                <img src={spotImages[3]?.url} className='image-fit-sub right-top' />
+                                <img src={spotImages[3]?.url} className='image-fit-sub right-top' alt='listing' />
                             </div>
                             <div className='right-image-bottom'>
-                                <img src={spotImages[4]?.url} className='image-fit-sub right-bot' />
+                                <img src={spotImages[4]?.url} className='image-fit-sub right-bot' alt='listing' />
                             </div>
                             <div className='show-all-photos'>
                                 <SpotImagesModal refresh={refresh} setRefresh={setRefresh} user={user} spot={singleSpot} />
@@ -257,7 +257,7 @@ const SingleSpot = () => {
                         </div>
                         <div className='spot-review-container'>
                             <h3 className='spot-review-header'>
-                                <img className='review-star-image' src={ratingStar} />
+                                <img className='review-star-image' src={ratingStar} alt='star'/>
                                 {spotAvg[singleSpot.id]?.avg && (
                                     <>
                                         {' ' + spotAvg[singleSpot.id]?.avg} <span>&nbsp;·&nbsp;</span> {spotAvg[singleSpot.id]?.count} reviews
