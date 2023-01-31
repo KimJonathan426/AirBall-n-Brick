@@ -146,7 +146,7 @@ const SpotForm = () => {
     return (
         <div className='spot-form-container'>
             <div className='left-side-image'>
-                <img src={hostCourt} />
+                <img src={hostCourt} alt='basketball on court floor' />
             </div>
             <div className='right-side-form'>
                 <form className='spot-form' onSubmit={handleSubmit}>
