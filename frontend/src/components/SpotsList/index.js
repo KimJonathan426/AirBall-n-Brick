@@ -51,12 +51,12 @@ const SpotList = () => {
                                 </div>
                                 {reviewAvgs[spot.id] ?
                                     <div className='star-text'>
-                                        <img className='star-image' src={ratingStar} />
+                                        <img className='star-image' src={ratingStar} alt='rating star' />
                                         {reviewAvgs[spot.id].avg}
                                     </div>
                                     :
                                     <div className='star-text'>
-                                        <img className='star-image' src={ratingStar} />
+                                        <img className='star-image' src={ratingStar} alt='rating star' />
                                         New
                                     </div>
                                 }

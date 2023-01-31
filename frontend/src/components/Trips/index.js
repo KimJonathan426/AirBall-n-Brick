@@ -84,7 +84,7 @@ const Trips = () => {
                                         <li key={trip.id} className='inner-trips-item'>
                                             <Link className='inner-trips-link' to={`/spots/${trip.spotId}`}>
                                                 <div className='inner-trips-image-box'>
-                                                    <img className='inner-trips-image' src={trip.url} />
+                                                    <img className='inner-trips-image' src={trip.url} alt='listing' />
                                                 </div>
                                                 <div className='inner-trips-info-box'>
                                                     <div className='inner-trips-info-1'>
@@ -114,7 +114,7 @@ const Trips = () => {
                             <div className='no-booked-trips'>
                                 <div className='no-booked-trips-inner'>
                                     <div className='waving-hand-box'>
-                                        <img className='waving-hand' src={wavingHand} />
+                                        <img className='waving-hand' src={wavingHand} alt='waving hand' />
                                     </div>
                                     <div className='no-booked-trips-info-1'>
                                         <span>
@@ -139,7 +139,7 @@ const Trips = () => {
                                             <source srcSet="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-320.webp 1x" media="(min-width: 743.1px) and (max-width: 1127px)" />
                                             <source srcSet="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-720.webp 1x" media="(min-width: 1127.1px) and (max-width: 1439px)" />
                                             <source srcSet="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-1200.webp 1x" media="(min-width: 1439.1px)" />
-                                            <img className='main-picture' src="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-720.webp" />
+                                            <img className='main-picture' src="https://airballnbrick.s3.amazonaws.com/trips-airbnb-background-720.webp" alt='enjoying vacation' />
                                         </picture>
                                     </div>
                                 </div>
@@ -155,7 +155,7 @@ const Trips = () => {
                                         <li key={trip.id} className='inner-trips-item'>
                                             <Link className='inner-trips-link' to={`/spots/${trip.spotId}`}>
                                                 <div className='inner-trips-image-box'>
-                                                    <img className='inner-trips-image' src={trip.url} />
+                                                    <img className='inner-trips-image' src={trip.url} alt='listing' />
                                                 </div>
                                                 <div className='inner-trips-info-box'>
                                                     <div className='inner-trips-info-1'>
