@@ -26,7 +26,7 @@ const About = () => {
                 </div>
             </div>
             <div className='about-image-container'>
-                <img className='about-image' src='https://airballnbrick.s3.amazonaws.com/Portfolio-photo-option-1.jpg' />
+                <img className='about-image' src='https://airballnbrick.s3.amazonaws.com/Portfolio-photo-option-1.jpg' alt='creator' />
                 <div className='about-me'>
                     <span>Jonathan Kim</span>
                     <span>Kim.Jonathan426@gmail.com</span>
@@ -41,13 +41,13 @@ const About = () => {
             </div>
             <div className='links'>
                 <div className='linked-in'>
-                    <a href="https://www.linkedin.com/in/kimjonathan426" target='_blank'>
-                        <img className='linked-in-link' src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png" />
+                    <a href="https://www.linkedin.com/in/kimjonathan426" target='_blank' rel="noreferrer">
+                        <img className='linked-in-link' src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png" alt='LinkedIn logo' />
                     </a>
                 </div>
                 <div className='github-repo'>
-                    <a href="https://github.com/KimJonathan426/AirBall-n-Brick" target='_blank'>
-                        <img className='github-link' src="https://cdn-icons-png.flaticon.com/512/25/25231.png" />
+                    <a href="https://github.com/KimJonathan426/AirBall-n-Brick" target='_blank' rel="noreferrer">
+                        <img className='github-link' src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt='Github logo' />
                     </a>
                 </div>
             </div>
