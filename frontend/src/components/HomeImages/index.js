@@ -109,11 +109,11 @@ const HomeImages = ({ images }) => {
 
     return (
         <div className='spot-image'>
-            <img className={showImage1 ? 'center' : 'center hide-image'} src={images[0].url} />
-            <img className={showImage2 ? 'center' : 'center hide-image'} src={images[1].url} />
-            <img className={showImage3 ? 'center' : 'center hide-image'} src={images[2].url} />
-            <img className={showImage4 ? 'center' : 'center hide-image'} src={images[3].url} />
-            <img className={showImage5 ? 'center' : 'center hide-image'} src={images[4].url} />
+            <img className={showImage1 ? 'center' : 'center hide-image'} src={images[0].url} alt='listing preview' />
+            <img className={showImage2 ? 'center' : 'center hide-image'} src={images[1].url} alt='listing preview' />
+            <img className={showImage3 ? 'center' : 'center hide-image'} src={images[2].url} alt='listing preview' />
+            <img className={showImage4 ? 'center' : 'center hide-image'} src={images[3].url} alt='listing preview' />
+            <img className={showImage5 ? 'center' : 'center hide-image'} src={images[4].url} alt='listing preview' />
             <div className='image-switch-btns'>
                 <button onClick={switchImageBackward} className='left-arrow'><span>❮</span></button>
                 <button onClick={switchImageForward} className='right-arrow'><span>❯</span></button>
