@@ -22,42 +22,44 @@ const SpotReviewList = ({ user, spotId, ratingStar }) => {
         switch (rating) {
             case 1:
                 return (
-                    <img className='single-review-star' src={ratingStar} />
+                    <img className='single-review-star' src={ratingStar} alt='rating star' />
                 )
             case 2:
                 return (
                     <>
-                        <img className='single-review-star' src={ratingStar} />
-                        <img className='single-review-star' src={ratingStar} />
+                        <img className='single-review-star' src={ratingStar} alt='rating star' />
+                        <img className='single-review-star' src={ratingStar} alt='rating star' />
                     </>
                 )
             case 3:
                 return (
                     <>
-                        <img className='single-review-star' src={ratingStar} />
-                        <img className='single-review-star' src={ratingStar} />
-                        <img className='single-review-star' src={ratingStar} />
+                        <img className='single-review-star' src={ratingStar} alt='rating star' />
+                        <img className='single-review-star' src={ratingStar} alt='rating star' />
+                        <img className='single-review-star' src={ratingStar} alt='rating star' />
                     </>
                 )
             case 4:
                 return (
                     <>
-                        <img className='single-review-star' src={ratingStar} />
-                        <img className='single-review-star' src={ratingStar} />
-                        <img className='single-review-star' src={ratingStar} />
-                        <img className='single-review-star' src={ratingStar} />
+                        <img className='single-review-star' src={ratingStar} alt='rating star' />
+                        <img className='single-review-star' src={ratingStar} alt='rating star' />
+                        <img className='single-review-star' src={ratingStar} alt='rating star' />
+                        <img className='single-review-star' src={ratingStar} alt='rating star' />
                     </>
                 )
             case 5:
                 return (
                     <>
-                        <img className='single-review-star' src={ratingStar} />
-                        <img className='single-review-star' src={ratingStar} />
-                        <img className='single-review-star' src={ratingStar} />
-                        <img className='single-review-star' src={ratingStar} />
-                        <img className='single-review-star' src={ratingStar} />
+                        <img className='single-review-star' src={ratingStar} alt='rating star' />
+                        <img className='single-review-star' src={ratingStar} alt='rating star' />
+                        <img className='single-review-star' src={ratingStar} alt='rating star' />
+                        <img className='single-review-star' src={ratingStar} alt='rating star' />
+                        <img className='single-review-star' src={ratingStar} alt='rating star' />
                     </>
                 )
+            default:
+                return (null)
         }
     }
 
