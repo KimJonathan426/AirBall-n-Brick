@@ -13,9 +13,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 1440px;
-    margin-left: auto;
-    margin-right: auto;
     box-sizing: border-box;
 }
 
@@ -25,7 +22,7 @@
     background: url(https://airballnbrick.s3.amazonaws.com/hosting-intro-background.webp);
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 64px 0px;
+    padding: 64px 0;
     box-sizing: border-box;
 }
 
@@ -33,6 +30,7 @@
 .hosting-sub-header {
     width: 100%;
     min-width: 400px;
+    max-width: 1440px;
     padding: 0 64px;
     color: #FFF;
     box-sizing: border-box;
@@ -42,10 +40,77 @@
     font-size: 32px;
     font-weight: 600;
     line-height: 36px;
-    margin: 0;
+    margin: 0 auto;
 }
 
 .hosting-sub-header {
     font-weight: normal;
     line-height: 20px;
+    margin: 16px auto 15px;
+}
+
+/*
+hosting reservations css goes here
+*/
+
+.hosting-tips-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 378px;
+    height: fit-content;
+    background-color: #000000;
+    padding: 64px 64px 48px 64px;
+    box-sizing: border-box;
+}
+
+.tips-header {
+    font-size: 26px;
+    font-weight: 500;
+    color: #FFF;
+    margin: 24px 0;
+}
+
+.tips-list {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    max-width: 1440px;
+    height: fit-content;
+    list-style: none;
+    padding: 0px;
+    margin: 0 auto;
+    overflow-x: auto;
+    box-sizing: border-box;
+}
+
+.tip-box {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(34, 34, 34);
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.tip-image {
+    width: 100%;
+    height: fit-content;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.tip-image > img {
+    width: 100%;
+    min-width: 250px;
+    object-fit: cover;
+}
+
+.tip-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #FFF;
+    width: 100%;
+    height: 90px;
 }
