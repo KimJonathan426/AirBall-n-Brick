@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateSpot } from '../../store/spotReducer';
-import loadingGif from '../../images/host-court-loading.gif';
 import './SpotEditForm.css'
 
 const SpotEditForm = ({ spot, id, hideForm }) => {
