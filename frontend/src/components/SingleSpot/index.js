@@ -68,6 +68,10 @@ const SingleSpot = () => {
     useEffect(() => {
         if (user) {
             findBookings(Object.values(bookingState), user, setPreviousBookings, setCurrentBookings, setUpcomingBookings);
+        } else {
+            setPreviousBookings([]);
+            setCurrentBookings([]);
+            setUpcomingBookings([]);
         }
     }, [bookingState, user])
 
