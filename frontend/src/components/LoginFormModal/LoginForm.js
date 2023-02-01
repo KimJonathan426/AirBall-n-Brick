@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
+import authExit from '../../images/auth-exit.svg'
 import './LoginForm.css'
 
 
-function LoginForm() {
+function LoginForm({ setShowModal }) {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
@@ -21,8 +22,18 @@ function LoginForm() {
     );
   };
 
+  console.log(errors)
+
   return (
     <form className='login-form animate-modal-auth' onSubmit={handleSubmit}>
+      <header className='auth-header'>
+        <button className='auth-exit' onClick={() => setShowModal(false)}>
+          <img src={authExit} />
+        </button>
+        <div>
+          Log in or sign up
+        </div>
+      </header>
       <div className='errors-container'>
         <ul>
           {errors.map((error, idx) => (
@@ -32,10 +43,10 @@ function LoginForm() {
       </div>
       <div className='credential-container'>
         <label>
-          Username or Email
+          Email
         </label>
         <input
-          type="text"
+          type="email"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
@@ -52,7 +63,7 @@ function LoginForm() {
           required
         />
       </div>
-      <button className='login-form-button' type="submit">Log In</button>
+      <button className='login-form-button' type="submit">Continue</button>
     </form>
   );
 }
