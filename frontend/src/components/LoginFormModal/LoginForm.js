@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
+import { findEmail } from "../../store/session";
 import { useDispatch } from "react-redux";
 import authExit from '../../images/auth-exit.svg';
 import './LoginForm.css'
@@ -19,6 +20,15 @@ function LoginForm({ setShowModal }) {
       setEmptyEmail(false);
     }
   }, [credential, setEmptyEmail])
+
+  const nextStep = async (e) => {
+    e.preventDefault();
+
+    const res = await dispatch(findEmail(credential));
+
+    console.log('rez', res);
+
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,6 +76,7 @@ function LoginForm({ setShowModal }) {
             />
             <div className='credential-header'></div>
           </div>
+          <button className='auth-next' onClick={nextStep}>Continue</button>
           {/* <div className='password-container'>
             <label>
               Password
