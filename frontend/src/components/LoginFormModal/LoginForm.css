@@ -97,7 +97,7 @@
     font-weight: 400;
     position: absolute;
     top: 11px;
-    left: 13px;
+    left: 12px;
 }
 
 .credential-email {
@@ -112,6 +112,10 @@
     border-radius: 8px;
 }
 
+.credential-empty {
+
+}
+
 .credential-email[type='email'] {
     font-size: 16px;
     line-height: 20px;
@@ -124,13 +128,13 @@
     border: none;
 }
 
-.credential-email:invalid {
+.invalid-email:invalid {
     --focus-bor: #C13515;
     --reg-bor: #C13515;
     background-color: #FFF8F6;
 }
 
-.credential-email:invalid~.credential-header::after {
+.invalid-email:invalid~.credential-header::after {
     color: rgb(193, 53, 21);
     font-weight: 600;
 }

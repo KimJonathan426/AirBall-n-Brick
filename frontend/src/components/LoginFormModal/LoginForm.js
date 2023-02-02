@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import authExit from '../../images/auth-exit.svg';
@@ -10,6 +10,15 @@ function LoginForm({ setShowModal }) {
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [emptyEmail, setEmptyEmail] = useState(true);
+
+  useEffect(() => {
+    if (credential === "") {
+      setEmptyEmail(true);
+    } else {
+      setEmptyEmail(false);
+    }
+  }, [credential, setEmptyEmail])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,7 +37,7 @@ function LoginForm({ setShowModal }) {
     <div className='login-form animate-modal-auth'>
       <header className='auth-header'>
         <button className='auth-exit' onClick={() => setShowModal(false)}>
-          <img src={authExit} />
+          <img src={authExit} alt='X'/>
         </button>
         <div>
           Log in or sign up
@@ -49,7 +58,8 @@ function LoginForm({ setShowModal }) {
           <div className='credential-container'>
             <input
               type="email"
-              pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"              className='credential-email'
+              pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+              className={emptyEmail ? 'credential-email' : 'credential-email invalid-email'}
               value={credential}
               onChange={(e) => setCredential(e.target.value)}
               required
