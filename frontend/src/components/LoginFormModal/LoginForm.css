@@ -72,6 +72,9 @@
 }
 
 .auth-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     position: relative;
     height: fit-content;
@@ -112,10 +115,6 @@
     border-radius: 8px;
 }
 
-.credential-empty {
-
-}
-
 .credential-email[type='email'] {
     font-size: 16px;
     line-height: 20px;
@@ -137,6 +136,30 @@
 .invalid-email:invalid~.credential-header::after {
     color: rgb(193, 53, 21);
     font-weight: 600;
+}
+
+.auth-next {
+    width: 100%;
+    height: 48px;
+    background: #D70466;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.auth-next:hover {
+    background-color: #E31C5F;
+}
+
+.auth-next:active {
+    transform: scale(0.96);
+    background: #FF385C;
 }
 
 .password-container {
