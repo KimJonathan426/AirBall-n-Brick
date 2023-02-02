@@ -101,12 +101,14 @@
 }
 
 .credential-email {
+    --focus-bor: #222222;
+    --reg-bor: #B0B0B0;
     width: 100%;
     height: 56px;
     padding-left: 12px;
     padding-top: 19px;
     border: none;
-    box-shadow: inset 0 0 0 1px #B0B0B0;
+    box-shadow: inset 0 0 0 1px var(--reg-bor);
     border-radius: 8px;
 }
 
@@ -118,12 +120,13 @@
 }
 
 .credential-email:focus {
-    box-shadow: inset 0 0 0 2px #222222;
+    box-shadow: inset 0 0 0 2px var(--focus-bor);
     border: none;
 }
 
 .credential-email:invalid {
-    box-shadow: inset 0 0 0 2px #C13515;
+    --focus-bor: #C13515;
+    --reg-bor: #C13515;
     background-color: #FFF8F6;
 }
 
