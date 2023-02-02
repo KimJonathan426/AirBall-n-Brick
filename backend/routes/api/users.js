@@ -13,7 +13,7 @@ const validateSignup = [
     check('email')
         .exists({ checkFalsy: true })
         .isEmail()
-        .withMessage('Please provide a valid email.'),
+        .withMessage('Enter a valid email.'),
     check('username')
         .exists({ checkFalsy: true })
         .isLength({ min: 4 })
@@ -73,5 +73,23 @@ router.post(
         });
     }),
 );
+
+// Find email
+router.get('/:email', asyncHandler(async (req, res) => {
+    const email = req.params.email;
+
+    const existingEmail = await User.findOne({
+        where: {
+            email: { [Op.iLike]: email }
+        }
+    });
+
+    if (existingEmail) {
+        res.send(200, {'result': true})
+    } else {
+        res.send(200, {'result': false})
+    }
+}));
+
 
 module.exports = router;
