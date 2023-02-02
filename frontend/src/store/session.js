@@ -30,8 +30,7 @@ export const login = (user) => async (dispatch) => {
   return response;
 };
 
-export const findEmail = (user) => async () => {
-  const { email } = user;
+export const findEmail = (email) => async () => {
   const response = await csrfFetch(`/api/users/email/${email}`)
   const data = await response.json();
 
