@@ -30,6 +30,14 @@ export const login = (user) => async (dispatch) => {
   return response;
 };
 
+export const findEmail = (user) => async () => {
+  const { email } = user;
+  const response = await csrfFetch(`/api/users/email/${email}`)
+  const data = await response.json();
+
+  return data
+}
+
 export const signup = (user) => async (dispatch) => {
   const { username, email, password } = user;
   const response = await csrfFetch("/api/users", {

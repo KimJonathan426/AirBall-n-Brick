@@ -75,7 +75,7 @@ router.post(
 );
 
 // Find email
-router.get('/:email', asyncHandler(async (req, res) => {
+router.get('/email/:email', asyncHandler(async (req, res) => {
     const email = req.params.email;
 
     const existingEmail = await User.findOne({
