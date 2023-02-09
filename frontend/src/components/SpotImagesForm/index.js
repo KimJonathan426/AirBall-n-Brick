@@ -31,7 +31,6 @@ const SpotImagesForm = ({ id, hideForm }) => {
         e.preventDefault();
         setHasSubmitted(true);
         setUploading(true);
-        setDisabled()
 
         const errors = [];
 
@@ -85,13 +84,13 @@ const SpotImagesForm = ({ id, hideForm }) => {
 
             <div className='update-spot-button-container'>
                 {uploading ?
-                    <button disabled={uploading} className='update-disabled' type='submit'>
+                    <button disabled={uploading} className='update-image-disabled update-disabled' type='submit'>
                         <div className='spot-forms-loading'>
                             <img src={loadingGif} alt='loading...' />
                         </div>
                     </button>
                     :
-                    <button disabled={disabled} className={disabled ? 'update-disabled' : 'update-spot-button'} type='submit'>Add Images</button>
+                    <button disabled={disabled} className={disabled ? 'update-image-disabled' : 'update-spot-button'} type='submit'>Add Images</button>
                 }
             </div>
 
