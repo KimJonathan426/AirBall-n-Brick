@@ -3,6 +3,7 @@ import * as sessionActions from "../../store/session";
 import { findEmail } from "../../store/session";
 import { useDispatch } from "react-redux";
 import authExit from '../../images/auth-exit.svg';
+import errorMark from '../../images/error-mark.png';
 import './LoginForm.css'
 
 
@@ -32,6 +33,7 @@ function LoginForm({ setShowModal }) {
 
     if (!credential) {
       setStepOneErrors(['Email is required.']);
+      setEmptyEmail(false);
       return
     }
 
@@ -88,13 +90,15 @@ function LoginForm({ setShowModal }) {
             />
             <div className='credential-header'></div>
           </div>
-          <div className='errors-container'>
-            <ul>
+          {stepOneErrors.length > 0 && (
+          <div className='auth-error-container'>
+            <ul className='auth-error-list'>
               {stepOneErrors.map((error, idx) => (
-                <li key={idx}>{error}</li>
+                  <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} />{error}</li>
               ))}
             </ul>
           </div>
+          )}
           <button className='auth-next' onClick={nextStep}>Continue</button>
           {/* <div className='password-container'>
             <label>
