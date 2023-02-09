@@ -33,6 +33,33 @@ a {
     color: #222222;
 }
 
+.credential-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    height: 48px;
+    background: #B0B0B0;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 16px;
+    margin-bottom: 24px;
+    box-sizing: border-box;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: wait !important;
+}
+
+.credential-loading-img {
+    width: 150px;
+    position: relative;
+    left: -4px;
+    filter: brightness(0) invert(1);
+}
+
 .spot-forms-loading {
     display: flex;
     justify-content: center;
