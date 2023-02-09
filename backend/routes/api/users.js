@@ -75,8 +75,18 @@ router.post(
 );
 
 // Find email
-router.get('/email/:email', asyncHandler(async (req, res) => {
+router.get('/email/:email', asyncHandler(async (req, res, next) => {
     const email = req.params.email;
+
+    const emailPattern = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,4}|[0-9]{1,3})(\]?)$/;
+
+    if (!emailPattern.test(email)) {
+        const err = new Error('Invalid email');
+        err.status = 401
+        err.title = 'Invalid email'
+        err.errors = ['Enter a valid email.']
+        return next(err)
+    }
 
     const existingEmail = await User.findOne({
         where: {
