@@ -16,7 +16,6 @@ function LoginForm({ setShowModal }) {
   const [uploading, setUploading] = useState(false);
   const [errors, setErrors] = useState([]);
   const [inputEmailClass, setInputEmailClass] = useState('credential')
-  const [emptyEmail, setEmptyEmail] = useState(true);
   const [stepOne, setStepOne] = useState(true);
   const [login, setLogin] = useState(false);
   const [signup, setSignup] = useState(false);
@@ -24,16 +23,13 @@ function LoginForm({ setShowModal }) {
   useEffect(() => {
     let temp = 'credential'
 
-    if (credential === "") {
-      setEmptyEmail(true);
-    } else {
-      setEmptyEmail(false);
+    if (credential !== "") {
       temp += ' invalid'
     }
 
     setInputEmailClass(temp)
     setErrors([])
-  }, [credential, setEmptyEmail, login, setInputEmailClass])
+  }, [credential, login, setInputEmailClass])
 
   useEffect(() => {
     setErrors([])
@@ -42,10 +38,9 @@ function LoginForm({ setShowModal }) {
   const nextStep = async (e) => {
     e.preventDefault();
 
-
     if (!credential) {
       setErrors(['Email is required.']);
-      setEmptyEmail(false);
+      setInputEmailClass('credential invalid')
       return
     }
 
@@ -125,7 +120,7 @@ function LoginForm({ setShowModal }) {
               <div className='credential-container'>
                 <input
                   type="password"
-                  className={'password-credential'}
+                  className='password-credential'
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -138,7 +133,7 @@ function LoginForm({ setShowModal }) {
             <div className='auth-error-container'>
               <ul className='auth-error-list'>
                 {errors.map((error, idx) => (
-                  <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} />{error}</li>
+                  <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark'/>{error}</li>
                 ))}
               </ul>
             </div>
