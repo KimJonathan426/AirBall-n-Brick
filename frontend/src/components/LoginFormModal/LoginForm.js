@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import loadingGif from '../../images/host-court-loading.gif';
 import authExit from '../../images/auth-exit.svg';
 import errorMark from '../../images/error-mark.png';
+import goBack from '../../images/left-arrow.svg';
 import './LoginForm.css'
 
 
@@ -14,38 +15,36 @@ function LoginForm({ setShowModal }) {
   const [password, setPassword] = useState("");
   const [uploading, setUploading] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [inputEmailClass, setInputEmailClass] = useState('credential')
   const [emptyEmail, setEmptyEmail] = useState(true);
-  const [emptyPassword, setEmptyPassword] = useState(true);
   const [stepOne, setStepOne] = useState(true);
-  const [stepOneErrors, setStepOneErrors] = useState([]);
   const [login, setLogin] = useState(false);
   const [signup, setSignup] = useState(false);
 
   useEffect(() => {
+    let temp = 'credential'
+
     if (credential === "") {
       setEmptyEmail(true);
     } else {
       setEmptyEmail(false);
+      temp += ' invalid'
     }
 
-    setStepOneErrors([])
-  }, [credential, setEmptyEmail])
+    setInputEmailClass(temp)
+    setErrors([])
+  }, [credential, setEmptyEmail, login, setInputEmailClass])
 
   useEffect(() => {
-    if (password === "") {
-      setEmptyPassword(true);
-    } else {
-      setEmptyPassword(false);
-    }
-
     setErrors([])
-  }, [password, setEmptyPassword])
+  }, [password])
 
   const nextStep = async (e) => {
     e.preventDefault();
 
+
     if (!credential) {
-      setStepOneErrors(['Email is required.']);
+      setErrors(['Email is required.']);
       setEmptyEmail(false);
       return
     }
@@ -56,12 +55,12 @@ function LoginForm({ setShowModal }) {
       async (res) => {
         const data = await res.json();
         if (data && data.errors) {
-          setStepOneErrors(data.errors);
+          setErrors(data.errors);
           setUploading(false);
         }
       });
 
-    if (stepOneErrors.length) {
+    if (errors.length) {
       setUploading(false);
       return
     } else if (res && res.result) {
@@ -107,23 +106,38 @@ function LoginForm({ setShowModal }) {
           Welcome to AirBallnBrick
         </h3>
         <form className='auth-form' onSubmit={handleSubmit}>
-          {stepOne && (
-            <div className='credential-container'>
-              <input
-                type="email"
-                pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,4}|[0-9]{1,3})(\]?)$"
-                className={emptyEmail ? 'credential' : 'credential invalid'}
-                value={credential}
-                onChange={(e) => setCredential(e.target.value)}
-                required
-              />
-              <div className='credential-header credential-email'></div>
-            </div>
-          )}
-          {stepOneErrors.length > 0 && (
+          <div className='combined-input-main'>
+            {!signup && (
+              <div className='credential-container'>
+                <input
+                  type="email"
+                  pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,4}|[0-9]{1,3})(\]?)$"
+                  className={login ? 'combined-input' : inputEmailClass}
+                  disabled={!stepOne}
+                  value={credential}
+                  onChange={(e) => setCredential(e.target.value)}
+                  required
+                />
+                <div className='credential-header credential-email'></div>
+              </div>
+            )}
+            {login && (
+              <div className='credential-container'>
+                <input
+                  type="password"
+                  className={'password-credential'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <div className='credential-header credential-password'></div>
+              </div>
+            )}
+          </div>
+          {errors.length > 0 && (
             <div className='auth-error-container'>
               <ul className='auth-error-list'>
-                {stepOneErrors.map((error, idx) => (
+                {errors.map((error, idx) => (
                   <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} />{error}</li>
                 ))}
               </ul>
@@ -140,27 +154,8 @@ function LoginForm({ setShowModal }) {
               }
             </>
           }
-          {login && (
+          {login &&
             <>
-              <div className='credential-container'>
-                <input
-                  type="password"
-                  className={emptyPassword ? 'credential' : 'credential invalid'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-                <div className='credential-header credential-password'></div>
-              </div>
-              {errors.length > 0 && (
-                <div className='auth-error-container'>
-                  <ul className='auth-error-list'>
-                    {errors.map((error, idx) => (
-                      <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} />{error}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
               {uploading ?
                 <button disabled className='credential-loading'>
                   <img className='credential-loading-img' src={loadingGif} alt='loading...' />
@@ -169,7 +164,7 @@ function LoginForm({ setShowModal }) {
                 <button className='auth-next' type='submit'>Continue</button>
               }
             </>
-          )}
+          }
         </form>
       </div>
     </div>

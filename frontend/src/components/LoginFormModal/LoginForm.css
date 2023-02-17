@@ -114,19 +114,53 @@
     border: none;
     box-shadow: inset 0 0 0 1px var(--reg-bor);
     border-radius: 8px;
-}
-
-.credential[type='email'],
-.credential[type='password'] {
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 400;
     box-sizing: border-box;
 }
 
-.credential:focus {
+.combined-input-main {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px #B0B0B0;
+}
+
+.combined-input {
+    width: 100%;
+    height: 56px;
+    padding-left: 12px;
+    padding-top: 19px;
+    border: none;
+    box-sizing: border-box;
+}
+
+.password-credential {
+    --focus-bor: #222222;
+    --pass-bor: #B0B0B0;
+    background: transparent;
+    width: 100%;
+    height: 56px;
+    padding-left: 12px;
+    padding-top: 19px;
+    border: none;
+    border-top: solid 1px var(--pass-bor);
+    border-radius: 0;
+    box-sizing: border-box;
+}
+
+.credential[type='email'],
+.combined-input[type='email'],
+.password-credential[type='password'] {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+.credential:focus,
+.password-credential:focus {
     box-shadow: inset 0 0 0 2px var(--focus-bor);
     border: none;
+    border-radius: 8px;
 }
 
 .invalid:invalid {
