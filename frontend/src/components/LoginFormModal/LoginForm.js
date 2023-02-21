@@ -69,6 +69,14 @@ function LoginForm({ setShowModal }) {
     }
   }
 
+  const returnStepOne = () => {
+    setInputEmailClass('credential invalid')
+    setPassword("")
+    setStepOne(true);
+    setLogin(false);
+    setSignup(false);
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setUploading(true);
@@ -89,9 +97,15 @@ function LoginForm({ setShowModal }) {
   return (
     <div className='login-form animate-modal-auth'>
       <header className='auth-header'>
-        <button className='auth-exit' onClick={() => setShowModal(false)}>
-          <img src={authExit} alt='X' />
-        </button>
+        {stepOne ?
+          <button className='auth-exit' onClick={() => setShowModal(false)}>
+            <img src={authExit} alt='X' />
+          </button>
+          :
+          <button className='auth-exit' onClick={returnStepOne}>
+            <img src={goBack} alt='go back arrow' />
+          </button>
+        }
         <div>
           Log in or sign up
         </div>
@@ -133,7 +147,7 @@ function LoginForm({ setShowModal }) {
             <div className='auth-error-container'>
               <ul className='auth-error-list'>
                 {errors.map((error, idx) => (
-                  <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark'/>{error}</li>
+                  <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
                 ))}
               </ul>
             </div>
