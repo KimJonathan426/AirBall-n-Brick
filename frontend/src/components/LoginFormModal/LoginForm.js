@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
 import { findEmail } from "../../store/session";
 import { useDispatch } from "react-redux";
+import SignupStep from "../SignupStep";
 import loadingGif from '../../images/host-court-loading.gif';
 import authExit from '../../images/auth-exit.svg';
 import errorMark from '../../images/error-mark.png';
 import goBack from '../../images/left-arrow.svg';
-import './LoginForm.css'
+import './LoginForm.css';
 
 
 function LoginForm({ setShowModal }) {
@@ -106,75 +107,91 @@ function LoginForm({ setShowModal }) {
             <img src={goBack} alt='go back arrow' />
           </button>
         }
-        <div>
-          Log in or sign up
-        </div>
+        {stepOne &&
+          <div>
+            Log in or sign up
+          </div>
+        }
+        {login &&
+          <div>
+            Finish logging in
+          </div>
+        }
+        {signup &&
+          <div>
+            Finish signing up
+          </div>
+        }
       </header>
       <div className='auth-content'>
-        <h3 className='auth-welcome'>
-          Welcome to AirBallnBrick
-        </h3>
-        <form className='auth-form' onSubmit={handleSubmit}>
-          <div className='combined-input-main'>
-            {!signup && (
-              <div className='credential-container'>
-                <input
-                  type="email"
-                  pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,4}|[0-9]{1,3})(\]?)$"
-                  className={login ? 'combined-input' : inputEmailClass}
-                  disabled={!stepOne}
-                  value={credential}
-                  onChange={(e) => setCredential(e.target.value)}
-                  required
-                />
-                <div className='credential-header credential-email'></div>
+        {!signup ?
+          <>
+            <h3 className='auth-welcome'>
+              Welcome to AirBallnBrick
+            </h3>
+            <form className='auth-form' onSubmit={handleSubmit}>
+              <div className='combined-input-main'>
+                <div className='credential-container'>
+                  <input
+                    type="email"
+                    pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,4}|[0-9]{1,3})(\]?)$"
+                    className={login ? 'combined-input' : inputEmailClass}
+                    disabled={!stepOne}
+                    value={credential}
+                    onChange={(e) => setCredential(e.target.value)}
+                    required
+                  />
+                  <div className='credential-header credential-email'></div>
+                </div>
+                {login && (
+                  <div className='credential-container'>
+                    <input
+                      type="password"
+                      className='password-credential'
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                    <div className='credential-header credential-password'></div>
+                  </div>
+                )}
               </div>
-            )}
-            {login && (
-              <div className='credential-container'>
-                <input
-                  type="password"
-                  className='password-credential'
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-                <div className='credential-header credential-password'></div>
-              </div>
-            )}
-          </div>
-          {errors.length > 0 && (
-            <div className='auth-error-container'>
-              <ul className='auth-error-list'>
-                {errors.map((error, idx) => (
-                  <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {stepOne &&
-            <>
-              {uploading ?
-                <button disabled className='credential-loading'>
-                  <img className='credential-loading-img' src={loadingGif} alt='loading...' />
-                </button>
-                :
-                <button className='auth-next' onClick={nextStep}>Continue</button>
+              {errors.length > 0 && (
+                <div className='auth-error-container'>
+                  <ul className='auth-error-list'>
+                    {errors.map((error, idx) => (
+                      <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {stepOne &&
+                <>
+                  {uploading ?
+                    <button disabled className='credential-loading'>
+                      <img className='credential-loading-img' src={loadingGif} alt='loading...' />
+                    </button>
+                    :
+                    <button className='auth-next' onClick={nextStep}>Continue</button>
+                  }
+                </>
               }
-            </>
-          }
-          {login &&
-            <>
-              {uploading ?
-                <button disabled className='credential-loading'>
-                  <img className='credential-loading-img' src={loadingGif} alt='loading...' />
-                </button>
-                :
-                <button className='auth-next' type='submit'>Continue</button>
+              {login &&
+                <>
+                  {uploading ?
+                    <button disabled className='credential-loading'>
+                      <img className='credential-loading-img' src={loadingGif} alt='loading...' />
+                    </button>
+                    :
+                    <button className='auth-next' type='submit'>Continue</button>
+                  }
+                </>
               }
-            </>
-          }
-        </form>
+            </form>
+          </>
+          :
+          <SignupStep credential={credential} />
+        }
       </div>
     </div>
   );
