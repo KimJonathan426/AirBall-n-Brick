@@ -30,17 +30,13 @@ function SignupStep({ credential }) {
 
     return (
         <form className='auth-form' onSubmit={handleSubmit}>
-            {/* <div>
-          <ul className='signup-errors-container'>
-            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-          </ul>
-        </div> */}
             <div className='credential-container'>
                 <input
-                    type="text"
+                    type="email"
                     className='credential'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    disabled
                     required
                 />
                 <div className='credential-header credential-email'></div>

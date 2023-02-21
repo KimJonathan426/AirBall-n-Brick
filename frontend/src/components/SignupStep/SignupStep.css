@@ -1,3 +1,9 @@
+.credential[type='text'] {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
 .credential-username::after {
     content: 'Username';
 }

@@ -7,10 +7,10 @@ import loadingGif from '../../images/host-court-loading.gif';
 import authExit from '../../images/auth-exit.svg';
 import errorMark from '../../images/error-mark.png';
 import goBack from '../../images/left-arrow.svg';
-import './LoginForm.css';
+import './AuthForm.css';
 
 
-function LoginForm({ setShowModal }) {
+function AuthForm({ setShowModal }) {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
@@ -114,7 +114,7 @@ function LoginForm({ setShowModal }) {
         }
         {login &&
           <div>
-            Finish logging in
+            Log in
           </div>
         }
         {signup &&
@@ -197,4 +197,4 @@ function LoginForm({ setShowModal }) {
   );
 }
 
-export default LoginForm;
+export default AuthForm;

@@ -1,7 +1,8 @@
 .login-form {
     position: relative;
     color: #222222;
-    height: 100vh;
+    height: fit-content;
+    min-height: 404px;
     max-height: 586px;
     width: 568px;
     border-radius: 12px;
@@ -56,7 +57,9 @@
     display: flex;
     flex-direction: column;
     padding: 24px;
-    height: 522px;
+    /* height: 522px; */
+    height: fit-content;
+    min-height: 340px;
     overflow-y: auto;
     outline: none;
     box-sizing: border-box;

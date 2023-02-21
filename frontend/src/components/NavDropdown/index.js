@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import LoginFormModal from '../LoginFormModal';
-import SignupFormModal from '../SignupFormModal';
+import AuthFormModal from '../AuthFormModal';
 import DemoButton from '../DemoButton';
 import LogoutButton from '../LogoutButton';
 import emptyProfileImage from '../../images/empty-profile-image.svg';
@@ -48,8 +47,8 @@ const NavDropdown = ({ sessionUser }) => {
                         </>
                         :
                         <>
-                            <LoginFormModal />
-                            <SignupFormModal />
+                            <AuthFormModal display={'Log in'}/>
+                            <AuthFormModal display={'Sign up'}/>
                             <DemoButton />
                             <div className='dropdown-divider' />
                             <NavLink className='dropdown-about' exact to='/about'>About</NavLink>
