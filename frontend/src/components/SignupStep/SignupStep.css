@@ -1,0 +1,7 @@
+.credential-username::after {
+    content: 'Username';
+}
+
+.credential-confirm-password::after {
+    content: 'Confirm Password';
+}
