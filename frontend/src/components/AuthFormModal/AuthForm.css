@@ -56,7 +56,6 @@
     display: flex;
     flex-direction: column;
     padding: 24px;
-    /* height: 522px; */
     height: fit-content;
     min-height: 340px;
     overflow-y: auto;
@@ -167,7 +166,7 @@
     box-sizing: border-box;
 }
 
-.credential-invalid {
+.password-credential-invalid {
     background: transparent;
     width: 100%;
     height: 56px;
@@ -179,7 +178,7 @@
     box-sizing: border-box;
 }
 
-.credential-invalid:focus {
+.password-credential-invalid:focus {
     box-shadow: inset 0 0 0 2px #C13515;
     border: none;
     border-radius: 8px;

@@ -147,7 +147,7 @@ function AuthForm({ setShowModal }) {
                   <div className='credential-container'>
                     <input
                       type="password"
-                      className={errors.length ? 'credential-invalid' : 'password-credential'}
+                      className={errors.length ? 'password-credential-invalid' : 'password-credential'}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                     />
