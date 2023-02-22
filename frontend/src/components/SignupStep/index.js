@@ -39,14 +39,22 @@ function SignupStep({ credential }) {
                             'Email': [],
                             'Username': [],
                             'Password': [],
+                            'Invalid': []
                         };
 
                         for (let err of data.errors) {
                             const words = err.split(' ');
-                            errMap[words[0]].push(err)
+                            if (words[0] === 'Email' || words[0] === 'Username' || words[0] === 'Password') {
+                                errMap[words[0]].push(err)
+                            } else {
+                                errMap['Invalid'].push(err)
+                            }
                         };
 
-                        setErrors(data.errors);
+                        setEmailErrors(errMap['Email'])
+                        setUsernameErrors(errMap['Username'])
+                        setPasswordErrors(errMap['Password'])
+                        setErrors(errMap['Invalid'])
                         setUploading(false);
                     }
                 });
@@ -55,6 +63,7 @@ function SignupStep({ credential }) {
         setUploading(false);
         return setConfirmErrors(['Confirm Password field must be the same as the Password field']);
     };
+
 
     return (
         <form className='signup-form' onSubmit={handleSubmit}>
@@ -68,9 +77,19 @@ function SignupStep({ credential }) {
                     required
                 />
                 <div className='credential-header credential-email'></div>
-                <div className='signup-info'>
-                    We'll email you trip confirmations and receipts.
-                </div>
+                {emailErrors.length > 0 ?
+                    <div className='auth-error-container'>
+                        <ul className='auth-error-list'>
+                            {emailErrors.map((error, idx) => (
+                                <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    :
+                    <div className='signup-info'>
+                        We'll email you trip confirmations and receipts.
+                    </div>
+                }
             </div>
             <div className='credential-container signup-container'>
                 <input
@@ -81,18 +100,19 @@ function SignupStep({ credential }) {
                     required
                 />
                 <div className='credential-header credential-username'></div>
-                <div className='signup-info'>
-                    This is what other users will see you as.
-                </div>
-                {errors.length > 0 && (
-                <div className='auth-error-container'>
-                  <ul className='auth-error-list'>
-                    {errors.map((error, idx) => (
-                      <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+                {usernameErrors.length > 0 ?
+                    <div className='auth-error-container'>
+                        <ul className='auth-error-list'>
+                            {usernameErrors.map((error, idx) => (
+                                <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    :
+                    <div className='signup-info'>
+                        This is what other users will see you as.
+                    </div>
+                }
             </div>
             <div className='credential-container signup-container'>
                 <input
@@ -103,6 +123,15 @@ function SignupStep({ credential }) {
                     required
                 />
                 <div className='credential-header credential-password'></div>
+                {passwordErrors.length > 0 && (
+                    <div className='auth-error-container'>
+                        <ul className='auth-error-list'>
+                            {passwordErrors.map((error, idx) => (
+                                <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </div>
             <div className='credential-container signup-container'>
                 <input
@@ -113,6 +142,24 @@ function SignupStep({ credential }) {
                     required
                 />
                 <div className='credential-header credential-confirm-password'></div>
+                {confirmErrors.length > 0 && (
+                    <div className='auth-error-container'>
+                        <ul className='auth-error-list'>
+                            {confirmErrors.map((error, idx) => (
+                                <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+                {errors.length > 0 && (
+                    <div className='auth-error-container'>
+                        <ul className='auth-error-list'>
+                            {errors.map((error, idx) => (
+                                <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </div>
             <div className='disclosure'>
                 By selecting <strong>Agree and continue</strong>, I agree with AirBallnBrick's Terms of Service to always display good sportsmanship and have a great time.
