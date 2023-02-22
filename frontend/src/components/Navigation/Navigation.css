@@ -7,7 +7,7 @@
     justify-content: center;
     box-sizing: border-box;
     border-bottom: 1px solid #d9e1ecc0;
-    width: 100%;
+    width: 100vw;
     min-width: 600px;
     height: 80px;
     z-index: 10;
@@ -22,7 +22,7 @@
     justify-content: center;
     box-sizing: border-box;
     border-bottom: 1px solid #d9e1ecc0;
-    width: 100%;
+    width: 100vw;
     min-width: 600px;
     height: 80px;
     z-index: 10;
@@ -33,7 +33,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 100vw;
     min-width: 600px;
     max-width: 1600px;
     height: 80px;
