@@ -22,6 +22,13 @@ function AuthForm({ setShowModal }) {
   const [signup, setSignup] = useState(false);
 
   useEffect(() => {
+    document.body.style.overflowY = 'hidden';
+    return () => {
+      document.body.style.overflowY = 'unset'
+    }
+  }, [])
+
+  useEffect(() => {
     let temp = 'credential'
 
     if (credential !== "") {

@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createBooking } from '../../store/bookingReducer';
 import './ConfirmBookingModal.css';
 
@@ -29,6 +29,13 @@ function ConfirmBookingModal({ userId, spotId, price, state, setState, setShowMo
     } else if (startDateDay === endDateDay) {
         date = `${startDateMonth} ${startDateDay}`;
     }
+
+    useEffect(() => {
+        document.body.style.overflowY = 'hidden';
+        return () => {
+            document.body.style.overflowY = 'unset'
+        }
+    }, [])
 
     const submitBooking = async (e) => {
         e.preventDefault();

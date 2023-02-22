@@ -15,6 +15,13 @@ const SpotImages = ({ setRefresh, setShowModal, user, spot }) => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        document.body.style.overflowY = 'hidden';
+        return () => {
+            document.body.style.overflowY = 'unset'
+        }
+    }, [])
+
+    useEffect(() => {
         setImages(Object.values(imagesFromState));
     }, [imagesFromState])
 

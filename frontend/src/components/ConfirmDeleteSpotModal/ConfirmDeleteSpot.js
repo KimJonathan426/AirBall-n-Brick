@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteSpot } from "../../store/spotReducer";
@@ -13,6 +12,13 @@ function ConfirmDeleteSpot({ spotId, setShowModal }) {
   const [open, setOpen] = useState(true);
   const [message, setMessage] = useState('')
   const [disabled, setDisabled] = useState(true);
+
+  useEffect(() => {
+    document.body.style.overflowY = 'hidden';
+    return () => {
+      document.body.style.overflowY = 'unset'
+    }
+  }, [])
 
   useEffect(() => {
     if (message === 'delete court') {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { deleteBooking } from "../../store/bookingReducer";
 import './CancelBooking.css'
@@ -9,6 +9,13 @@ function CancelBooking({ booking, setShowModal, setCanceled, spotName }) {
 
   const [open, setOpen] = useState(true);
   const [disabled, setDisabled] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflowY = 'hidden';
+    return () => {
+      document.body.style.overflowY = 'unset'
+    }
+  }, [])
 
   const onDelete = async (e) => {
     e.preventDefault();
