@@ -1,9 +1,8 @@
-.login-form {
+.auth-form {
     position: relative;
     color: #222222;
     height: fit-content;
     min-height: 404px;
-    max-height: 586px;
     width: 568px;
     border-radius: 12px;
     box-shadow: rgb(0 0 0 / 28%) 0px 8px 28px;
@@ -74,7 +73,7 @@
     box-sizing: border-box;
 }
 
-.auth-form {
+.login-form {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -94,6 +93,16 @@
     font-size: 12px;
     line-height: 12px;
     font-weight: 400;
+    position: absolute;
+    top: 11px;
+    left: 12px;
+}
+
+.credential-header-invalid {
+    color: rgb(193, 53, 21);
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 600;
     position: absolute;
     top: 11px;
     left: 12px;
@@ -128,6 +137,14 @@
     box-shadow: inset 0 0 0 1px #B0B0B0;
 }
 
+.combined-input-invalid {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px #C13515;
+}
+
 .combined-input {
     width: 100%;
     height: 56px;
@@ -148,6 +165,24 @@
     border-top: solid 1px #B0B0B0;
     border-radius: 0;
     box-sizing: border-box;
+}
+
+.credential-invalid {
+    background: transparent;
+    width: 100%;
+    height: 56px;
+    padding-left: 12px;
+    padding-top: 19px;
+    border: none;
+    border-top: solid 1px #C13515;
+    border-radius: 0;
+    box-sizing: border-box;
+}
+
+.credential-invalid:focus {
+    box-shadow: inset 0 0 0 2px #C13515;
+    border: none;
+    border-radius: 8px;
 }
 
 .credential[type='email'],

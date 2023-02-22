@@ -96,7 +96,7 @@ function AuthForm({ setShowModal }) {
 
 
   return (
-    <div className='login-form animate-modal-auth'>
+    <div className='auth-form animate-modal-auth'>
       <header className='auth-header'>
         {stepOne ?
           <button className='auth-exit' onClick={() => setShowModal(false)}>
@@ -129,8 +129,8 @@ function AuthForm({ setShowModal }) {
             <h3 className='auth-welcome'>
               Welcome to AirBallnBrick
             </h3>
-            <form className='auth-form' onSubmit={handleSubmit}>
-              <div className='combined-input-main'>
+            <form className='login-form' onSubmit={handleSubmit}>
+              <div className={errors.length ? 'combined-input-invalid' : 'combined-input-main'}>
                 <div className='credential-container'>
                   <input
                     type="email"
@@ -147,12 +147,11 @@ function AuthForm({ setShowModal }) {
                   <div className='credential-container'>
                     <input
                       type="password"
-                      className='password-credential'
+                      className={errors.length ? 'credential-invalid' : 'password-credential'}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      required
                     />
-                    <div className='credential-header credential-password'></div>
+                    <div className={errors.length ? 'credential-header-invalid credential-password' : 'credential-header credential-password'}></div>
                   </div>
                 )}
               </div>
