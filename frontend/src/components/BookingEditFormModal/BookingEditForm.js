@@ -13,7 +13,7 @@ const BookingEditForm = ({ bookings, bookingInfo, price, setShowModal, setEdited
     const dispatch = useDispatch();
 
     const startDate = useMemo(() => new Date(bookingInfo.startDate), [bookingInfo.startDate]);
-    const endDate = useMemo(() => new Date(bookingInfo.endDate),  [bookingInfo.endDate]);
+    const endDate = useMemo(() => new Date(bookingInfo.endDate), [bookingInfo.endDate]);
 
     const [focusedRange, setFocusedRange] = useState([0, 0]);
     const [disabledDates, setDisabledDates] = useState([]);
@@ -32,6 +32,13 @@ const BookingEditForm = ({ bookings, bookingInfo, price, setShowModal, setEdited
             key: 'selection'
         }
     ]);
+
+    useEffect(() => {
+        document.body.style.overflowY = 'hidden';
+        return () => {
+            document.body.style.overflowY = 'unset'
+        }
+    }, [])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -152,7 +159,7 @@ const BookingEditForm = ({ bookings, bookingInfo, price, setShowModal, setEdited
 
     return (
         loading ?
-            <div className='booking-edit-modal-content'>
+            <div className='booking-edit-modal-content animate-modal'>
                 <label className='check-in-label'></label>
                 <label className='check-out-label'></label>
                 <div className='select-dates-edit'>
