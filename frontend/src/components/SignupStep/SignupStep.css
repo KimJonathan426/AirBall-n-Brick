@@ -18,6 +18,24 @@
     margin-bottom: 24px;
 }
 
+.credential-invalid {
+    background-color: #FFF8F6;
+    width: 100%;
+    height: 56px;
+    padding-left: 12px;
+    padding-top: 19px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px #C13515;
+    box-sizing: border-box;
+}
+
+.credential-invalid:focus {
+    box-shadow: inset 0 0 0 2px #C13515;
+    border: none;
+    border-radius: 8px;
+}
+
 .credential[type='text'] {
     font-size: 16px;
     line-height: 20px;

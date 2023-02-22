@@ -83,13 +83,13 @@ function SignupStep({ credential }) {
             <div className='credential-container signup-container-first'>
                 <input
                     type="email"
-                    className='credential'
+                    className={emailErrors.length ? 'credential-invalid' : 'credential'}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled
                     required
                 />
-                <div className='credential-header credential-email'></div>
+                <div className={emailErrors.length ? 'credential-header-invalid credential-email' : 'credential-header credential-email'}></div>
                 {emailErrors.length > 0 ?
                     <div className='auth-error-container'>
                         <ul className='auth-error-list'>
@@ -107,12 +107,12 @@ function SignupStep({ credential }) {
             <div className='credential-container signup-container'>
                 <input
                     type="text"
-                    className='credential'
+                    className={usernameErrors.length ? 'credential-invalid' : 'credential'}
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
                 />
-                <div className='credential-header credential-username'></div>
+                <div className={usernameErrors.length ? 'credential-header-invalid credential-username' : 'credential-header credential-username'}></div>
                 {usernameErrors.length > 0 ?
                     <div className='auth-error-container'>
                         <ul className='auth-error-list'>
@@ -130,12 +130,12 @@ function SignupStep({ credential }) {
             <div className='credential-container signup-container'>
                 <input
                     type="password"
-                    className='credential'
+                    className={passwordErrors.length ? 'credential-invalid' : 'credential'}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                <div className='credential-header credential-password'></div>
+                <div className={passwordErrors.length ? 'credential-header-invalid credential-password' : 'credential-header credential-password'}></div>
                 {passwordErrors.length > 0 && (
                     <div className='auth-error-container'>
                         <ul className='auth-error-list'>
@@ -149,12 +149,12 @@ function SignupStep({ credential }) {
             <div className='credential-container signup-container'>
                 <input
                     type="password"
-                    className='credential'
+                    className={confirmErrors.length ? 'credential-invalid' : 'credential'}
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                 />
-                <div className='credential-header credential-confirm-password'></div>
+                <div className={confirmErrors.length ? 'credential-header-invalid credential-confirm-password' : 'credential-header credential-confirm-password'}></div>
                 {confirmErrors.length > 0 && (
                     <div className='auth-error-container'>
                         <ul className='auth-error-list'>
