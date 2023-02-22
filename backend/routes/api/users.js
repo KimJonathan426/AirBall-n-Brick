@@ -13,11 +13,11 @@ const validateSignup = [
     check('email')
         .exists({ checkFalsy: true })
         .isEmail()
-        .withMessage('Enter a valid email.'),
+        .withMessage('Email is invalid.'),
     check('username')
         .exists({ checkFalsy: true })
         .isLength({ min: 4 })
-        .withMessage('Please provide a username with at least 4 characters.'),
+        .withMessage('Username must be at least 4 characters.'),
     check('username')
         .not()
         .isEmail()
@@ -52,7 +52,7 @@ router.post(
             const err = new Error('Signup failed');
             err.status = 401;
             err.title = 'Signup failed';
-            err.errors = ['This email already exists.'];
+            err.errors = ['Email already exists.'];
             return next(err);
         }
 
@@ -60,7 +60,7 @@ router.post(
             const err = new Error('Signup failed');
             err.status = 401;
             err.title = 'Signup failed';
-            err.errors = ['This username already exists'];
+            err.errors = ['Username already exists'];
             return next(err);
         }
 
