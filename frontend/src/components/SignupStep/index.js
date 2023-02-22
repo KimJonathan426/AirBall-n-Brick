@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
@@ -19,6 +19,19 @@ function SignupStep({ credential }) {
     const [usernameErrors, setUsernameErrors] = useState([]);
     const [passwordErrors, setPasswordErrors] = useState([]);
     const [confirmErrors, setConfirmErrors] = useState([]);
+
+    useEffect(() => {
+        setEmailErrors([])
+    }, [email]);
+    useEffect(() => {
+        setUsernameErrors([])
+    }, [username]);
+    useEffect(() => {
+        setPasswordErrors([])
+    }, [password]);
+    useEffect(() => {
+        setConfirmErrors([])
+    }, [confirmPassword]);
 
     if (sessionUser) return <Redirect to="/" />;
 
