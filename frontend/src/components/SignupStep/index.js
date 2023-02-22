@@ -15,6 +15,10 @@ function SignupStep({ credential }) {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [uploading, setUploading] = useState(false);
     const [errors, setErrors] = useState([]);
+    const [emailErrors, setEmailErrors] = useState([]);
+    const [usernameErrors, setUsernameErrors] = useState([]);
+    const [passwordErrors, setPasswordErrors] = useState([]);
+    const [confirmErrors, setConfirmErrors] = useState([]);
 
     if (sessionUser) return <Redirect to="/" />;
 
@@ -24,10 +28,24 @@ function SignupStep({ credential }) {
 
         if (password === confirmPassword) {
             setErrors([]);
+            setEmailErrors([]);
+            setUsernameErrors([]);
+            setPasswordErrors([]);
             return dispatch(sessionActions.signup({ email, username, password }))
                 .catch(async (res) => {
                     const data = await res.json();
                     if (data && data.errors) {
+                        const errMap = {
+                            'Email': [],
+                            'Username': [],
+                            'Password': [],
+                        };
+
+                        for (let err of data.errors) {
+                            const words = err.split(' ');
+                            errMap[words[0]].push(err)
+                        };
+
                         setErrors(data.errors);
                         setUploading(false);
                     }
@@ -35,7 +53,7 @@ function SignupStep({ credential }) {
         }
 
         setUploading(false);
-        return setErrors(['Confirm Password field must be the same as the Password field']);
+        return setConfirmErrors(['Confirm Password field must be the same as the Password field']);
     };
 
     return (
