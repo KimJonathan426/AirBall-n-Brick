@@ -1,3 +1,24 @@
+.signup-form {
+    display: block;
+    width: 100%;
+    position: relative;
+    height: fit-content;
+    min-height: 120px;
+}
+
+.signup-container-first {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
 .credential[type='text'] {
     font-size: 16px;
     line-height: 20px;
@@ -10,4 +31,17 @@
 
 .credential-confirm-password::after {
     content: 'Confirm Password';
+}
+
+.signup-info {
+    display: flex;
+    color: rgb(113, 113, 113);
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 8px;
+}
+
+.disclosure {
+    font-size: 12px;
+    line-height: 16px;
 }
