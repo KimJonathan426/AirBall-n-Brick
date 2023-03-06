@@ -9,6 +9,7 @@ import SingleSpot from "./components/SingleSpot";
 import Trips from "./components/Trips";
 import HostDashboard from "./components/HostDashboard";
 import About from "./components/About";
+import GoogleOAuth from "./components/GoogleOAuth";
 import PageNotFound from "./components/PageNotFound";
 
 function App() {
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route path="/about">
             <About />
+          </Route>
+          <Route path='/oauth/google'>
+            <GoogleOAuth />
           </Route>
           <Route>
             <PageNotFound />
