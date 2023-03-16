@@ -10,5 +10,8 @@ module.exports = {
     jwtConfig: {
       secret: process.env.JWT_SECRET,
       expiresIn: process.env.JWT_EXPIRES_IN
-    }
+    },
+    googleClientId: process.env.GOOGLE_CLIENT_ID,
+    googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    googleOauthRedirectUrl: process.env.GOOGLE_OAUTH_REDIRECT_URL,
   };
