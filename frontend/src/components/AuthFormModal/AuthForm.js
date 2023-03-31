@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
 import { findEmail } from "../../store/session";
 import { useDispatch } from "react-redux";
+import getGoogleOAuthURL from "../../utils/getGoogleUrl";
 import SignupStep from "../SignupStep";
 import loadingGif from '../../images/host-court-loading.gif';
 import authExit from '../../images/auth-exit.svg';
@@ -198,6 +199,10 @@ function AuthForm({ setShowModal }) {
           :
           <SignupStep credential={credential} />
         }
+        <div>----- or -----</div>
+        <a href={getGoogleOAuthURL()}>
+          Login with Google
+        </a>
       </div>
     </div>
   );
