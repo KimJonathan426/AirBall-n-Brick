@@ -1,5 +1,8 @@
+const qs = require('qs');
+const axios = require('axios');
 const jwt = require('jsonwebtoken');
-const { jwtConfig } = require('../config');
+const config = require('../config');
+const { jwtConfig, googleClientId, googleClientSecret, googleOauthRedirectUrl } = require('../config');
 const { User } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
@@ -63,4 +66,56 @@ const requireAuth = [
     }
 ];
 
-module.exports = { setTokenCookie, restoreUser, requireAuth };
+const getGoogleOAuthTokens = async ({ code }) => {
+    const url = 'https://oauth2.googleapis.com/token'
+
+    const values = {
+        code,
+        client_id: googleClientId,
+        client_secret: googleClientSecret,
+        redirect_uri: googleOauthRedirectUrl,
+        grant_type: 'authorization_code',
+    };
+
+    console.log({ values })
+
+    try {
+        const res = await axios.post(url, qs.stringify(values),
+            {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            });
+        return res.data;
+    } catch (error) {
+        console.error(error);
+        console.error(error, 'Failed to fetch Google Oauth Tokens');
+        throw new Error(error.message);
+    }
+}
+
+// Google OAuth Handler
+const googleOauthHandler = async (req, res) => {
+    // Get code response from qs
+    const code = req.query.code
+    console.log(code)
+    try {
+        // Get the Id and access token with the code from google servers
+        const { id_token, access_token } = await getGoogleOAuthTokens({ code });
+        console.log({ id_token, access_token })
+        // Get use with tokens
+
+        // Create an instance of the user in database
+
+        // Create a session
+
+        // Create access & refresh tokens
+
+        // Set cookies
+    } catch (error) {
+        console.error(error, 'Failed to authorize Google user');
+        return res.redirect('http://localhost:3000/oauth/error');
+    }
+}
+
+module.exports = { setTokenCookie, restoreUser, requireAuth, googleOauthHandler };
