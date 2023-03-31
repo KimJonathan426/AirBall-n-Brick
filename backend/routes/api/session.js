@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
+const { setTokenCookie, restoreUser, googleOauthHandler } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -50,6 +50,12 @@ router.delete(
         res.clearCookie('token');
         return res.json({ message: 'success' });
     }
+);
+
+// Google OAuth
+router.get(
+    '/oauth/google',
+    googleOauthHandler
 );
 
 // Restore session user
