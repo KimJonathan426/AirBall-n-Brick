@@ -4,7 +4,7 @@ import './GoogleOAuth.css';
 const GoogleOAuth = () => {
 
     const handleCallbackResponse = (response) => {
-        return
+        console.log("Encoded JWT ID token: " + response.credential);
     }
 
     useEffect(() => {
@@ -15,15 +15,18 @@ const GoogleOAuth = () => {
         });
 
         google.accounts.id.renderButton(
-            document.getElementById('googleSignInDiv'),
-            { theme: 'outline', size: 'large'}
-        );
+            document.getElementById('google-signin-div'),
+            { theme: 'outline',
+            size: 'large',
+            width: 400,
+            text: 'continue_with',
+        });
+
     }, []);
 
     return (
         <div className='google-oauth-container'>
-            Google OAuth 2.0
-            <div id='googleSignInDiv'>
+            <div id='google-signin-div'>
 
             </div>
         </div>
