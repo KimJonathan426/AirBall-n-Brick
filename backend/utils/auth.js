@@ -94,6 +94,21 @@ const getGoogleOAuthTokens = async ({ code }) => {
     }
 }
 
+const getGoogleUser = async ({ id_token, access_token }) => {
+    try {
+        const res = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${access_token}`, {
+            headers: {
+                Authorization: `Bearer ${id_token}`
+            }
+        })
+
+        return res.data
+    } catch (error) {
+        console.error(error, "Error fetching Google user");
+        throw new Error(error.message);
+    }
+}
+
 // Google OAuth Handler
 const googleOauthHandler = async (req, res) => {
     // Get code response from qs
@@ -103,7 +118,11 @@ const googleOauthHandler = async (req, res) => {
         // Get the Id and access token with the code from google servers
         const { id_token, access_token } = await getGoogleOAuthTokens({ code });
         console.log({ id_token, access_token })
-        // Get use with tokens
+
+        // Get user with tokens
+        const googleUser = jwt.decode(id_token);
+
+        console.log({ googleUser })
 
         // Create an instance of the user in database
 
