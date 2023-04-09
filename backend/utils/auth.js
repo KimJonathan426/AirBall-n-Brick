@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config');
 const { jwtConfig, googleClientId, googleClientSecret, googleOauthRedirectUrl } = require('../config');
 const { User } = require('../db/models');
+const { Op } = require('sequelize');
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -88,7 +89,6 @@ const getGoogleOAuthTokens = async ({ code }) => {
             });
         return res.data;
     } catch (error) {
-        console.error(error);
         console.error(error, 'Failed to fetch Google Oauth Tokens');
         throw new Error(error.message);
     }
@@ -113,18 +113,27 @@ const getGoogleUser = async ({ id_token, access_token }) => {
 const googleOauthHandler = async (req, res) => {
     // Get code response from qs
     const code = req.query.code
-    console.log(code)
+
     try {
         // Get the Id and access token with the code from google servers
         const { id_token, access_token } = await getGoogleOAuthTokens({ code });
-        console.log({ id_token, access_token })
 
         // Get user with tokens
         const googleUser = await getGoogleUser({ id_token, access_token });
 
-        console.log({ googleUser })
-
         // Create an instance of the user in database
+        console.log(googleUser)
+        if (!googleUser || !googleUser.verified_email) {
+            throw new Error('Failed to verify Google user')
+        }
+
+        const checkExistingUser = await User.findOne({
+            where: {
+                email: { [Op.iLike]: 'DemoUser@email.com' }
+            }
+        });
+
+        console.log(checkExistingUser)
 
         // Create a session
 
