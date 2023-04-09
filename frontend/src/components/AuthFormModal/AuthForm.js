@@ -22,6 +22,7 @@ function AuthForm({ setShowModal }) {
   const [login, setLogin] = useState(false);
   const [signup, setSignup] = useState(false);
 
+
   useEffect(() => {
     document.body.style.overflowY = 'hidden';
     return () => {
@@ -101,6 +102,10 @@ function AuthForm({ setShowModal }) {
       }
     );
   };
+
+  const popup = () => {
+    window.open(getGoogleOAuthURL(),'popup','width=600,height=600;');
+  }
 
 
   return (
@@ -200,9 +205,9 @@ function AuthForm({ setShowModal }) {
           <SignupStep credential={credential} />
         }
         <div>----- or -----</div>
-        <a href={getGoogleOAuthURL()}>
+        <button onClick={popup}>
           Login with Google
-        </a>
+        </button>
       </div>
     </div>
   );
