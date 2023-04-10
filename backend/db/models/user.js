@@ -23,11 +23,23 @@ module.exports = (sequelize, DataTypes) => {
         len: [3, 256]
       }
     },
+    isOAuth: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: [1, 20]
+      }
+    },
     hashedPassword: {
       type: DataTypes.STRING.BINARY,
-      allowNull: false,
+      allowNull: true,
       validate: {
-        len: [60, 60]
+        len: [60, 60],
+        notOAuth(value) {
+          if (!value && !this.isOAuth) {
+            throw new Error('Password is required unless you register with OAuth.')
+          }
+        }
       }
     }
   },

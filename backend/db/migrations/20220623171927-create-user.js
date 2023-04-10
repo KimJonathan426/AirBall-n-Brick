@@ -18,9 +18,13 @@ module.exports = {
         allowNull: false,
         unique: true
       },
+      isOAuth: {
+        type: Sequelize.STRING(20),
+        allowNull: true
+      },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
-        allowNull: false
+        allowNull: true
       },
       createdAt: {
         allowNull: false,
