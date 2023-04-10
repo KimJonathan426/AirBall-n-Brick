@@ -6,10 +6,9 @@ import loadingGif from '../../images/host-court-loading.gif';
 import errorMark from '../../images/error-mark.png';
 import './SignupStep.css';
 
-function SignupStep({ credential }) {
+function SignupStep({ credential, setCredential }) {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
-    const [email, setEmail] = useState(credential);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -22,7 +21,7 @@ function SignupStep({ credential }) {
 
     useEffect(() => {
         setEmailErrors([])
-    }, [email]);
+    }, [credential]);
     useEffect(() => {
         setUsernameErrors([])
     }, [username]);
@@ -39,16 +38,18 @@ function SignupStep({ credential }) {
         e.preventDefault();
         setUploading(true);
 
-        if (!username || !password || !confirmPassword) {
-            switch ("") {
-                case username:
-                    setUsernameErrors(['Username is required.']);
-                case password:
-                    setPasswordErrors(['Password is required.']);
-                case confirmPassword:
-                    setConfirmErrors(['Confirm Password is required.']);
-                default:
-                    break;
+        if (!credential || !username || !password || !confirmPassword) {
+            if (!credential) {
+                setEmailErrors(['Email is required.']);
+            }
+            if (!username) {
+                setUsernameErrors(['Username is required.']);
+            }
+            if (!password) {
+                setPasswordErrors(['Password is required.']);
+            }
+            if (!confirmPassword) {
+                setConfirmErrors(['Confirm Password is required.']);
             }
 
             setUploading(false);
@@ -60,7 +61,8 @@ function SignupStep({ credential }) {
             setEmailErrors([]);
             setUsernameErrors([]);
             setPasswordErrors([]);
-            return dispatch(sessionActions.signup({ email, username, password }))
+
+            return dispatch(sessionActions.signup({ email:credential, username, password }))
                 .catch(async (res) => {
                     const data = await res.json();
                     if (data && data.errors) {
@@ -100,10 +102,8 @@ function SignupStep({ credential }) {
                 <input
                     type="email"
                     className={emailErrors.length ? 'credential-invalid' : 'credential'}
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    disabled
-                    required
+                    value={credential}
+                    onChange={(e) => setCredential(e.target.value)}
                 />
                 <div className={emailErrors.length ? 'credential-header-invalid credential-email' : 'credential-header credential-email'}></div>
                 {emailErrors.length > 0 ?
