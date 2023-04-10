@@ -78,7 +78,7 @@ router.post(
 router.get('/email/:email', asyncHandler(async (req, res, next) => {
     const email = req.params.email;
 
-    const emailPattern = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,4}|[0-9]{1,3})(\]?)$/;
+    const emailPattern = /^(\b[a-zA-Z0-9_\-\.]+\b)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,4}|[0-9]{1,3})(\]?)$/;
 
     if (!emailPattern.test(email)) {
         const err = new Error('Invalid email');
