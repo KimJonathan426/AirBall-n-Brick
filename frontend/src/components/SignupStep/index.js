@@ -39,6 +39,22 @@ function SignupStep({ credential }) {
         e.preventDefault();
         setUploading(true);
 
+        if (!username || !password || !confirmPassword) {
+            switch ("") {
+                case username:
+                    setUsernameErrors(['Username is required.']);
+                case password:
+                    setPasswordErrors(['Password is required.']);
+                case confirmPassword:
+                    setConfirmErrors(['Confirm Password is required.']);
+                default:
+                    break;
+            }
+
+            setUploading(false);
+            return;
+        }
+
         if (password === confirmPassword) {
             setErrors([]);
             setEmailErrors([]);
@@ -110,7 +126,6 @@ function SignupStep({ credential }) {
                     className={usernameErrors.length ? 'credential-invalid' : 'credential'}
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    required
                 />
                 <div className={usernameErrors.length ? 'credential-header-invalid credential-username' : 'credential-header credential-username'}></div>
                 {usernameErrors.length > 0 ?
@@ -133,7 +148,6 @@ function SignupStep({ credential }) {
                     className={passwordErrors.length ? 'credential-invalid' : 'credential'}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    required
                 />
                 <div className={passwordErrors.length ? 'credential-header-invalid credential-password' : 'credential-header credential-password'}></div>
                 {passwordErrors.length > 0 && (
@@ -152,7 +166,6 @@ function SignupStep({ credential }) {
                     className={confirmErrors.length ? 'credential-invalid' : 'credential'}
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    required
                 />
                 <div className={confirmErrors.length ? 'credential-header-invalid credential-confirm-password' : 'credential-header credential-confirm-password'}></div>
                 {confirmErrors.length > 0 && (

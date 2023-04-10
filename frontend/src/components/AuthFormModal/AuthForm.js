@@ -147,7 +147,7 @@ function AuthForm({ setShowModal }) {
                 <div className='credential-container'>
                   <input
                     type="email"
-                    pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,4}|[0-9]{1,3})(\]?)$"
+                    pattern="^(\b[a-zA-Z0-9_\-\.]+\b)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,4}|[0-9]{1,3})(\]?)$"
                     className={login ? 'combined-input' : inputEmailClass}
                     disabled={!stepOne}
                     value={credential}
