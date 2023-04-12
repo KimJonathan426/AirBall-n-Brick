@@ -95,9 +95,9 @@ router.get('/email/:email', asyncHandler(async (req, res, next) => {
     });
 
     if (existingEmail) {
-        res.send(200, {'result': true})
+        res.status(200).send({'result': true})
     } else {
-        res.send(200, {'result': false})
+        res.status(200).send({'result': false})
     }
 }));
 
