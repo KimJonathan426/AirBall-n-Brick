@@ -9,8 +9,8 @@ import SingleSpot from "./components/SingleSpot";
 import Trips from "./components/Trips";
 import HostDashboard from "./components/HostDashboard";
 import About from "./components/About";
-import GoogleOAuth from "./components/GoogleOAuth";
 import PageNotFound from "./components/PageNotFound";
+import GoogleSignup from "./components/GoogleOAuth/GoogleSignup";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,35 +20,29 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  function RouteWrapper({ component: Component, hideNavBar, ...rest }) {
+    return (
+      <Route {...rest} render={(props) => (
+        <>
+          {!hideNavBar && <Navigation isLoaded={isLoaded} />}
+          <Component {...props} />
+        </>
+      )} />
+    );
+  }
+
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path="/">
-            <SpotList />
-          </Route>
-          <Route path="/spots/new">
-            <SpotForm />
-          </Route>
-          <Route path="/spots/:id">
-            <SingleSpot />
-          </Route>
-          <Route path="/trips/v1">
-            <Trips />
-          </Route>
-          <Route path="/hosting">
-            <HostDashboard />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path='/oauth/google'>
-            <GoogleOAuth />
-          </Route>
-          <Route>
-            <PageNotFound />
-          </Route>
+          <RouteWrapper exact path='/' component={SpotList} hideNavBar={false} />
+          <RouteWrapper path="/spots/new" component={SpotForm} hideNavBar={false} />
+          <RouteWrapper path="/spots/:id" component={SingleSpot} hideNavBar={false} />
+          <RouteWrapper path="/trips/v1" component={Trips} hideNavBar={false} />
+          <RouteWrapper path="/hosting" component={HostDashboard} hideNavBar={false} />
+          <RouteWrapper path="/about" component={About} hideNavBar={false} />
+          <RouteWrapper path='/oauth/google/signup/:email' component={GoogleSignup} hideNavBar={true} />
+          <RouteWrapper path='*' component={PageNotFound} hideNavBar={false} />
         </Switch>
       )}
     </>
