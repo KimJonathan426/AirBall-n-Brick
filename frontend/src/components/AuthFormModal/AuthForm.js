@@ -104,7 +104,7 @@ function AuthForm({ setShowModal }) {
   };
 
   const popup = () => {
-    window.open(getGoogleOAuthURL(),'popup','width=600,height=600;');
+    window.open(getGoogleOAuthURL(), 'popup', 'width=600,height=600;');
   }
 
 
@@ -204,10 +204,14 @@ function AuthForm({ setShowModal }) {
           :
           <SignupStep credential={credential} setCredential={setCredential} />
         }
-        <div>----- or -----</div>
-        <button onClick={popup}>
-          Login with Google
-        </button>
+        {stepOne &&
+          <>
+            <div>----- or -----</div>
+            <button onClick={popup}>
+              Continue with Google
+            </button>
+          </>
+        }
       </div>
     </div>
   );
