@@ -5,8 +5,8 @@ const config = require('../config');
 const { jwtConfig, googleClientId, googleClientSecret, googleOauthRedirectUrl } = require('../config');
 const { User } = require('../db/models');
 const { Op } = require('sequelize');
-
 const { secret, expiresIn } = jwtConfig;
+
 
 // Sends a JWT Cookie
 const setTokenCookie = (res, user) => {
@@ -78,8 +78,6 @@ const getGoogleOAuthTokens = async ({ code }) => {
         grant_type: 'authorization_code',
     };
 
-    console.log({ values })
-
     try {
         const res = await axios.post(url, qs.stringify(values),
             {
@@ -122,18 +120,26 @@ const googleOauthHandler = async (req, res) => {
         const googleUser = await getGoogleUser({ id_token, access_token });
 
         // Create an instance of the user in database
-        console.log(googleUser)
         if (!googleUser || !googleUser.verified_email) {
             throw new Error('Failed to verify Google user')
         }
 
         const checkExistingUser = await User.findOne({
             where: {
-                email: { [Op.iLike]: 'DemoUser@email.com' }
+                email: { [Op.iLike]: googleUser.email }
             }
         });
 
-        console.log(checkExistingUser)
+        // Check if user is already registered with or without OAuth
+        if (checkExistingUser) {
+            // If already registered through site, prompt password login
+            if (checkExistingUser.isOAuth) {
+
+            }
+
+            // Otherwise finish signing up
+            res.redirect('http://localhost:3000/oauth/google/signup/' + googleUser.email);
+        }
 
         // Create a session
 
