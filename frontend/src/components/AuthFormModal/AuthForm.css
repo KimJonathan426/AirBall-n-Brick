@@ -235,6 +235,8 @@
 .exclamation-mark {
     margin-right: 8px;
     filter: invert(19%) sepia(53%) saturate(4915%) hue-rotate(4deg) brightness(92%) contrast(84%);
+    height: 16px;
+    width: 16px;
 }
 
 .auth-next {
