@@ -16,6 +16,7 @@
     align-items: center;
     position: relative;
     width: 100%;
+    min-width: 200px;
     height: 64px;
     font-weight: 700;
     padding: 0 24px;
@@ -56,6 +57,7 @@
     display: flex;
     flex-direction: column;
     padding: 24px;
+    min-width: 200px;
     height: fit-content;
     min-height: 340px;
     overflow-y: auto;
