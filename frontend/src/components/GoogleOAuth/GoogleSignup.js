@@ -22,7 +22,7 @@ function GoogleSignup() {
 
     if (sessionUser) return <Redirect to="/" />;
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setUploading(true);
 
@@ -36,7 +36,7 @@ function GoogleSignup() {
         setEmailErrors([]);
         setUsernameErrors([]);
 
-        return dispatch(sessionActions.signup({ email, username }))
+        const response = await dispatch(sessionActions.googleSignup({ email, username }))
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) {
@@ -61,6 +61,13 @@ function GoogleSignup() {
                     setUploading(false);
                 }
             });
+
+        if (response) {
+            // window.opener.location.reload();
+            window.opener.postMessage({ type: "SUCCESSFUL_SIGNUP", user: response.user }, "http://localhost:3000")
+            // window.opener.focus();
+            window.close();
+        }
     };
 
 
