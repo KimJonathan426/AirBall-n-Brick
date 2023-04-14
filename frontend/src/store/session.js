@@ -52,7 +52,7 @@ export const signup = (user) => async (dispatch) => {
   return response;
 };
 
-export const googleSignup = (user) => async () => {
+export const googleSignup = (user) => async (dispatch) => {
   const { username, email } = user;
   const response = await csrfFetch("/api/users/google", {
     method: "POST",
@@ -62,6 +62,7 @@ export const googleSignup = (user) => async () => {
     }),
   });
   const data = await response.json();
+  dispatch(setUser(data.user));
   return data;
 };
 
