@@ -127,7 +127,7 @@ router.post(
 
         const user = await User.googleSignup({ email, username });
 
-        // await setTokenCookie(res, user);
+        await setTokenCookie(res, user);
 
         return res.json({
             user,
