@@ -52,6 +52,33 @@ export const signup = (user) => async (dispatch) => {
   return response;
 };
 
+export const googleSignup = (user) => async () => {
+  const { username, email } = user;
+  const response = await csrfFetch("/api/users/google", {
+    method: "POST",
+    body: JSON.stringify({
+      username,
+      email
+    }),
+  });
+  const data = await response.json();
+  return data;
+};
+
+export const googleLogin = (user) => async (dispatch) => {
+  const { email } = user;
+
+  const response = await csrfFetch('/api/session/google', {
+    method: 'POST',
+    body: JSON.stringify({
+      credential: email,
+    }),
+  });
+  const data = await response.json();
+  dispatch(setUser(data.user));
+  return response;
+};
+
 export const restoreUser = () => async dispatch => {
   const response = await csrfFetch('/api/session');
   const data = await response.json();
