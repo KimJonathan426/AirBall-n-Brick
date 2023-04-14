@@ -141,11 +141,6 @@ const googleOauthHandler = async (req, res) => {
         // Otherwise finish signing up
         res.redirect('http://localhost:3000/oauth/google/signup/' + googleUser.email);
 
-        // Create a session
-
-        // Create access & refresh tokens
-
-        // Set cookies
     } catch (error) {
         console.error(error, 'Failed to authorize Google user');
         return res.redirect('http://localhost:3000/oauth/error');
