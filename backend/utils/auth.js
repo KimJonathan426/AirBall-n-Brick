@@ -136,10 +136,10 @@ const googleOauthHandler = async (req, res) => {
             if (checkExistingUser.isOAuth) {
 
             }
-
-            // Otherwise finish signing up
-            res.redirect('http://localhost:3000/oauth/google/signup/' + googleUser.email);
         }
+
+        // Otherwise finish signing up
+        res.redirect('http://localhost:3000/oauth/google/signup/' + googleUser.email);
 
         // Create a session
 
