@@ -17,7 +17,7 @@ function AuthForm({ setShowModal }) {
   const [password, setPassword] = useState("");
   const [uploading, setUploading] = useState(false);
   const [errors, setErrors] = useState([]);
-  const [inputEmailClass, setInputEmailClass] = useState('credential')
+  const [inputEmailClass, setInputEmailClass] = useState('credential');
   const [stepOne, setStepOne] = useState(true);
   const [login, setLogin] = useState(false);
   const [signup, setSignup] = useState(false);
@@ -28,7 +28,7 @@ function AuthForm({ setShowModal }) {
     return () => {
       document.body.style.overflowY = 'unset'
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     let temp = 'credential'
@@ -39,11 +39,11 @@ function AuthForm({ setShowModal }) {
 
     setInputEmailClass(temp)
     setErrors([])
-  }, [credential, login, setInputEmailClass])
+  }, [credential, login, setInputEmailClass]);
 
   useEffect(() => {
     setErrors([])
-  }, [password])
+  }, [password]);
 
   const nextStep = async (e) => {
     e.preventDefault();
@@ -106,6 +106,19 @@ function AuthForm({ setShowModal }) {
   const popup = () => {
     window.open(getGoogleOAuthURL(), 'popup', 'width=600,height=600;');
   }
+
+  const handleMessage = (e) => {
+    const user = e.data.user
+
+    if (e.origin === "http://localhost:3000" && e.data.type === "SUCCESSFUL_SIGNUP") {
+      return dispatch(sessionActions.googleLogin(user))
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
 
 
   return (
