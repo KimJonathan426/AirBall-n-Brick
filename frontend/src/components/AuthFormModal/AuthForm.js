@@ -113,13 +113,16 @@ function AuthForm({ setShowModal }) {
     if (e.origin === "http://localhost:3000" && e.data.type === "SUCCESSFUL_SIGNUP") {
       return dispatch(sessionActions.googleLogin(user))
     }
-  }
+  };
 
   useEffect(() => {
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
-  }, []);
 
+    // empty dependency array warning ignored as we only want to add/remove event listeners once
+    // based on the lifetime of the component, not dependent on handleMessage
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className='auth-form animate-modal-auth'>
