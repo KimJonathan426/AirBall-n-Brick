@@ -22,7 +22,6 @@ function AuthForm({ setShowModal }) {
   const [login, setLogin] = useState(false);
   const [signup, setSignup] = useState(false);
 
-
   useEffect(() => {
     document.body.style.overflowY = 'hidden';
     return () => {
@@ -107,22 +106,22 @@ function AuthForm({ setShowModal }) {
     window.open(getGoogleOAuthURL(), 'popup', 'width=600,height=600;');
   }
 
-  const handleMessage = (e) => {
-    const user = e.data.user
+  // const handleMessage = (e) => {
+  //   const user = e.data.user
 
-    if (e.origin === "http://localhost:3000" && e.data.type === "SUCCESSFUL_SIGNUP") {
-      return dispatch(sessionActions.googleLogin(user))
-    }
-  };
+  //   if (e.origin === "http://localhost:3000" && e.data.type === "SUCCESSFUL_SIGNUP") {
+  //     return dispatch(sessionActions.googleLogin(user))
+  //   }
+  // };
 
-  useEffect(() => {
-    window.addEventListener("message", handleMessage);
-    return () => window.removeEventListener("message", handleMessage);
+  // useEffect(() => {
+    // window.addEventListener("message", handleMessage);
+    // return () => window.removeEventListener("message", handleMessage);
 
     // empty dependency array warning ignored as we only want to add/remove event listeners once
     // based on the lifetime of the component, not dependent on handleMessage
     // eslint-disable-next-line
-  }, []);
+  // }, []);
 
   return (
     <div className='auth-form animate-modal-auth'>

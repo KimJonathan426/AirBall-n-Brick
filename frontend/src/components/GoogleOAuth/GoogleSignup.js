@@ -63,9 +63,9 @@ function GoogleSignup() {
             });
 
         if (response) {
-            // window.opener.location.reload();
-            window.opener.postMessage({ type: "SUCCESSFUL_SIGNUP", user: response.user }, "http://localhost:3000")
-            // window.opener.focus();
+            // window.opener.postMessage({ type: "SUCCESSFUL_SIGNUP", user: response.user }, "http://localhost:3000")
+            window.opener.location.reload();
+            window.opener.focus();
             window.close();
         }
     };
