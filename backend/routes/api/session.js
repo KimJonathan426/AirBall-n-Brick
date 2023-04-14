@@ -19,6 +19,14 @@ const validateLogin = [
     handleValidationErrors
 ];
 
+const validateGoogleLogin = [
+    check('credential')
+        .exists({ checkFalsy: true })
+        .notEmpty()
+        .withMessage('Please provide a Google account email.'),
+    handleValidationErrors
+];
+
 // Log in
 router.post(
     '/',
@@ -26,6 +34,33 @@ router.post(
     asyncHandler(async (req, res, next) => {
         const { credential, password } = req.body;
         const user = await User.login({ credential, password });
+
+        if (!user) {
+            const err = new Error('Login failed');
+            err.status = 401;
+            err.title = 'Login failed';
+            err.errors = ['The provided credentials were invalid.'];
+            return next(err);
+        }
+
+        await setTokenCookie(res, user);
+
+        return res.json({
+            user
+        });
+    })
+);
+
+// Google Log in
+router.post(
+    '/google',
+    validateGoogleLogin,
+    asyncHandler(async (req, res, next) => {
+        const { credential } = req.body;
+        console.log('credential', credential)
+        console.log('before googlelogin')
+        const user = await User.googleLogin({ credential });
+        console.log('after googlelogin')
 
         if (!user) {
             const err = new Error('Login failed');
