@@ -87,12 +87,33 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
 
+  User.googleLogin = async function ({ credential }) {
+    const { Op } = require('sequelize');
+    const user = await User.scope('loginUser').findOne({
+      where: {
+          email: {[Op.iLike]: credential}
+      }
+    });
+    if (user) {
+      return await User.scope('currentUser').findByPk(user.id);
+    }
+  };
+
   User.signup = async function ({ username, email, password }) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({
       username,
       email,
       hashedPassword
+    });
+    return await User.scope('currentUser').findByPk(user.id);
+  };
+
+  User.googleSignup = async function ({ username, email }) {
+    const user = await User.create({
+      username,
+      email,
+      isOAuth: 'google'
     });
     return await User.scope('currentUser').findByPk(user.id);
   };
