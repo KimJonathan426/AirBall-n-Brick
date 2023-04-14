@@ -29,6 +29,22 @@ const validateSignup = [
     handleValidationErrors
 ];
 
+const validateGoogleSignup = [
+    check('email')
+        .exists({ checkFalsy: true })
+        .isEmail()
+        .withMessage('Email is invalid.'),
+    check('username')
+        .exists({ checkFalsy: true })
+        .isLength({ min: 4 })
+        .withMessage('Username must be at least 4 characters.'),
+    check('username')
+        .not()
+        .isEmail()
+        .withMessage('Username cannot be an email.'),
+    handleValidationErrors
+];
+
 // Sign up
 router.post(
     '/',
@@ -67,6 +83,51 @@ router.post(
         const user = await User.signup({ email, username, password });
 
         await setTokenCookie(res, user);
+
+        return res.json({
+            user,
+        });
+    }),
+);
+
+// Google sign up
+router.post(
+    '/google',
+    validateGoogleSignup,
+    asyncHandler(async (req, res, next) => {
+        const { email, username } = req.body;
+
+        const similarUserEmail = await User.findOne({
+            where: {
+                email: { [Op.iLike]: email }
+            }
+        });
+
+        const similarUserUsername = await User.findOne({
+            where: {
+                username: { [Op.iLike]: username },
+            }
+        });
+
+        if (similarUserEmail) {
+            const err = new Error('Signup failed');
+            err.status = 401;
+            err.title = 'Signup failed';
+            err.errors = ['Email already exists.'];
+            return next(err);
+        }
+
+        if (similarUserUsername) {
+            const err = new Error('Signup failed');
+            err.status = 401;
+            err.title = 'Signup failed';
+            err.errors = ['Username already exists'];
+            return next(err);
+        }
+
+        const user = await User.googleSignup({ email, username });
+
+        // await setTokenCookie(res, user);
 
         return res.json({
             user,
