@@ -51,9 +51,12 @@ const GoogleExistingLogin = () => {
     return (
         <form className='google-existing-login-form' onSubmit={handleSubmit}>
             <header className='auth-header'>
-                Log in
+                Welcome back
             </header>
             <div className='auth-content'>
+                <h4 className='existing-notice'>
+                    The account associated with this email was registered with AirBallnBrick and requires a password...
+                </h4>
                 <div className={errors.length ? 'combined-input-invalid' : 'combined-input-main'}>
                     <div className='credential-container'>
                         <input
