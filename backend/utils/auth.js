@@ -1,7 +1,6 @@
 const qs = require('qs');
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
-const config = require('../config');
 const { jwtConfig, googleClientId, googleClientSecret, googleOauthRedirectUrl } = require('../config');
 const { User } = require('../db/models');
 const { Op } = require('sequelize');
@@ -133,13 +132,15 @@ const googleOauthHandler = async (req, res) => {
         // Check if user is already registered with or without OAuth
         if (checkExistingUser) {
             // If already registered through site, prompt password login
-            if (checkExistingUser.isOAuth) {
-
+            if (!checkExistingUser.isOAuth) {
+                return res.redirect('http://localhost:3000/oauth/google/existing/' + googleUser.email);
             }
+
+            return res.redirect('http://localhost:3000/oauth/google/login/');
         }
 
         // Otherwise finish signing up
-        res.redirect('http://localhost:3000/oauth/google/signup/' + googleUser.email);
+        return res.redirect('http://localhost:3000/oauth/google/signup/' + googleUser.email);
 
     } catch (error) {
         console.error(error, 'Failed to authorize Google user');
