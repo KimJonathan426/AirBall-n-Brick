@@ -4,7 +4,7 @@ import { Redirect, useParams } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import loadingGif from '../../images/host-court-loading.gif';
 import errorMark from '../../images/error-mark.png';
-import './GoogleSignup.css';
+import './GoogleOAuth.css';
 
 function GoogleSignup() {
     const dispatch = useDispatch();
