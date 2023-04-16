@@ -8,6 +8,7 @@ import loadingGif from '../../images/host-court-loading.gif';
 import authExit from '../../images/auth-exit.svg';
 import errorMark from '../../images/error-mark.png';
 import goBack from '../../images/left-arrow.svg';
+import googleIcon from '../../images/google-icon.svg';
 import './AuthForm.css';
 
 
@@ -115,12 +116,12 @@ function AuthForm({ setShowModal }) {
   // };
 
   // useEffect(() => {
-    // window.addEventListener("message", handleMessage);
-    // return () => window.removeEventListener("message", handleMessage);
+  // window.addEventListener("message", handleMessage);
+  // return () => window.removeEventListener("message", handleMessage);
 
-    // empty dependency array warning ignored as we only want to add/remove event listeners once
-    // based on the lifetime of the component, not dependent on handleMessage
-    // eslint-disable-next-line
+  // empty dependency array warning ignored as we only want to add/remove event listeners once
+  // based on the lifetime of the component, not dependent on handleMessage
+  // eslint-disable-next-line
   // }, []);
 
   return (
@@ -221,9 +222,12 @@ function AuthForm({ setShowModal }) {
         }
         {stepOne &&
           <>
-            <div>----- or -----</div>
-            <button onClick={popup}>
-              Continue with Google
+            <div className='or-divider'>or</div>
+            <button className='google-oauth-btn' onClick={popup}>
+              <div className='google-oauth-inner'>
+                <img src={googleIcon} className='google-icon' />
+                <div className='google-oauth-text'>Continue with Google</div>
+              </div>
             </button>
           </>
         }
