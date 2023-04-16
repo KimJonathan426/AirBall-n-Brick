@@ -136,7 +136,7 @@ const googleOauthHandler = async (req, res) => {
                 return res.redirect('http://localhost:3000/oauth/google/existing/' + googleUser.email);
             }
 
-            return res.redirect('http://localhost:3000/oauth/google/login/');
+            return res.redirect('http://localhost:3000/oauth/google/login/' + googleUser.email);
         }
 
         // Otherwise finish signing up
