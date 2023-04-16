@@ -10,6 +10,7 @@ import Trips from "./components/Trips";
 import HostDashboard from "./components/HostDashboard";
 import About from "./components/About";
 import GoogleExistingLogin from "./components/GoogleOAuth/GoogleExistingLogin";
+import GoogleOAuthLogin from "./components/GoogleOAuth/GoogleOAuthLogin";
 import GoogleOAuthSignup from "./components/GoogleOAuth/GoogleOAuthSignup";
 import PageNotFound from "./components/PageNotFound";
 
@@ -43,6 +44,7 @@ function App() {
           <RouteWrapper path="/hosting" component={HostDashboard} hideNavBar={false} />
           <RouteWrapper path="/about" component={About} hideNavBar={false} />
           <RouteWrapper path='/oauth/google/existing/:email' component={GoogleExistingLogin} hideNavBar={true} />
+          <RouteWrapper path='/oauth/google/login/:email' component={GoogleOAuthLogin} hideNavBar={true} />
           <RouteWrapper path='/oauth/google/signup/:email' component={GoogleOAuthSignup} hideNavBar={true} />
           <RouteWrapper path='*' component={PageNotFound} hideNavBar={false} />
         </Switch>
