@@ -45,6 +45,14 @@ const validateGoogleSignup = [
     handleValidationErrors
 ];
 
+const validateEmail = [
+    check('email')
+        .exists({ checkFalsy: true })
+        .isEmail()
+        .withMessage('Email is invalid.'),
+        handleValidationErrors
+]
+
 // Sign up
 router.post(
     '/',
@@ -135,8 +143,11 @@ router.post(
     }),
 );
 
-// Find email
-router.get('/email/:email', asyncHandler(async (req, res, next) => {
+// Find email, validates based on both manual pattern and check express validator.
+router.get(
+    '/email/:email',
+    validateEmail,
+    asyncHandler(async (req, res, next) => {
     const email = req.params.email;
 
     const emailPattern = /^(\b[a-zA-Z0-9_\-\.]+\b)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,5})(\]?)$/;
