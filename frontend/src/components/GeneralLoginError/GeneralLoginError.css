@@ -1,0 +1,33 @@
+.general-login-error {
+    display: flex;
+    width: 520px;
+    font-size: 14px;
+    color: #717171;
+    padding: 16px;
+    border: 1px solid #DDDDDD;
+    border-radius: 12px;
+    margin: 100px auto 0px auto;
+}
+
+.general-login-error-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.login-error-mark {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    background-color: #C13515;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.exclamation-point {
+    filter: brightness(0) invert(1);
+    width: 16px;
+    height: 16px;
+}
