@@ -57,10 +57,8 @@ router.post(
     validateGoogleLogin,
     asyncHandler(async (req, res, next) => {
         const { credential } = req.body;
-        console.log('credential', credential)
-        console.log('before googlelogin')
+
         const user = await User.googleLogin({ credential });
-        console.log('after googlelogin')
 
         if (!user) {
             const err = new Error('Login failed');
