@@ -4,9 +4,11 @@ import { Redirect, useParams } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import loadingGif from '../../images/host-court-loading.gif';
 import errorMark from '../../images/error-mark.png';
+import PageNotFound from "../PageNotFound";
+import Loading from "../Loading";
 import './GoogleOAuth.css';
 
-function GoogleSignup() {
+function GoogleOAuthSignup() {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
     const { email } = useParams();
@@ -15,9 +17,19 @@ function GoogleSignup() {
     const [errors, setErrors] = useState([]);
     const [emailErrors, setEmailErrors] = useState([]);
     const [usernameErrors, setUsernameErrors] = useState([]);
+    const [isPopup, setIsPopup] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        setUsernameErrors([])
+        if (window.name === 'airballnbrick_google_popup') {
+            setIsPopup(true);
+        };
+
+        setLoading(true);
+    }, []);
+
+    useEffect(() => {
+        setUsernameErrors([]);
     }, [username]);
 
     if (sessionUser) return <Redirect to="/" />;
@@ -72,80 +84,85 @@ function GoogleSignup() {
 
 
     return (
-        <form className='google-signup-form' onSubmit={handleSubmit}>
-            <header className='auth-header'>
-                Finish signing up
-            </header>
-            <div className='auth-content'>
-                <div className='credential-container signup-container'>
-                    <input
-                        type="text"
-                        className={usernameErrors.length ? 'credential-invalid' : 'credential'}
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <div className={usernameErrors.length ? 'credential-header-invalid credential-username' : 'credential-header credential-username'}></div>
-                    {usernameErrors.length > 0 ?
-                        <div className='auth-error-container'>
-                            <ul className='auth-error-list'>
-                                {usernameErrors.map((error, idx) => (
-                                    <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
-                                ))}
-                            </ul>
-                        </div>
-                        :
-                        <div className='signup-info'>
-                            This is what other users will see you as.
-                        </div>
-                    }
-                </div>
-                <div className='credential-container signup-container'>
-                    <input
-                        type="email"
-                        className={emailErrors.length ? 'credential-invalid' : 'credential'}
-                        value={email}
-                        disabled
-                    />
-                    <div className={emailErrors.length ? 'credential-header-invalid credential-email' : 'credential-header credential-email'}></div>
-                    {emailErrors.length > 0 ?
-                        <div className='auth-error-container'>
-                            <ul className='auth-error-list'>
-                                {emailErrors.map((error, idx) => (
-                                    <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
-                                ))}
-                            </ul>
-                        </div>
-                        :
-                        <div className='signup-info'>
-                            We'll email you trip confirmations and receipts.
-                        </div>
-                    }
-                    {errors.length > 0 && (
-                        <div className='auth-error-container'>
-                            <ul className='auth-error-list'>
-                                {errors.map((error, idx) => (
-                                    <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                    <div className='google-notice'>
-                        This info came from Google.
+        loading ? isPopup ?
+            <form className='google-signup-form' onSubmit={handleSubmit}>
+                <header className='auth-header'>
+                    Finish signing up
+                </header>
+                <div className='auth-content'>
+                    <div className='credential-container signup-container'>
+                        <input
+                            type="text"
+                            className={usernameErrors.length ? 'credential-invalid' : 'credential'}
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                        <div className={usernameErrors.length ? 'credential-header-invalid credential-username' : 'credential-header credential-username'}></div>
+                        {usernameErrors.length > 0 ?
+                            <div className='auth-error-container'>
+                                <ul className='auth-error-list'>
+                                    {usernameErrors.map((error, idx) => (
+                                        <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                            :
+                            <div className='signup-info'>
+                                This is what other users will see you as.
+                            </div>
+                        }
                     </div>
+                    <div className='credential-container signup-container'>
+                        <input
+                            type="email"
+                            className={emailErrors.length ? 'credential-invalid' : 'credential'}
+                            value={email}
+                            disabled
+                        />
+                        <div className={emailErrors.length ? 'credential-header-invalid credential-email' : 'credential-header credential-email'}></div>
+                        {emailErrors.length > 0 ?
+                            <div className='auth-error-container'>
+                                <ul className='auth-error-list'>
+                                    {emailErrors.map((error, idx) => (
+                                        <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                            :
+                            <div className='signup-info'>
+                                We'll email you trip confirmations and receipts.
+                            </div>
+                        }
+                        {errors.length > 0 && (
+                            <div className='auth-error-container'>
+                                <ul className='auth-error-list'>
+                                    {errors.map((error, idx) => (
+                                        <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                        <div className='google-notice'>
+                            This info came from Google.
+                        </div>
+                    </div>
+                    <div className='disclosure'>
+                        By selecting <strong>Agree and continue</strong>, I agree with AirBallnBrick's Terms of Service to always display good sportsmanship and have a great time.
+                    </div>
+                    {uploading ?
+                        <button disabled className='credential-loading'>
+                            <img className='credential-loading-img' src={loadingGif} alt='loading...' />
+                        </button>
+                        :
+                        <button className='auth-next' type='submit'>Agree and continue</button>
+                    }
                 </div>
-                <div className='disclosure'>
-                    By selecting <strong>Agree and continue</strong>, I agree with AirBallnBrick's Terms of Service to always display good sportsmanship and have a great time.
-                </div>
-                {uploading ?
-                    <button disabled className='credential-loading'>
-                        <img className='credential-loading-img' src={loadingGif} alt='loading...' />
-                    </button>
-                    :
-                    <button className='auth-next' type='submit'>Agree and continue</button>
-                }
-            </div>
-        </form>
+            </form>
+            :
+            <PageNotFound />
+            :
+            <Loading />
     );
 }
 
-export default GoogleSignup;
+export default GoogleOAuthSignup;
