@@ -104,7 +104,7 @@ function AuthForm({ setShowModal }) {
   };
 
   const popup = () => {
-    window.open(getGoogleOAuthURL(), 'popup', 'width=600,height=600;');
+    window.open(getGoogleOAuthURL(), 'airballnbrick_google_popup', 'popup,width=600,height=600;');
   }
 
   // const handleMessage = (e) => {
@@ -225,7 +225,7 @@ function AuthForm({ setShowModal }) {
             <div className='or-divider'>or</div>
             <button className='google-oauth-btn' onClick={popup}>
               <div className='google-oauth-inner'>
-                <img src={googleIcon} className='google-icon' />
+                <img src={googleIcon} className='google-icon' alt='google logo' />
                 <div className='google-oauth-text'>Continue with Google</div>
               </div>
             </button>
