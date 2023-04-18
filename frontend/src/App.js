@@ -43,9 +43,9 @@ function App() {
           <RouteWrapper path="/trips/v1" component={Trips} hideNavBar={false} />
           <RouteWrapper path="/hosting" component={HostDashboard} hideNavBar={false} />
           <RouteWrapper path="/about" component={About} hideNavBar={false} />
-          <RouteWrapper path='/oauth/google/existing/:email' component={GoogleExistingLogin} hideNavBar={true} />
-          <RouteWrapper path='/oauth/google/login/:email' component={GoogleOAuthLogin} hideNavBar={true} />
-          <RouteWrapper path='/oauth/google/signup/:email' component={GoogleOAuthSignup} hideNavBar={true} />
+          <RouteWrapper path='/oauth/google/existing/:ivString/:token*' component={GoogleExistingLogin} hideNavBar={true} />
+          <RouteWrapper path='/oauth/google/login/:ivString/:token*' component={GoogleOAuthLogin} hideNavBar={true} />
+          <RouteWrapper path='/oauth/google/signup/:ivString/:token*' component={GoogleOAuthSignup} hideNavBar={true} />
           <RouteWrapper path='*' component={PageNotFound} hideNavBar={false} />
         </Switch>
       )}
