@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import getGoogleOAuthURL from "../../utils/getGoogleUrl";
 import SignupStep from "../SignupStep";
 import loadingGif from '../../images/host-court-loading.gif';
-import authExit from '../../images/auth-exit.svg';
 import errorMark from '../../images/error-mark.png';
 import goBack from '../../images/left-arrow.svg';
 import googleIcon from '../../images/google-icon.svg';
@@ -100,22 +99,6 @@ function StaticAuthForm() {
     window.open(getGoogleOAuthURL(), 'airballnbrick_google_popup', 'popup,width=600,height=600;');
   };
 
-  // const handleMessage = (e) => {
-  //   const user = e.data.user
-
-  //   if (e.origin === "http://localhost:3000" && e.data.type === "SUCCESSFUL_SIGNUP") {
-  //     return dispatch(sessionActions.googleLogin(user))
-  //   }
-  // };
-
-  // useEffect(() => {
-  // window.addEventListener("message", handleMessage);
-  // return () => window.removeEventListener("message", handleMessage);
-
-  // empty dependency array warning ignored as we only want to add/remove event listeners once
-  // based on the lifetime of the component, not dependent on handleMessage
-  // eslint-disable-next-line
-  // }, []);
 
   return (
     <div className='static-auth-form'>

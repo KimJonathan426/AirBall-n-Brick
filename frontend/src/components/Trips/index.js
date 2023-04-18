@@ -10,7 +10,6 @@ import './Trips.css';
 const Trips = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user?.id);
-
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState(false);
     const [activeTrips, setActiveTrips] = useState([]);
@@ -20,6 +19,7 @@ const Trips = () => {
         const fetchData = async () => {
             if (!sessionUser) {
                 setLoading(true);
+                setUser(false);
                 return
             }
 
