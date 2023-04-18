@@ -166,7 +166,9 @@ router.get(
         }
     });
 
-    if (existingEmail) {
+    if (existingEmail && existingEmail.isOAuth) {
+        res.status(200).send({'result': 'google'})
+    } else if (existingEmail) {
         res.status(200).send({'result': true})
     } else {
         res.status(200).send({'result': false})
