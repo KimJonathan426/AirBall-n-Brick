@@ -19,15 +19,13 @@ function GoogleOAuthSignup() {
     const [errors, setErrors] = useState([]);
     const [emailErrors, setEmailErrors] = useState([]);
     const [usernameErrors, setUsernameErrors] = useState([]);
-    const [isPopup, setIsPopup] = useState(false);
+    const [isValidPopup, setIsValidPopup] = useState(false);
     const [loading, setLoading] = useState(false);
 
     // validate user came from backend api with encryption/decryption and window name
     useEffect(() => {
         const iv = CryptoJS.enc.Hex.parse(ivString);
-
         const key = CryptoJS.enc.Hex.parse(process.env.REACT_APP_DECRYPTION_SECRET);
-        console.log(token);
 
         const decryptedEmail = CryptoJS.AES.decrypt(
             token,
@@ -38,7 +36,7 @@ function GoogleOAuthSignup() {
         setEmail(decryptedEmail);
 
         if (window.name === 'airballnbrick_google_popup') {
-            setIsPopup(true);
+            setIsValidPopup(true);
         };
 
         setLoading(true);
@@ -100,7 +98,7 @@ function GoogleOAuthSignup() {
 
 
     return (
-        loading ? isPopup ?
+        loading ? isValidPopup ?
             <form className='google-signup-form' onSubmit={handleSubmit}>
                 <header className='auth-header'>
                     Finish signing up

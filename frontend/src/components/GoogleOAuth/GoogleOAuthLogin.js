@@ -15,15 +15,13 @@ const GoogleOAuthLogin = () => {
   const { ivString, token } = useParams();
   const [email, setEmail] = useState(token);
   const [errors, setErrors] = useState([]);
-  const [isPopup, setIsPopup] = useState(false);
+  const [isValidPopup, setIsValidPopup] = useState(false);
   const [loading, setLoading] = useState(false);
 
   // validate user came from backend api with encryption/decryption and window name
   useEffect(() => {
     const iv = CryptoJS.enc.Hex.parse(ivString);
-
     const key = CryptoJS.enc.Hex.parse(process.env.REACT_APP_DECRYPTION_SECRET);
-    console.log(token);
 
     const decryptedEmail = CryptoJS.AES.decrypt(
       token,
@@ -34,20 +32,20 @@ const GoogleOAuthLogin = () => {
     setEmail(decryptedEmail);
 
     if (window.name === 'airballnbrick_google_popup') {
-      setIsPopup(true);
+      setIsValidPopup(true);
     };
 
     setLoading(true);
 
     const loginPage = async () => {
 
-      if (isPopup) {
+      if (isValidPopup) {
         const response = await dispatch(sessionActions.googleLogin({ email })).catch(
           async (res) => {
             const data = await res.json();
             if (data && data.errors) {
               setErrors(data.errors);
-            }
+            };
           }
         );
 
@@ -60,12 +58,12 @@ const GoogleOAuthLogin = () => {
     };
 
     loginPage();
-  }, [dispatch, isPopup, email, ivString, token]);
+  }, [dispatch, isValidPopup, email, ivString, token]);
 
   if (sessionUser) return <Redirect to="/" />;
 
   return (
-    loading ? isPopup ?
+    loading ? isValidPopup ?
       <div>
         {errors.length > 0 ? (
           <GeneralLoginError />

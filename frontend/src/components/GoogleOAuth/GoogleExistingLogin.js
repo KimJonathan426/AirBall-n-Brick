@@ -23,9 +23,8 @@ const GoogleExistingLogin = () => {
     // validate user came from backend api with encryption/decryption and window name
     useEffect(() => {
         const iv = CryptoJS.enc.Hex.parse(ivString);
-
         const key = CryptoJS.enc.Hex.parse(process.env.REACT_APP_DECRYPTION_SECRET);
-        console.log(token);
+
         const decryptedEmail = CryptoJS.AES.decrypt(
             token,
             key,
@@ -42,7 +41,7 @@ const GoogleExistingLogin = () => {
     }, [ivString, token]);
 
     useEffect(() => {
-        setErrors([])
+        setErrors([]);
     }, [password]);
 
     if (sessionUser) return <Redirect to="/" />;
@@ -55,7 +54,7 @@ const GoogleExistingLogin = () => {
             setErrors(['Password is required.']);
             setUploading(false);
             return;
-        }
+        };
 
         setErrors([]);
 
@@ -65,14 +64,14 @@ const GoogleExistingLogin = () => {
                 if (data && data.errors) {
                     setErrors(data.errors);
                     setUploading(false);
-                }
+                };
             });
 
         if (response) {
             window.opener.location.reload();
             window.opener.focus();
             window.close();
-        }
+        };
     };
 
     return (
