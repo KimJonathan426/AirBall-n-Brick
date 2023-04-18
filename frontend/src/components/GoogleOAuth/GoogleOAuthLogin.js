@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import CryptoJS from "crypto-js";
+import validator from 'validator';
 import * as sessionActions from "../../store/session";
 import loadingGif from '../../images/host-court-loading.gif';
 import GeneralLoginError from "../GeneralLoginError";
@@ -22,23 +23,26 @@ const GoogleOAuthLogin = () => {
   useEffect(() => {
     const iv = CryptoJS.enc.Hex.parse(ivString);
     const key = CryptoJS.enc.Hex.parse(process.env.REACT_APP_DECRYPTION_SECRET);
+    const message = token.slice(6)
 
     const decryptedEmail = CryptoJS.AES.decrypt(
-      token,
+      message,
       key,
-      { iv: iv }
+      {
+        iv: iv,
+        padding: CryptoJS.pad.Pkcs7
+      }
     ).toString(CryptoJS.enc.Utf8);
 
     setEmail(decryptedEmail);
 
-    if (window.name === 'airballnbrick_google_popup') {
+    if (window.name === 'airballnbrick_google_popup' && validator.isEmail(decryptedEmail)) {
       setIsValidPopup(true);
     };
 
     setLoading(true);
 
     const loginPage = async () => {
-
       if (isValidPopup) {
         const response = await dispatch(sessionActions.googleLogin({ email })).catch(
           async (res) => {
