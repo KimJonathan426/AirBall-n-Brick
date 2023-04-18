@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getUserBookings } from '../../store/bookingReducer';
+import StaticAuthForm from '../AuthFormModal/StaticAuthForm';
 import Loading from '../Loading';
 import wavingHand from '../../images/hand-image.svg';
 import './Trips.css';
@@ -18,6 +19,7 @@ const Trips = () => {
     useEffect(() => {
         const fetchData = async () => {
             if (!sessionUser) {
+                setLoading(true);
                 return
             }
 
@@ -184,7 +186,9 @@ const Trips = () => {
                 </div>
             </div>
             :
-            <div className='trips-container'>Prompt Login Screen Here</div>
+            <div className='trips-auth-container'>
+                <StaticAuthForm />
+            </div>
             :
             <Loading />
     )
