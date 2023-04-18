@@ -1,6 +1,7 @@
 const qs = require('qs');
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
+const CryptoJS = require('crypto-js');
 const { jwtConfig, googleClientId, googleClientSecret, googleOauthRedirectUrl } = require('../config');
 const { User } = require('../db/models');
 const { Op } = require('sequelize');
@@ -129,18 +130,25 @@ const googleOauthHandler = async (req, res) => {
             }
         });
 
+        // encrypt email and decrypt it in the frontend with validations to see if user was redirected from this api and not manually.
+        const key = CryptoJS.enc.Hex.parse(process.env.ENCRYPTION_SECRET);
+        const wordArray  = CryptoJS.lib.WordArray.random(16);
+        const iv = wordArray.toString(CryptoJS.enc.Hex)
+
+        const crypticEmail = CryptoJS.AES.encrypt(googleUser.email, key, { iv: wordArray });
+
         // Check if user is already registered with or without OAuth
         if (checkExistingUser) {
             // If already registered through site, prompt password login
             if (!checkExistingUser.isOAuth) {
-                return res.redirect('http://localhost:3000/oauth/google/existing/' + googleUser.email);
+                return res.redirect(`http://localhost:3000/oauth/google/existing/${iv}/${crypticEmail.toString()}`);
             }
 
-            return res.redirect('http://localhost:3000/oauth/google/login/' + googleUser.email);
+            return res.redirect(`http://localhost:3000/oauth/google/login/${iv}/${crypticEmail.toString()}`);
         }
 
         // Otherwise finish signing up
-        return res.redirect('http://localhost:3000/oauth/google/signup/' + googleUser.email);
+        return res.redirect(`http://localhost:3000/oauth/google/signup/${iv}/${crypticEmail.toString()}`);
 
     } catch (error) {
         console.error(error, 'Failed to authorize Google user');
