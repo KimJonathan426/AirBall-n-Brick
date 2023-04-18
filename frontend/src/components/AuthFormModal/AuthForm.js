@@ -26,23 +26,23 @@ function AuthForm({ setShowModal }) {
   useEffect(() => {
     document.body.style.overflowY = 'hidden';
     return () => {
-      document.body.style.overflowY = 'unset'
+      document.body.style.overflowY = 'unset';
     }
   }, []);
 
   useEffect(() => {
-    let temp = 'credential'
+    let temp = 'credential';
 
     if (credential !== "") {
-      temp += ' invalid'
-    }
+      temp += ' invalid';
+    };
 
-    setInputEmailClass(temp)
-    setErrors([])
+    setInputEmailClass(temp);
+    setErrors([]);
   }, [credential, login, setInputEmailClass]);
 
   useEffect(() => {
-    setErrors([])
+    setErrors([]);
   }, [password]);
 
   const nextStep = async (e) => {
@@ -50,8 +50,8 @@ function AuthForm({ setShowModal }) {
 
     if (!credential) {
       setErrors(['Email is required.']);
-      setInputEmailClass('credential invalid')
-      return
+      setInputEmailClass('credential invalid');
+      return;
     }
 
     setUploading(true);
@@ -62,12 +62,12 @@ function AuthForm({ setShowModal }) {
         if (data && data.errors) {
           setErrors(data.errors);
           setUploading(false);
-        }
+        };
       });
 
     if (errors.length) {
       setUploading(false);
-      return
+      return;
     } else if (res && res.result) {
       setStepOne(false);
       setLogin(true);
@@ -76,12 +76,12 @@ function AuthForm({ setShowModal }) {
       setStepOne(false);
       setSignup(true);
       setUploading(false);
-    }
-  }
+    };
+  };
 
   const returnStepOne = () => {
-    setInputEmailClass('credential invalid')
-    setPassword("")
+    setInputEmailClass('credential invalid');
+    setPassword("");
     setStepOne(true);
     setLogin(false);
     setSignup(false);
@@ -98,14 +98,14 @@ function AuthForm({ setShowModal }) {
         if (data && data.errors) {
           setErrors(data.errors);
           setUploading(false);
-        }
+        };
       }
     );
   };
 
   const popup = () => {
     window.open(getGoogleOAuthURL(), 'airballnbrick_google_popup', 'popup,width=600,height=600;');
-  }
+  };
 
   // const handleMessage = (e) => {
   //   const user = e.data.user
