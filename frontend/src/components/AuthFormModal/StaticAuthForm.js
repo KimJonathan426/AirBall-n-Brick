@@ -61,6 +61,14 @@ function StaticAuthForm() {
       setUploading(false);
       return;
     } else if (res && res.result) {
+      if (res.result === 'google') {
+        setUploading(false);
+        // open modal or next component prompting google login instead
+        // setErrors is place holder for now
+        setErrors(['This account was registered with Google, please continue with google']);
+        return;
+      }
+
       setStepOne(false);
       setLogin(true);
       setUploading(false);
