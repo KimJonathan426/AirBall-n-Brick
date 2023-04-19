@@ -148,18 +148,18 @@ const googleOauthHandler = async (req, res) => {
         if (checkExistingUser) {
             // If already registered through site, prompt password login
             if (!checkExistingUser.isOAuth) {
-                return res.redirect(`http://localhost:3000/oauth/google/existing/${iv}/token=${crypticEmail.toString()}`);
+                return res.redirect(`https://airball-n-brick.herokuapp.com/oauth/google/existing/${iv}/token=${crypticEmail.toString()}`);
             }
 
-            return res.redirect(`http://localhost:3000/oauth/google/login/${iv}/token=${crypticEmail.toString()}`);
+            return res.redirect(`https://airball-n-brick.herokuapp.com/oauth/google/login/${iv}/token=${crypticEmail.toString()}`);
         }
 
         // Otherwise finish signing up
-        return res.redirect(`http://localhost:3000/oauth/google/signup/${iv}/token=${crypticEmail.toString()}`);
+        return res.redirect(`https://airball-n-brick.herokuapp.com/oauth/google/signup/${iv}/token=${crypticEmail.toString()}`);
 
     } catch (error) {
         console.error(error, 'Failed to authorize Google user');
-        return res.redirect('http://localhost:3000/oauth/error');
+        return res.redirect('https://airball-n-brick.herokuapp.com/oauth/error');
     }
 }
 
