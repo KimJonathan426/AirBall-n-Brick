@@ -70,8 +70,6 @@ const requireAuth = [
 const getGoogleOAuthTokens = async ({ code }) => {
     const url = 'https://oauth2.googleapis.com/token'
 
-    console.log('google oauth redirect url', googleOauthRedirectUrl)
-
     const values = {
         code,
         client_id: googleClientId,
