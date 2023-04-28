@@ -12,6 +12,7 @@ import About from "./components/About";
 import GoogleExistingLogin from "./components/GoogleOAuth/GoogleExistingLogin";
 import GoogleOAuthLogin from "./components/GoogleOAuth/GoogleOAuthLogin";
 import GoogleOAuthSignup from "./components/GoogleOAuth/GoogleOAuthSignup";
+import OAuthError from "./components/GoogleOAuth/OAuthError";
 import PageNotFound from "./components/PageNotFound";
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
           <RouteWrapper path='/oauth/google/existing/:ivString/:token*' component={GoogleExistingLogin} hideNavBar={true} />
           <RouteWrapper path='/oauth/google/login/:ivString/:token*' component={GoogleOAuthLogin} hideNavBar={true} />
           <RouteWrapper path='/oauth/google/signup/:ivString/:token*' component={GoogleOAuthSignup} hideNavBar={true} />
+          <RouteWrapper path='/oauth/error' component={OAuthError} hideNavBar={true} />
           <RouteWrapper path='*' component={PageNotFound} hideNavBar={false} />
         </Switch>
       )}
