@@ -33,6 +33,39 @@
     width: 100px;
 }
 
+.oauth-error-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.oauth-error-main {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 600px;
+    padding-left: 24px;
+    padding-right: 24px;
+    margin: 0px auto;
+    box-sizing: border-box;
+}
+
+.oauth-logo {
+    align-self: center;
+    width: 75%;
+    margin-left: 35px;
+}
+
+.oauth-error-header {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.oauth-error-description {
+    font-weight: 500;
+}
+
 @media screen and (min-width: 727px) {
     .google-signup-form,
     .google-existing-login-form {

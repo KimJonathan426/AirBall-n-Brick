@@ -1,24 +1,26 @@
 import React from 'react';
+import logoText from '../../images/logo-text.png';
+import errorBot from '../../images/google-bot-error.png';
+import './GoogleOAuth.css';
 
 const OAuthError = () => {
 
     return (
-        <div className='page-not-found-container'>
-            <div className='not-found-main'>
-                <div className='not-found-text'>
-                    <h1>
-                        Oops!
-                    </h1>
-                    <h2>
-                        Failed to authorize Google user...
-                    </h2>
-                    <h3>
-                        Error code: 401
-                    </h3>
+        <div className='oauth-error-container'>
+            <div className='oauth-error-main'>
+                <img className='oauth-logo' src={logoText} />
+                <div className='oauth-error-header'>
+                    Authorization Error
                 </div>
-                <div className='not-found-image'>
-                    <img className='travel-image' src='https://airballnbrick.s3.amazonaws.com/NBA+Travel+Violation.png' alt='referee travel violation call' />
-                </div>
+                <h4>
+                    Error 401
+                </h4>
+                <h4 className='oauth-error-description'>
+                    Failed to authorize Google user.
+                    <br></br>
+                    Please try again!
+                </h4>
+                <img src={errorBot} />
             </div>
         </div>
     )
