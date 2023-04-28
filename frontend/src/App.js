@@ -47,7 +47,7 @@ function App() {
           <RouteWrapper path='/oauth/google/existing/:ivString/:token*' component={GoogleExistingLogin} hideNavBar={true} />
           <RouteWrapper path='/oauth/google/login/:ivString/:token*' component={GoogleOAuthLogin} hideNavBar={true} />
           <RouteWrapper path='/oauth/google/signup/:ivString/:token*' component={GoogleOAuthSignup} hideNavBar={true} />
-          <RouteWrapper path='/oauth/google/error' component={OAuthError} hideNavBar={true} />
+          <RouteWrapper path='/oauth/error' component={OAuthError} hideNavBar={true} />
           <RouteWrapper path='*' component={PageNotFound} hideNavBar={false} />
         </Switch>
       )}
