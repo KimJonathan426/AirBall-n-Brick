@@ -3,11 +3,10 @@ import 'react-date-range/dist/theme/default.css';
 import { useRef } from 'react';
 import { Modal } from '../../context/Modal';
 import { DateRangePicker } from 'react-date-range';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBookings } from '../../store/bookingReducer';
 import $ from 'jquery';
-import listenForOutsideClicks from '../ListenForOutsideClicks';
 import ConfirmBookingModal from '../ConfirmBookingModal';
 import Loading from '../Loading';
 
@@ -25,13 +24,37 @@ const BookingFormFixed = ({ user, spotId, price, canceled, setCanceled, stateTra
     const [showModal, setShowModal] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
 
+    const handleOutsideClick = useCallback((evt) => {
+        const cur = bookingRef.current;
+        const node = evt.target;
+        if (cur?.contains(node)) return;
+        setIsOpen(false);
+        setListening(false);
+    }, []);
+
     useEffect(() => {
-        listenForOutsideClicks(
-        listening,
-        setListening,
-        bookingRef,
-        setIsOpen)
-    }, [listening]);
+        // Listen for outside clicks once calendar is open
+        if (listening) return;
+        if (!bookingRef.current) return;
+
+        if (isOpen) {
+            setListening(true);
+            document.addEventListener(`click`, handleOutsideClick);
+            document.addEventListener(`touchstart`, handleOutsideClick);
+        } else {
+            document.removeEventListener(`click`, handleOutsideClick);
+            document.removeEventListener(`touchstart`, handleOutsideClick);
+        };
+
+    }, [listening, isOpen, handleOutsideClick]);
+
+    // Clean up event listeners on dismount
+    useEffect(() => {
+        return () => {
+            document.removeEventListener(`click`, handleOutsideClick);
+            document.removeEventListener(`touchstart`, handleOutsideClick);
+        };
+    }, [handleOutsideClick]);
 
     const [state, setState] = useState(stateTransfer);
 
@@ -65,7 +88,7 @@ const BookingFormFixed = ({ user, spotId, price, canceled, setCanceled, stateTra
         }
 
         fetchData();
-    // eslint-disable-next-line
+        // eslint-disable-next-line
     }, [dispatch, addDisabledDate, canceled, edited, setAddDisabledDate, setCanceled, setEdited, spotId])
 
     useEffect(() => {
