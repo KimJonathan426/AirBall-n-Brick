@@ -54,7 +54,7 @@ const BookingFormFixed = ({ user, spotId, price, canceled, setCanceled, stateTra
             document.removeEventListener(`click`, handleOutsideClick);
             document.removeEventListener(`touchstart`, handleOutsideClick);
         };
-    }, []);
+    }, [handleOutsideClick]);
 
     const [state, setState] = useState(stateTransfer);
 

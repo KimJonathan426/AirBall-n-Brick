@@ -27,6 +27,7 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer
     const handleOutsideClick = useCallback((evt) => {
         const cur = bookingRef.current;
         const node = evt.target;
+        console.log('click')
         if (cur?.contains(node)) return;
         setIsOpen(false);
         setListening(false);
@@ -54,7 +55,7 @@ const BookingForm = ({ user, spotId, price, canceled, setCanceled, stateTransfer
             document.removeEventListener(`click`, handleOutsideClick);
             document.removeEventListener(`touchstart`, handleOutsideClick);
         };
-    }, []);
+    }, [handleOutsideClick]);
 
     const [state, setState] = useState(stateTransfer);
 
