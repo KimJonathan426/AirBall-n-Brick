@@ -8,7 +8,7 @@ const OAuthError = () => {
     return (
         <div className='oauth-error-container'>
             <div className='oauth-error-main'>
-                <img className='oauth-logo' src={logoText} />
+                <img className='oauth-logo' src={logoText} alt='AirBallnBrick logo text' />
                 <div className='oauth-error-header'>
                     Authorization Error
                 </div>
@@ -20,7 +20,7 @@ const OAuthError = () => {
                     <br></br>
                     Please try again!
                 </h4>
-                <img src={errorBot} />
+                <img src={errorBot} alt='google broken error robot'/>
             </div>
         </div>
     )
