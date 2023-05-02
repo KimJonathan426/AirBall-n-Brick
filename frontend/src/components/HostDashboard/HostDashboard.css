@@ -73,14 +73,12 @@ hosting reservations css goes here
 
 .tips-list {
     display: flex;
-    gap: 16px;
     width: 100%;
     max-width: 1440px;
     height: fit-content;
     list-style: none;
     padding: 0px;
     margin: 0 auto;
-    overflow-x: auto;
     box-sizing: border-box;
 }
 
@@ -95,7 +93,7 @@ hosting reservations css goes here
 .tip-image {
     width: 100%;
     height: fit-content;
-    border-radius: 12px;
+    border-radius: 12px 12px 0 0;
     overflow: hidden;
 }
 
