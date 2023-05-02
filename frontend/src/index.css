@@ -102,3 +102,13 @@ a {
 .swiper-button-disabled {
     display: none;
 }
+
+.swiper-pagination-bullet {
+    background: #FFF !important;
+    opacity: .5 !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: #FFF !important;
+    opacity: 1 !important;
+}
