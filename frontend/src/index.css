@@ -98,3 +98,7 @@ a {
 .no-display {
     display: none;
 }
+
+.swiper-button-disabled {
+    display: none;
+}

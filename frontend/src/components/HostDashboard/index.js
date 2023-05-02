@@ -1,10 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper";
+import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import './HostDashboard.css';
 
 const HostDashboard = () => {
+
 
     return (
         <div className='hosting-container'>
@@ -27,7 +28,10 @@ const HostDashboard = () => {
                     <Swiper
                         slidesPerView={3}
                         spaceBetween={16}
-                        navigation={true}
+                        navigation={{
+                            prevEl: '.left-arrow',
+                            nextEl: '.right-arrow',
+                        }}
                         modules={[Navigation]}
                         className="tips-list"
                     >
@@ -63,6 +67,8 @@ const HostDashboard = () => {
                                 <div className='tip-info'>Create a great experience for your customers</div>
                             </li>
                         </SwiperSlide>
+                        <button className='left-arrow'><span>❮</span></button>
+                        <button className='right-arrow'><span>❯</span></button>
                     </Swiper>
                 </div>
             </div>

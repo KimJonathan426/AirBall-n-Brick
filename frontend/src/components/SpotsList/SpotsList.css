@@ -60,6 +60,7 @@
     left: 15px;
     cursor: pointer;
     transition: all .2s ease-in-out;
+    z-index: 2;
 }
 
 .left-arrow > span {
@@ -79,6 +80,7 @@
     right: 15px;
     cursor: pointer;
     transition: all .2s ease-in-out;
+    z-index: 2;
 }
 
 .right-arrow > span {
