@@ -9,6 +9,16 @@
     box-sizing: border-box;
 }
 
+.hosting-auth-container {
+    width: 100%;
+    max-width: 728px;
+    min-width: 460px;
+    height: 450px;
+    margin: 100px auto 0 auto;
+    padding: 0 80px;
+    box-sizing: border-box;
+}
+
 .hosting-content {
     display: flex;
     flex-direction: column;
