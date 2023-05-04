@@ -81,6 +81,16 @@ export const getSingleSpot = (spotId) => async (dispatch) => {
     }
 };
 
+export const getUserSpots = (userId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/user/${userId}`);
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionGetSpots(data.spots, data.images));
+        return data;
+    }
+};
+
 export const getSpotImages = (spotId) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spotId}/images`);
 
