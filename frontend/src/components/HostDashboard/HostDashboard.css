@@ -52,12 +52,17 @@
 /*
 hosting reservations css goes here
 */
+.hosting-reservations-container {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+
 
 .hosting-tips-container {
     display: flex;
     justify-content: center;
     width: 100vw;
-    background-color: #000000;
 }
 
 .hosting-tips-main {
@@ -72,8 +77,7 @@ hosting reservations css goes here
 
 .tips-header {
     font-size: 26px;
-    font-weight: 500;
-    color: #FFF;
+    font-weight: 600;
     max-width: 1280px;
     margin: 0 0 24px 0;
 }

@@ -15,8 +15,8 @@ const HostDashboard = () => {
                         View and manage your listings.
                     </h4>
                 </div>
-                <div className='hosting-reservations'>
-
+                <div className='hosting-reservations-container'>
+                    Test
                 </div>
                 <HostingTips />
             </div>
