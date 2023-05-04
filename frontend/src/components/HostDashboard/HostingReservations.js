@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserSpots } from '../../store/spotReducer';
+import CurrentlyHosting from './CurrentlyHosting';
+import CheckingOut from './CheckingOut';
+import ArrivingSoon from './ArrivingSoon';
+import Upcoming from './Upcoming';
 
 const HostingReservations = () => {
     const dispatch = useDispatch();
@@ -36,6 +40,20 @@ const HostingReservations = () => {
                     <button onClick={() => setChoice('checkout')} className={choice === 'checkout' ? 'reservation-btn-choice' : 'reservation-btn-option'}>Checking out ({checkingOut.length})</button>
                     <button onClick={() => setChoice('arriving')} className={choice === 'arriving' ? 'reservation-btn-choice' : 'reservation-btn-option'}>Arriving Soon ({arrivingSoon.length})</button>
                     <button onClick={() => setChoice('upcoming')} className={choice === 'upcoming' ? 'reservation-btn-choice' : 'reservation-btn-option'}>Upcoming ({upcoming.length})</button>
+                </div>
+                <div className='reservation-display'>
+                    {choice === 'hosting' &&
+                        <CurrentlyHosting reservations={currentlyHosting} />
+                    }
+                    {choice === 'checkout' &&
+                        <CheckingOut reservations={checkingOut} />
+                    }
+                    {choice === 'arriving' &&
+                        <ArrivingSoon reservations={arrivingSoon} />
+                    }
+                    {choice === 'upcoming' &&
+                        <Upcoming reservations={upcoming} />
+                    }
                 </div>
             </div>
         </div>
