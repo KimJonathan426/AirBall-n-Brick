@@ -1,9 +1,11 @@
-import './HostDashboard.css';
+import { useSelector } from 'react-redux';
 import HostingReservations from './HostingReservations';
 import HostingTips from './HostingTips.js';
+import StaticAuthForm from '../AuthFormModal/StaticAuthForm';
+import './HostDashboard.css';
 
 const HostDashboard = () => {
-
+    const user = useSelector(state => state.session.user?.id)
 
     return (
         <div className='hosting-container'>
@@ -16,8 +18,16 @@ const HostDashboard = () => {
                         View and manage your listings.
                     </h4>
                 </div>
-                <HostingReservations />
-                <HostingTips />
+                {user ?
+                    <>
+                        <HostingReservations />
+                        <HostingTips />
+                    </>
+                    :
+                    <div className='hosting-auth-container'>
+                        <StaticAuthForm />
+                    </div>
+                }
             </div>
         </div>
     )
