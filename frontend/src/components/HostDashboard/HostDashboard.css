@@ -78,6 +78,59 @@ hosting reservations css goes here
     box-sizing: border-box;
 }
 
+.reservation-options {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.reservation-btn-option {
+    font-size: 14px;
+    line-height: 18px;
+    min-height: 40px;
+    height: fit-content;
+    background-color: #FFFFFF;
+    padding: 4px 16px;
+    border: none;
+    box-shadow: 0 0 0 1px #DDDDDD;
+    border-radius: 20px;
+    margin-right: 18px;
+    margin-bottom: 18px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+
+.reservation-btn-option:hover {
+    box-shadow: 0 0 0 1px black;
+}
+
+.reservation-btn-option:active,
+.reservation-btn-choice:active {
+    transform: scale(0.96);
+}
+
+.reservation-btn-choice {
+    font-size: 14px;
+    line-height: 18px;
+    min-height: 40px;
+    height: fit-content;
+    background-color: #F7F7F7;
+    padding: 4px 16px;
+    border: none;
+    box-shadow: 0 0 0 1px #DDDDDD;
+    border-radius: 20px;
+    margin-right: 18px;
+    margin-bottom: 18px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    box-shadow: 0 0 0 2px black;
+}
+
 .hosting-tips-container {
     display: flex;
     justify-content: center;
@@ -127,7 +180,7 @@ hosting reservations css goes here
     overflow: hidden;
 }
 
-.tip-image > img {
+.tip-image>img {
     width: 100%;
     min-width: 250px;
     object-fit: cover;

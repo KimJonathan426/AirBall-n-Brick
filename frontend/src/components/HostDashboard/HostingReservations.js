@@ -5,22 +5,24 @@ import { getUserSpots } from '../../store/spotReducer';
 const HostingReservations = () => {
     const dispatch = useDispatch();
     const spots = useSelector(state => state.spot)
-    const user = useSelector(state => state.session.user)
-    const [checkingOut, setCheckingOut] = useState([]);
+    const userId = useSelector(state => state.session.user?.id)
+    const [choice, setChoice] = useState('hosting')
     const [currentlyHosting, setCurrentlyHosting] = useState([]);
+    const [checkingOut, setCheckingOut] = useState([]);
     const [arrivingSoon, setArrivingSoon] = useState([]);
     const [upcoming, setUpcoming] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
-            await dispatch(getUserSpots(user.id));
+            await dispatch(getUserSpots(userId));
 
             setLoading(true);
         }
 
         fetchData();
-    }, [dispatch]);
+    }, [dispatch, userId]);
+
 
 
     return (
@@ -28,6 +30,12 @@ const HostingReservations = () => {
             <div className='hosting-reservations-main'>
                 <div className='reservation-header'>
                     Your reservations
+                </div>
+                <div className='reservation-options'>
+                    <button onClick={() => setChoice('hosting')} className={choice === 'hosting' ? 'reservation-btn-choice' : 'reservation-btn-option'}>Currently hosting ({currentlyHosting.length})</button>
+                    <button onClick={() => setChoice('checkout')} className={choice === 'checkout' ? 'reservation-btn-choice' : 'reservation-btn-option'}>Checking out ({checkingOut.length})</button>
+                    <button onClick={() => setChoice('arriving')} className={choice === 'arriving' ? 'reservation-btn-choice' : 'reservation-btn-option'}>Arriving Soon ({arrivingSoon.length})</button>
+                    <button onClick={() => setChoice('upcoming')} className={choice === 'upcoming' ? 'reservation-btn-choice' : 'reservation-btn-option'}>Upcoming ({upcoming.length})</button>
                 </div>
             </div>
         </div>
