@@ -58,6 +58,15 @@ hosting reservations css goes here
     width: 100vw;
 }
 
+.hosting-reservations-main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1440px;
+    height: fit-content;
+    padding: 64px 80px;
+    box-sizing: border-box;
+}
 
 .hosting-tips-container {
     display: flex;
@@ -75,7 +84,8 @@ hosting reservations css goes here
     box-sizing: border-box;
 }
 
-.tips-header {
+.tips-header,
+.reservation-header {
     font-size: 26px;
     font-weight: 600;
     max-width: 1280px;

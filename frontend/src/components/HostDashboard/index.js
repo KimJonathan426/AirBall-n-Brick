@@ -1,4 +1,5 @@
 import './HostDashboard.css';
+import HostingReservations from './HostingReservations';
 import HostingTips from './HostingTips.js';
 
 const HostDashboard = () => {
@@ -15,9 +16,7 @@ const HostDashboard = () => {
                         View and manage your listings.
                     </h4>
                 </div>
-                <div className='hosting-reservations-container'>
-                    Test
-                </div>
+                <HostingReservations />
                 <HostingTips />
             </div>
         </div>
