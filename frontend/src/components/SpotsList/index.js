@@ -33,9 +33,13 @@ const SpotList = () => {
 
     let imageDict = {};
 
-    for (let spot of spotArray) {
-        imageDict[spot.id] = imageArray.filter(image => spot.id === image.spotId);
-    }
+    for (let image of imageArray) {
+        if (imageDict[image.spotId]) {
+            imageDict[image.spotId].push(image)
+        } else {
+            imageDict[image.spotId] = [image]
+        }
+    };
 
 
     return (
