@@ -60,7 +60,7 @@ hosting reservations css goes here
     min-width: 378px;
     height: fit-content;
     background-color: #000000;
-    padding: 64px 64px 48px 64px;
+    padding: 64px;
     box-sizing: border-box;
 }
 
@@ -68,7 +68,7 @@ hosting reservations css goes here
     font-size: 26px;
     font-weight: 500;
     color: #FFF;
-    margin: 24px 0;
+    margin: 0 0 24px 0;
 }
 
 .tips-list {

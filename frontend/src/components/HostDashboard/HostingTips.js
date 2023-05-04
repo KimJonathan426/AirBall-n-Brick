@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
@@ -6,13 +6,40 @@ import "swiper/css/navigation";
 
 const HostingTips = () => {
 
+    const [width, setWidth] = useState(window.innerWidth)
+    const [slides, setSlides] = useState(4);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWidth(window.innerWidth);
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    }, [])
+
+    useEffect(() => {
+        if (width < 645) {
+            setSlides(1);
+        } else if (width < 910) {
+            setSlides(2);
+        } else if (width < 1175) {
+            setSlides(3);
+        } else {
+            setSlides(4);
+        }
+    }, [width])
+
     return (
         <div className='hosting-tips-container'>
                     <div className='tips-header'>
                         Hosting Tips
                     </div>
                     <Swiper
-                        slidesPerView={3}
+                        slidesPerView={slides}
                         spaceBetween={16}
                         navigation={{
                             prevEl: '.left-arrow',
