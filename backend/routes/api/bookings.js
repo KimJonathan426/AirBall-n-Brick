@@ -19,18 +19,18 @@ router.get('/:spotId', asyncHandler(async (req, res) => {
     });
 }));
 
-// router.get('/hosting/:userId', asyncHandler(async (req, res) => {
-//     const bookings = await Booking.findAll({
-//         where: {
-//             userId: req.params.userId
-//         },
-//         include: [User, Spot]
-//     });
+router.get('/hosting/:userId', asyncHandler(async (req, res) => {
+    const bookings = await Booking.findAll({
+        where: {
+            hostId: req.params.userId
+        },
+        include: [User, Spot]
+    });
 
-//     return res.json({
-//         bookings
-//     });
-// }));
+    return res.json({
+        bookings
+    });
+}));
 
 router.get('/trips/:userId', asyncHandler(async (req, res) => {
     const bookings = await Booking.findAll({
