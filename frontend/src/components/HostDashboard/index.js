@@ -3,6 +3,7 @@ import HostingReservations from './HostingReservations';
 import HostingTips from './HostingTips.js';
 import StaticAuthForm from '../AuthFormModal/StaticAuthForm';
 import './HostDashboard.css';
+import HostListings from './HostListings';
 
 const HostDashboard = () => {
     const user = useSelector(state => state.session.user?.id)
@@ -20,6 +21,7 @@ const HostDashboard = () => {
                 </div>
                 {user ?
                     <>
+                        <HostListings />
                         <HostingReservations />
                         <HostingTips />
                     </>

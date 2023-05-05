@@ -62,19 +62,21 @@
 /*
 hosting reservations css goes here
 */
-.hosting-reservations-container {
+.hosting-reservations-container,
+.hosting-listing-container {
     display: flex;
     justify-content: center;
     width: 100vw;
 }
 
-.hosting-reservations-main {
+.hosting-reservations-main,
+.hosting-listing-main {
     display: flex;
     flex-direction: column;
     width: 100%;
     max-width: 1440px;
     height: fit-content;
-    padding: 64px 80px;
+    padding: 64px 80px 0 80px;
     box-sizing: border-box;
 }
 
@@ -83,6 +85,11 @@ hosting reservations css goes here
     justify-content: flex-start;
     flex-wrap: wrap;
     width: 100%;
+}
+
+.reservation-display,
+.listing-display {
+    min-width: 300px;
 }
 
 .reservation-btn-option {
@@ -131,7 +138,8 @@ hosting reservations css goes here
     box-shadow: 0 0 0 2px black;
 }
 
-.reservation-empty-container {
+.reservation-empty-container,
+.listing-empty-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -141,7 +149,8 @@ hosting reservations css goes here
     border-radius: 12px;
 }
 
-.reservation-empty-main {
+.reservation-empty-main,
+.listing-empty-main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -152,7 +161,8 @@ hosting reservations css goes here
     font-size: 14px;
 }
 
-.reservation-empty-icon {
+.reservation-empty-icon,
+.listing-empty-icon {
     width: 32px;
     height: 32px;
 }
@@ -174,6 +184,7 @@ hosting reservations css goes here
 }
 
 .tips-header,
+.listing-header,
 .reservation-header {
     font-size: 26px;
     font-weight: 600;
