@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { getUserSpots } from '../../store/spotReducer';
 import reservationIcon from '../../images/reservation-icon.svg';
+import Loading from '../Loading';
 
 const HostListings = () => {
     const dispatch = useDispatch();
@@ -10,10 +12,12 @@ const HostListings = () => {
     const [images, setImages] = useState({})
     const [spots, setSpots] = useState([])
     const [loading, setLoading] = useState(false);
+    const [loadingImages, setLoadingImages] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
             await dispatch(getUserSpots(userId));
+
 
             setLoading(true);
         }
@@ -29,20 +33,16 @@ const HostListings = () => {
             const imageDict = {};
 
             for (let image of imageArray) {
-                if (imageDict[image.spotId]) {
-                    imageDict[image.spotId].push(image);
-                } else {
-                    imageDict[image.spotId] = [image];
-                };
+                imageDict[image.spotId] = image.url;
             };
 
             setSpots(spotArray);
             setImages(imageDict);
+            setLoadingImages(true);
         };
 
         parseImages();
     }, [userData.images]);
-
 
     return (
         <div className='hosting-listing-container'>
@@ -50,20 +50,35 @@ const HostListings = () => {
                 <div className='listing-header'>
                     Your listings
                 </div>
-                <div className='listing-display'>
-                    {spots.length > 0 ?
-                        <div>
-                            Yes
-                        </div>
-                        :
-                        <div className='listing-empty-container'>
-                            <div className='listing-empty-main'>
-                                <img className='listing-empty-icon' src={reservationIcon} alt='empty page with check mark' />
-                                You currently don't have any active listings.
+                {loading && loadingImages ?
+                    <div className='listing-display'>
+                        {spots.length > 0 ?
+                            <>
+                                {spots.map((spot) => (
+                                    <NavLink to={`/spots/${spot.id}`} key={spot.id} className='hosted-spot-listing'>
+                                        <div className='hosted-spot-image-container'>
+                                        <img className='hosted-spot-image' src={images[spot.id]} alt='spot court' />
+                                        </div>
+                                        <div className='hosted-spot-name'>
+                                            <span className='hosted-name-text'>
+                                                {spot.name}
+                                            </span>
+                                        </div>
+                                    </NavLink>
+                                ))}
+                            </>
+                            :
+                            <div className='listing-empty-container'>
+                                <div className='listing-empty-main'>
+                                    <img className='listing-empty-icon' src={reservationIcon} alt='empty page with check mark' />
+                                    You currently don't have any active listings.
+                                </div>
                             </div>
-                        </div>
-                    }
-                </div>
+                        }
+                    </div>
+                    :
+                    <Loading />
+                }
             </div>
         </div>
     )
