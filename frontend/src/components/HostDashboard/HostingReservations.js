@@ -4,10 +4,11 @@ import CurrentlyHosting from './Reservations/CurrentlyHosting';
 import CheckingOut from './Reservations/CheckingOut';
 import ArrivingSoon from './Reservations/ArrivingSoon';
 import Upcoming from './Reservations/Upcoming';
+import { getHostedBookings } from '../../store/bookingReducer';
 
 const HostingReservations = () => {
     const dispatch = useDispatch();
-    // const userData = useSelector(state => state.spot)
+    const bookingData = useSelector(state => state.booking)
     const userId = useSelector(state => state.session.user?.id)
     const [choice, setChoice] = useState('hosting')
     const [currentlyHosting, setCurrentlyHosting] = useState([]);
@@ -18,7 +19,7 @@ const HostingReservations = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            // await dispatch(getUserSpots(userId));
+            await dispatch(getHostedBookings(userId))
 
             setLoading(true);
         }
@@ -26,6 +27,7 @@ const HostingReservations = () => {
         fetchData();
     }, [dispatch, userId]);
 
+    // console.log(bookingData)
 
     return (
         <div className='hosting-reservations-container'>
