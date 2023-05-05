@@ -22,6 +22,7 @@ module.exports = {
    {
     userId: 4,
     spotId: 1,
+    hostId: 5,
     startDate: new Date('2020-12-17T00:00:00'),
     endDate: new Date('2020-12-18T00:00:00'),
     url: 'https://airballnbrick.s3.amazonaws.com/Cavs+Arena.jpg'
@@ -29,6 +30,7 @@ module.exports = {
    {
     userId: 4,
     spotId: 11,
+    hostId: 10,
     startDate: new Date('2022-08-02T00:00:00'),
     endDate: new Date('2022-08-10T00:00:00'),
     url: "https://airballnbrick.s3.amazonaws.com/Jordan's+Yacht+1.jpg"
@@ -36,6 +38,7 @@ module.exports = {
    {
     userId: 4,
     spotId: 15,
+    hostId: 13,
     startDate: new Date('2022-10-21T00:00:00'),
     endDate: new Date('2022-11-01T00:00:00'),
     url: "https://airballnbrick.s3.amazonaws.com/OVO+1.jpg"

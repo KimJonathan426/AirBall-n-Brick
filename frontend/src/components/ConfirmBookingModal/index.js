@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { createBooking } from '../../store/bookingReducer';
 import './ConfirmBookingModal.css';
 
-function ConfirmBookingModal({ userId, spotId, price, state, setState, setShowModal, setAddDisabledDate }) {
+function ConfirmBookingModal({ userId, spotId, hostId, price, state, setState, setShowModal, setAddDisabledDate }) {
     const dispatch = useDispatch();
 
     const [open, setOpen] = useState(true);
@@ -45,6 +45,7 @@ function ConfirmBookingModal({ userId, spotId, price, state, setState, setShowMo
         const payload = {
             userId,
             spotId,
+            hostId,
             startDate,
             endDate
         };

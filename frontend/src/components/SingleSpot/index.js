@@ -252,7 +252,7 @@ const SingleSpot = () => {
                                 <div className='hovering-content-title'>
                                     ${Number(singleSpot.price)?.toLocaleString('en-US', { maximumFractionDigits: 0 })} <span>day</span>
                                 </div>
-                                <BookingForm user={user} spotId={singleSpot?.id} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} stateTransfer={stateTransfer} setStateTransfer={setStateTransfer} edited={edited} setEdited={setEdited} addDisabledDate={addDisabledDate} setAddDisabledDate={setAddDisabledDate}/>
+                                <BookingForm user={user} spotId={singleSpot?.id} hostId={singleSpot.userId} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} stateTransfer={stateTransfer} setStateTransfer={setStateTransfer} edited={edited} setEdited={setEdited} addDisabledDate={addDisabledDate} setAddDisabledDate={setAddDisabledDate}/>
                             </div>
                         </div>
                         <div className='spot-review-container'>
@@ -280,7 +280,7 @@ const SingleSpot = () => {
                             <SpotReviewList user={user} spotId={id} ratingStar={ratingStar} />
                         </div>
                         <div className='booking-form-bottom-fixed'>
-                            <BookingFormFixed user={user} spotId={singleSpot?.id} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} stateTransfer={stateTransfer} setStateTransfer={setStateTransfer} edited={edited} setEdited={setEdited} addDisabledDate={addDisabledDate} setAddDisabledDate={setAddDisabledDate}/>
+                            <BookingFormFixed user={user} spotId={singleSpot?.id} hostId={singleSpot.userId} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} stateTransfer={stateTransfer} setStateTransfer={setStateTransfer} edited={edited} setEdited={setEdited} addDisabledDate={addDisabledDate} setAddDisabledDate={setAddDisabledDate}/>
                         </div>
                         <div className='bottom-fixed-title'>
                             ${Number(singleSpot.price)?.toLocaleString('en-US', { maximumFractionDigits: 0 })} <span>day</span>

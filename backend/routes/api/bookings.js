@@ -19,6 +19,19 @@ router.get('/:spotId', asyncHandler(async (req, res) => {
     });
 }));
 
+// router.get('/hosting/:userId', asyncHandler(async (req, res) => {
+//     const bookings = await Booking.findAll({
+//         where: {
+//             userId: req.params.userId
+//         },
+//         include: [User, Spot]
+//     });
+
+//     return res.json({
+//         bookings
+//     });
+// }));
+
 router.get('/trips/:userId', asyncHandler(async (req, res) => {
     const bookings = await Booking.findAll({
         where: {
@@ -33,7 +46,7 @@ router.get('/trips/:userId', asyncHandler(async (req, res) => {
 }));
 
 router.post('/new', asyncHandler(async (req, res) => {
-    const { userId, spotId, startDate, endDate } = req.body;
+    const { userId, spotId, hostId, startDate, endDate } = req.body;
 
     const image = await Image.findOne({
         where: {
@@ -46,7 +59,7 @@ router.post('/new', asyncHandler(async (req, res) => {
 
     const url = image.url;
 
-    const booking = await Booking.create({ userId, spotId, startDate, endDate, url });
+    const booking = await Booking.create({ userId, spotId, hostId, startDate, endDate, url });
 
     return res.json({
         booking

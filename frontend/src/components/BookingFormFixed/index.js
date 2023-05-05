@@ -10,7 +10,7 @@ import $ from 'jquery';
 import ConfirmBookingModal from '../ConfirmBookingModal';
 import Loading from '../Loading';
 
-const BookingFormFixed = ({ user, spotId, price, canceled, setCanceled, stateTransfer, setStateTransfer, edited, setEdited, addDisabledDate, setAddDisabledDate }) => {
+const BookingFormFixed = ({ user, spotId, hostId, price, canceled, setCanceled, stateTransfer, setStateTransfer, edited, setEdited, addDisabledDate, setAddDisabledDate }) => {
     const dispatch = useDispatch();
     const bookingRef = useRef(null);
     const bookingState = useSelector(state => state.booking)
@@ -282,7 +282,7 @@ const BookingFormFixed = ({ user, spotId, price, canceled, setCanceled, stateTra
                         <div className='reserve-note-charge visible'>You won't be charged yet</div>
                         {showModal && (
                             <Modal onClose={() => setShowModal(false)}>
-                                <ConfirmBookingModal userId={user} spotId={spotId} price={price} state={state} setState={setState} setShowModal={setShowModal} setAddDisabledDate={setAddDisabledDate} />
+                                <ConfirmBookingModal userId={user} spotId={spotId} hostId={hostId} price={price} state={state} setState={setState} setShowModal={setShowModal} setAddDisabledDate={setAddDisabledDate} />
                             </Modal>
                         )}
                     </div>
