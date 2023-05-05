@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserSpots } from '../../store/spotReducer';
-import CurrentlyHosting from './CurrentlyHosting';
-import CheckingOut from './CheckingOut';
-import ArrivingSoon from './ArrivingSoon';
-import Upcoming from './Upcoming';
+import CurrentlyHosting from './Reservations/CurrentlyHosting';
+import CheckingOut from './Reservations/CheckingOut';
+import ArrivingSoon from './Reservations/ArrivingSoon';
+import Upcoming from './Reservations/Upcoming';
 
 const HostingReservations = () => {
     const dispatch = useDispatch();
-    const spots = useSelector(state => state.spot)
+    // const userData = useSelector(state => state.spot)
     const userId = useSelector(state => state.session.user?.id)
     const [choice, setChoice] = useState('hosting')
     const [currentlyHosting, setCurrentlyHosting] = useState([]);
@@ -19,14 +18,13 @@ const HostingReservations = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            await dispatch(getUserSpots(userId));
+            // await dispatch(getUserSpots(userId));
 
             setLoading(true);
         }
 
         fetchData();
     }, [dispatch, userId]);
-
 
 
     return (
