@@ -1,4 +1,4 @@
-import reservationIcon from '../../images/reservation-icon.svg';
+import reservationIcon from '../../../images/reservation-icon.svg';
 
 const CurrentlyHosting = ({ reservations }) => {
     return (
