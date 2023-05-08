@@ -6,6 +6,7 @@ import CheckingOut from './Reservations/CheckingOut';
 import ArrivingSoon from './Reservations/ArrivingSoon';
 import Upcoming from './Reservations/Upcoming';
 import { getHostedBookings } from '../../store/bookingReducer';
+import Loading from '../Loading';
 
 const HostingReservations = () => {
     const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const HostingReservations = () => {
     const [checkingOut, setCheckingOut] = useState([]);
     const [arrivingSoon, setArrivingSoon] = useState([]);
     const [upcoming, setUpcoming] = useState([]);
+    const [parsed, setParsed] = useState(false);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -55,24 +57,25 @@ const HostingReservations = () => {
                 active.push(reservation);
             } else if (today.isBefore(startDate, 'day')) { // If not active, double check if coming up
                 future.push(reservation);
-            }
+            };
 
             // End date is either today or tomorrow (Checking Out)
             if (endDate.isSame(today, 'day') || endDate.isSame(tomorrow, 'day')) {
-                checking.push(reservation)
-            }
+                checking.push(reservation);
+            };
 
             // Start date is either today or tomorrow (Arriving Soon)
             if (startDate.isSame(today, 'day') || startDate.isSame(tomorrow, 'day')) {
                 soon.push(reservation);
-            }
-
-            setCurrentlyHosting(active)
-            setCheckingOut(checking)
-            setArrivingSoon(soon)
-            setUpcoming(future)
+            };
         }
-    }, [bookingData])
+
+        setCurrentlyHosting(active);
+        setCheckingOut(checking);
+        setArrivingSoon(soon);
+        setUpcoming(future);
+        setParsed(true);
+    }, [bookingData]);
 
 
     return (
@@ -88,17 +91,23 @@ const HostingReservations = () => {
                     <button onClick={() => setChoice('upcoming')} className={choice === 'upcoming' ? 'reservation-btn-choice' : 'reservation-btn-option'}>Upcoming ({loading ? upcoming.length : '-'})</button>
                 </div>
                 <div className='reservation-display'>
-                    {choice === 'hosting' &&
-                        <CurrentlyHosting reservations={currentlyHosting} />
-                    }
-                    {choice === 'checkout' &&
-                        <CheckingOut reservations={checkingOut} />
-                    }
-                    {choice === 'arriving' &&
-                        <ArrivingSoon reservations={arrivingSoon} />
-                    }
-                    {choice === 'upcoming' &&
-                        <Upcoming reservations={upcoming} />
+                    {loading && parsed ?
+                        <>
+                            {choice === 'hosting' &&
+                                <CurrentlyHosting reservations={currentlyHosting} />
+                            }
+                            {choice === 'checkout' &&
+                                <CheckingOut reservations={checkingOut} />
+                            }
+                            {choice === 'arriving' &&
+                                <ArrivingSoon reservations={arrivingSoon} />
+                            }
+                            {choice === 'upcoming' &&
+                                <Upcoming reservations={upcoming} />
+                            }
+                        </>
+                        :
+                        <Loading />
                     }
                 </div>
             </div>
