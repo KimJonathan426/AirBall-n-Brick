@@ -42,7 +42,7 @@ const HostListings = () => {
         };
 
         parseImages();
-    }, [userData.images]);
+    }, [userData.images, userData.spots]);
 
     return (
         <div className='hosting-listing-container'>
