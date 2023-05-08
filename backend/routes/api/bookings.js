@@ -2,6 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 
 const { Booking, Spot, User, Image } = require('../../db/models');
+const { Op } = require('sequelize');
 
 const router = express.Router();
 
@@ -20,9 +21,18 @@ router.get('/:spotId', asyncHandler(async (req, res) => {
 }));
 
 router.get('/hosting/:userId', asyncHandler(async (req, res) => {
+    // Limit query to only dates of interest, history is not provided in host booking categories.
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    yesterday.setHours(0, 0, 0, 0);
+
     const bookings = await Booking.findAll({
         where: {
-            hostId: req.params.userId
+            hostId: req.params.userId,
+            endDate: {
+                [Op.gte]: yesterday
+            }
         },
         include: [User, Spot]
     });
