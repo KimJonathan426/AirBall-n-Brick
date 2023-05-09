@@ -1,6 +1,9 @@
+import moment from 'moment';
 import reservationIcon from '../../../images/reservation-icon.svg';
 
 const CurrentlyHosting = ({ reservations }) => {
+
+
     return (
         reservations.length > 0 ?
             <div className='reservation-display'>
@@ -10,18 +13,21 @@ const CurrentlyHosting = ({ reservations }) => {
                             <div className='hosted-reservation-info'>
                                 <div className='hosted-reservation-info-inner'>
                                     <strong>Check-in</strong>
-                                    <span>{reservation.startDate}</span>
+                                    <span>{moment.utc(reservation.startDate).format('MMMM DD, YYYY')}</span>
                                 </div>
                                 <div className='hosted-reservation-info-inner'>
                                     <strong>Check-out</strong>
-                                    <span>Row4</span>
+                                    <span>{moment.utc(reservation.endDate).format('MMMM DD, YYYY')}</span>
                                 </div>
                             </div>
                             <div className='hosted-reservation-image-container'>
-                                <img className='hosted-reservation-image' src={reservation.url} alt='reservation spot'/>
+                                <img className='hosted-reservation-image' src={reservation.url} alt='reservation spot' />
                             </div>
                         </div>
-                        <div className='hosted-reservation-footer'>Guest</div>
+                        <div className='hosted-reservation-footer'>
+                            <strong>Guest </strong>
+                            <span className='hosted-guest-name'>{reservation.User.username}</span>
+                        </div>
                     </div>
                 ))}
             </div>
