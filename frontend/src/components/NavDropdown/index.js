@@ -39,7 +39,7 @@ const NavDropdown = ({ sessionUser }) => {
                         <>
                             <NavLink to="/trips/v1">Trips</NavLink>
                             <NavLink to="/spots/new">Host a Court</NavLink>
-                            {/* <button>Manage Listings</button> */}
+                            <NavLink to='/hosting'>Manage Listings</NavLink>
                             <div className='dropdown-divider' />
                             {/* <button>Account</button> */}
                             <NavLink className='dropdown-about' exact to='/about'>About</NavLink>
