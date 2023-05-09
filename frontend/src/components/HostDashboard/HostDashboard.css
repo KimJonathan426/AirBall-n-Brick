@@ -98,7 +98,8 @@ hosting reservations css goes here
     overflow-y: auto;
 }
 
-.hosted-spot-listing {
+.hosted-spot-listing,
+.hosted-reservation {
     display: flex;
     flex-direction: column;
     flex-basis: calc(25% - 25px);
@@ -109,12 +110,16 @@ hosting reservations css goes here
     background-color: #FFFFFF;
     overflow: hidden;
     box-sizing: border-box;
-    cursor: pointer;
     position: relative;
 }
 
+.hosted-spot-listing {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 610px) {
-    .hosted-spot-listing {
+    .hosted-spot-listing,
+    .hosted-reservation {
         flex-basis: calc(100% - 25px);
         width: 450px;
         height: 360px;
@@ -122,7 +127,8 @@ hosting reservations css goes here
 }
 
 @media screen and (min-width: 611px) and (max-width: 910px) {
-    .hosted-spot-listing {
+    .hosted-spot-listing,
+    .hosted-reservation {
         flex-basis: calc(50% - 25px);
         width: 400px;
         height: 340px;
@@ -130,7 +136,8 @@ hosting reservations css goes here
 }
 
 @media screen and (min-width: 911px) and (max-width: 1210px) {
-    .hosted-spot-listing {
+    .hosted-spot-listing,
+    .hosted-reservation {
         flex-basis: calc(33.33% - 25px);
         width: 350px;
         height: 300px;
@@ -167,6 +174,52 @@ hosting reservations css goes here
     overflow: hidden;
     text-overflow: ellipsis;
     color: #222222;
+}
+
+.hosted-reservation-container {
+    display: flex;
+    width: 100%;
+    height: 75%;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.hosted-reservation-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    padding-right: 12px;
+    padding-bottom: 24px;
+    box-sizing: border-box;
+}
+
+.hosted-reservation-info-inner {
+    display: flex;
+    flex-direction: column;
+    word-break: break-all;
+}
+
+.hosted-reservation-image-container {
+    width: 50%;
+    border-radius: 0 12px 0 0;
+    overflow: hidden;
+}
+
+.hosted-reservation-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hosted-reservation-footer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 25%;
+    padding: 15px;
+    border-top: 1px solid #DDDDDD;
+    box-sizing: border-box;
 }
 
 .reservation-btn-option {
