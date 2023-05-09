@@ -10,9 +10,9 @@ import Loading from '../Loading';
 
 const HostingReservations = () => {
     const dispatch = useDispatch();
-    const bookingData = useSelector(state => state.booking)
-    const userId = useSelector(state => state.session.user?.id)
-    const [choice, setChoice] = useState('hosting')
+    const bookingData = useSelector(state => state.booking);
+    const userId = useSelector(state => state.session.user?.id);
+    const [choice, setChoice] = useState('hosting');
     const [currentlyHosting, setCurrentlyHosting] = useState([]);
     const [checkingOut, setCheckingOut] = useState([]);
     const [arrivingSoon, setArrivingSoon] = useState([]);
@@ -22,7 +22,7 @@ const HostingReservations = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            await dispatch(getHostedBookings(userId))
+            await dispatch(getHostedBookings(userId));
 
             setLoading(true);
         }
@@ -33,7 +33,7 @@ const HostingReservations = () => {
     // Parse booking data into categories
     useEffect(() => {
         const today = moment();
-        const tomorrow = today.clone().add(1, 'day')
+        const tomorrow = today.clone().add(1, 'day');
 
         const active = [];
         const checking = [];
@@ -90,29 +90,27 @@ const HostingReservations = () => {
                     <button onClick={() => setChoice('arriving')} className={choice === 'arriving' ? 'reservation-btn-choice' : 'reservation-btn-option'}>Arriving soon ({loading ? arrivingSoon.length : '-'})</button>
                     <button onClick={() => setChoice('upcoming')} className={choice === 'upcoming' ? 'reservation-btn-choice' : 'reservation-btn-option'}>Upcoming ({loading ? upcoming.length : '-'})</button>
                 </div>
-                <div className='reservation-display'>
-                    {loading && parsed ?
-                        <>
-                            {choice === 'hosting' &&
-                                <CurrentlyHosting reservations={currentlyHosting} />
-                            }
-                            {choice === 'checkout' &&
-                                <CheckingOut reservations={checkingOut} />
-                            }
-                            {choice === 'arriving' &&
-                                <ArrivingSoon reservations={arrivingSoon} />
-                            }
-                            {choice === 'upcoming' &&
-                                <Upcoming reservations={upcoming} />
-                            }
-                        </>
-                        :
-                        <Loading />
-                    }
-                </div>
+                {loading && parsed ?
+                    <>
+                        {choice === 'hosting' &&
+                            <CurrentlyHosting reservations={currentlyHosting} />
+                        }
+                        {choice === 'checkout' &&
+                            <CheckingOut reservations={checkingOut} />
+                        }
+                        {choice === 'arriving' &&
+                            <ArrivingSoon reservations={arrivingSoon} />
+                        }
+                        {choice === 'upcoming' &&
+                            <Upcoming reservations={upcoming} />
+                        }
+                    </>
+                    :
+                    <Loading />
+                }
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default HostingReservations;

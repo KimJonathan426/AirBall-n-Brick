@@ -57,7 +57,7 @@ const HostListings = () => {
                                 {spots.map((spot) => (
                                     <NavLink to={`/spots/${spot.id}`} key={spot.id} className='hosted-spot-listing'>
                                         <div className='hosted-spot-image-container'>
-                                        <img className='hosted-spot-image' src={images[spot.id]} alt='spot court' />
+                                            <img className='hosted-spot-image' src={images[spot.id]} alt='spot court' />
                                         </div>
                                         <div className='hosted-spot-name'>
                                             <span className='hosted-name-text'>

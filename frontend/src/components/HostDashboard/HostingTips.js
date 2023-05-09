@@ -22,11 +22,11 @@ const HostingTips = () => {
     }, [])
 
     useEffect(() => {
-        if (width < 645) {
+        if (width < 611) {
             setSlides(1);
-        } else if (width < 910) {
+        } else if (width < 911) {
             setSlides(2);
-        } else if (width < 1175) {
+        } else if (width < 1211) {
             setSlides(3);
         } else {
             setSlides(4);
