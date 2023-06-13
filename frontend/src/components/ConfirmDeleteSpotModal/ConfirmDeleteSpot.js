@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { deleteSpot } from "../../store/spotReducer";
 import './ConfirmDeleteSpot.css'
 
 
 function ConfirmDeleteSpot({ spotId, setShowModal }) {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [open, setOpen] = useState(true);
   const [message, setMessage] = useState('')
@@ -34,7 +34,7 @@ function ConfirmDeleteSpot({ spotId, setShowModal }) {
     const res = await dispatch(deleteSpot(spotId));
 
     if (res) {
-      history.push('/');
+      navigate('/');
     }
   }
 

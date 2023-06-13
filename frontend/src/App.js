@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotList from "./components/SpotsList";
@@ -23,33 +23,58 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  function RouteWrapper({ component: Component, hideNavBar, ...rest }) {
-    return (
-      <Route {...rest} render={(props) => (
-        <>
-          {!hideNavBar && <Navigation isLoaded={isLoaded} />}
-          <Component {...props} />
-        </>
-      )} />
-    );
-  }
 
   return (
     <>
       {isLoaded && (
-        <Switch>
-          <RouteWrapper exact path='/' component={SpotList} hideNavBar={false} />
-          <RouteWrapper path="/spots/new" component={SpotForm} hideNavBar={false} />
-          <RouteWrapper path="/spots/:id" component={SingleSpot} hideNavBar={false} />
-          <RouteWrapper path="/trips/v1" component={Trips} hideNavBar={false} />
-          <RouteWrapper path="/hosting" component={HostDashboard} hideNavBar={false} />
-          <RouteWrapper path="/about" component={About} hideNavBar={false} />
-          <RouteWrapper path='/oauth/google/existing/:ivString/:token*' component={GoogleExistingLogin} hideNavBar={true} />
-          <RouteWrapper path='/oauth/google/login/:ivString/:token*' component={GoogleOAuthLogin} hideNavBar={true} />
-          <RouteWrapper path='/oauth/google/signup/:ivString/:token*' component={GoogleOAuthSignup} hideNavBar={true} />
-          <RouteWrapper path='/oauth/error' component={OAuthError} hideNavBar={true} />
-          <RouteWrapper path='*' component={PageNotFound} hideNavBar={false} />
-        </Switch>
+        <Routes>
+          <Route path='/' element={
+                                  <>
+                                    <Navigation isLoaded={isLoaded}/>
+                                    <SpotList />
+                                  </>
+                                } />
+          <Route path="/spots/new" element={
+                                  <>
+                                    <Navigation isLoaded={isLoaded}/>
+                                    <SpotForm />
+                                  </>
+                                } />
+          <Route path="/spots/:id" element={
+                                  <>
+                                    <Navigation isLoaded={isLoaded}/>
+                                    <SingleSpot />
+                                  </>
+                                } />
+          <Route path="/trips/v1" element={
+                                  <>
+                                    <Navigation isLoaded={isLoaded}/>
+                                    <Trips />
+                                  </>
+                                } />
+          <Route path="/hosting" element={
+                                  <>
+                                    <Navigation isLoaded={isLoaded}/>
+                                    <HostDashboard />
+                                  </>
+                                } />
+          <Route path="/about" element={
+                                  <>
+                                    <Navigation isLoaded={isLoaded}/>
+                                    <About />
+                                  </>
+                                } />
+          <Route path='/oauth/google/existing/:ivString/*' element={<GoogleExistingLogin />} />
+          <Route path='/oauth/google/login/:ivString/*' element={<GoogleOAuthLogin />} />
+          <Route path='/oauth/google/signup/:ivString/*' element={<GoogleOAuthSignup />} />
+          <Route path='/oauth/error' element={<OAuthError />} />
+          <Route path='*' element={
+                                  <>
+                                    <Navigation isLoaded={isLoaded}/>
+                                    <PageNotFound />
+                                  </>
+                                } />
+        </Routes>
       )}
     </>
   );

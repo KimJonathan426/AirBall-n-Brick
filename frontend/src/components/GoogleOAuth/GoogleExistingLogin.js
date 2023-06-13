@@ -1,52 +1,51 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import CryptoJS from 'crypto-js';
 import validator from 'validator';
 import * as sessionActions from "../../store/session";
 import loadingGif from '../../images/host-court-loading.gif';
 import errorMark from '../../images/error-mark.png';
-import PageNotFound from "../PageNotFound";
 import Loading from "../Loading";
 import './GoogleOAuth.css';
 
 const GoogleExistingLogin = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const sessionUser = useSelector((state) => state.session.user);
-    const { ivString, token } = useParams();
+    const { ivString } = useParams();
+    const token = useParams()['*'];
     const [email, setEmail] = useState(token);
     const [password, setPassword] = useState("");
     const [uploading, setUploading] = useState(false);
     const [errors, setErrors] = useState([]);
-    const [isValidPopup, setIsValidPopup] = useState(false);
     const [loading, setLoading] = useState(false);
 
     // validate user came from backend api with encryption/decryption and window name
     useEffect(() => {
         const iv = CryptoJS.enc.Hex.parse(ivString);
         const key = CryptoJS.enc.Hex.parse(process.env.REACT_APP_DECRYPTION_SECRET);
-        const message = token.slice(6)
 
         const decryptedEmail = CryptoJS.AES.decrypt(
-            message,
+            token,
             key,
             { iv: iv }
         ).toString(CryptoJS.enc.Utf8);
 
         setEmail(decryptedEmail);
 
-        if (window.name === 'airballnbrick_google_popup' && validator.isEmail(decryptedEmail)) {
-            setIsValidPopup(true);
+        if (window.name !== 'airballnbrick_google_popup' || !validator.isEmail(decryptedEmail)) {
+            navigate('/oauth/error');
         };
 
         setLoading(true);
-    }, [ivString, token]);
+    }, [navigate, ivString, token]);
 
     useEffect(() => {
         setErrors([]);
     }, [password]);
 
-    if (sessionUser) return <Redirect to="/" />;
+    if (sessionUser) return <Navigate replace to="/" />;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -77,7 +76,7 @@ const GoogleExistingLogin = () => {
     };
 
     return (
-        loading ? isValidPopup ?
+        loading ?
             <form className='google-existing-login-form' onSubmit={handleSubmit}>
                 <header className='auth-header'>
                     Welcome back
@@ -124,8 +123,6 @@ const GoogleExistingLogin = () => {
                     }
                 </div>
             </form>
-            :
-            <PageNotFound />
             :
             <Loading />
     );

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, Redirect } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { createSpot } from '../../store/spotReducer';
 import hostCourt from '../../images/host-form-court.png';
 import hostCourtLoading from '../../images/host-court-loading.gif';
@@ -8,7 +8,7 @@ import './SpotForm.css';
 
 const SpotForm = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const navigate = useNavigate();
     const user = useSelector(state => state.session.user);
 
     const [address, setAddress] = useState('');
@@ -131,7 +131,7 @@ const SpotForm = () => {
         const res = await dispatch(createSpot(payload));
 
         if (res) {
-            history.push(`/spots/${res}`);
+            navigate(`/spots/${res}`);
         }
 
         setHasSubmitted(false);
@@ -140,7 +140,7 @@ const SpotForm = () => {
 
     // Will prevent not logged-in users from accessing form manually.
     if (!user) return (
-        <Redirect to="/" />
+        <Navigate replace to="/" />
     );
 
     return (
