@@ -28,7 +28,7 @@ function App() {
     <>
       {isLoaded && (
         <Routes>
-          <Route exact path='/' element={
+          <Route path='/' element={
                                   <>
                                     <Navigation isLoaded={isLoaded}/>
                                     <SpotList />

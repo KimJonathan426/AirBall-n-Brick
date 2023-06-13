@@ -42,7 +42,7 @@ const NavDropdown = ({ sessionUser }) => {
                             <NavLink to='/hosting'>Manage Listings</NavLink>
                             <div className='dropdown-divider' />
                             {/* <button>Account</button> */}
-                            <NavLink className='dropdown-about' exact to='/about'>About</NavLink>
+                            <NavLink className='dropdown-about' to='/about'>About</NavLink>
                             <LogoutButton />
                         </>
                         :
@@ -51,7 +51,7 @@ const NavDropdown = ({ sessionUser }) => {
                             <AuthFormModal display={'Sign up'}/>
                             <DemoButton />
                             <div className='dropdown-divider' />
-                            <NavLink className='dropdown-about' exact to='/about'>About</NavLink>
+                            <NavLink className='dropdown-about' to='/about'>About</NavLink>
                         </>
                     }
                 </div>

@@ -44,7 +44,7 @@ function Navigation({ isLoaded }) {
   return (
     <div className={navFixed ? 'nav-container-fixed' : 'nav-container'}>
       <div className='nav-inner'>
-        <NavLink className='logo-nav' exact to="/">
+        <NavLink className='logo-nav' to="/">
           <img className='logo-image' src={logoImage} alt='logo' />
           <img className='logo-text' src={logoText} alt='logo text' />
         </NavLink>
