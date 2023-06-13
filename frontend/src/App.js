@@ -64,8 +64,8 @@ function App() {
                                     <About />
                                   </>
                                 } />
-          <Route path='/oauth/google/existing/:ivString/:token/*' element={<GoogleExistingLogin />} />
-          <Route path='/oauth/google/login/:ivString/:token/*' element={<GoogleOAuthLogin />} />
+          <Route path='/oauth/google/existing/:ivString/*' element={<GoogleExistingLogin />} />
+          <Route path='/oauth/google/login/:ivString/*' element={<GoogleOAuthLogin />} />
           <Route path='/oauth/google/signup/:ivString/*' element={<GoogleOAuthSignup />} />
           <Route path='/oauth/error' element={<OAuthError />} />
           <Route path='*' element={
