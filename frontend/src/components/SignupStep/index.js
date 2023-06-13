@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import loadingGif from '../../images/host-court-loading.gif';
 import errorMark from '../../images/error-mark.png';
@@ -32,7 +32,7 @@ function SignupStep({ credential, setCredential }) {
         setConfirmErrors([])
     }, [confirmPassword]);
 
-    if (sessionUser) return <Redirect to="/" />;
+    if (sessionUser) return <Navigate replace to="/" />;
 
     const handleSubmit = (e) => {
         e.preventDefault();
