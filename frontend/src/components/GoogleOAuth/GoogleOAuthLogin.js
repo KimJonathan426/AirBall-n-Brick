@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import CryptoJS from "crypto-js";
 import validator from 'validator';
 import * as sessionActions from "../../store/session";
@@ -13,7 +13,8 @@ import './GoogleOAuth.css';
 const GoogleOAuthLogin = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const { ivString, token } = useParams();
+  const { ivString } = useParams();
+  const token = useParams()['*'];
   const [email, setEmail] = useState(token);
   const [errors, setErrors] = useState([]);
   const [isValidPopup, setIsValidPopup] = useState(false);
@@ -23,10 +24,9 @@ const GoogleOAuthLogin = () => {
   useEffect(() => {
     const iv = CryptoJS.enc.Hex.parse(ivString);
     const key = CryptoJS.enc.Hex.parse(process.env.REACT_APP_DECRYPTION_SECRET);
-    const message = token.slice(6)
 
     const decryptedEmail = CryptoJS.AES.decrypt(
-      message,
+      token,
       key,
       {
         iv: iv,
@@ -64,7 +64,7 @@ const GoogleOAuthLogin = () => {
     loginPage();
   }, [dispatch, isValidPopup, email, ivString, token]);
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Navigate replace to="/" />;
 
   return (
     loading ? isValidPopup ?

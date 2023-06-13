@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useParams } from "react-router-dom";
+import { Navigate, useParams, useLocation } from "react-router-dom";
 import CryptoJS from 'crypto-js';
 import validator from 'validator';
 import * as sessionActions from "../../store/session";
@@ -13,7 +13,8 @@ import './GoogleOAuth.css';
 const GoogleExistingLogin = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
-    const { ivString, token } = useParams();
+    const { ivString } = useParams();
+    const token = useParams()['*'];
     const [email, setEmail] = useState(token);
     const [password, setPassword] = useState("");
     const [uploading, setUploading] = useState(false);
@@ -25,10 +26,9 @@ const GoogleExistingLogin = () => {
     useEffect(() => {
         const iv = CryptoJS.enc.Hex.parse(ivString);
         const key = CryptoJS.enc.Hex.parse(process.env.REACT_APP_DECRYPTION_SECRET);
-        const message = token.slice(6)
 
         const decryptedEmail = CryptoJS.AES.decrypt(
-            message,
+            token,
             key,
             { iv: iv }
         ).toString(CryptoJS.enc.Utf8);
@@ -46,7 +46,7 @@ const GoogleExistingLogin = () => {
         setErrors([]);
     }, [password]);
 
-    if (sessionUser) return <Redirect to="/" />;
+    if (sessionUser) return <Navigate replace to="/" />;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
