@@ -3,6 +3,8 @@ import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import swiperLeft from '../../images/swiper-left.svg';
+import swiperRight from '../../images/swiper-right.svg';
 
 const HomeImages = ({ images }) => {
 
@@ -41,8 +43,8 @@ const HomeImages = ({ images }) => {
                     <img className='center' src={images[4].url} alt='listing preview' />
                 </div>            </SwiperSlide>
             <div className='image-switch-btns'>
-                <button className='left-arrow'>❮</button>
-                <button className='right-arrow'>❯</button>
+                <button className='left-arrow'><img src={swiperLeft} alt='left arrow' /></button>
+                <button className='right-arrow'><img src={swiperRight} alt='right arrow' /></button>
             </div>
         </Swiper>
     )
