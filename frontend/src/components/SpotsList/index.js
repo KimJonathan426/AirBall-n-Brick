@@ -43,42 +43,44 @@ const SpotList = () => {
 
 
     return (
-        <div className='spots-list-container'>
-            {loading ? spotArray.map((spot) => (
-                <div className='spot-container' key={spot.id}>
-                    <NavLink to={`/spots/${spot.id}`}>
-                        <HomeImages images={imageDict[spot.id]} />
-                        <div className='spot-info'>
-                            <div className='location-info'>
-                                <div className='spot-location'>
-                                    {spot.city}, {spot.state}
+        <div className='main-content-spots-list'>
+            <div className='spots-list-container'>
+                {loading ? spotArray.map((spot) => (
+                    <div className='spot-container' key={spot.id}>
+                        <NavLink to={`/spots/${spot.id}`}>
+                            <HomeImages images={imageDict[spot.id]} />
+                            <div className='spot-info'>
+                                <div className='location-info'>
+                                    <div className='spot-location'>
+                                        {spot.city}, {spot.state}
+                                    </div>
+                                    {reviewAvgs[spot.id] ?
+                                        <div className='star-text'>
+                                            <img className='star-image' src={ratingStar} alt='rating star' />
+                                            {reviewAvgs[spot.id].avg}
+                                        </div>
+                                        :
+                                        <div className='star-text'>
+                                            <img className='star-image' src={ratingStar} alt='rating star' />
+                                            New
+                                        </div>
+                                    }
                                 </div>
-                                {reviewAvgs[spot.id] ?
-                                    <div className='star-text'>
-                                        <img className='star-image' src={ratingStar} alt='rating star' />
-                                        {reviewAvgs[spot.id].avg}
-                                    </div>
-                                    :
-                                    <div className='star-text'>
-                                        <img className='star-image' src={ratingStar} alt='rating star' />
-                                        New
-                                    </div>
-                                }
+                                <div className='name-info'>
+                                    {spot.name}
+                                </div>
+                                <div className='price-info'>
+                                    ${Number(spot.price).toLocaleString('en-US', { maximumFractionDigits: 0 })}
+                                    <span> day</span>
+                                </div>
                             </div>
-                            <div className='name-info'>
-                                {spot.name}
-                            </div>
-                            <div className='price-info'>
-                                ${Number(spot.price).toLocaleString('en-US', {maximumFractionDigits: 0})}
-                                <span> day</span>
-                            </div>
-                        </div>
-                    </NavLink>
-                </div>
-            ))
-                :
-                <Loading />
-            }
+                        </NavLink>
+                    </div>
+                ))
+                    :
+                    <Loading />
+                }
+            </div>
         </div>
     )
 }
