@@ -26,20 +26,6 @@ function Navigation({ isLoaded }) {
 
   }, [currentLocation])
 
-  let sessionLinks;
-  if (sessionUser) {
-    sessionLinks = (
-      <>
-        <NavDropdown sessionUser={sessionUser} />
-      </>
-    );
-  } else {
-    sessionLinks = (
-      <>
-        <NavDropdown sessionUser={sessionUser} />
-      </>
-    );
-  }
 
   return (
     <div className={navFixed ? 'nav-container-fixed' : 'nav-container'}>
@@ -49,7 +35,9 @@ function Navigation({ isLoaded }) {
           <img className='logo-text' src={logoText} alt='logo text' />
         </NavLink>
         <div>
-          {isLoaded && sessionLinks}
+          {isLoaded && (
+            <NavDropdown sessionUser={sessionUser} />
+          )}
         </div>
       </div>
     </div>
