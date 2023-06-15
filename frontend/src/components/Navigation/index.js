@@ -14,10 +14,12 @@ function Navigation({ isLoaded, fixed, type}) {
 
   useEffect(() => {
     if (type) {
-      setNavClass(`nav-inner ${type}`)
-    };
+      setNavClass(`nav-inner ${type}`);
+    } else {
+      setNavClass('nav-inner');
+    }
 
-  }, [type])
+  }, [type]);
 
   return (
     <div className={fixed ? 'nav-container-fixed' : 'nav-container'}>

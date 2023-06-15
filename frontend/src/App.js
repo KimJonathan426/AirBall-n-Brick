@@ -36,7 +36,7 @@ function App() {
                                 } />
           <Route path="/spots/new" element={
                                   <>
-                                    <Navigation isLoaded={isLoaded} fixed={false} type='nav-contained' />
+                                    <Navigation isLoaded={isLoaded} fixed={false} />
                                     <SpotForm />
                                   </>
                                 } />
