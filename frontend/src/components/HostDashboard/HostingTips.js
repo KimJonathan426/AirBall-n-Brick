@@ -3,6 +3,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
+import swiperLeft from '../../images/swiper-left.svg';
+import swiperRight from '../../images/swiper-right.svg';
 
 const HostingTips = () => {
 
@@ -81,8 +83,8 @@ const HostingTips = () => {
                             <div className='tip-info'>Create a great experience for your customers</div>
                         </li>
                     </SwiperSlide>
-                    <button className='left-arrow'><span>❮</span></button>
-                    <button className='right-arrow'><span>❯</span></button>
+                    <button className='left-arrow'><img src={swiperLeft} alt='left arrow' /></button>
+                    <button className='right-arrow'><img src={swiperRight} alt='right arrow' /></button>
                 </Swiper>
             </div>
         </div>
