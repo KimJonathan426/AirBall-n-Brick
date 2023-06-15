@@ -1,31 +1,31 @@
 .nav-container-fixed {
-    position: fixed;
-    top: 0;
-    background-color: #fff;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    box-sizing: border-box;
-    border-bottom: 1px solid #d9e1ecc0;
     width: 100vw;
-    min-width: 600px;
+    min-width: fit-content;
     height: 80px;
+    background-color: #fff;
+    border-bottom: 1px solid #d9e1ecc0;
+    position: fixed;
+    top: 0;
     z-index: 10;
+    box-sizing: border-box;
 }
 
 .nav-container {
-    position: absolute;
-    top: 0;
-    background-color: #fff;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    box-sizing: border-box;
-    border-bottom: 1px solid #d9e1ecc0;
     width: 100vw;
     min-width: 600px;
     height: 80px;
+    background-color: #fff;
+    border-bottom: 1px solid #d9e1ecc0;
+    position: absolute;
+    top: 0;
     z-index: 10;
+    box-sizing: border-box;
 }
 
 .nav-inner {
@@ -33,20 +33,50 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100vw;
-    min-width: 600px;
-    max-width: 1600px;
+    width: 100%;
+    min-width: fit-content;
     height: 80px;
-    padding: 0 40px;
+    padding: 0 24px;
     margin: 0 auto;
     box-sizing: border-box;
+}
+
+.nav-wide {
+    max-width: 2520px;
+}
+
+.nav-trip {
+    max-width: 1600px;
+}
+
+.nav-contained {
+    max-width: 1168px;
+}
+
+@media screen and (min-width: 744px) {
+    .nav-wide,
+    .nav-trip {
+        padding: 0 40px;
+    }
+}
+
+@media screen and (min-width: 1128px) {
+    .nav-trip {
+        padding: 0 80px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .nav-wide {
+        padding: 0 80px;
+    }
 }
 
 .logo-nav {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-right: 150px;
+    margin-right: 50px;
 }
 
 .logo-text {

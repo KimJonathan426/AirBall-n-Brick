@@ -30,37 +30,37 @@ function App() {
         <Routes>
           <Route path='/' element={
                                   <>
-                                    <Navigation isLoaded={isLoaded}/>
+                                    <Navigation isLoaded={isLoaded} fixed={true} type='nav-wide' />
                                     <SpotList />
                                   </>
                                 } />
           <Route path="/spots/new" element={
                                   <>
-                                    <Navigation isLoaded={isLoaded}/>
+                                    <Navigation isLoaded={isLoaded} fixed={false} type='nav-contained' />
                                     <SpotForm />
                                   </>
                                 } />
           <Route path="/spots/:id" element={
                                   <>
-                                    <Navigation isLoaded={isLoaded}/>
+                                    <Navigation isLoaded={isLoaded} fixed={false} type='nav-contained' />
                                     <SingleSpot />
                                   </>
                                 } />
           <Route path="/trips/v1" element={
                                   <>
-                                    <Navigation isLoaded={isLoaded}/>
+                                    <Navigation isLoaded={isLoaded} fixed={true} type='nav-trip' />
                                     <Trips />
                                   </>
                                 } />
           <Route path="/hosting" element={
                                   <>
-                                    <Navigation isLoaded={isLoaded}/>
+                                    <Navigation isLoaded={isLoaded} fixed={false} />
                                     <HostDashboard />
                                   </>
                                 } />
           <Route path="/about" element={
                                   <>
-                                    <Navigation isLoaded={isLoaded}/>
+                                    <Navigation isLoaded={isLoaded} fixed={true}/>
                                     <About />
                                   </>
                                 } />
@@ -70,7 +70,7 @@ function App() {
           <Route path='/oauth/error' element={<OAuthError />} />
           <Route path='*' element={
                                   <>
-                                    <Navigation isLoaded={isLoaded}/>
+                                    <Navigation isLoaded={isLoaded} fixed={false}/>
                                     <PageNotFound />
                                   </>
                                 } />
