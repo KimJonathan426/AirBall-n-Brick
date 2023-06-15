@@ -41,8 +41,8 @@ const HomeImages = ({ images }) => {
                     <img className='center' src={images[4].url} alt='listing preview' />
                 </div>            </SwiperSlide>
             <div className='image-switch-btns'>
-                <button className='left-arrow'><span>❮</span></button>
-                <button className='right-arrow'><span>❯</span></button>
+                <button className='left-arrow'>❮</button>
+                <button className='right-arrow'>❯</button>
             </div>
         </Swiper>
     )
