@@ -3,6 +3,8 @@ import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import swiperLeft from '../../images/swiper-left.svg';
+import swiperRight from '../../images/swiper-right.svg';
 
 const HomeImages = ({ images }) => {
 
@@ -17,26 +19,32 @@ const HomeImages = ({ images }) => {
             mousewheel={true}
             keyboard={true}
             modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-            className="spot-image"
+            className="swipe-wrapper"
         >
             <SwiperSlide className='preview-slide'>
-                <img className='center' src={images[0].url} alt='listing preview' />
+                <div className='spot-image'>
+                    <img className='center' src={images[0].url} alt='listing preview' />
+                </div>
             </SwiperSlide>
             <SwiperSlide className='preview-slide'>
-                <img className='center' src={images[1].url} alt='listing preview' />
-            </SwiperSlide>
+                <div className='spot-image'>
+                    <img className='center' src={images[1].url} alt='listing preview' />
+                </div>            </SwiperSlide>
             <SwiperSlide className='preview-slide'>
-                <img className='center' src={images[2].url} alt='listing preview' />
-            </SwiperSlide>
+                <div className='spot-image'>
+                    <img className='center' src={images[2].url} alt='listing preview' />
+                </div>            </SwiperSlide>
             <SwiperSlide className='preview-slide'>
-                <img className='center' src={images[3].url} alt='listing preview' />
-            </SwiperSlide>
+                <div className='spot-image'>
+                    <img className='center' src={images[3].url} alt='listing preview' />
+                </div>            </SwiperSlide>
             <SwiperSlide className='preview-slide'>
-                <img className='center' src={images[4].url} alt='listing preview' />
-            </SwiperSlide>
+                <div className='spot-image'>
+                    <img className='center' src={images[4].url} alt='listing preview' />
+                </div>            </SwiperSlide>
             <div className='image-switch-btns'>
-                <button className='left-arrow'><span>❮</span></button>
-                <button className='right-arrow'><span>❯</span></button>
+                <button className='left-arrow'><img src={swiperLeft} alt='left arrow' /></button>
+                <button className='right-arrow'><img src={swiperRight} alt='right arrow' /></button>
             </div>
         </Swiper>
     )

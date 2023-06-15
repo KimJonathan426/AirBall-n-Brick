@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import NavDropdown from '../NavDropdown';
 import logoImage from '../../images/logo-image.png';
@@ -7,49 +7,29 @@ import logoText from '../../images/logo-text.png';
 import './Navigation.css';
 
 
-function Navigation({ isLoaded }) {
+function Navigation({ isLoaded, fixed, type}) {
   const sessionUser = useSelector(state => state.session.user);
-  const currentLocation = useLocation();
 
-  const [navFixed, setNavFixed] = useState(false);
+  const [navClass, setNavClass] = useState('nav-inner');
 
   useEffect(() => {
-    switch (currentLocation.pathname.startsWith('/spots')) {
-      case true:
-        setNavFixed(false);
-        break;
-      default:
-        setNavFixed(true);
-        break;
-    }
+    if (type) {
+      setNavClass(`nav-inner ${type}`)
+    };
 
-
-  }, [currentLocation])
-
-  let sessionLinks;
-  if (sessionUser) {
-    sessionLinks = (
-      <>
-        <NavDropdown sessionUser={sessionUser} />
-      </>
-    );
-  } else {
-    sessionLinks = (
-      <>
-        <NavDropdown sessionUser={sessionUser} />
-      </>
-    );
-  }
+  }, [type])
 
   return (
-    <div className={navFixed ? 'nav-container-fixed' : 'nav-container'}>
-      <div className='nav-inner'>
+    <div className={fixed ? 'nav-container-fixed' : 'nav-container'}>
+      <div className={navClass}>
         <NavLink className='logo-nav' to="/">
           <img className='logo-image' src={logoImage} alt='logo' />
           <img className='logo-text' src={logoText} alt='logo text' />
         </NavLink>
         <div>
-          {isLoaded && sessionLinks}
+          {isLoaded && (
+            <NavDropdown sessionUser={sessionUser} />
+          )}
         </div>
       </div>
     </div>

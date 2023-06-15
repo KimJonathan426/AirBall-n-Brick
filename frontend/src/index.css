@@ -35,11 +35,6 @@ a {
     text-decoration: none;
 }
 
-.star-text {
-    font-weight: normal;
-    color: #222222;
-}
-
 .credential-loading {
     display: flex;
     justify-content: center;
