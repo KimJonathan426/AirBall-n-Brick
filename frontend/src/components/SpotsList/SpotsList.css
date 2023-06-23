@@ -65,7 +65,7 @@
     box-sizing: border-box;
 }
 
-.swiper-slide {
+.swipe-wrapper > .swiper-wrapper > .swiper-slide {
     width: 100% !important;
 }
 
