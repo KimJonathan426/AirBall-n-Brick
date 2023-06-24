@@ -5,6 +5,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotList from "./components/SpotsList";
 import SpotForm from "./components/SpotForm";
+import HostSpot from "./components/HostSpot";
 import SingleSpot from "./components/SingleSpot";
 import Trips from "./components/Trips";
 import HostDashboard from "./components/HostDashboard";
@@ -40,6 +41,7 @@ function App() {
                                     <SpotForm />
                                   </>
                                 } />
+          <Route path="/spots/test" element={ <HostSpot /> } />
           <Route path="/spots/:id" element={
                                   <>
                                     <Navigation isLoaded={isLoaded} fixed={false} type='nav-contained' />

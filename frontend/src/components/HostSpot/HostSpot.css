@@ -1,0 +1,21 @@
+.host-spot-container {
+    width: 100vw;
+    height: calc(100vh - calc(88px + 82px));
+    padding: 0 80px;
+    margin: 88px 0 82px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.host-spot-logo {
+    position: absolute;
+    top: 28px;
+    left: 48px;
+    width: 52px;
+    height: 52px;
+    transition: all 0.2s ease-in-out;
+}
+
+.host-spot-logo:active {
+    transform: scale(0.96);
+}
