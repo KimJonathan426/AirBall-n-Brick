@@ -11,11 +11,18 @@ const HostSpot = () => {
 
     return (
         <>
-            <NavLink className='logo-nav' to="/">
-                <img className='host-spot-logo' src={logo} alt='airballnbrick logo' />
-            </NavLink>
+            <div className='host-spot-nav'>
+                <NavLink to="/">
+                    <img className='host-spot-logo' src={logo} alt='airballnbrick logo' />
+                </NavLink>
+            </div>
             <div className='host-spot-container'>
                 <HostSpotIntro />
+            </div>
+            <div className='host-spot-footer'>
+                <div>
+
+                </div>
             </div>
         </>
     )

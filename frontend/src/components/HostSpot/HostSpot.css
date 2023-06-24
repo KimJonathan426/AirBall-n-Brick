@@ -1,3 +1,27 @@
+.host-spot-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100vw;
+    height: 88px;
+    padding: 32px 48px 0;
+    position: fixed;
+    top: 0;
+    box-sizing: border-box;
+    z-index: 3;
+}
+
+.host-spot-logo {
+    width: 52px;
+    height: 52px;
+    margin-right: auto;
+    transition: all 0.2s ease-in-out;
+}
+
+.host-spot-logo:active {
+    transform: scale(0.94);
+}
+
 .host-spot-container {
     width: 100vw;
     height: calc(100vh - calc(88px + 82px));
@@ -7,15 +31,12 @@
     box-sizing: border-box;
 }
 
-.host-spot-logo {
-    position: absolute;
-    top: 28px;
-    left: 48px;
-    width: 52px;
-    height: 52px;
-    transition: all 0.2s ease-in-out;
-}
-
-.host-spot-logo:active {
-    transform: scale(0.96);
+.host-spot-footer {
+    width: 100vw;
+    height: 88px;
+    border-top: 6px solid #DDDDDD;
+    position: fixed;
+    bottom: 0;
+    z-index: 2;
+    box-sizing: border-box;
 }
