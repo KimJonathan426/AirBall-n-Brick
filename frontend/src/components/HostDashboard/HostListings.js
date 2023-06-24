@@ -18,7 +18,6 @@ const HostListings = () => {
         const fetchData = async () => {
             await dispatch(getUserSpots(userId));
 
-
             setLoading(true);
         }
 
@@ -43,6 +42,7 @@ const HostListings = () => {
 
         parseImages();
     }, [userData.images, userData.spots]);
+
 
     return (
         <div className='hosting-listing-container'>
