@@ -90,12 +90,7 @@
     }
 
     .host-spot-container {
-        width: 100vw;
-        height: calc(100vh - calc(88px + 82px));
         padding: 0 24px 30px 24px;
-        margin: 88px 0 82px;
-        overflow-y: auto;
-        box-sizing: border-box;
     }
 
     .host-spot-start {
