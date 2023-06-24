@@ -10,7 +10,7 @@ const HostSpotIntro = () => {
             <div className='host-intro-container-inner'>
                 <div className='host-intro-left'>
                     <h1 className='host-intro-left-header'>
-                        It's easy to get started on Airballnbrick
+                        It's easy to get started on Airbnb
                     </h1>
                 </div>
                 <div className='host-intro-right'>

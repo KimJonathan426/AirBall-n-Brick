@@ -60,6 +60,7 @@
     color: #ffffff;
     font-weight: 600;
     font-size: 16px;
+    line-height: 20px;
     cursor: pointer;
     padding: 14px 32px;
     margin-right: 48px;
@@ -75,4 +76,35 @@
 .host-spot-start-btn:active {
     transform: scale(0.96);
     background: linear-gradient(to right,#FF385C 100%,#E31C5F 50%,#D70466 0%);
+}
+
+@media screen and (max-width: 743px) {
+    .host-spot-nav {
+        height: 64px;
+        padding: 16px 24px 8px;
+    }
+
+    .host-spot-logo {
+        width: 44px;
+        height: 44px;
+    }
+
+    .host-spot-container {
+        width: 100vw;
+        height: calc(100vh - calc(88px + 82px));
+        padding: 0 24px 30px 24px;
+        margin: 88px 0 82px;
+        overflow-y: auto;
+        box-sizing: border-box;
+    }
+
+    .host-spot-start {
+        margin: 0 24px;
+    }
+
+    .host-spot-start-btn {
+        width: 100%;
+        padding: 14px 28px;
+        margin: 0;
+    }
 }

@@ -9,9 +9,12 @@
 
 .host-intro-container-inner {
     display: flex;
-    height: 522px;
+    justify-content: center;
+    width: 100%;
+    height: auto;
     margin-top: auto;
     margin-bottom: auto;
+    overflow: visible;
     box-sizing: border-box;
 }
 
@@ -20,9 +23,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: calc(50vw - 160px);
+    width: 50vw;
     max-width: 700px;
-    min-width: 410px;
     margin-right: 48px;
     box-sizing: border-box;
 }
@@ -40,7 +42,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: calc(50vw - 160px);
+    width: 50vw;
     max-width: 600px;
     box-sizing: border-box;
 }
@@ -117,4 +119,69 @@
     height: 120px;
     object-fit: cover;
     box-sizing: border-box;
+}
+
+@media screen and (max-width: 743px) {
+    .host-intro-container-inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: unset;
+        width: 100%;
+        height: 100%;
+    }
+
+    .host-intro-left {
+        width: 100%;
+        margin: 0;
+    }
+
+    .host-intro-left-header {
+        font-size: 36px;
+        line-height: 40px;
+        font-weight: 600;
+        max-width: none;
+        margin: 0 0 24px 0;
+    }
+
+    .host-intro-right {
+        width: 100%;
+        max-width: none;
+    }
+
+    .host-intro-right-1 {
+        padding: 0 0 40px 0;
+    }
+
+    .host-intro-right-2,
+    .host-intro-right-3 {
+        padding: 40px 0;
+    }
+
+    .host-intro-right-side {
+        font-size: 18px;
+        line-height: 24px;
+        padding-right: 12px;
+    }
+
+    .host-intro-right-main {
+        margin-right: 12px;
+        max-width: none;
+    }
+
+    .host-intro-right-main-header {
+        font-size: 18px;
+        line-height: 24px;
+        margin-bottom: 4px;
+    }
+
+    .host-intro-right-main-info {
+        font-size: 14px;
+        line-height: 28px;
+    }
+
+    .host-intro-right-img-box,
+    .host-intro-right-img {
+        width: 76px;
+        height: 76px;
+    }
 }
