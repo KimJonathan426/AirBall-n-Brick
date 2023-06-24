@@ -19,7 +19,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start;
+    align-items: flex-start;
     width: calc(50vw - 160px);
     max-width: 700px;
     min-width: 410px;
@@ -38,7 +38,7 @@
 .host-intro-right {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     width: calc(50vw - 160px);
     max-width: 600px;
