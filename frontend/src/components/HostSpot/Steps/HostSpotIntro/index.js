@@ -1,6 +1,6 @@
-import hoop from '../../../images/basketball-hoop-3d.png';
-import basketball from '../../../images/basketball-3d.png';
-import court from '../../../images/basketball-court-3d.png';
+import hoop from '../../../../images/basketball-hoop-3d.png';
+import basketball from '../../../../images/basketball-3d.png';
+import court from '../../../../images/basketball-court-3d.png';
 import './HostSpotIntro.css';
 
 const HostSpotIntro = () => {
