@@ -41,3 +41,37 @@
     z-index: 2;
     box-sizing: border-box;
 }
+
+.host-spot-start {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 82px;
+    padding: 16px 0;
+    box-sizing: border-box;
+}
+
+.host-spot-start-btn {
+    background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 14px 32px;
+    position: relative;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+}
+
+.host-spot-start-btn:hover {
+    background: linear-gradient(to left,#E61E4D 0%, #E31C5F 50%,#D70466 100%);
+}
+
+.host-spot-start-btn:active {
+    transform: scale(0.96);
+    background: linear-gradient(to right,#FF385C 100%,#E31C5F 50%,#D70466 0%);
+}

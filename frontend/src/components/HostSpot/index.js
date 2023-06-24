@@ -20,8 +20,8 @@ const HostSpot = () => {
                 <HostSpotIntro />
             </div>
             <div className='host-spot-footer'>
-                <div>
-
+                <div className='host-spot-start'>
+                    <button className='host-spot-start-btn'>Get Started</button>
                 </div>
             </div>
         </>

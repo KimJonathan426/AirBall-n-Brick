@@ -288,7 +288,7 @@
 
 .reserve-btn,
 .check-btn {
-    background: #D70466;
+    background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
     width: 320px;
     padding: 14px 24px;
     border: none;
@@ -303,17 +303,17 @@
 
 .reserve-btn:hover,
 .check-btn:hover {
-    background-color: #E31C5F;
+    background: linear-gradient(to left,#E61E4D 0%, #E31C5F 50%,#D70466 100%);
 }
 
 .reserve-btn:active,
 .check-btn:active {
     transform: scale(0.96);
-    background: #FF385C;
+    background: linear-gradient(to right,#FF385C 100%,#E31C5F 50%,#D70466 0%);
 }
 
 .reserve-disabled {
-    background: linear-gradient(to right, rgb(230, 30, 77, 0.6) 0%, rgb(227, 28, 95, 0.6) 50%, rgb(215, 4, 102, 0.6) 100%);
+    background: linear-gradient(to right, rgba(230, 30, 77, 0.6) 0%, rgb(227, 28, 95, 0.6) 50%, rgb(215, 4, 102, 0.6) 100%);
     width: 320px;
     padding: 14px 24px;
     border: none;
