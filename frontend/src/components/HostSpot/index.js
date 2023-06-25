@@ -6,6 +6,7 @@ import HostSpotIntro from './Steps/HostSpotIntro';
 import HostFooter from './HostFooter';
 import logo from '../../images/logo-image.png';
 import './HostSpot.css';
+import Step1Intro from './Steps/Step1/Step1Intro';
 
 const HostSpot = () => {
 
@@ -19,7 +20,8 @@ const HostSpot = () => {
                 </NavLink>
             </div>
             <div className='host-spot-container'>
-                <HostSpotIntro />
+                {/* <HostSpotIntro /> */}
+                <Step1Intro />
             </div>
             <div className='host-spot-footer'>
                 <HostFooter step={step} setStep={setStep} />
