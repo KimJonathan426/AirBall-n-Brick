@@ -79,7 +79,30 @@
 }
 
 .host-spot-footer-progress {
+    display: flex;
+    align-items: center;
+    height: 6px;
+    box-sizing: border-box;
+}
 
+.host-spot-footer-progress-bar {
+    width: 100%;
+    height: 100%;
+    background-color: #DDDDDD;
+    overflow-x: hidden;
+    margin-right: 6px;
+}
+
+.host-spot-footer-progress-bar:last-child {
+    margin-right: 0px;
+}
+
+.footer-progress-bar-highlight {
+    position: relative;
+    width: 100%;
+    left: -100%;
+    height: 100%;
+    background: #000000;
 }
 
 .host-spot-footer-step {
@@ -160,6 +183,10 @@
         width: 100%;
         padding: 14px 28px;
         margin: 0;
+    }
+
+    .host-spot-footer-progress-bar {
+        margin-right: 3px;
     }
 
     .host-spot-back-btn {

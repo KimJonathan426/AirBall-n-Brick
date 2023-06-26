@@ -20,8 +20,12 @@ const HostSpot = () => {
                 </NavLink>
             </div>
             <div className='host-spot-container'>
-                {/* <HostSpotIntro /> */}
-                <Step1Intro />
+                {step == 0 &&
+                    <HostSpotIntro />
+                }
+                {step == 1 &&
+                    <Step1Intro />
+                }
             </div>
             <div className='host-spot-footer'>
                 <HostFooter step={step} setStep={setStep} />
