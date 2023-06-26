@@ -19,7 +19,7 @@ const Step1Intro = () => {
                 </div>
                 <div className='host-step-1-intro-right'>
                     <div className='host-step-1-intro-right-main'>
-                        <video className='basketball-court-animation' autoplay='autoplay' playsinline preload='auto' muted>
+                        <video className='basketball-court-animation' autoPlay playsInline preload='auto' muted>
                             <source type='video/mp4' src={courtAnimation} />
                         </video>
                     </div>
