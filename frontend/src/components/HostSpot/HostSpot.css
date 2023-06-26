@@ -34,7 +34,6 @@
 .host-spot-footer {
     width: 100vw;
     height: 88px;
-    border-top: 6px solid #DDDDDD;
     background-color: white;
     position: fixed;
     bottom: 0;
@@ -46,8 +45,9 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    height: 82px;
+    height: 88px;
     padding: 16px 0;
+    border-top: 6px solid #DDDDDD;
     box-sizing: border-box;
 }
 
@@ -78,6 +78,65 @@
     background: linear-gradient(to right,#FF385C 100%,#E31C5F 50%,#D70466 0%);
 }
 
+.host-spot-footer-progress {
+
+}
+
+.host-spot-footer-step {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 82px;
+    padding: 16px 0;
+    box-sizing: border-box;
+}
+
+.host-spot-back-btn {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    text-decoration: underline;
+    background: transparent;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    border: none;
+    margin-left: 48px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.host-spot-next-btn {
+    background: #222222;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 600;
+    color: #FFFFFF;
+    border: 1px solid black;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    text-align: center;
+    padding: 14px 32px;
+    margin-right: 48px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.host-spot-back-btn:hover {
+    background: #F7F7F7;
+}
+
+.host-spot-next-btn:hover {
+    background: black;
+}
+
+.host-spot-back-btn:active,
+.host-spot-next-btn:active {
+    transform: scale(0.96);
+}
+
 @media screen and (max-width: 743px) {
     .host-spot-nav {
         height: 64px;
@@ -101,5 +160,13 @@
         width: 100%;
         padding: 14px 28px;
         margin: 0;
+    }
+
+    .host-spot-back-btn {
+        margin-left: 24px;
+    }
+
+    .host-spot-next-btn {
+        margin-right: 24px;
     }
 }
