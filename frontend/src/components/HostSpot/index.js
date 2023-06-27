@@ -29,10 +29,10 @@ const HostSpot = () => {
                 </NavLink>
             </div>
             <div className={transitionClass}>
-                {step == 0 &&
+                {step === 0 &&
                     <HostSpotIntro />
                 }
-                {step == 1 &&
+                {step === 1 &&
                     <Step1Intro />
                 }
             </div>

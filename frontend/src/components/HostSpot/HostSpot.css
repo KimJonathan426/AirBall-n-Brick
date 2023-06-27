@@ -66,13 +66,14 @@
 
 .host-spot-start-btn {
     background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
+    width: 154px;
     height: 100%;
     border: none;
     border-radius: 8px;
     text-align: center;
     color: #ffffff;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 20px;
     cursor: pointer;
     padding: 14px 32px;
@@ -144,6 +145,8 @@
 
 .host-spot-next-btn {
     background: #222222;
+    width: 102px;
+    height: 100%;
     font-size: 15px;
     line-height: 20px;
     font-weight: 600;
@@ -171,6 +174,63 @@
 .host-spot-back-btn:active,
 .host-spot-next-btn:active {
     transform: scale(0.96);
+}
+
+.host-spot-back-loading {
+
+}
+
+.host-spot-next-loading {
+    background: #DDDDDD;
+    width: 102px;
+    height: 100%;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 600;
+    color: #FFFFFF;
+    border: 1px solid black;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    text-align: center;
+    padding: 14px 32px;
+    margin-right: 48px;
+    box-sizing: border-box;
+    cursor: wait;
+}
+
+.host-spot-load-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #DDDDDD;
+    color: #DDDDDD;
+    width: 154px;
+    height: 100%;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 8px;
+    line-height: 20px;
+    cursor: wait;
+    margin-right: 48px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.host-spot-btn-load {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+
+.host-spot-btn-load-next {
+    position: relative;
+    left: -33px;
+    width: 100px;
+    height: 100%;
+    object-fit: cover;
+    box-sizing: border-box;
 }
 
 @media screen and (max-width: 743px) {
@@ -208,5 +268,18 @@
 
     .host-spot-next-btn {
         margin-right: 24px;
+    }
+
+    .host-spot-load-box {
+        width: 100%;
+        padding: 14px 28px;
+        margin: 0;
+    }
+
+    .host-spot-btn-load {
+        width: 25%;
+        height: 100%;
+        object-fit: cover;
+        box-sizing: border-box;
     }
 }
