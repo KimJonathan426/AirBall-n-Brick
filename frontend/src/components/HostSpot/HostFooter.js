@@ -7,12 +7,15 @@ const HostFooter = ({ step, setStep, setTransitionClass }) => {
     const [progressBar1, setProgressBar1] = useState('0');
     const [progressBar2, setProgressBar2] = useState('0');
     const [progressBar3, setProgressBar3] = useState('0');
+    const [backButtonLoading, setBackButtonLoading] = useState(false);
     const [buttonLoading, setButtonLoading] = useState(false);
 
     const handleBack = () => {
+        setBackButtonLoading(true);
         setTransitionClass('host-spot-container-transition');
         setTimeout(() => {
             setStep(step - 1);
+            setBackButtonLoading(false);
         }, 600);
     };
 
@@ -56,8 +59,14 @@ const HostFooter = ({ step, setStep, setTransitionClass }) => {
                         </div>
                     </div>
                     <div className='host-spot-footer-step'>
-                        <button onClick={handleBack} className='host-spot-back-btn'>Back</button>
-                        {!buttonLoading ?
+                        {backButtonLoading ?
+                            <button className='host-spot-back-loading'>
+                                <img className='host-spot-btn-load-back' src={loadingGif} alt='loading...' />
+                            </button>
+                            :
+                            <button onClick={handleBack} className='host-spot-back-btn'>Back</button>
+                        }
+                        {buttonLoading ?
                             <button className='host-spot-next-loading'>
                                 <img className='host-spot-btn-load-next' src={loadingGif} alt='loading...' />
                             </button>
