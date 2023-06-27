@@ -5,6 +5,7 @@ import './HostSpotIntro.css';
 
 const HostSpotIntro = () => {
 
+
     return (
         <div className='host-intro-container'>
             <div className='host-intro-container-inner'>
@@ -31,7 +32,7 @@ const HostSpotIntro = () => {
                             <h3 className='host-intro-right-main-info'>Add 5 or more photos plus a title and description—we'll help you out.</h3>
                         </div>
                         <div className='host-intro-right-img-box'>
-                            <img className='host-intro-right-img' src={basketball} alt='basketball hoop' />
+                            <img className='host-intro-right-img' src={basketball} alt='mesh basketball' />
                         </div>
                     </div>
                     <div className='host-intro-right-3'>
@@ -41,7 +42,7 @@ const HostSpotIntro = () => {
                             <h3 className='host-intro-right-main-info'>Finalize your court by setting a starting price and publish your listing.</h3>
                         </div>
                         <div className='host-intro-right-img-box'>
-                            <img className='host-intro-right-img' src={court} alt='basketball hoop' />
+                            <img className='host-intro-right-img' src={court} alt='basketball court' />
                         </div>
                     </div>
                 </div>

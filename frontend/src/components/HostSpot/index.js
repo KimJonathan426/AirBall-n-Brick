@@ -11,6 +11,15 @@ import Step1Intro from './Steps/Step1/Step1Intro';
 const HostSpot = () => {
 
     const [step, setStep] = useState(0);
+    const [transitionClass, setTransitionClass] = useState('host-spot-container-transition')
+
+    useEffect(() => {
+        setTransitionClass('host-spot-container');
+    }, []);
+
+    useEffect(() => {
+        setTransitionClass('host-spot-container')
+    }, [step]);
 
     return (
         <>
@@ -19,7 +28,7 @@ const HostSpot = () => {
                     <img className='host-spot-logo' src={logo} alt='airballnbrick logo' />
                 </NavLink>
             </div>
-            <div className='host-spot-container'>
+            <div className={transitionClass}>
                 {step == 0 &&
                     <HostSpotIntro />
                 }
@@ -28,7 +37,7 @@ const HostSpot = () => {
                 }
             </div>
             <div className='host-spot-footer'>
-                <HostFooter step={step} setStep={setStep} />
+                <HostFooter step={step} setStep={setStep} setTransitionClass={setTransitionClass} />
             </div>
         </>
     )

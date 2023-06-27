@@ -29,6 +29,19 @@
     margin: 88px 0 82px;
     overflow-y: auto;
     box-sizing: border-box;
+    opacity: 1;
+    transition: opacity 0.6s;
+}
+
+.host-spot-container-transition {
+    width: 100vw;
+    height: calc(100vh - calc(88px + 82px));
+    padding: 0 80px;
+    margin: 88px 0 82px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.6s;
 }
 
 .host-spot-footer {
