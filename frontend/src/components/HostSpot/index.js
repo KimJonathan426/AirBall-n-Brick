@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate, Navigate } from 'react-router-dom';
 import { createSpot } from '../../store/spotReducer';
 import HostSpotIntro from './Steps/HostSpotIntro';
+import Step1Intro from './Steps/Step1/Step1Intro';
+import Step1Describe from './Steps/Step1Describe';
 import HostFooter from './HostFooter';
 import logo from '../../images/logo-image.png';
 import './HostSpot.css';
-import Step1Intro from './Steps/Step1/Step1Intro';
 
 const HostSpot = () => {
 
@@ -34,6 +35,9 @@ const HostSpot = () => {
                 }
                 {step === 1 &&
                     <Step1Intro />
+                }
+                {step === 2 &&
+                    <Step1Describe />
                 }
             </div>
             <div className='host-spot-footer'>
