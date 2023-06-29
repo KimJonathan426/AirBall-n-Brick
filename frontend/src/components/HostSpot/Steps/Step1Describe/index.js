@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import indoor from '../../../../images/descriptions/description-indoor.png';
 import outdoor from '../../../../images/descriptions/description-outdoor.png';
 import stadium from '../../../../images/descriptions/description-stadium.png';
@@ -14,12 +15,23 @@ import adjustable from '../../../../images/descriptions/description-adjustable.p
 import mini from '../../../../images/descriptions/description-mini.png';
 import './Step1Describe.css';
 
-const Step1Describe = () => {
+const Step1Describe = ({ tags, setTags }) => {
 
-    const descriptions = [['Indoor', 'indoor'], ['Outdoor', 'outdoor'], ['Stadium', 'stadium'],
-    ['Gym', 'gym'], ['Blacktop', 'blacktop'], ['Wood', 'wood'], ['Concrete', 'concrete'],
-    ['Vinyl', 'vinyl'], ['Double rim', 'double'], ['Nylon net', 'nylon'], ['Chain net', 'chain'],
-    ['No net', 'netless'], ['Adjustable hoop', 'adjustable'], ['Mini hoop', 'mini']];
+    const [descriptions, ] = useState([['Indoor', indoor], ['Outdoor', outdoor], ['Stadium', stadium],
+    ['Gym', gym], ['Blacktop', blacktop], ['Wood', wood], ['Concrete', concrete],
+    ['Vinyl', vinyl], ['Double rim', double], ['Nylon net', nylon], ['Chain net', chain],
+    ['No net', netless], ['Adjustable hoop', adjustable], ['Mini hoop', mini]]);
+
+    const handleClick = (value) => {
+        if (tags.has(value)) {
+            setTags(prev => {
+                prev.delete(value);
+                return new Set(prev);
+            });
+        } else {
+            setTags(prev => new Set(prev.add(value)));
+        };
+    };
 
 
     return (
@@ -29,27 +41,29 @@ const Step1Describe = () => {
                     <h1 className='host-step-1-describe-header'>Which of these best describes your&nbsp;court?</h1>
                 </div>
                 <div className='host-step-1-describe-bottom'>
-                    <div className='host-step-1-describe-main'>
-                        <button className='host-step-1-describe-btn'>
-                            <div>
-                                <img src={indoor} style={{ width: '35px' }} />
-                    <img src={outdoor} style={{ width: '35px' }} />
-                    <img src={stadium} style={{ width: '35px' }} />
-                    <img src={gym} style={{ width: '35px' }} />
-                    <img src={blacktop} style={{ width: '35px' }} />
-                    <img src={wood} style={{ width: '35px' }} />
-                    <img src={concrete} style={{ width: '35px' }} />
-                    <img src={vinyl} style={{ width: '35px' }} />
-                    <img src={double} style={{ width: '35px' }} />
-                    <img src={nylon} style={{ width: '35px' }} />
-                    <img src={chain} style={{ width: '35px' }} />
-                    <img src={netless} style={{ width: '35px' }} />
-                    <img src={adjustable} style={{ width: '35px' }} />
-                    <img src={mini} style={{ width: '35px' }} />
-                            </div>
-                            <div>Test</div>
-                        </button>
-                    </div>
+                    {descriptions.map((option) => (
+                        <div key={option[0]} className='host-step-1-describe-main'>
+                            <button className={tags.has(option[0]) ? 'host-step-1-describe-btn-checked' : 'host-step-1-describe-btn'} onClick={() => handleClick(option[0])}>
+                                <div>
+                                    <img src={option[1]} style={{ width: '35px' }} />
+                                </div>
+                                <div>{option[0]}</div>
+                            </button>
+                        </div>
+                    ))}
+                    {/* <img src={outdoor} style={{ width: '35px' }} />
+                        <img src={stadium} style={{ width: '35px' }} />
+                        <img src={gym} style={{ width: '35px' }} />
+                        <img src={blacktop} style={{ width: '35px' }} />
+                        <img src={wood} style={{ width: '35px' }} />
+                        <img src={concrete} style={{ width: '35px' }} />
+                        <img src={vinyl} style={{ width: '35px' }} />
+                        <img src={double} style={{ width: '35px' }} />
+                        <img src={nylon} style={{ width: '35px' }} />
+                        <img src={chain} style={{ width: '35px' }} />
+                        <img src={netless} style={{ width: '35px' }} />
+                        <img src={adjustable} style={{ width: '35px' }} />
+                        <img src={mini} style={{ width: '35px' }} /> */}
                 </div>
             </div>
         </div>

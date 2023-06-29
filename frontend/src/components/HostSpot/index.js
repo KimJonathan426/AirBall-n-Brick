@@ -12,7 +12,8 @@ import './HostSpot.css';
 const HostSpot = () => {
 
     const [step, setStep] = useState(0);
-    const [transitionClass, setTransitionClass] = useState('host-spot-container-transition')
+    const [transitionClass, setTransitionClass] = useState('host-spot-container-transition');
+    const [tags, setTags] = useState(new Set());
 
     useEffect(() => {
         setTransitionClass('host-spot-container');
@@ -37,7 +38,7 @@ const HostSpot = () => {
                     <Step1Intro />
                 }
                 {step === 2 &&
-                    <Step1Describe />
+                    <Step1Describe tags={tags} setTags={setTags} />
                 }
             </div>
             <div className='host-spot-footer'>

@@ -59,5 +59,34 @@
     border-radius: 8px;
     cursor: pointer;
     box-sizing: border-box;
+    transition: box-shadow 0.2s cubic-bezier(0.2,0,0,1), transform 0.1s cubic-bezier(0.2,0,0,1);
+}
 
+.host-step-1-describe-btn-checked {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    min-height: 88px;
+    background-color: #F7F7F7;
+    padding: 16px;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    box-shadow: 0 0 0 2px #000000;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s cubic-bezier(0.2,0,0,1), transform 0.1s cubic-bezier(0.2,0,0,1);
+}
+
+.host-step-1-describe-btn:hover {
+    box-shadow: 0 0 0 2px #000000;
+}
+
+.host-step-1-describe-btn:active,
+.host-step-1-describe-btn-checked:active {
+    box-shadow: 0 0 0 2px #000000;
+    background-color: #F7F7F7;
+    transform: scale(0.96);
 }
