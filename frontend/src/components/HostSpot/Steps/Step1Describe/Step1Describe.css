@@ -19,6 +19,11 @@
 .host-step-1-describe-top {
     max-width: 630px;
     margin-bottom: 32px;
+    animation-delay: 400ms;
+    animation-name: describeAnimation;
+    animation-duration: 600ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
 }
 
 .host-step-1-describe-header {
@@ -42,6 +47,10 @@
 .host-step-1-describe-main {
     flex: 0 1 calc(33% - 9px);
     box-sizing: border-box;
+    animation-name: describeAnimation;
+    animation-duration: 600ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
 }
 
 .host-step-1-describe-btn {
@@ -112,5 +121,16 @@
 
     .host-step-1-describe-main {
         flex: 0 1 calc(50% - 6px);
+    }
+}
+
+@keyframes describeAnimation {
+    0% {
+        opacity: 0;
+        transform: translate(0, 40%);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
     }
 }

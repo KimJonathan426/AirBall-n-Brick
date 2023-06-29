@@ -17,7 +17,8 @@ import './Step1Describe.css';
 
 const Step1Describe = ({ tags, setTags }) => {
 
-    const [descriptions, ] = useState([['Indoor', indoor], ['Outdoor', outdoor], ['Stadium', stadium],
+    const [delayed,] = useState(500);
+    const [descriptions,] = useState([['Indoor', indoor], ['Outdoor', outdoor], ['Stadium', stadium],
     ['Gym', gym], ['Blacktop', blacktop], ['Wood', wood], ['Concrete', concrete],
     ['Vinyl', vinyl], ['Double rim', double], ['Nylon net', nylon], ['Chain net', chain],
     ['No net', netless], ['Adjustable hoop', adjustable], ['Mini hoop', mini]]);
@@ -41,8 +42,8 @@ const Step1Describe = ({ tags, setTags }) => {
                     <h1 className='host-step-1-describe-header'>Which of these best describes your&nbsp;court?</h1>
                 </div>
                 <div className='host-step-1-describe-bottom'>
-                    {descriptions.map((option) => (
-                        <div key={option[0]} className='host-step-1-describe-main'>
+                    {descriptions.map((option, i) => (
+                        <div key={option[0]} className='host-step-1-describe-main' style={{ animationDelay: `${delayed * (1.00 + (.11 - .0027 * i) * i)}ms` }}>
                             <button className={tags.has(option[0]) ? 'host-step-1-describe-btn-checked' : 'host-step-1-describe-btn'} onClick={() => handleClick(option[0])}>
                                 <div style={{ height: '45px' }}>
                                     <img src={option[1]} style={{ width: '35px' }} />
