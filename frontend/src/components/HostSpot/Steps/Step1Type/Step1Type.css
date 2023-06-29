@@ -22,6 +22,7 @@
 }
 
 .host-step-1-type-top {
+    width: 100%;
     margin-bottom: 32px;
     animation-name: describeAnimation;
     animation-duration: 600ms;
@@ -31,10 +32,11 @@
 }
 
 .host-step-1-type-header {
-    font-size: 32px;
+    font-size: 30px;
     line-height: 36px;
     font-weight: 600;
     overflow-wrap: break-word;
+    margin-top: 0;
     margin-bottom: 0;
 }
 
@@ -113,4 +115,21 @@
     justify-content: center;
     align-items: center;
     margin: 24px 24px 0 8px;
+}
+
+@media screen and (max-width: 743px) {
+    .host-step-1-type-container {
+        align-items: flex-start;
+    }
+
+    .host-step-1-type-container-inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 630px;
+        height: auto;
+        margin: 0;
+    }
 }

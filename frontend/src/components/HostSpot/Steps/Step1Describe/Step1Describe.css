@@ -107,7 +107,7 @@
     word-break: break-word;
 }
 
-@media screen and (max-width: 744px) {
+@media screen and (max-width: 743px) {
     .host-step-1-describe-top {
         margin-bottom: 24px;
     }
