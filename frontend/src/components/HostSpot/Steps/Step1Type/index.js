@@ -31,7 +31,7 @@ const Step1Type = ({ type, setType }) => {
                                     <div className='host-step-1-type-text-2'>Guests have their own half in a court, plus access to shared spaces.</div>
                                 </div>
                                 <div className='host-step-1-type-img-box'>
-                                    <img src={half} style={{ width: '35px' }} />
+                                    <img src={half} style={{ width: '35px', transform: 'rotate(90)' }} />
                                 </div>
                             </button>
                         </div>
