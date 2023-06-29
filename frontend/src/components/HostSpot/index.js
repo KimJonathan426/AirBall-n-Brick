@@ -18,10 +18,6 @@ const HostSpot = () => {
     const [type, setType] = useState('full');
 
     useEffect(() => {
-        setTransitionClass('host-spot-container');
-    }, []);
-
-    useEffect(() => {
         setTransitionClass('host-spot-container')
     }, [step]);
 
