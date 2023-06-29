@@ -5,6 +5,7 @@ import { createSpot } from '../../store/spotReducer';
 import HostSpotIntro from './Steps/HostSpotIntro';
 import Step1Intro from './Steps/Step1/Step1Intro';
 import Step1Describe from './Steps/Step1Describe';
+import Step1Type from './Steps/Step1Type';
 import HostFooter from './HostFooter';
 import logo from '../../images/logo-image.png';
 import './HostSpot.css';
@@ -14,6 +15,7 @@ const HostSpot = () => {
     const [step, setStep] = useState(0);
     const [transitionClass, setTransitionClass] = useState('host-spot-container-transition');
     const [tags, setTags] = useState(new Set());
+    const [type, setType] = useState('full');
 
     useEffect(() => {
         setTransitionClass('host-spot-container');
@@ -39,6 +41,9 @@ const HostSpot = () => {
                 }
                 {step === 2 &&
                     <Step1Describe tags={tags} setTags={setTags} />
+                }
+                {step === 3 &&
+                    <Step1Type type={type} setType={setType} />
                 }
             </div>
             <div className='host-spot-footer'>
