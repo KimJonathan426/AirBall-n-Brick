@@ -9,6 +9,7 @@ import Step1Type from './Steps/Step1Type';
 import HostFooter from './HostFooter';
 import logo from '../../images/logo-image.png';
 import './HostSpot.css';
+import Step1Location from './Steps/Step1Location';
 
 const HostSpot = () => {
 
@@ -16,6 +17,7 @@ const HostSpot = () => {
     const [transitionClass, setTransitionClass] = useState('host-spot-container-transition');
     const [tags, setTags] = useState(new Set());
     const [type, setType] = useState('full');
+    const [location, setLocation] = useState(false);
 
     useEffect(() => {
         setTransitionClass('host-spot-container')
@@ -40,6 +42,9 @@ const HostSpot = () => {
                 }
                 {step === 3 &&
                     <Step1Type type={type} setType={setType} />
+                }
+                {step === 4 &&
+                    <Step1Location />
                 }
             </div>
             <div className='host-spot-footer'>
