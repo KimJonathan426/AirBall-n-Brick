@@ -13,7 +13,7 @@ const Step1Type = ({ type, setType }) => {
                     <h1 className='host-step-1-type-header'>Which type of court will guests have?</h1>
                 </div>
                 <div className='host-step-1-type-bottom'>
-                        <div className='host-step-1-type-main'>
+                        <div className='host-step-1-type-main' style={{ animationDelay: '400ms' }}>
                             <button className={type === 'full' ? 'host-step-1-type-btn-checked' : 'host-step-1-type-btn'} onClick={() => setType('full')}>
                                 <div className='host-step-1-type-text'>
                                     <h2 className='host-step-1-type-text-1'>An entire court</h2>
@@ -24,7 +24,7 @@ const Step1Type = ({ type, setType }) => {
                                 </div>
                             </button>
                         </div>
-                        <div className='host-step-1-type-main'>
+                        <div className='host-step-1-type-main' style={{ animationDelay: '450ms' }}>
                             <button className={type === 'half' ? 'host-step-1-type-btn-checked' : 'host-step-1-type-btn'} onClick={() => setType('half')}>
                                 <div className='host-step-1-type-text'>
                                     <h2 className='host-step-1-type-text-1'>A half court</h2>
@@ -35,7 +35,7 @@ const Step1Type = ({ type, setType }) => {
                                 </div>
                             </button>
                         </div>
-                        <div className='host-step-1-type-main'>
+                        <div className='host-step-1-type-main' style={{ animationDelay: '500ms' }}>
                             <button className={type === 'share' ? 'host-step-1-type-btn-checked' : 'host-step-1-type-btn'} onClick={() => setType('share')}>
                                 <div className='host-step-1-type-text'>
                                     <h2 className='host-step-1-type-text-1'>A shared court</h2>

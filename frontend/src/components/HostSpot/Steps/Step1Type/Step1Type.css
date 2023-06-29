@@ -23,6 +23,11 @@
 
 .host-step-1-type-top {
     margin-bottom: 32px;
+    animation-name: describeAnimation;
+    animation-duration: 600ms;
+    animation-delay: 400ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
 }
 
 .host-step-1-type-header {
@@ -46,6 +51,10 @@
     width: 100%;
     margin-bottom: 12px;
     box-sizing: border-box;
+    animation-name: describeAnimation;
+    animation-duration: 600ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
 }
 
 .host-step-1-type-btn {
