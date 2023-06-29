@@ -9,16 +9,18 @@ import vinyl from '../../../../images/descriptions/description-vinyl.png';
 import double from '../../../../images/descriptions/description-double.png';
 import nylon from '../../../../images/descriptions/description-nylon.png';
 import chain from '../../../../images/descriptions/description-chain.png';
-import noNet from '../../../../images/descriptions/description-no-net.png';
+import netless from '../../../../images/descriptions/description-no-net.png';
 import adjustable from '../../../../images/descriptions/description-adjustable.png';
 import mini from '../../../../images/descriptions/description-mini.png';
 import './Step1Describe.css';
 
 const Step1Describe = () => {
 
-    const descriptions = ['Indoor', 'Outdoor', 'Stadium', 'Gym', 'Blacktop', 'Wood',
-        'Concrete', 'Vinyl', 'Double rim', 'Nylon net', 'Chain net', 'No net',
-        'Adjustable hoop', 'Mini hoop'];
+    const descriptions = [['Indoor', 'indoor'], ['Outdoor', 'outdoor'], ['Stadium', 'stadium'],
+    ['Gym', 'gym'], ['Blacktop', 'blacktop'], ['Wood', 'wood'], ['Concrete', 'concrete'],
+    ['Vinyl', 'vinyl'], ['Double rim', 'double'], ['Nylon net', 'nylon'], ['Chain net', 'chain'],
+    ['No net', 'netless'], ['Adjustable hoop', 'adjustable'], ['Mini hoop', 'mini']];
+
 
     return (
         <div className='host-step-1-describe-container'>
@@ -27,20 +29,27 @@ const Step1Describe = () => {
                     <h1 className='host-step-1-describe-header'>Which of these best describes your&nbsp;court?</h1>
                 </div>
                 <div className='host-step-1-describe-bottom'>
-                    <img src={indoor} style={{ width: '50px'}}/>
-                    <img src={outdoor} style={{ width: '50px'}}/>
-                    <img src={stadium} style={{ width: '50px'}}/>
-                    <img src={gym} style={{ width: '50px'}}/>
-                    <img src={blacktop} style={{ width: '50px'}}/>
-                    <img src={wood} style={{ width: '50px'}}/>
-                    <img src={concrete} style={{ width: '50px'}}/>
-                    <img src={vinyl} style={{ width: '50px'}}/>
-                    <img src={double} style={{ width: '50px'}}/>
-                    <img src={nylon} style={{ width: '50px'}}/>
-                    <img src={chain} style={{ width: '50px'}}/>
-                    <img src={noNet} style={{ width: '50px'}}/>
-                    <img src={adjustable} style={{ width: '50px'}}/>
-                    <img src={mini} style={{ width: '50px'}}/>
+                    <div className='host-step-1-describe-main'>
+                        <button className='host-step-1-describe-btn'>
+                            <div>
+                                <img src={indoor} style={{ width: '35px' }} />
+                    <img src={outdoor} style={{ width: '35px' }} />
+                    <img src={stadium} style={{ width: '35px' }} />
+                    <img src={gym} style={{ width: '35px' }} />
+                    <img src={blacktop} style={{ width: '35px' }} />
+                    <img src={wood} style={{ width: '35px' }} />
+                    <img src={concrete} style={{ width: '35px' }} />
+                    <img src={vinyl} style={{ width: '35px' }} />
+                    <img src={double} style={{ width: '35px' }} />
+                    <img src={nylon} style={{ width: '35px' }} />
+                    <img src={chain} style={{ width: '35px' }} />
+                    <img src={netless} style={{ width: '35px' }} />
+                    <img src={adjustable} style={{ width: '35px' }} />
+                    <img src={mini} style={{ width: '35px' }} />
+                            </div>
+                            <div>Test</div>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
