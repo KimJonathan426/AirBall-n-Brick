@@ -35,8 +35,7 @@
     flex-wrap: wrap;
     max-width: 640px;
     gap: 16px;
-    padding-bottom: 40px;
-    padding-top: 2px;
+    padding: 2px 2px 40px 2px;
     box-sizing: border-box;
 }
 
@@ -89,4 +88,29 @@
     box-shadow: 0 0 0 2px #000000;
     background-color: #F7F7F7;
     transform: scale(0.96);
+}
+
+.host-step-1-describe-text {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    text-align: left;
+    word-break: break-word;
+}
+
+@media screen and (max-width: 744px) {
+    .host-step-1-describe-top {
+        margin-bottom: 24px;
+    }
+
+    .host-step-1-describe-bottom {
+        max-width: unset;
+        gap: 12px;
+        padding: 2px 2px 12px 2px;
+        box-sizing: border-box;
+    }
+
+    .host-step-1-describe-main {
+        flex: 0 1 calc(50% - 6px);
+    }
 }

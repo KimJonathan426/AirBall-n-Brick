@@ -44,26 +44,13 @@ const Step1Describe = ({ tags, setTags }) => {
                     {descriptions.map((option) => (
                         <div key={option[0]} className='host-step-1-describe-main'>
                             <button className={tags.has(option[0]) ? 'host-step-1-describe-btn-checked' : 'host-step-1-describe-btn'} onClick={() => handleClick(option[0])}>
-                                <div>
+                                <div style={{ height: '45px' }}>
                                     <img src={option[1]} style={{ width: '35px' }} />
                                 </div>
-                                <div>{option[0]}</div>
+                                <div className='host-step-1-describe-text'>{option[0]}</div>
                             </button>
                         </div>
                     ))}
-                    {/* <img src={outdoor} style={{ width: '35px' }} />
-                        <img src={stadium} style={{ width: '35px' }} />
-                        <img src={gym} style={{ width: '35px' }} />
-                        <img src={blacktop} style={{ width: '35px' }} />
-                        <img src={wood} style={{ width: '35px' }} />
-                        <img src={concrete} style={{ width: '35px' }} />
-                        <img src={vinyl} style={{ width: '35px' }} />
-                        <img src={double} style={{ width: '35px' }} />
-                        <img src={nylon} style={{ width: '35px' }} />
-                        <img src={chain} style={{ width: '35px' }} />
-                        <img src={netless} style={{ width: '35px' }} />
-                        <img src={adjustable} style={{ width: '35px' }} />
-                        <img src={mini} style={{ width: '35px' }} /> */}
                 </div>
             </div>
         </div>
