@@ -47,3 +47,36 @@
     line-height: 24px;
     color: #717171;
 }
+
+.host-step-1-location-bottom {
+    height: 100%;
+    margin-bottom: 48px;
+}
+
+.host-step-1-location-main {
+    height: 100%;
+    /* background-color: aliceblue; */
+}
+
+#step-1-map {
+    border-radius: 16px;
+    height: 100%;
+}
+
+.gmnoprint span {
+    position: relative;
+    left: 4px;
+}
+
+.gmnoprint div {
+    position: relative;
+    left: 4px;
+}
+
+.gmnoprint a {
+    display:none;
+}
+
+.gmnoprint.gm-style-cc div {
+    background:none !important;
+}
