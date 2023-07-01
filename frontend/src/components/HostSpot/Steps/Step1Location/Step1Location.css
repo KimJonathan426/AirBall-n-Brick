@@ -54,9 +54,19 @@
 }
 
 .host-step-1-location-main {
+    position: relative;
     height: 100%;
-    /* background-color: aliceblue; */
 }
+
+#step-1-autocomplete {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+
+/* .pac-container {
+
+} */
 
 #step-1-map {
     border-radius: 16px;

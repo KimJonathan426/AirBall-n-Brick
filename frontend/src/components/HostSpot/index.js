@@ -15,6 +15,8 @@ const HostSpot = () => {
 
     const [step, setStep] = useState(0);
     const [transitionClass, setTransitionClass] = useState('host-spot-container-transition');
+    const [googleLoader, setGoogleLoader] = useState(false);
+
     const [tags, setTags] = useState(new Set());
     const [type, setType] = useState('full');
     const [location, setLocation] = useState(false);
@@ -44,7 +46,7 @@ const HostSpot = () => {
                     <Step1Type type={type} setType={setType} />
                 }
                 {step === 4 &&
-                    <Step1Location />
+                    <Step1Location location={location} setLocation={setLocation} googleLoader={googleLoader} setGoogleLoader={setGoogleLoader} />
                 }
             </div>
             <div className='host-spot-footer'>

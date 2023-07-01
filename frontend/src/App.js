@@ -37,8 +37,9 @@ function App() {
                                 } />
           <Route path="/spots/new" element={
                                   <>
-                                    <Navigation isLoaded={isLoaded} fixed={false} />
-                                    <SpotForm />
+                                    {/* <Navigation isLoaded={isLoaded} fixed={false} />
+                                    <SpotForm /> */}
+                                    <HostSpot />
                                   </>
                                 } />
           <Route path="/spots/test" element={ <HostSpot /> } />
