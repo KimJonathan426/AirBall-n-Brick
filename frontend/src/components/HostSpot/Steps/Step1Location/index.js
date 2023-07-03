@@ -8,6 +8,36 @@ import './Step1Location.css';
 const Step1Location = ({ address, setAddress, city, setCity, state, setState, zipcode, setZipcode, country, setCountry }) => {
 
     const [inputVal, setInputVal] = useState('');
+    const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+
+        function waitForElement(querySelector, timeout = 0) {
+            const startTime = new Date().getTime();
+            return new Promise((resolve, reject) => {
+                const timer = setInterval(() => {
+                    const now = new Date().getTime();
+                    if (document.querySelector(querySelector)) {
+                        clearInterval(timer);
+                        resolve();
+                    } else if (timeout && now - startTime >= timeout) {
+                        clearInterval(timer);
+                        reject();
+                    }
+                }, 100);
+            });
+        }
+
+        if (loaded) {
+            waitForElement(".pac-container", 3000).then(function () {
+                const autocompleteElement = document.getElementsByClassName('pac-container')[0];
+                const newParent = document.getElementsByClassName('host-step-1-location-main')[0];
+                newParent.appendChild(autocompleteElement);
+            }).catch(() => {
+                setLoaded(false);
+            });
+        }
+    }, [loaded])
 
     useEffect(() => {
         const loader = new Loader({
@@ -36,7 +66,6 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
                 fields: ['address_components', 'geometry'],
             });
 
-
             autocomplete.addListener("place_changed", () => {
                 const place = autocomplete.getPlace();
 
@@ -58,6 +87,8 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
                 map.fitBounds(place.geometry.viewport);
                 map.setCenter(place.geometry.location);
             });
+
+            setLoaded(true);
         });
 
         return () => {
@@ -86,7 +117,7 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
                                 <div className='step-1-locator-box'>
                                     <img className='step-1-locator' src={locationPing} alt='locator ping' />
                                 </div>
-                                <input id='step-1-autocomplete' value={inputVal} onChange={(e) => setInputVal(e.target.value)} placeholder='Enter your address' />
+                                <input id='step-1-autocomplete' type='text' value={inputVal} onChange={(e) => setInputVal(e.target.value)} placeholder='Enter your address' />
                                 {inputVal &&
                                     <button className='step-1-clear-box' onClick={() => setInputVal('')}>
                                         <img style={{ width: '12px', height: '12px' }} src={clearX} alt='x button' />

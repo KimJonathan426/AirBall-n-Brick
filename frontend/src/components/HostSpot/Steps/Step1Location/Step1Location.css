@@ -51,7 +51,9 @@
 .host-step-1-location-bottom {
     position: relative;
     height: 100%;
+    min-height: 124px;
     margin-bottom: 48px;
+    box-sizing: border-box;
 }
 
 .host-step-1-location-main {
@@ -78,6 +80,11 @@
     z-index: 2;
 }
 
+.step-1-autocomplete-container:focus-within {
+    border-radius: 16px;
+    box-shadow: inset 0 0 0 2px #222222;
+}
+
 .step-1-locator-box {
     display: flex;
     align-items: center;
@@ -97,8 +104,10 @@
 
 #step-1-autocomplete {
     flex: 1 1 0%;
+    height: 100%;
     font-size: 16px;
     line-height: 20px;
+    font-weight: 600;
     appearance: none;
     width: 100%;
     padding: 0;
@@ -119,9 +128,19 @@
     cursor: pointer;
 }
 
-/* .pac-container {
-
-} */
+.pac-container {
+    /* display: block !important; */
+    width: calc(100% - 64px) !important;
+    max-width: 600px !important;
+    margin: auto !important;
+    box-shadow: none !important;
+    padding-top: 30px;
+    border-radius: 0 0 16px 16px !important;
+    position: relative !important;
+    top: -30px !important;
+    left: 0 !important;
+    z-index: 1;
+}
 
 #step-1-map {
     width: 100%;
