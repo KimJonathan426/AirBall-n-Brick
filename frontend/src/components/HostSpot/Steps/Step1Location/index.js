@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
+import { parseAddress } from './parseAddress';
 import './Step1Location.css';
 
 const Step1Location = ({ location, setLocation, googleLoader, setGoogleLoader }) => {
@@ -35,7 +36,6 @@ const Step1Location = ({ location, setLocation, googleLoader, setGoogleLoader })
             autocomplete.addListener("place_changed", () => {
                 const place = autocomplete.getPlace();
 
-                console.log(place)
                 if (!place.geometry || !place.geometry.location) {
                     // User entered the name of a Place that was not suggested and
                     // pressed the Enter key, or the Place Details request failed.
@@ -43,7 +43,9 @@ const Step1Location = ({ location, setLocation, googleLoader, setGoogleLoader })
                     return;
                 }
 
+                const addressDetails = parseAddress(place)
 
+                console.log(addressDetails)
 
                 if (place.geometry.viewport) {
                     map.fitBounds(place.geometry.viewport);
