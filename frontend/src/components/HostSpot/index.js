@@ -15,11 +15,14 @@ const HostSpot = () => {
 
     const [step, setStep] = useState(0);
     const [transitionClass, setTransitionClass] = useState('host-spot-container-transition');
-    const [googleLoader, setGoogleLoader] = useState(false);
 
     const [tags, setTags] = useState(new Set());
     const [type, setType] = useState('full');
-    const [location, setLocation] = useState(false);
+    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [zipcode, setZipcode] = useState('');
+    const [country, setCountry] = useState('');
 
     useEffect(() => {
         setTransitionClass('host-spot-container')
@@ -46,7 +49,12 @@ const HostSpot = () => {
                     <Step1Type type={type} setType={setType} />
                 }
                 {step === 4 &&
-                    <Step1Location location={location} setLocation={setLocation} googleLoader={googleLoader} setGoogleLoader={setGoogleLoader} />
+                    <Step1Location
+                        address={address} setAddress={setAddress}
+                        city={city} setCity={setCity}
+                        state={state} setState={setState}
+                        zipcode={zipcode} setZipcode={setZipcode}
+                        country={country} setCountry={setCountry} />
                 }
             </div>
             <div className='host-spot-footer'>

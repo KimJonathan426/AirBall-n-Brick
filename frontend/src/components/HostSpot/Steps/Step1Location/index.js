@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import { parseAddress } from './parseAddress';
+import locationPing from '../../../../images/location.svg';
+import clearX from '../../../../images/clear-x.svg';
 import './Step1Location.css';
 
-const Step1Location = ({ location, setLocation, googleLoader, setGoogleLoader }) => {
+const Step1Location = ({ address, setAddress, city, setCity, state, setState, zipcode, setZipcode, country, setCountry }) => {
+
+    const [inputVal, setInputVal] = useState('');
 
     useEffect(() => {
         const loader = new Loader({
@@ -41,17 +45,18 @@ const Step1Location = ({ location, setLocation, googleLoader, setGoogleLoader })
                     // pressed the Enter key, or the Place Details request failed.
                     window.alert("No details available for input: '" + place.name + "'");
                     return;
-                }
+                };
 
-                const addressDetails = parseAddress(place)
+                const addressDetails = parseAddress(place);
 
-                console.log(addressDetails)
+                setAddress(addressDetails['address']);
+                setCity(addressDetails['locality']);
+                setState(addressDetails['administrative_area_level_1']);
+                setZipcode(addressDetails['postal_code']);
+                setCountry(addressDetails['country']);
 
-                if (place.geometry.viewport) {
-                    map.fitBounds(place.geometry.viewport);
-                } else {
-                    map.setCenter(place.geometry.location);
-                }
+                map.fitBounds(place.geometry.viewport);
+                map.setCenter(place.geometry.location);
             });
         });
 
@@ -77,8 +82,16 @@ const Step1Location = ({ location, setLocation, googleLoader, setGoogleLoader })
                     </div>
                     <div className='host-step-1-location-bottom'>
                         <div className='host-step-1-location-main'>
-                            <div>
-                                <input id='step-1-autocomplete' placeholder='Enter your address' />
+                            <div className='step-1-autocomplete-container' onClick={() => document.getElementById('step-1-autocomplete').focus()}>
+                                <div className='step-1-locator-box'>
+                                    <img className='step-1-locator' src={locationPing} alt='locator ping' />
+                                </div>
+                                <input id='step-1-autocomplete' value={inputVal} onChange={(e) => setInputVal(e.target.value)} placeholder='Enter your address' />
+                                {inputVal &&
+                                    <button className='step-1-clear-box' onClick={() => setInputVal('')}>
+                                        <img style={{ width: '12px', height: '12px' }} src={clearX} alt='x button' />
+                                    </button>
+                                }
                             </div>
                             <div id='step-1-map'></div>
                         </div>

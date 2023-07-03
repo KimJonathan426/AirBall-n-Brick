@@ -1,5 +1,6 @@
 export function parseAddress(place) {
     const addressNameFormat = {
+        'address': '',
         'street_number': 'short_name',
         'route': 'long_name',
         'locality': 'long_name',
@@ -15,6 +16,8 @@ export function parseAddress(place) {
             addressNameFormat[addressType] = component[addressNameFormat[addressType]];
         };
     };
+
+    addressNameFormat['address'] = `${addressNameFormat['street_number']} ${addressNameFormat['route']}`;
 
     return addressNameFormat;
 };
