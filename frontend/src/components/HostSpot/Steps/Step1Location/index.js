@@ -31,6 +31,13 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
         if (loaded) {
             waitForElement(".pac-container", 3000).then(function () {
                 const autocompleteElement = document.getElementsByClassName('pac-container')[0];
+                const manualElement = document.createElement('div');
+                const manualText = document.createTextNode('Enter address manually');
+
+                manualElement.className = 'pac-manual';
+                manualElement.appendChild(manualText);
+                autocompleteElement.appendChild(manualElement);
+
                 const newParent = document.getElementsByClassName('host-step-1-location-main')[0];
                 newParent.appendChild(autocompleteElement);
             }).catch(() => {
