@@ -35,14 +35,8 @@ function App() {
                                     <SpotList />
                                   </>
                                 } />
-          <Route path="/spots/new" element={
-                                  <>
-                                    {/* <Navigation isLoaded={isLoaded} fixed={false} />
-                                    <SpotForm /> */}
-                                    <HostSpot />
-                                  </>
-                                } />
-          <Route path="/spots/test" element={ <HostSpot /> } />
+          <Route path="/spots/new" element={ <HostSpot /> } />
+          <Route path="/spots/test" element={ <SpotForm /> } />
           <Route path="/spots/:id" element={
                                   <>
                                     <Navigation isLoaded={isLoaded} fixed={false} type='nav-contained' />
