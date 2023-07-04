@@ -5,6 +5,7 @@ import LocationAlert from './LocationAlert';
 import locationPing from '../../../../images/location.svg';
 import clearX from '../../../../images/clear-x-thick.svg';
 import './Step1Location.css';
+import { set } from 'date-fns';
 
 const Step1Location = ({ address, setAddress, city, setCity, state, setState, zipcode, setZipcode, country, setCountry }) => {
 
@@ -79,7 +80,7 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
 
             autocomplete.addListener("place_changed", () => {
                 const place = autocomplete.getPlace();
-
+                console.log(place)
                 if (!place.geometry || !place.geometry.location) {
                     // User entered the name of a Place that was not suggested and
                     // pressed the Enter key, or the Place Details request failed.
@@ -89,7 +90,7 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
                 };
 
                 const addressDetails = parseAddress(place);
-
+                console.log(addressDetails)
                 setAddress(addressDetails['address']);
                 setCity(addressDetails['locality']);
                 setState(addressDetails['administrative_area_level_1']);
@@ -98,6 +99,8 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
 
                 map.fitBounds(place.geometry.viewport);
                 map.setCenter(place.geometry.location);
+
+                // set()
             });
 
             setLoaded(true);

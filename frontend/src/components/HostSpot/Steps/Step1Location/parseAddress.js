@@ -1,31 +1,46 @@
 export function parseAddress(place) {
     const addressNameFormat = {
         'address': '',
-        'street_number': 'short_name',
-        'route': 'long_name',
-        'locality': 'long_name',
-        'administrative_area_level_1': 'short_name',
-        'country': 'long_name',
-        'country_abre': 'short_name',
-        'postal_code': 'short_name',
+        'street_number': '',
+        'route': '',
+        'locality': '',
+        'administrative_area_level_1': '',
+        'country': '',
+        'country_abre': '',
+        'postal_code': '',
     };
 
     for (const component of place.address_components) {
         const addressType = component.types[0];
 
-        if (addressType === 'country') {
-            addressNameFormat['country_abre'] = component[addressNameFormat['country_abre']];
-        }
-
-        if (addressType in addressNameFormat) {
-            addressNameFormat[addressType] = component[addressNameFormat[addressType]];
+        // eslint-disable-next-line
+        switch (addressType) {
+            case 'street_number':
+                addressNameFormat[addressType] = component['short_name'];
+                break;
+            case 'route':
+                addressNameFormat[addressType] = component['long_name'];
+                break;
+            case 'locality':
+                addressNameFormat[addressType] = component['long_name'];
+                break;
+            case 'administrative_area_level_1':
+                addressNameFormat[addressType] = component['short_name'];
+                break;
+            case 'country':
+                addressNameFormat[addressType] = component['long_name'];
+                addressNameFormat['country_abre'] = component['short_name'];
+                break;
+            case 'postal_code':
+                addressNameFormat[addressType] = component['short_name'];
+                break;
         };
     };
 
 
-    if (addressNameFormat['street_number'] !== 'short_name') {
+    if (addressNameFormat['street_number']) {
         addressNameFormat['address'] = `${addressNameFormat['street_number']} ${addressNameFormat['route']}`;
-    } else if (addressNameFormat['route'] !== 'long_name') {
+    } else if (addressNameFormat['route']) {
         addressNameFormat['address'] = `${addressNameFormat['route']}`;
     }
 
