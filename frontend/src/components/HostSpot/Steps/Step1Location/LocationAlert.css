@@ -1,3 +1,13 @@
+.invalid-google-location-container {
+    display: block;
+    width: auto;
+    padding: 0;
+    position: fixed;
+    bottom: 98px;
+    left: calc(50% - 25vw + 48px);
+    box-sizing: border-box;
+}
+
 .invalid-google-location-container-on,
 .invalid-google-location-container-off {
     display: inline-flex;
@@ -7,13 +17,13 @@
     padding: 16px;
     border: 1px solid #DDDDDD;
     border-radius: 12px;
-    margin: 0px auto;
+    /* margin: 0px auto; */
     background-color: #FFFFFF;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
-    position: absolute;
-    bottom: 15px;
-    left: calc(50% - 25vw + 48px);
+    /* position: fixed;
+    bottom: 98px;
+    left: calc(50% - 25vw + 48px); */
 }
 
 .invalid-google-location-container-on {
@@ -31,15 +41,18 @@
 }
 
 .invalid-google-location-img-box {
+    margin-right: 12px;
+}
+
+.invalid-google-location-img-box-inner {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 44px !important;
+    height: 44px !important;
     color: #FFFFFF;
     background-color: #C13515;
     border-radius: 50%;
-    margin-right: 12px;
     box-sizing: border-box;
 }
 
@@ -86,7 +99,7 @@
     margin-left: -8px;
     margin-right: -8px;
     cursor: pointer;
-    transition: box-shadow 0.2s cubic-bezier(0.2,0,0,1), transform 0.1s cubic-bezier(0.2,0,0,1);
+    transition: box-shadow 0.2s cubic-bezier(0.2, 0, 0, 1), transform 0.1s cubic-bezier(0.2, 0, 0, 1);
 }
 
 .invalid-google-location-no:hover {
@@ -108,7 +121,7 @@
     border-radius: 8px;
     background: #FFFFFF;
     cursor: pointer;
-    transition: box-shadow 0.2s cubic-bezier(0.2,0,0,1), transform 0.1s cubic-bezier(0.2,0,0,1);
+    transition: box-shadow 0.2s cubic-bezier(0.2, 0, 0, 1), transform 0.1s cubic-bezier(0.2, 0, 0, 1);
 }
 
 .invalid-google-location-yes:hover {
@@ -131,14 +144,39 @@
     margin: 0;
     background: transparent;
     cursor: pointer;
-    transition: transform 0.25s cubic-bezier(0.2,0,0,1);
+    transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1);
+}
+
+@media screen and (max-width: 743px) {
+
+    .invalid-google-location-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 0 24px;
+        left: 0;
+    }
+
+    .invalid-google-location-container-on,
+    .invalid-google-location-container-off {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        left: 0;
+    }
+
+    .invalid-google-location-main {
+        flex-direction: column-reverse;
+        gap: 8px;
+    }
 }
 
 @keyframes alertAnimationMount {
     0% {
         opacity: 0;
-        transform: translate(0,100%);
+        transform: translate(0, 100%);
     }
+
     100% {
         opacity: 1;
         transform: none;
@@ -150,8 +188,9 @@
         opacity: 1;
         transform: none;
     }
+
     100% {
         opacity: 0;
-        transform: translate(0,100%);
+        transform: translate(0, 100%);
     }
 }
