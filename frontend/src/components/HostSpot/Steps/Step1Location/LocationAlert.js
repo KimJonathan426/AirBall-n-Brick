@@ -1,13 +1,25 @@
+import { useEffect, useState } from 'react';
 import exclamation from '../../../../images/exclamation-point.svg';
 import clearX from '../../../../images/clear-x-thin.svg';
 import './LocationAlert.css';
 
 const LocationAlert = ({ alert, setAlert }) => {
 
+    const [alertClass, setAlertClass] = useState('invalid-google-location-container-standby');
+
+    useEffect(() => {
+        if (alert) {
+            setAlertClass('invalid-google-location-container-on')
+        }
+        if (!alert && alertClass !== 'invalid-google-location-container-standby') {
+            setAlertClass('invalid-google-location-container-off')
+        };
+    }, [alert]);
+
 
     return (
         <div className='invalid-google-location-container'>
-            <div className={alert ? 'invalid-google-location-container-on' : 'invalid-google-location-container-off'}>
+            <div className={alertClass}>
                 <div className='invalid-google-location-img-box'>
                     <div className='invalid-google-location-img-box-inner'>
                         <img className='invalid-google-location-exclamation' src={exclamation} alt='exclamation point' />

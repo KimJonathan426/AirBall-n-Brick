@@ -114,36 +114,34 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
 
 
     return (
-        <>
-            <div className='host-step-1-location-container'>
-                <div className='host-step-1-location-container-inner'>
-                    <div className='host-step-1-location-top'>
-                        <h1 className='host-step-1-location-header'>Where's your court located?</h1>
-                        <div className='host-step-1-location-subheader'>
-                            Your address is only shared with guests after they've made a reservation.
-                        </div>
-                    </div>
-                    <div className='host-step-1-location-bottom'>
-                        <div className='host-step-1-location-main'>
-                            <div className='step-1-autocomplete-container' onClick={() => document.getElementById('step-1-autocomplete').focus()}>
-                                <div className='step-1-locator-box'>
-                                    <img className='step-1-locator' src={locationPing} alt='locator ping' />
-                                </div>
-                                <input id='step-1-autocomplete' type='text' value={inputVal} onChange={(e) => setInputVal(e.target.value)} placeholder='Enter your address' />
-                                {inputVal &&
-                                    <button className='step-1-clear-box' onClick={() => setInputVal('')}>
-                                        <img style={{ width: '12px', height: '12px' }} src={clearX} alt='x button' />
-                                    </button>
-                                }
-                            </div>
-                            <div className='step-1-autocomplete-overlay' />
-                            <div id='step-1-map'></div>
-                        </div>
+        <div className='host-step-1-location-container'>
+            <div className='host-step-1-location-container-inner'>
+                <div className='host-step-1-location-top'>
+                    <h1 className='host-step-1-location-header'>Where's your court located?</h1>
+                    <div className='host-step-1-location-subheader'>
+                        Your address is only shared with guests after they've made a reservation.
                     </div>
                 </div>
-                <LocationAlert alert={alert} setAlert={setAlert} />
+                <div className='host-step-1-location-bottom'>
+                    <div className='host-step-1-location-main'>
+                        <div className='step-1-autocomplete-container' onClick={() => document.getElementById('step-1-autocomplete').focus()}>
+                            <div className='step-1-locator-box'>
+                                <img className='step-1-locator' src={locationPing} alt='locator ping' />
+                            </div>
+                            <input id='step-1-autocomplete' type='text' value={inputVal} onChange={(e) => setInputVal(e.target.value)} placeholder='Enter your address' />
+                            {inputVal &&
+                                <button className='step-1-clear-box' onClick={() => setInputVal('')}>
+                                    <img style={{ width: '12px', height: '12px' }} src={clearX} alt='x button' />
+                                </button>
+                            }
+                        </div>
+                        <div className='step-1-autocomplete-overlay' />
+                        <div id='step-1-map'></div>
+                    </div>
+                </div>
             </div>
-        </>
+            <LocationAlert alert={alert} setAlert={setAlert} />
+        </div>
     );
 };
 

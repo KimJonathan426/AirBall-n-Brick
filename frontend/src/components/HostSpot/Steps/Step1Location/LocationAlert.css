@@ -8,6 +8,10 @@
     box-sizing: border-box;
 }
 
+.invalid-google-location-container-standby {
+    display: none;
+}
+
 .invalid-google-location-container-on,
 .invalid-google-location-container-off {
     display: inline-flex;
@@ -17,13 +21,9 @@
     padding: 16px;
     border: 1px solid #DDDDDD;
     border-radius: 12px;
-    /* margin: 0px auto; */
     background-color: #FFFFFF;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
-    /* position: fixed;
-    bottom: 98px;
-    left: calc(50% - 25vw + 48px); */
 }
 
 .invalid-google-location-container-on {
