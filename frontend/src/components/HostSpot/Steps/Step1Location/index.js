@@ -84,7 +84,7 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
                     // User entered the name of a Place that was not suggested and
                     // pressed the Enter key, or the Place Details request failed.
                     // window.alert("No details available for input: '" + place.name + "'");
-                    setAlert(true);
+                    // setAlert(true);
                     return;
                 };
 
