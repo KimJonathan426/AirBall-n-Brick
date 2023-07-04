@@ -165,6 +165,26 @@
     transition: all 0.2s ease-in-out;
 }
 
+.host-spot-next-btn-disabled {
+    background: #DDDDDD;
+    width: 102px;
+    height: 100%;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 600;
+    color: #FFFFFF;
+    border: 1px solid black;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    text-align: center;
+    padding: 14px 32px;
+    margin-right: 48px;
+    box-sizing: border-box;
+    cursor: disabled;
+    transition: all 0.2s ease-in-out;
+}
+
 .host-spot-back-btn:hover {
     background: #F7F7F7;
 }
@@ -174,7 +194,8 @@
 }
 
 .host-spot-back-btn:active,
-.host-spot-next-btn:active {
+.host-spot-next-btn:active,
+.host-spot-next-btn-disabled:active {
     transform: scale(0.96);
 }
 

@@ -1,19 +1,21 @@
 import { useEffect, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import { parseAddress } from './parseAddress';
-import LocationAlert from './LocationAlert';
 import locationPing from '../../../../images/location.svg';
 import clearX from '../../../../images/clear-x-thick.svg';
 import './Step1Location.css';
-import { set } from 'date-fns';
 
-const Step1Location = ({ address, setAddress, city, setCity, state, setState, zipcode, setZipcode, country, setCountry }) => {
+const Step1Location = ({ locationStep, setLocationStep, setAddress, setCity, setState, setZipcode, setCountry }) => {
 
     const [inputVal, setInputVal] = useState('');
-    const [alert, setAlert] = useState(false);
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
+        let manualElement;
+
+        const handleManualClick = () => {
+            setLocationStep(locationStep + 1);
+        };
 
         function waitForElement(querySelector, timeout = 0) {
             const startTime = new Date().getTime();
@@ -29,15 +31,15 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
                     }
                 }, 100);
             });
-        }
+        };
 
         if (loaded) {
             waitForElement(".pac-container", 3000).then(function () {
                 const autocompleteElement = document.getElementsByClassName('pac-container')[0];
-                const manualElement = document.createElement('div');
+                manualElement = document.createElement('div');
                 const manualText = document.createTextNode('Enter address manually');
 
-                // create onclick to change google step and remove it after unmount
+                manualElement.addEventListener('mousedown', handleManualClick);
 
                 manualElement.className = 'pac-manual';
                 manualElement.appendChild(manualText);
@@ -48,8 +50,14 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
             }).catch(() => {
                 setLoaded(false);
             });
-        }
-    }, [loaded])
+        };
+
+        return () => {
+            if (manualElement) {
+                manualElement.removeEventListener('mousedown', handleManualClick);
+            };
+        };
+    }, [loaded]);
 
     useEffect(() => {
         const loader = new Loader({
@@ -80,17 +88,16 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
 
             autocomplete.addListener("place_changed", () => {
                 const place = autocomplete.getPlace();
-                console.log(place)
+
                 if (!place.geometry || !place.geometry.location) {
                     // User entered the name of a Place that was not suggested and
                     // pressed the Enter key, or the Place Details request failed.
                     // window.alert("No details available for input: '" + place.name + "'");
-                    // setAlert(true);
                     return;
                 };
 
                 const addressDetails = parseAddress(place);
-                console.log(addressDetails)
+
                 setAddress(addressDetails['address']);
                 setCity(addressDetails['locality']);
                 setState(addressDetails['administrative_area_level_1']);
@@ -100,7 +107,7 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
                 map.fitBounds(place.geometry.viewport);
                 map.setCenter(place.geometry.location);
 
-                // set()
+                setLocationStep(locationStep + 1);
             });
 
             setLoaded(true);
@@ -110,9 +117,9 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
             const elements = document.getElementsByClassName('pac-container');
 
             if (elements[0]) {
-                elements[0].remove()
-            }
-        }
+                elements[0].remove();
+            };
+        };
     }, []);
 
 
@@ -143,7 +150,6 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
                     </div>
                 </div>
             </div>
-            <LocationAlert alert={alert} setAlert={setAlert} />
         </div>
     );
 };

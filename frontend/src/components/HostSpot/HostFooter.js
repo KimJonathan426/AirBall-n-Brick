@@ -2,15 +2,31 @@ import { useEffect, useState } from 'react';
 import loadingGif from '../../images/host-court-loading.gif';
 import './HostSpot.css';
 
-const HostFooter = ({ step, setStep, setTransitionClass }) => {
+const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, city, state, zipcode, country, setTransitionClass }) => {
 
     const [progressBar1, setProgressBar1] = useState('0');
     const [progressBar2, setProgressBar2] = useState('0');
     const [progressBar3, setProgressBar3] = useState('0');
+    const [nextDisabled, setNextDisabled] = useState(false);
     const [backButtonLoading, setBackButtonLoading] = useState(false);
     const [buttonLoading, setButtonLoading] = useState(false);
 
+    useEffect(() => {
+        if (step === 4 && locationStep === 0) {
+            setNextDisabled(true);
+        } else if (!address || !city || !state || !zipcode || !country) {
+            setNextDisabled(true);
+        } else {
+            setNextDisabled(false);
+        };
+    }, [step, locationStep, address, city, state, zipcode, country]);
+
     const handleBack = () => {
+        if (step === 4 && locationStep > 0) {
+            setLocationStep(locationStep - 1);
+            return;
+        }
+
         setBackButtonLoading(true);
         setTransitionClass('host-spot-container-transition');
         setTimeout(() => {
@@ -20,6 +36,11 @@ const HostFooter = ({ step, setStep, setTransitionClass }) => {
     };
 
     const handleNext = () => {
+        if (step === 4 && locationStep == 1) {
+            setLocationStep(locationStep + 1);
+            return;
+        }
+
         setButtonLoading(true);
         setTransitionClass('host-spot-container-transition');
         setTimeout(() => {
@@ -71,7 +92,12 @@ const HostFooter = ({ step, setStep, setTransitionClass }) => {
                                 <img className='host-spot-btn-load-next' src={loadingGif} alt='loading...' />
                             </button>
                             :
-                            <button onClick={handleNext} className='host-spot-next-btn'>Next</button>
+                            <button
+                                onClick={handleNext}
+                                disabled={nextDisabled}
+                                className={nextDisabled ? 'host-spot-next-btn-disabled' : 'host-spot-next-btn'}>
+                                Next
+                            </button>
                         }
                     </div>
                 </>

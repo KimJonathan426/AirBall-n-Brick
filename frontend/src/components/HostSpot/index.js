@@ -14,6 +14,7 @@ import Step1Location from './Steps/Step1Location';
 const HostSpot = () => {
 
     const [step, setStep] = useState(0);
+    const [locationStep, setLocationStep] = useState(0);
     const [transitionClass, setTransitionClass] = useState('host-spot-container-transition');
 
     const [tags, setTags] = useState(new Set());
@@ -48,17 +49,24 @@ const HostSpot = () => {
                 {step === 3 &&
                     <Step1Type type={type} setType={setType} />
                 }
-                {step === 4 &&
+                {step === 4 && locationStep === 0 &&
                     <Step1Location
-                        address={address} setAddress={setAddress}
-                        city={city} setCity={setCity}
-                        state={state} setState={setState}
-                        zipcode={zipcode} setZipcode={setZipcode}
-                        country={country} setCountry={setCountry} />
+                        locationStep={locationStep} setLocationStep={setLocationStep}
+                        setAddress={setAddress} setCity={setCity}
+                        setState={setState} setZipcode={setZipcode}
+                        setCountry={setCountry} />
+                }
+                {step === 4 && locationStep === 1 &&
+                    <div>test</div>
                 }
             </div>
             <div className='host-spot-footer'>
-                <HostFooter step={step} setStep={setStep} setTransitionClass={setTransitionClass} />
+                <HostFooter
+                    step={step} setStep={setStep}
+                    locationStep={locationStep} setLocationStep={setLocationStep}
+                    address={address} city={city}
+                    state={state} zipcode={zipcode}
+                    country={country} setTransitionClass={setTransitionClass} />
             </div>
         </>
     )
