@@ -131,6 +131,7 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
                                     </button>
                                 }
                             </div>
+                            <div className='step-1-autocomplete-overlay' />
                             <div id='step-1-map'></div>
                         </div>
                     </div>

@@ -76,13 +76,37 @@
     box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.12);
     box-sizing: border-box;
     cursor: text;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 32px;
     z-index: 2;
 }
 
 .step-1-autocomplete-container:focus-within {
     border-radius: 16px;
     box-shadow: inset 0 0 0 2px #222222;
+}
+
+.step-1-autocomplete-overlay {
+    display: none;
+    width: calc(100% - 64px);
+    max-width: 600px;
+    height: 68px;
+    padding: 12px 12px 12px 16px;
+    margin: auto;
+    margin-top: 32px;
+    border-radius: 16px 16px 0 0;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+    cursor: text;
+    position: absolute;
+    top: 0;
+    left: 32px;
+    z-index: 1;
+}
+
+.step-1-autocomplete-container:focus-within + .step-1-autocomplete-overlay {
+    display: flex;
 }
 
 .step-1-locator-box {
@@ -108,6 +132,7 @@
     font-size: 16px;
     line-height: 20px;
     font-weight: 600;
+    font-family: 'Montserrat', sans-serif !important;
     appearance: none;
     width: 100%;
     padding: 0;
@@ -129,32 +154,93 @@
 }
 
 .pac-container {
-    /* display: flex !important; */
-    /* flex-direction: column !important; */
     width: calc(100% - 64px) !important;
     max-width: 600px !important;
-    margin: auto !important;
-    box-shadow: none !important;
-    padding-top: 50px !important;
-    padding-bottom: 60px !important;
+    height: auto !important;
+    max-height: calc(100% - 132px) !important;
+    min-height: 76px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding-top: 16px !important;
+    margin: 0 auto !important;
+    border-top: none !important;
     border-radius: 0 0 16px 16px !important;
-    position: relative !important;
-    top: -34px !important;
-    left: 0 !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+    position: absolute !important;
+    top: 100px !important;
+    left: 32px !important;
     z-index: 1 !important;
 }
 
+.step-1-autocomplete-container:focus-within ~ .pac-container {
+    display: block !important;
+}
+
+.pac-item {
+    display: grid !important;
+    grid-template-columns: 40px 1fr !important;
+    grid-auto-rows: minmax(20px, auto);
+    column-gap: 12px !important;
+    width: 100% !important;
+    min-height: max-content !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    font-weight: 400 !important;
+    text-align: left !important;
+    white-space: unset !important;
+    word-wrap: break-word;
+    color: #222222 !important;
+    padding: 12px 16px !important;
+    border: none !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+}
+
+.pac-item:hover {
+    background-color: #DDDDDD;
+}
+
+.pac-icon {
+    display: flex !important;
+    align-self: center !important;
+    background-image: url('../../../../images/pac-icon.svg') !important;
+    background-repeat: no-repeat !important;
+    background-size: 16px !important;
+    -webkit-background-size: 16px 16px !important;
+    -moz-background-size: 16px !important;
+    background-position: center !important;
+    grid-row: span 2 !important;
+    width: 40px !important;
+    height: 40px !important;
+    padding: 12px !important;
+    margin: unset !important;
+    border-radius: 50% !important;
+    background-color: #F7F7F7 !important;
+    box-sizing: border-box !important;
+}
+
+.pac-matched,
+.pac-item-query {
+    width: 100% !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+    font-weight: 400 !important;
+}
+
 .pac-manual {
+    display: block;
     width: 100%;
     height: 60px;
+    font-family: 'Montserrat', sans-serif !important;
     font-size: 14px;
     font-weight: 600;
     text-decoration: underline;
     padding: 16px 16px 24px;
     cursor: pointer;
     box-sizing: border-box;
-    position: absolute;
-    bottom: 0px;
 }
 
 .pac-logo:after {
@@ -164,7 +250,9 @@
 #step-1-map {
     width: 100%;
     height: 100%;
+    min-height: 208px;
     border-radius: 16px;
+    overflow: hidden !important;
     position: absolute !important;
     top: 0;
     left: 0;
