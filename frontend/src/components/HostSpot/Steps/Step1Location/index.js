@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import { parseAddress } from './parseAddress';
+import LocationAlert from './LocationAlert';
 import locationPing from '../../../../images/location.svg';
-import clearX from '../../../../images/clear-x.svg';
+import clearX from '../../../../images/clear-x-thick.svg';
 import './Step1Location.css';
 
 const Step1Location = ({ address, setAddress, city, setCity, state, setState, zipcode, setZipcode, country, setCountry }) => {
 
     const [inputVal, setInputVal] = useState('');
+    const [alert, setAlert] = useState(false);
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
@@ -33,6 +35,8 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
                 const autocompleteElement = document.getElementsByClassName('pac-container')[0];
                 const manualElement = document.createElement('div');
                 const manualText = document.createTextNode('Enter address manually');
+
+                // create onclick to change google step and remove it after unmount
 
                 manualElement.className = 'pac-manual';
                 manualElement.appendChild(manualText);
@@ -79,7 +83,8 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
                 if (!place.geometry || !place.geometry.location) {
                     // User entered the name of a Place that was not suggested and
                     // pressed the Enter key, or the Place Details request failed.
-                    window.alert("No details available for input: '" + place.name + "'");
+                    // window.alert("No details available for input: '" + place.name + "'");
+                    setAlert(true);
                     return;
                 };
 
@@ -136,6 +141,7 @@ const Step1Location = ({ address, setAddress, city, setCity, state, setState, zi
                         </div>
                     </div>
                 </div>
+                <LocationAlert alert={alert} setAlert={setAlert} />
             </div>
         </>
     );

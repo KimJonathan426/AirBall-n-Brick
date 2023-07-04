@@ -269,9 +269,9 @@
 }
 
 .gmnoprint a {
-    display:none;
+    display: none;
 }
 
 .gmnoprint.gm-style-cc div {
-    background:none !important;
+    background: none !important;
 }
