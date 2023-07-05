@@ -25,7 +25,7 @@ const LocationConfirm = ({
                         <div>
                             <div className='location-confirm-country-container'>
                                 <label className='location-confirm-country' htmlFor='countryCode'>
-                                    <div className='location-confirm-country-header-shrink'>
+                                    <div className='location-confirm-header-shrink'>
                                         <div className='location-confirm-country-header-text'>Country / Region</div>
                                     </div>
                                     <select id='countryCode' value={country} onChange={(e) => setCountry(e.target.value)}>
