@@ -82,13 +82,13 @@ const Step1Location = ({ locationStep, setLocationStep, setAddress, setCity, set
             });
 
             const autocomplete = new Autocomplete(document.getElementById('step-1-autocomplete'), {
-                componentRestrictions: { country: 'us' },
+                componentRestrictions: { country: ['us', 'ca'] },
                 fields: ['address_components', 'geometry'],
             });
 
             autocomplete.addListener("place_changed", () => {
                 const place = autocomplete.getPlace();
-
+                console.log(place)
                 if (!place.geometry || !place.geometry.location) {
                     // User entered the name of a Place that was not suggested and
                     // pressed the Enter key, or the Place Details request failed.

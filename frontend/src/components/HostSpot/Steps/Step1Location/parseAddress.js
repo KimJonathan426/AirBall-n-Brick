@@ -34,6 +34,9 @@ export function parseAddress(place) {
             case 'postal_code':
                 addressNameFormat[addressType] = component['short_name'];
                 break;
+            case 'postal_code_prefix':
+                addressNameFormat['postal_code'] = component['short_name'];
+                break;
         };
     };
 
