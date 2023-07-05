@@ -58,7 +58,13 @@ const HostSpot = () => {
                         setCountry={setCountry} />
                 }
                 {step === 4 && locationStep === 1 &&
-                    <LocationConfirm />
+                    <LocationConfirm
+                        locationStep={locationStep} setLocationStep={setLocationStep}
+                        address={address} setAddress={setAddress}
+                        city={city} setCity={setCity}
+                        state={state} setState={setState}
+                        zipcode={zipcode} setZipcode={setZipcode}
+                        country={country} setCountry={setCountry} />
                 }
             </div>
             <div className='host-spot-footer'>
