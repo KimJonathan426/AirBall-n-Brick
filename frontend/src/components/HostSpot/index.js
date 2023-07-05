@@ -6,10 +6,11 @@ import HostSpotIntro from './Steps/HostSpotIntro';
 import Step1Intro from './Steps/Step1/Step1Intro';
 import Step1Describe from './Steps/Step1Describe';
 import Step1Type from './Steps/Step1Type';
+import Step1Location from './Steps/Step1Location';
+import LocationConfirm from './Steps/Step1Location/LocationConfirm';
 import HostFooter from './HostFooter';
 import logo from '../../images/logo-image.png';
 import './HostSpot.css';
-import Step1Location from './Steps/Step1Location';
 
 const HostSpot = () => {
 
@@ -57,7 +58,7 @@ const HostSpot = () => {
                         setCountry={setCountry} />
                 }
                 {step === 4 && locationStep === 1 &&
-                    <div>test</div>
+                    <LocationConfirm />
                 }
             </div>
             <div className='host-spot-footer'>
