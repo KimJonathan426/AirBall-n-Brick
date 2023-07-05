@@ -12,13 +12,21 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
     const [buttonLoading, setButtonLoading] = useState(false);
 
     useEffect(() => {
-        if (step === 4 && locationStep === 0) {
+        if (step !== 4) {
+            if (nextDisabled) {
+                setNextDisabled(false);
+            };
+            return;
+        };
+
+        if (locationStep === 0) {
             setNextDisabled(true);
-        } else if (!address || !city || !state || !zipcode || !country) {
+        } else if (locationStep === 1 && (!address || !city || !state || !zipcode || !country)) {
             setNextDisabled(true);
         } else {
             setNextDisabled(false);
         };
+
     }, [step, locationStep, address, city, state, zipcode, country]);
 
     const handleBack = () => {
