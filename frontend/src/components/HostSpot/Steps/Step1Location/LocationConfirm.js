@@ -1,17 +1,40 @@
 import { useEffect } from 'react';
+import { Loader } from '@googlemaps/js-api-loader';
 import './Step1Location.css';
 import './LocationConfirm.css';
 
 const LocationConfirm = ({
-    locationStep, setLocationStep,
-    address, setAddress,
-    city, setCity,
-    state, setState,
-    zipcode, setZipcode,
-    country, setCountry }) => {
+    locationStep, setLocationStep, address, setAddress,
+    city, setCity, state, setState, zipcode, setZipcode,
+    country, setCountry, lat, setLat, lng, setLng }) => {
 
     // use effect logic to change header enlarge and shrink class if there is an input or not
+    useEffect(() => {
+        const loader = new Loader({
+            apiKey: process.env.REACT_APP_GOOGLE_PLACES_API,
+            version: 'weekly',
+            libraries: ['places', 'geocoding']
+        });
 
+        loader.importLibrary('maps').then(async ({ Map }) => {
+            // const { Map } = await window.google.maps.importLibrary('maps');
+            const { Geocoder } = await window.google.maps.importLibrary('geocoding');
+
+            const map = new Map(document.getElementById('step-1-confirm-map'), {
+                center: { lat, lng },
+                zoom: 12,
+                gestureHandling: 'none',
+                zoomControl: false,
+                streetViewControl: false,
+                fullscreenControl: false,
+                mapTypeControl: false,
+                keyboardShortcuts: false,
+            });
+
+            // map.fitBounds(place.geometry.viewport);
+            // map.setCenter(place.geometry.location);
+        });
+    }, []);
 
     return (
         <div className='host-step-1-location-container'>

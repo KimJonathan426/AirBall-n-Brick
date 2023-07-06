@@ -65,7 +65,7 @@ const Step1Location = ({
         const loader = new Loader({
             apiKey: process.env.REACT_APP_GOOGLE_PLACES_API,
             version: 'weekly',
-            libraries: ['places']
+            libraries: ['places', 'geocoding']
         });
 
         loader.importLibrary('maps').then(async ({ Map }) => {
