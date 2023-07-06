@@ -6,7 +6,7 @@ import clearX from '../../../../images/clear-x-thick.svg';
 import './Step1Location.css';
 
 const Step1Location = ({
-    locationStep, setLocationStep, setFullAddress, setAddress, setCity,
+    locationStep, setLocationStep, setAddress, setCity,
     setState, setZipcode, setCountry, setLat, setLng }) => {
 
     const [inputVal, setInputVal] = useState('');
@@ -72,6 +72,17 @@ const Step1Location = ({
             // const { Map } = await window.google.maps.importLibrary('maps');
             const { Autocomplete } = await window.google.maps.importLibrary('places');
 
+            const noPOILabels = [
+                {
+                  featureType: "poi",
+                  elementType: "labels",
+                  stylers: [ { visibility: "off" } ]
+
+                }
+              ];
+
+            const noPOIMapType = new window.google.maps.StyledMapType(noPOILabels, {name: "NO POI"});
+
             const map = new Map(document.getElementById('step-1-map'), {
                 center: { lat: 38.483378, lng: -109.681333 },
                 zoom: 12,
@@ -81,7 +92,13 @@ const Step1Location = ({
                 fullscreenControl: false,
                 mapTypeControl: false,
                 keyboardShortcuts: false,
+                mapTypeControlOptions: {
+                    mapTypeIds: [window.google.maps.MapTypeId.ROADMAP, 'no_poi']
+                  }
             });
+
+            map.mapTypes.set('no_poi', noPOIMapType);
+            map.setMapTypeId('no_poi');
 
             const autocomplete = new Autocomplete(document.getElementById('step-1-autocomplete'), {
                 componentRestrictions: { country: ['us', 'ca'] },
@@ -100,7 +117,6 @@ const Step1Location = ({
 
                 const addressDetails = parseAddress(place);
 
-                setFullAddress(addressDetails['full']);
                 setAddress(addressDetails['address']);
                 setCity(addressDetails['locality']);
                 setState(addressDetails['administrative_area_level_1']);
