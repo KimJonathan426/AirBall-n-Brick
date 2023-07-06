@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import './Step1Location.css';
 import './LocationConfirm.css';
@@ -10,6 +10,49 @@ const LocationConfirm = ({
 
     // use effect logic to change header enlarge and shrink class if there is an input or not
     useEffect(() => {
+        // let fullAddress = '';
+
+        // if (address) {
+        //     fullAddress += `${address}, `
+        // }
+        // if (city) {
+        //     fullAddress += `${city}, `
+        // }
+        // if (state) {
+        //     fullAddress += `${state}, `
+        // }
+        // if (zipcode) {
+        //     fullAddress += `${zipcode}`
+        // }
+
+        // const geocoder = new window.google.maps.Geocoder();
+        // console.log(fullAddress)
+
+        // const geocoderRequest = {
+        //     address: fullAddress,
+        //     componentRestrictions: {
+        //         country,
+        //     }
+        // };
+
+        // geocoder.geocode(geocoderRequest, (results, status) => {
+        //     if (status === 'OK') {
+        //         // Geocoding was successful
+        //         if (results[0]) {
+        //             // Access the first result
+        //             const location = results[0].geometry.location;
+        //             console.log('Latitude:', location.lat());
+        //             console.log('Longitude:', location.lng());
+        //             setLat(location.lat());
+        //             setLng(location.lng());
+        //         } else {
+        //             console.log('No results found.');
+        //         }
+        //     } else {
+        //         console.log('Geocoding failed:', status);
+        //     }
+        // });
+
         const loader = new Loader({
             apiKey: process.env.REACT_APP_GOOGLE_PLACES_API,
             version: 'weekly',
@@ -18,23 +61,50 @@ const LocationConfirm = ({
 
         loader.importLibrary('maps').then(async ({ Map }) => {
             // const { Map } = await window.google.maps.importLibrary('maps');
-            const { Geocoder } = await window.google.maps.importLibrary('geocoding');
+            // const centerMap = await new window.google.maps.LatLng(lat, lng);
+            // const centerMap = { lat, lng};
+            // const { Geocoder } = await window.google.maps.importLibrary('geocoding');
+
+            const noPOILabels = [
+                {
+                    featureType: "poi",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "transit",
+                    elementType: "labels.icon",
+                    stylers: [{ visibility: "off" }],
+                }
+            ];
+
+            const noPOIMapType = new window.google.maps.StyledMapType(noPOILabels, { name: "NO POI" });
 
             const map = new Map(document.getElementById('step-1-confirm-map'), {
                 center: { lat, lng },
-                zoom: 12,
+                zoom: 15,
                 gestureHandling: 'none',
                 zoomControl: false,
                 streetViewControl: false,
                 fullscreenControl: false,
                 mapTypeControl: false,
                 keyboardShortcuts: false,
+                clickableIcons: false,
+                mapTypeControlOptions: {
+                    mapTypeIds: [window.google.maps.MapTypeId.ROADMAP, 'no_poi']
+                }
             });
 
-            // map.fitBounds(place.geometry.viewport);
-            // map.setCenter(place.geometry.location);
+            map.mapTypes.set('no_poi', noPOIMapType);
+            map.setMapTypeId('no_poi');
+            // map.setCenter(centerMap)
+
         });
-    }, []);
+        // map.fitBounds(place.geometry.viewport);
+        // map.setCenter(place.geometry.location);
+
+
+    }, [address, city, country, lat, lng, state, zipcode]);
 
     return (
         <div className='host-step-1-location-container'>
@@ -101,7 +171,9 @@ const LocationConfirm = ({
                                 <div className='location-confirm-border-3' />
                             </div>
                         </div>
-                        <div id='step-1-confirm-map'></div>
+                        <div className='location-confirm-map-container'>
+                            <div id='step-1-confirm-map'></div>
+                        </div>
                     </div>
                 </div>
             </div>

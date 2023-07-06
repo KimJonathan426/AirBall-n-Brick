@@ -74,14 +74,18 @@ const Step1Location = ({
 
             const noPOILabels = [
                 {
-                  featureType: "poi",
-                  elementType: "labels",
-                  stylers: [ { visibility: "off" } ]
-
+                    featureType: "poi",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "transit",
+                    elementType: "labels.icon",
+                    stylers: [{ visibility: "off" }],
                 }
-              ];
+            ];
 
-            const noPOIMapType = new window.google.maps.StyledMapType(noPOILabels, {name: "NO POI"});
+            const noPOIMapType = new window.google.maps.StyledMapType(noPOILabels, { name: "NO POI" });
 
             const map = new Map(document.getElementById('step-1-map'), {
                 center: { lat: 38.483378, lng: -109.681333 },
@@ -92,9 +96,10 @@ const Step1Location = ({
                 fullscreenControl: false,
                 mapTypeControl: false,
                 keyboardShortcuts: false,
+                clickableIcons: false,
                 mapTypeControlOptions: {
                     mapTypeIds: [window.google.maps.MapTypeId.ROADMAP, 'no_poi']
-                  }
+                }
             });
 
             map.mapTypes.set('no_poi', noPOIMapType);
