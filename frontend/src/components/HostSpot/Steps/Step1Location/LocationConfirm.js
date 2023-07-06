@@ -65,7 +65,7 @@ const LocationConfirm = ({
             // const centerMap = { lat, lng};
             // const { Geocoder } = await window.google.maps.importLibrary('geocoding');
 
-            const noPOILabels = [
+            const hideFeatures = [
                 {
                     featureType: "poi",
                     elementType: "labels",
@@ -83,7 +83,7 @@ const LocationConfirm = ({
                 }
             ];
 
-            const noPOIMapType = new window.google.maps.StyledMapType(noPOILabels, { name: "NO POI" });
+            const hideFeaturesMapType = new window.google.maps.StyledMapType(hideFeatures, { name: "HIDE FEATS" });
 
             const map = new Map(document.getElementById('step-1-confirm-map'), {
                 center: { lat, lng },
@@ -96,12 +96,12 @@ const LocationConfirm = ({
                 keyboardShortcuts: false,
                 clickableIcons: false,
                 mapTypeControlOptions: {
-                    mapTypeIds: [window.google.maps.MapTypeId.ROADMAP, 'no_poi']
+                    mapTypeIds: [window.google.maps.MapTypeId.ROADMAP, 'hide_feats']
                 }
             });
 
-            map.mapTypes.set('no_poi', noPOIMapType);
-            map.setMapTypeId('no_poi');
+            map.mapTypes.set('hide_feats', hideFeaturesMapType);
+            map.setMapTypeId('hide_feats');
             // map.setCenter(centerMap)
 
         });
