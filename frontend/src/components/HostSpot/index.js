@@ -20,7 +20,6 @@ const HostSpot = () => {
 
     const [tags, setTags] = useState(new Set());
     const [type, setType] = useState('full');
-    const [fullAddress, setFullAddress] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
@@ -56,21 +55,18 @@ const HostSpot = () => {
                 {step === 4 && locationStep === 0 &&
                     <Step1Location
                         locationStep={locationStep} setLocationStep={setLocationStep}
-                        setFullAddress={setFullAddress} setAddress={setAddress}
-                        setCity={setCity} setState={setState}
+                        setAddress={setAddress} setCity={setCity} setState={setState}
                         setZipcode={setZipcode} setCountry={setCountry}
                         setLat={setLat} setLng={setLng} />
                 }
                 {step === 4 && locationStep === 1 &&
                     <LocationConfirm
                         locationStep={locationStep} setLocationStep={setLocationStep}
-                        address={address} setAddress={setAddress}
-                        city={city} setCity={setCity}
-                        state={state} setState={setState}
-                        zipcode={zipcode} setZipcode={setZipcode}
-                        country={country} setCountry={setCountry}
-                        lat={lat} setLat={setLat}
-                        lng={lng} setLng={setLng} />
+                        address={address} setAddress={setAddress} city={city}
+                        setCity={setCity} state={state} setState={setState}
+                        zipcode={zipcode} setZipcode={setZipcode} country={country}
+                        setCountry={setCountry} lat={lat} setLat={setLat} lng={lng}
+                        setLng={setLng} />
                 }
             </div>
             <div className='host-spot-footer'>
