@@ -10,6 +10,8 @@ const LocationConfirm = ({
     zipcode, setZipcode,
     country, setCountry }) => {
 
+    // use effect logic to change header enlarge and shrink class if there is an input or not
+
 
     return (
         <div className='host-step-1-location-container'>
@@ -26,7 +28,7 @@ const LocationConfirm = ({
                             <div className='location-confirm-country-container'>
                                 <label className='location-confirm-country' htmlFor='countryCode'>
                                     <div className='location-confirm-header-shrink'>
-                                        <div className='location-confirm-country-header-text'>Country / Region</div>
+                                        <div className='location-confirm-header-text'>Country / Region</div>
                                     </div>
                                     <select id='countryCode' value={country} onChange={(e) => setCountry(e.target.value)}>
                                         <option value='United States' className='country-code-option'>
@@ -38,7 +40,43 @@ const LocationConfirm = ({
                                     </select>
                                 </label>
                             </div>
-                            <div></div>
+                            <div className='location-confirm-combined-container'>
+                                <div className='location-confirm-combined-item-1'>
+                                    <label className='location-confirm-combined' htmlFor='street'>
+                                        <div className='location-confirm-header-enlarge'>
+                                            <div className='location-confirm-header-text'>Street address</div>
+                                        </div>
+                                        <input id='street' value={address} onChange={(e) => setAddress(e.target.value)} />
+                                    </label>
+                                </div>
+                                <div className='location-confirm-combined-item-2'>
+                                    <label className='location-confirm-combined' htmlFor='city'>
+                                        <div className='location-confirm-header-enlarge'>
+                                            <div className='location-confirm-header-text'>City</div>
+                                        </div>
+                                        <input id='city' value={city} onChange={(e) => setCity(e.target.value)} />
+                                    </label>
+                                </div>
+                                <div className='location-confirm-combined-item-3'>
+                                    <label className='location-confirm-combined' htmlFor='state'>
+                                        <div className='location-confirm-header-enlarge'>
+                                            <div className='location-confirm-header-text'>State</div>
+                                        </div>
+                                        <input id='state' value={state} onChange={(e) => setState(e.target.value)} />
+                                    </label>
+                                </div>
+                                <div className='location-confirm-combined-item-4'>
+                                    <label className='location-confirm-combined' htmlFor='zipcode'>
+                                        <div className='location-confirm-header-enlarge'>
+                                            <div className='location-confirm-header-text'>Zipcode</div>
+                                        </div>
+                                        <input id='zipcode' value={zipcode} onChange={(e) => setZipcode(e.target.value)} />
+                                    </label>
+                                </div>
+                                <div className='location-confirm-border-1' />
+                                <div className='location-confirm-border-2' />
+                                <div className='location-confirm-border-3' />
+                            </div>
                         </div>
                         <div id='step-1-confirm-map'></div>
                     </div>

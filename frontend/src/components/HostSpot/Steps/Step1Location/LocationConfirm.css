@@ -42,7 +42,7 @@
     cursor: text;
 }
 
-.location-confirm-country-header-text {
+.location-confirm-header-text {
     font-size: 16px;
     line-height: 20px;
     font-weight: 400;
@@ -79,11 +79,95 @@
     box-sizing: border-box;
 }
 
-/* .location-confirm-country:focus-within > .location-confirm-header-enlarge {
+.location-confirm-combined-container {
+    border-radius: 8px;
+    position: relative;
+    box-shadow: inset 0 0 0 1px #B0B0B0;
+}
+
+.location-confirm-combined-item-1,
+.location-confirm-combined-item-2,
+.location-confirm-combined-item-3,
+.location-confirm-combined-item-4 {
+    display: flex;
+    flex: 1 1 auto;
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.location-confirm-combined {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 0px;
+    margin: 0;
+}
+
+.location-confirm-combined-item-1:focus-within,
+.location-confirm-combined-item-2:focus-within,
+.location-confirm-combined-item-3:focus-within,
+.location-confirm-combined-item-4:focus-within {
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 2px #222222;
+}
+
+.location-confirm-border-1,
+.location-confirm-border-2,
+.location-confirm-border-3 {
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    border-bottom: 1px solid #B0B0B0;
+}
+
+.location-confirm-border-1 {
+    top: 55px
+}
+
+.location-confirm-border-2 {
+    top: 111px;
+}
+
+.location-confirm-border-3 {
+    top: 167px;
+}
+
+.location-confirm-combined-item-1:focus-within ~ .location-confirm-border-1 {
+    border: none;
+}
+
+.location-confirm-combined-item-2:focus-within ~ .location-confirm-border-1,
+.location-confirm-combined-item-2:focus-within ~ .location-confirm-border-2 {
+    border: none;
+}
+
+.location-confirm-combined-item-3:focus-within ~ .location-confirm-border-2,
+.location-confirm-combined-item-3:focus-within ~ .location-confirm-border-3 {
+    border: none;
+}
+
+.location-confirm-combined-item-4:focus-within ~ .location-confirm-border-3 {
+    border: none;
+}
+
+#street,
+#city,
+#state,
+#zipcode {
+    width: calc(100% - 24px);
+    min-height: 24px;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 26px 12px 6px 12px;
+    background: transparent;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.location-confirm-combined:focus-within > .location-confirm-header-enlarge {
     width: calc(133.33333333333334% - 32px);
     padding-right: 24px;
     transform: translateY(-8px) scale(0.75);
     cursor: default;
-} */
-
-/* margin: 26px 12px 6px 12px; */
+}
