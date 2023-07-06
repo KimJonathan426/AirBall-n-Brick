@@ -21,12 +21,8 @@ const LocationConfirm = ({
         if (state) {
             fullAddress += `${state}, `
         }
-        if (zipcode) {
-            fullAddress += `${zipcode}`
-        }
 
         const geocoder = new window.google.maps.Geocoder();
-        console.log(fullAddress)
 
         const geocoderRequest = {
             address: fullAddress,
@@ -41,8 +37,6 @@ const LocationConfirm = ({
                 if (results[0]) {
                     // Access the first result
                     const location = results[0].geometry.location;
-                    console.log('Latitude:', location.lat());
-                    console.log('Longitude:', location.lng());
                     setLat(location.lat());
                     setLng(location.lng());
                 } else {
@@ -60,10 +54,6 @@ const LocationConfirm = ({
         });
 
         loader.importLibrary('maps').then(async ({ Map }) => {
-            // const { Map } = await window.google.maps.importLibrary('maps');
-            // const centerMap = await new window.google.maps.LatLng(lat, lng);
-            // const centerMap = { lat, lng};
-            // const { Geocoder } = await window.google.maps.importLibrary('geocoding');
 
             const hideFeatures = [
                 {
@@ -77,6 +67,26 @@ const LocationConfirm = ({
                     stylers: [{ visibility: "off" }]
                 },
                 {
+                    featureType: "road.arterial",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "geometry.fill",
+                    stylers: [{ color: "#FFFFFF" }]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "geometry.stroke",
+                    stylers: [{ color: "#C0C0C0" }]
+                },
+                {
                     featureType: "transit",
                     elementType: "labels.icon",
                     stylers: [{ visibility: "off" }],
@@ -84,10 +94,12 @@ const LocationConfirm = ({
             ];
 
             const hideFeaturesMapType = new window.google.maps.StyledMapType(hideFeatures, { name: "HIDE FEATS" });
-
+            console.log('lat lng in map', lat, lng)
+            // zoom 15 if they want to show specific
+            // zoom 13 if they want to show approximate
             const map = new Map(document.getElementById('step-1-confirm-map'), {
                 center: { lat, lng },
-                zoom: 15,
+                zoom: 13,
                 gestureHandling: 'none',
                 zoomControl: false,
                 streetViewControl: false,
