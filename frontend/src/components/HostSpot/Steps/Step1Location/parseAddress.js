@@ -1,5 +1,6 @@
 export function parseAddress(place) {
     const addressNameFormat = {
+        'full': '',
         'address': '',
         'street_number': '',
         'route': '',
@@ -19,19 +20,24 @@ export function parseAddress(place) {
         switch (addressType) {
             case 'street_number':
                 addressNameFormat[addressType] = component['short_name'];
+                addressNameFormat['full'] = component['short_name'];
                 break;
             case 'route':
                 addressNameFormat[addressType] = component['long_name'];
+                addressNameFormat['full'] = `${addressNameFormat['full']} ${component['long_name']},`;
                 break;
             case 'locality':
                 addressNameFormat[addressType] = component['long_name'];
+                addressNameFormat['full'] = `${addressNameFormat['full']} ${component['long_name']},`;
                 break;
             case 'administrative_area_level_1':
                 addressNameFormat[addressType] = component['short_name'];
+                addressNameFormat['full'] = `${addressNameFormat['full']} ${component['short_name']},`;
                 break;
             case 'country':
                 addressNameFormat[addressType] = component['long_name'];
                 addressNameFormat['country_abre'] = component['short_name'];
+                addressNameFormat['full'] = `${addressNameFormat['full']} ${component['long_name']},`
                 break;
             case 'postal_code':
                 addressNameFormat[addressType] = component['short_name'];

@@ -6,7 +6,7 @@ import clearX from '../../../../images/clear-x-thick.svg';
 import './Step1Location.css';
 
 const Step1Location = ({
-    locationStep, setLocationStep, setAddress, setCity,
+    locationStep, setLocationStep, setFullAddress, setAddress, setCity,
     setState, setZipcode, setCountry, setLat, setLng }) => {
 
     const [inputVal, setInputVal] = useState('');
@@ -100,6 +100,7 @@ const Step1Location = ({
 
                 const addressDetails = parseAddress(place);
 
+                setFullAddress(addressDetails['full']);
                 setAddress(addressDetails['address']);
                 setCity(addressDetails['locality']);
                 setState(addressDetails['administrative_area_level_1']);
