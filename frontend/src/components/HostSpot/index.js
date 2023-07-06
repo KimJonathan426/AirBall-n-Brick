@@ -67,7 +67,9 @@ const HostSpot = () => {
                         city={city} setCity={setCity}
                         state={state} setState={setState}
                         zipcode={zipcode} setZipcode={setZipcode}
-                        country={country} setCountry={setCountry} />
+                        country={country} setCountry={setCountry}
+                        lat={lat} setLat={setLat}
+                        lng={lng} setLng={setLng} />
                 }
             </div>
             <div className='host-spot-footer'>
