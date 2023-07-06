@@ -10,48 +10,48 @@ const LocationConfirm = ({
 
     // use effect logic to change header enlarge and shrink class if there is an input or not
     useEffect(() => {
-        // let fullAddress = '';
+        let fullAddress = '';
 
-        // if (address) {
-        //     fullAddress += `${address}, `
-        // }
-        // if (city) {
-        //     fullAddress += `${city}, `
-        // }
-        // if (state) {
-        //     fullAddress += `${state}, `
-        // }
-        // if (zipcode) {
-        //     fullAddress += `${zipcode}`
-        // }
+        if (address) {
+            fullAddress += `${address}, `
+        }
+        if (city) {
+            fullAddress += `${city}, `
+        }
+        if (state) {
+            fullAddress += `${state}, `
+        }
+        if (zipcode) {
+            fullAddress += `${zipcode}`
+        }
 
-        // const geocoder = new window.google.maps.Geocoder();
-        // console.log(fullAddress)
+        const geocoder = new window.google.maps.Geocoder();
+        console.log(fullAddress)
 
-        // const geocoderRequest = {
-        //     address: fullAddress,
-        //     componentRestrictions: {
-        //         country,
-        //     }
-        // };
+        const geocoderRequest = {
+            address: fullAddress,
+            componentRestrictions: {
+                country,
+            }
+        };
 
-        // geocoder.geocode(geocoderRequest, (results, status) => {
-        //     if (status === 'OK') {
-        //         // Geocoding was successful
-        //         if (results[0]) {
-        //             // Access the first result
-        //             const location = results[0].geometry.location;
-        //             console.log('Latitude:', location.lat());
-        //             console.log('Longitude:', location.lng());
-        //             setLat(location.lat());
-        //             setLng(location.lng());
-        //         } else {
-        //             console.log('No results found.');
-        //         }
-        //     } else {
-        //         console.log('Geocoding failed:', status);
-        //     }
-        // });
+        geocoder.geocode(geocoderRequest, (results, status) => {
+            if (status === 'OK') {
+                // Geocoding was successful
+                if (results[0]) {
+                    // Access the first result
+                    const location = results[0].geometry.location;
+                    console.log('Latitude:', location.lat());
+                    console.log('Longitude:', location.lng());
+                    setLat(location.lat());
+                    setLng(location.lng());
+                } else {
+                    console.log('No results found.');
+                }
+            } else {
+                console.log('Geocoding failed:', status);
+            }
+        });
 
         const loader = new Loader({
             apiKey: process.env.REACT_APP_GOOGLE_PLACES_API,
@@ -68,6 +68,11 @@ const LocationConfirm = ({
             const noPOILabels = [
                 {
                     featureType: "poi",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "road.local",
                     elementType: "labels",
                     stylers: [{ visibility: "off" }]
                 },

@@ -79,6 +79,11 @@ const Step1Location = ({
                     stylers: [{ visibility: "off" }]
                 },
                 {
+                    featureType: "road.local",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
                     featureType: "transit",
                     elementType: "labels.icon",
                     stylers: [{ visibility: "off" }],
