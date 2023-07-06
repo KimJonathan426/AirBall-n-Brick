@@ -8,6 +8,8 @@ export function parseAddress(place) {
         'country': '',
         'country_abre': '',
         'postal_code': '',
+        'lat': '',
+        'lng': ''
     };
 
     for (const component of place.address_components) {
@@ -45,7 +47,10 @@ export function parseAddress(place) {
         addressNameFormat['address'] = `${addressNameFormat['street_number']} ${addressNameFormat['route']}`;
     } else if (addressNameFormat['route']) {
         addressNameFormat['address'] = `${addressNameFormat['route']}`;
-    }
+    };
+
+    addressNameFormat['lat'] = place?.geometry?.viewport?.Ha?.lo;
+    addressNameFormat['lng'] = place?.geometry?.viewport?.Wa?.lo;
 
     return addressNameFormat;
 };
