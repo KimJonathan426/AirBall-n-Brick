@@ -8,6 +8,8 @@ const LocationConfirm = ({
     city, setCity, state, setState, zipcode, setZipcode,
     country, setCountry, lat, setLat, lng, setLng }) => {
 
+    const [loaded, setLoaded] = useState(false);
+
     // use effect logic to change header enlarge and shrink class if there is an input or not
     useEffect(() => {
         const confirmGoogleMap = async () => {
@@ -44,7 +46,7 @@ const LocationConfirm = ({
                         latitude = location.lat();
                         longitude = location.lng();
 
-                        if (lat === latitude && lng === longitude) {
+                        if (lat === latitude && lng === longitude && loaded) {
                             invalid = true;
                         } else {
                             setLat(location.lat());
@@ -138,7 +140,14 @@ const LocationConfirm = ({
         let timeoutId;
 
         const rateLimitMap = () => {
-            timeoutId = setTimeout(confirmGoogleMap, 3000);
+            if (!loaded) {
+                setLoaded(true);
+                confirmGoogleMap();
+                console.log('yes')
+            } else {
+                console.log('no')
+                timeoutId = setTimeout(confirmGoogleMap, 3000);
+            }
         };
 
         rateLimitMap();
