@@ -43,7 +43,7 @@ const LocationConfirm = ({
                             <div className='location-confirm-combined-container'>
                                 <div className='location-confirm-combined-item-1'>
                                     <label className='location-confirm-combined' htmlFor='street'>
-                                        <div className='location-confirm-header-enlarge'>
+                                        <div className={address ? 'location-confirm-header-shrink' : 'location-confirm-header-enlarge'}>
                                             <div className='location-confirm-header-text'>Street address</div>
                                         </div>
                                         <input id='street' value={address} onChange={(e) => setAddress(e.target.value)} />
@@ -51,7 +51,7 @@ const LocationConfirm = ({
                                 </div>
                                 <div className='location-confirm-combined-item-2'>
                                     <label className='location-confirm-combined' htmlFor='city'>
-                                        <div className='location-confirm-header-enlarge'>
+                                        <div className={city ? 'location-confirm-header-shrink' : 'location-confirm-header-enlarge'}>
                                             <div className='location-confirm-header-text'>City</div>
                                         </div>
                                         <input id='city' value={city} onChange={(e) => setCity(e.target.value)} />
@@ -59,7 +59,7 @@ const LocationConfirm = ({
                                 </div>
                                 <div className='location-confirm-combined-item-3'>
                                     <label className='location-confirm-combined' htmlFor='state'>
-                                        <div className='location-confirm-header-enlarge'>
+                                        <div className={state ? 'location-confirm-header-shrink' : 'location-confirm-header-enlarge'}>
                                             <div className='location-confirm-header-text'>State</div>
                                         </div>
                                         <input id='state' value={state} onChange={(e) => setState(e.target.value)} />
@@ -67,7 +67,7 @@ const LocationConfirm = ({
                                 </div>
                                 <div className='location-confirm-combined-item-4'>
                                     <label className='location-confirm-combined' htmlFor='zipcode'>
-                                        <div className='location-confirm-header-enlarge'>
+                                        <div className={zipcode ? 'location-confirm-header-shrink' : 'location-confirm-header-enlarge'}>
                                             <div className='location-confirm-header-text'>Zipcode</div>
                                         </div>
                                         <input id='zipcode' value={zipcode} onChange={(e) => setZipcode(e.target.value)} />
