@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import check from '../../../../images/check-mark.svg';
 import './Step1Location.css';
@@ -8,6 +8,8 @@ const LocationConfirm = ({
     locationStep, setLocationStep, address, setAddress,
     city, setCity, state, setState, zipcode, setZipcode,
     country, setCountry, lat, setLat, lng, setLng }) => {
+
+    const googleMap = useRef(null);
 
     const [checked, setChecked] = useState(false);
     const [zoomVal, setZoomVal] = useState(15);
@@ -122,7 +124,7 @@ const LocationConfirm = ({
                 // zoom 13 if they want to show approximate
                 const map = new Map(document.getElementById('step-1-confirm-map'), {
                     center: { lat: latitude, lng: longitude },
-                    zoom: 13,
+                    zoom: zoomVal,
                     gestureHandling: 'none',
                     zoomControl: false,
                     streetViewControl: false,
@@ -134,6 +136,8 @@ const LocationConfirm = ({
                         mapTypeIds: [window.google.maps.MapTypeId.ROADMAP, 'hide_feats']
                     }
                 });
+
+                googleMap.current = map;
 
                 map.mapTypes.set('hide_feats', hideFeaturesMapType);
                 map.setMapTypeId('hide_feats');
@@ -166,6 +170,19 @@ const LocationConfirm = ({
             clearTimeout(timeoutId);
         }
     }, [address, city, country, state, zipcode]);
+
+    const handleSwitch = () => {
+        if (googleMap.current) {
+            if (checked) {
+                googleMap.current.setZoom(15)
+            } else {
+                googleMap.current.setZoom(13)
+            };
+        };
+
+        setChecked(!checked)
+    };
+
 
     return (
         <div className='host-step-1-location-container'>
@@ -243,7 +260,7 @@ const LocationConfirm = ({
                                         We'll only share your address after they've made a reservation.
                                     </div>
                                 </div>
-                                <button className={checked ? 'location-preference-toggle-on' : 'location-preference-toggle-off'} onClick={() => setChecked(!checked)}>
+                                <button className={checked ? 'location-preference-toggle-on' : 'location-preference-toggle-off'} onClick={handleSwitch}>
                                     <div className={checked ? 'toggle-switch-circle-on' : 'toggle-switch-circle-off'}>
                                         {checked &&
                                             <img className='toggle-check-mark' src={check} alt='check mark'/>
