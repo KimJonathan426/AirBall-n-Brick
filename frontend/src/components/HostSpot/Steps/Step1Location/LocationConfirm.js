@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
+import check from '../../../../images/check-mark.svg';
 import './Step1Location.css';
 import './LocationConfirm.css';
 
@@ -8,9 +9,14 @@ const LocationConfirm = ({
     city, setCity, state, setState, zipcode, setZipcode,
     country, setCountry, lat, setLat, lng, setLng }) => {
 
+    const [checked, setChecked] = useState(false);
+    const [zoomVal, setZoomVal] = useState(15);
+    // const [approxLocation, approxLocation] =
     const [loaded, setLoaded] = useState(false);
 
-    // use effect logic to change header enlarge and shrink class if there is an input or not
+
+
+
     useEffect(() => {
         const confirmGoogleMap = async () => {
             let invalid;
@@ -131,6 +137,12 @@ const LocationConfirm = ({
 
                 map.mapTypes.set('hide_feats', hideFeaturesMapType);
                 map.setMapTypeId('hide_feats');
+
+                const marker = new window.google.maps.Marker({
+                    position: { lat: lat, lng: longitude },
+                    map: map,
+                });
+
                 // map.setCenter(centerMap)
             });
         };
@@ -143,9 +155,7 @@ const LocationConfirm = ({
             if (!loaded) {
                 setLoaded(true);
                 confirmGoogleMap();
-                console.log('yes')
             } else {
-                console.log('no')
                 timeoutId = setTimeout(confirmGoogleMap, 3000);
             }
         };
@@ -223,6 +233,24 @@ const LocationConfirm = ({
                             </div>
                         </div>
                         <div className='location-confirm-map-container'>
+                            <div className='toggle-location-preference'>
+                                <div className='toggle-location-preference-text-box'>
+                                    <div className='toggle-location-preference-header'>
+                                        Show your specific location
+                                    </div>
+                                    <div className='toggle-location-preference-info'>
+                                        Make it clear to guests where your place is located.
+                                        We'll only share your address after they've made a reservation.
+                                    </div>
+                                </div>
+                                <button className={checked ? 'location-preference-toggle-on' : 'location-preference-toggle-off'} onClick={() => setChecked(!checked)}>
+                                    <div className={checked ? 'toggle-switch-circle-on' : 'toggle-switch-circle-off'}>
+                                        {checked &&
+                                            <img className='toggle-check-mark' src={check} alt='check mark'/>
+                                        }
+                                    </div>
+                                </button>
+                            </div>
                             <div id='step-1-confirm-map'></div>
                         </div>
                     </div>
