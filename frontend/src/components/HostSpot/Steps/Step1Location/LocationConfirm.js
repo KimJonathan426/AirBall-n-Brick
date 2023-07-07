@@ -10,31 +10,105 @@ const LocationConfirm = ({
     country, setCountry, lat, setLat, lng, setLng }) => {
 
     const googleMap = useRef(null);
+    const storedLat = useRef(lat);
+    const storedLng = useRef(lng);
+    const isFirstRender = useRef(true);
 
     const [checked, setChecked] = useState(false);
-    const [zoomVal, setZoomVal] = useState(15);
     // const [approxLocation, approxLocation] =
-    const [loaded, setLoaded] = useState(false);
-
-
 
 
     useEffect(() => {
-        const confirmGoogleMap = async () => {
-            let invalid;
-            let latitude;
-            let longitude;
+        const loader = new Loader({
+            apiKey: process.env.REACT_APP_GOOGLE_PLACES_API,
+            version: 'weekly',
+            libraries: ['places', 'geocoding']
+        });
+
+        loader.importLibrary('maps').then(async ({ Map }) => {
+
+            const hideFeatures = [
+                {
+                    featureType: "poi",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "road.local",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "road.arterial",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "geometry.fill",
+                    stylers: [{ color: "#FFFFFF" }]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "geometry.stroke",
+                    stylers: [{ color: "#C0C0C0" }]
+                },
+                {
+                    featureType: "transit",
+                    elementType: "labels.icon",
+                    stylers: [{ visibility: "off" }],
+                }
+            ];
+
+            const hideFeaturesMapType = new window.google.maps.StyledMapType(hideFeatures, { name: "HIDE FEATS" });
+
+            // zoom 15 if they want to show specific
+            // zoom 13 if they want to show approximate
+            const map = new Map(document.getElementById('step-1-confirm-map'), {
+                center: { lat: storedLat.current, lng: storedLng.current },
+                zoom: 13,
+                gestureHandling: 'none',
+                zoomControl: false,
+                streetViewControl: false,
+                fullscreenControl: false,
+                mapTypeControl: false,
+                keyboardShortcuts: false,
+                clickableIcons: false,
+                mapTypeControlOptions: {
+                    mapTypeIds: [window.google.maps.MapTypeId.ROADMAP, 'hide_feats']
+                }
+            });
+
+            googleMap.current = map;
+
+            map.mapTypes.set('hide_feats', hideFeaturesMapType);
+            map.setMapTypeId('hide_feats');
+
+            const marker = new window.google.maps.Marker({
+                position: { lat: storedLat.current, lng: storedLng.current },
+                map: map,
+            });
+        });
+    }, [])
+
+    useEffect(() => {
+        const rateLimitGeocoder = () => {
             let fullAddress = '';
 
             if (address) {
-                fullAddress += `${address}, `
-            }
+                fullAddress += `${address}, `;
+            };
             if (city) {
-                fullAddress += `${city}, `
-            }
+                fullAddress += `${city}, `;
+            };
             if (state) {
-                fullAddress += `${state}, `
-            }
+                fullAddress += `${state}, `;
+            };
 
             const geocoder = new window.google.maps.Geocoder();
 
@@ -45,142 +119,51 @@ const LocationConfirm = ({
                 }
             };
 
-            await geocoder.geocode(geocoderRequest, (results, status) => {
+            geocoder.geocode(geocoderRequest, (results, status) => {
                 if (status === 'OK') {
                     // Geocoding was successful
                     if (results[0]) {
                         // Access the first result
                         const location = results[0].geometry.location;
-                        latitude = location.lat();
-                        longitude = location.lng();
+                        const latitude = location.lat();
+                        const longitude = location.lng();
 
-                        if (lat === latitude && lng === longitude && loaded) {
-                            invalid = true;
-                        } else {
-                            setLat(location.lat());
-                            setLng(location.lng());
-                        }
-                    } else {
-                        invalid = true;
-                    }
-                } else {
-                    invalid = true;
+                        if (storedLat.current === latitude && storedLng.current === longitude) {
+                            return;
+                        };
+
+                        googleMap.current.setCenter(location);
+
+                        setLat(location.lat());
+                        setLng(location.lng());
+                    };
                 };
             });
-
-            if (invalid) {
-                return
-            };
-
-            const loader = new Loader({
-                apiKey: process.env.REACT_APP_GOOGLE_PLACES_API,
-                version: 'weekly',
-                libraries: ['places', 'geocoding']
-            });
-
-            loader.importLibrary('maps').then(async ({ Map }) => {
-
-                const hideFeatures = [
-                    {
-                        featureType: "poi",
-                        elementType: "labels",
-                        stylers: [{ visibility: "off" }]
-                    },
-                    {
-                        featureType: "road.local",
-                        elementType: "labels",
-                        stylers: [{ visibility: "off" }]
-                    },
-                    {
-                        featureType: "road.arterial",
-                        elementType: "labels",
-                        stylers: [{ visibility: "off" }]
-                    },
-                    {
-                        featureType: "road.highway",
-                        elementType: "labels",
-                        stylers: [{ visibility: "off" }]
-                    },
-                    {
-                        featureType: "road.highway",
-                        elementType: "geometry.fill",
-                        stylers: [{ color: "#FFFFFF" }]
-                    },
-                    {
-                        featureType: "road.highway",
-                        elementType: "geometry.stroke",
-                        stylers: [{ color: "#C0C0C0" }]
-                    },
-                    {
-                        featureType: "transit",
-                        elementType: "labels.icon",
-                        stylers: [{ visibility: "off" }],
-                    }
-                ];
-
-                const hideFeaturesMapType = new window.google.maps.StyledMapType(hideFeatures, { name: "HIDE FEATS" });
-
-                // zoom 15 if they want to show specific
-                // zoom 13 if they want to show approximate
-                const map = new Map(document.getElementById('step-1-confirm-map'), {
-                    center: { lat: latitude, lng: longitude },
-                    zoom: zoomVal,
-                    gestureHandling: 'none',
-                    zoomControl: false,
-                    streetViewControl: false,
-                    fullscreenControl: false,
-                    mapTypeControl: false,
-                    keyboardShortcuts: false,
-                    clickableIcons: false,
-                    mapTypeControlOptions: {
-                        mapTypeIds: [window.google.maps.MapTypeId.ROADMAP, 'hide_feats']
-                    }
-                });
-
-                googleMap.current = map;
-
-                map.mapTypes.set('hide_feats', hideFeaturesMapType);
-                map.setMapTypeId('hide_feats');
-
-                const marker = new window.google.maps.Marker({
-                    position: { lat: lat, lng: longitude },
-                    map: map,
-                });
-
-                // map.setCenter(centerMap)
-            });
-        };
-        // map.fitBounds(place.geometry.viewport);
-        // map.setCenter(place.geometry.location);
-
-        let timeoutId;
-
-        const rateLimitMap = () => {
-            if (!loaded) {
-                setLoaded(true);
-                confirmGoogleMap();
-            } else {
-                timeoutId = setTimeout(confirmGoogleMap, 3000);
-            }
         };
 
-        rateLimitMap();
+
+        if (isFirstRender.current) {
+            rateLimitGeocoder();
+            return;
+        }
+
+        const timeoutId = setTimeout(rateLimitGeocoder, 3000);
 
         return () => {
             clearTimeout(timeoutId);
         }
-    }, [address, city, country, state, zipcode]);
+    }, [address, city, country, state, zipcode, setLat, setLng]);
 
     const handleSwitch = () => {
         if (googleMap.current) {
             if (checked) {
-                googleMap.current.setZoom(15)
+                googleMap.current.setZoom(15);
             } else {
-                googleMap.current.setZoom(13)
+                googleMap.current.setZoom(13);
             };
         };
 
-        setChecked(!checked)
+        setChecked(!checked);
     };
 
 
@@ -263,7 +246,7 @@ const LocationConfirm = ({
                                 <button className={checked ? 'location-preference-toggle-on' : 'location-preference-toggle-off'} onClick={handleSwitch}>
                                     <div className={checked ? 'toggle-switch-circle-on' : 'toggle-switch-circle-off'}>
                                         {checked &&
-                                            <img className='toggle-check-mark' src={check} alt='check mark'/>
+                                            <img className='toggle-check-mark' src={check} alt='check mark' />
                                         }
                                     </div>
                                 </button>
