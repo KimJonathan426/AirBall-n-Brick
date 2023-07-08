@@ -90,11 +90,32 @@ const LocationConfirm = ({
 
             const hideFeaturesMapType = new window.google.maps.StyledMapType(hideFeatures, { name: "HIDE FEATS" });
 
-            // zoom 15 if they want to show specific
-            // zoom 13 if they want to show approximate
+            let options = {};
+
+            if (showSpecificRef.current) {
+                options['origin'] = { lat: storedLat.current, lng: storedLng.current };
+                options['zoom'] = 15;
+                options['animation'] = window.google.maps.Animation.BOUNCE;
+                options['icon'] = {
+                    url: exactMarker,
+                    scaledSize: new window.google.maps.Size(74, 74),
+                };
+                options['radius'] = 0;
+            } else {
+                options['origin'] = { lat: storedLat.current + randomLat, lng: storedLng.current + randomLng };
+                options['zoom'] = 13;
+                options['animation'] = null;
+                options['icon'] = {
+                    url: generalMarker,
+                    scaledSize: new window.google.maps.Size(74, 74),
+                    anchor: new window.google.maps.Point(37, 37),
+                };
+                options['radius'] = 900;
+            };
+
             const map = new Map(document.getElementById('step-1-confirm-map'), {
-                center: { lat: storedLat.current + randomLat, lng: storedLng.current + randomLng },
-                zoom: 13,
+                center: options['origin'],
+                zoom: options['zoom'],
                 gestureHandling: 'none',
                 zoomControl: false,
                 streetViewControl: false,
@@ -113,21 +134,18 @@ const LocationConfirm = ({
             map.setMapTypeId('hide_feats');
 
             const marker = new window.google.maps.Marker({
-                position: { lat: storedLat.current + randomLat, lng: storedLng.current + randomLng },
+                position: options['origin'],
                 map: map,
-                icon: {
-                    url: generalMarker,
-                    scaledSize: new window.google.maps.Size(74, 74),
-                    anchor: new window.google.maps.Point(37, 37),
-                },
+                animation: options['animation'],
+                icon: options['icon'],
             });
 
             googleMarker.current = marker;
 
             const markerCircle = new window.google.maps.Circle({
-                center: { lat: storedLat.current + randomLat, lng: storedLng.current + randomLng },
+                center: options['origin'],
                 map: map,
-                radius: 900,
+                radius: options['radius'],
                 strokeOpacity: 0,
                 fillColor: '#FF5F15',
                 fillOpacity: 0.20,
@@ -154,7 +172,7 @@ const LocationConfirm = ({
             };
 
             const geocoder = new window.google.maps.Geocoder();
-
+            console.log(fullAddress)
             const geocoderRequest = {
                 address: fullAddress,
                 componentRestrictions: {
@@ -165,7 +183,9 @@ const LocationConfirm = ({
             geocoder.geocode(geocoderRequest, (results, status) => {
                 if (status === 'OK') {
                     // Geocoding was successful
+                    console.log('ok')
                     if (results[0]) {
+                        console.log('result')
                         // Access the first result
                         const location = results[0].geometry.location;
                         const latitude = location.lat();
@@ -188,7 +208,9 @@ const LocationConfirm = ({
                         setLat(location.lat());
                         setLng(location.lng());
                     };
-                };
+                } else {
+                    console.log('not ok')
+                }
             });
         };
 
