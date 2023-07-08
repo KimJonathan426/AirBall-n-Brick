@@ -10,13 +10,16 @@ const LocationConfirm = ({
     country, setCountry, lat, setLat, lng, setLng }) => {
 
     const googleMap = useRef(null);
+    const googleMarker = useRef(null);
     const storedLat = useRef(lat);
     const storedLng = useRef(lng);
     const isFirstRender = useRef(true);
 
     const [checked, setChecked] = useState(false);
     // const [approxLocation, approxLocation] =
-
+    // create marker ref, set marker near setCenter function
+    // customize marker icon and radius color/area etc
+    // create a random approximated radius and store it as another variable to add in database
 
     useEffect(() => {
         const loader = new Loader({
@@ -25,7 +28,7 @@ const LocationConfirm = ({
             libraries: ['places', 'geocoding']
         });
 
-        loader.importLibrary('maps').then(async ({ Map }) => {
+        loader.importLibrary('maps').then(({ Map }) => {
 
             const hideFeatures = [
                 {
@@ -93,6 +96,8 @@ const LocationConfirm = ({
                 position: { lat: storedLat.current, lng: storedLng.current },
                 map: map,
             });
+
+            googleMarker.current = marker
         });
     }, [])
 
@@ -133,7 +138,7 @@ const LocationConfirm = ({
                         };
 
                         googleMap.current.setCenter(location);
-
+                        googleMarker.current.setPosition({ lat: latitude, lng: longitude })
                         setLat(location.lat());
                         setLng(location.lng());
                     };
@@ -143,6 +148,7 @@ const LocationConfirm = ({
 
 
         if (isFirstRender.current) {
+            isFirstRender.current = false;
             rateLimitGeocoder();
             return;
         }
