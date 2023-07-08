@@ -315,7 +315,7 @@ const LocationConfirm = ({
                                         <div className={address ? 'location-confirm-header-shrink' : 'location-confirm-header-enlarge'}>
                                             <div className='location-confirm-header-text'>Street address</div>
                                         </div>
-                                        <input id='street' value={address} onChange={(e) => setAddress(e.target.value)} disabled={isFinalCheck} />
+                                        <input id='street' value={address} onChange={(e) => e.target.value.trimStart() === e.target.value ? setAddress(e.target.value) : null } disabled={isFinalCheck} />
                                     </label>
                                 </div>
                                 <div className='location-confirm-combined-item-2'>
@@ -323,7 +323,7 @@ const LocationConfirm = ({
                                         <div className={city ? 'location-confirm-header-shrink' : 'location-confirm-header-enlarge'}>
                                             <div className='location-confirm-header-text'>City</div>
                                         </div>
-                                        <input id='city' value={city} onChange={(e) => setCity(e.target.value)} disabled={isFinalCheck} />
+                                        <input id='city' value={city} onChange={(e) => e.target.value.trimStart() === e.target.value ? setCity(e.target.value) : null } disabled={isFinalCheck} />
                                     </label>
                                 </div>
                                 <div className='location-confirm-combined-item-3'>
@@ -331,7 +331,7 @@ const LocationConfirm = ({
                                         <div className={state ? 'location-confirm-header-shrink' : 'location-confirm-header-enlarge'}>
                                             <div className='location-confirm-header-text'>State / territory</div>
                                         </div>
-                                        <input id='state' value={state} onChange={(e) => setState(e.target.value)} disabled={isFinalCheck} />
+                                        <input id='state' value={state} onChange={(e) => e.target.value.trimStart() === e.target.value ? setState(e.target.value) : null } disabled={isFinalCheck} />
                                     </label>
                                 </div>
                                 <div className='location-confirm-combined-item-4'>
@@ -339,7 +339,7 @@ const LocationConfirm = ({
                                         <div className={zipcode ? 'location-confirm-header-shrink' : 'location-confirm-header-enlarge'}>
                                             <div className='location-confirm-header-text'>Zipcode</div>
                                         </div>
-                                        <input id='zipcode' value={zipcode} onChange={(e) => setZipcode(e.target.value)} disabled={isFinalCheck} />
+                                        <input id='zipcode' value={zipcode} onChange={(e) => e.target.value.trimStart() === e.target.value ? setZipcode(e.target.value) : null } disabled={isFinalCheck} />
                                     </label>
                                 </div>
                                 <div className='location-confirm-border-1' />
