@@ -8,6 +8,7 @@ import Step1Describe from './Steps/Step1Describe';
 import Step1Type from './Steps/Step1Type';
 import Step1Location from './Steps/Step1Location';
 import LocationConfirm from './Steps/Step1Location/LocationConfirm';
+import LocationPin from './Steps/Step1Location/LocationPin';
 import HostFooter from './HostFooter';
 import logo from '../../images/logo-image.png';
 import './HostSpot.css';
@@ -56,10 +57,9 @@ const HostSpot = () => {
                 }
                 {step === 4 && locationStep === 0 &&
                     <Step1Location
-                        locationStep={locationStep} setLocationStep={setLocationStep}
-                        setAddress={setAddress} setCity={setCity} setState={setState}
-                        setZipcode={setZipcode} setCountry={setCountry}
-                        setLat={setLat} setLng={setLng} />
+                        setLocationStep={setLocationStep} setAddress={setAddress}
+                        setCity={setCity} setState={setState} setZipcode={setZipcode}
+                        setCountry={setCountry} setLat={setLat} setLng={setLng} />
                 }
                 {step === 4 && locationStep === 1 &&
                     <LocationConfirm
@@ -70,6 +70,12 @@ const HostSpot = () => {
                         setCountry={setCountry} lat={lat} setLat={setLat} lng={lng}
                         setLng={setLng} isFinalCheck={isFinalCheck}
                         setIsFinalCheck={setIsFinalCheck} setLocationStep={setLocationStep} />
+                }
+                {step === 4 && locationStep === 2 &&
+                    <LocationPin
+                        address={address} city={city} state={state} zipcode={zipcode}
+                        country={country} lat={lat} setLat={setLat} lng={lng}
+                        setLng={setLng} />
                 }
             </div>
             <div className='host-spot-footer'>

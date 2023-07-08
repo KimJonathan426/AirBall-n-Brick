@@ -6,8 +6,7 @@ import clearX from '../../../../images/clear-x-thick.svg';
 import './Step1Location.css';
 
 const Step1Location = ({
-    locationStep, setLocationStep, setAddress, setCity,
-    setState, setZipcode, setCountry, setLat, setLng }) => {
+    setLocationStep, setAddress, setCity, setState, setZipcode, setCountry, setLat, setLng }) => {
 
     const [inputVal, setInputVal] = useState('');
     const [loaded, setLoaded] = useState(false);
@@ -78,9 +77,39 @@ const Step1Location = ({
                     stylers: [{ visibility: "off" }]
                 },
                 {
+                    featureType: "administrative",
+                    elementType: "labels",
+                    stylers: [{ fontWeight: 'normal' }]
+                },
+                {
+                    featureType: "administrative",
+                    elementType: "labels.text.fill",
+                    stylers: [{ color: '#818181' }]
+                },
+                {
                     featureType: "road.local",
                     elementType: "labels",
                     stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "road.arterial",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "geometry.fill",
+                    stylers: [{ color: "#FFFFFF" }]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "geometry.stroke",
+                    stylers: [{ color: "#C0C0C0" }]
                 },
                 {
                     featureType: "transit",
