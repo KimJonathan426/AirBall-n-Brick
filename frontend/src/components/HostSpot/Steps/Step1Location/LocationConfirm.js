@@ -10,7 +10,8 @@ import './LocationConfirm.css';
 const LocationConfirm = ({
     showSpecific, setShowSpecific, address, setAddress,
     city, setCity, state, setState, zipcode, setZipcode,
-    country, setCountry, lat, setLat, lng, setLng }) => {
+    country, setCountry, lat, setLat, lng, setLng,
+    isFinalCheck, setIsFinalCheck, setLocationStep }) => {
 
     const googleMap = useRef(null);
     const googleMarker = useRef(null);
@@ -24,12 +25,15 @@ const LocationConfirm = ({
     const [randomLng,] = useState(Math.random() * 0.012 - 0.006);
 
     const [alert, setAlert] = useState(false);
-    // const [randomLat,] = useState(0);
-    // const [randomLng,] = useState(0);
 
-    // const [approxLocation, approxLocation] =
-    // customize marker icon and radius color/area etc
-    // create a random approximated radius and store it as another variable to add in database
+    // update reference without it being necessary in larger useEffect dependency array
+    useEffect(() => {
+        showSpecificRef.current = showSpecific;
+    }, [showSpecific])
+    useEffect(() => {
+        storedLat.current = lat;
+        storedLng.current = lng;
+    }, [lat, lng])
 
     useEffect(() => {
         const loader = new Loader({
@@ -158,7 +162,7 @@ const LocationConfirm = ({
 
     useEffect(() => {
         const rateLimitGeocoder = () => {
-            console.log('rate')
+
             let fullAddress = '';
 
             if (address) {
@@ -172,25 +176,38 @@ const LocationConfirm = ({
             };
 
             const geocoder = new window.google.maps.Geocoder();
-            console.log(fullAddress)
             const geocoderRequest = {
                 address: fullAddress,
                 componentRestrictions: {
                     country,
-                }
+                },
             };
 
             geocoder.geocode(geocoderRequest, (results, status) => {
                 if (status === 'OK') {
                     // Geocoding was successful
-                    console.log('ok')
-                    if (results[0]) {
-                        console.log('result')
+
+                    // If there are country restrictions, there will always be a result
+                    // with the country itself being the highest level.
+                    // if the result equals the country, this will count as no response.
+                    if (results[0] && isFinalCheck && (results[0].formatted_address === 'United States' ||
+                        results[0].formatted_address === 'Canada')) {
+                        setIsFinalCheck(false);
+                        setAlert(true);
+                    } else if (results[0]) {
                         // Access the first result
                         const location = results[0].geometry.location;
                         const latitude = location.lat();
                         const longitude = location.lng();
 
+                        if (isFinalCheck) {
+                            setIsFinalCheck(false);
+                            setLat(latitude);
+                            setLng(longitude);
+                            setLocationStep((prev) => prev + 1);
+                        }
+
+                        // If its the same location, no need to continue
                         if (storedLat.current === latitude && storedLng.current === longitude) {
                             return;
                         };
@@ -205,12 +222,10 @@ const LocationConfirm = ({
                             googleMap.current.setCenter({ lat: latitude + randomLat, lng: longitude + randomLng });
                         }
 
-                        setLat(location.lat());
-                        setLng(location.lng());
+                        setLat(latitude);
+                        setLng(longitude);
                     };
-                } else {
-                    console.log('not ok')
-                }
+                };
             });
         };
 
@@ -221,12 +236,17 @@ const LocationConfirm = ({
             return;
         }
 
+        if (isFinalCheck) {
+            rateLimitGeocoder();
+            return;
+        }
+
         const timeoutId = setTimeout(rateLimitGeocoder, 3000);
 
         return () => {
             clearTimeout(timeoutId);
         }
-    }, [address, city, country, state, zipcode, setLat, setLng, randomLat, randomLng]);
+    }, [address, city, country, state, zipcode, setLat, setLng, randomLat, randomLng, isFinalCheck, setIsFinalCheck, setLocationStep]);
 
     const handleSwitch = () => {
         if (googleMap.current) {
@@ -351,7 +371,9 @@ const LocationConfirm = ({
                     </div>
                 </div>
             </div>
-            {/* <LocationAlert alert={alert} setAlert={setAlert} /> */}
+            {alert &&
+                <LocationAlert alert={alert} setAlert={setAlert} />
+            }
         </div>
     );
 };
