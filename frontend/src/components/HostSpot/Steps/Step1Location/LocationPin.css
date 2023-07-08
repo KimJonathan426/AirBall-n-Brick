@@ -38,3 +38,18 @@
     top: 0;
     left: 0;
 }
+
+@media screen and (max-width: 743px) {
+
+    #step-1-pin-map {
+        width: 100vw;
+        margin-left: -24px;
+        border-radius: 0;
+    }
+
+    .static-autocomplete-container {
+        width: calc(100% - 48px);
+        padding: 12px;
+        height: 52px;
+    }
+}
