@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
+import generalMarker from '../../../../images/location-marker-general.svg';
+import exactMarker from '../../../../images/location-marker-exact.svg';
 import check from '../../../../images/check-mark.svg';
 import './Step1Location.css';
 import './LocationConfirm.css';
@@ -11,13 +13,18 @@ const LocationConfirm = ({
 
     const googleMap = useRef(null);
     const googleMarker = useRef(null);
+    const googleCircle = useRef(null);
     const storedLat = useRef(lat);
     const storedLng = useRef(lng);
     const isFirstRender = useRef(true);
 
     const [checked, setChecked] = useState(false);
+    const [randomLat,] = useState(Math.random() * 0.012 - 0.006);
+    const [randomLng,] = useState(Math.random() * 0.012 - 0.006);
+    // const [randomLat,] = useState(0);
+    // const [randomLng,] = useState(0);
+
     // const [approxLocation, approxLocation] =
-    // create marker ref, set marker near setCenter function
     // customize marker icon and radius color/area etc
     // create a random approximated radius and store it as another variable to add in database
 
@@ -35,6 +42,16 @@ const LocationConfirm = ({
                     featureType: "poi",
                     elementType: "labels",
                     stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "administrative",
+                    elementType: "labels",
+                    stylers: [{ fontWeight: 'normal' }]
+                },
+                {
+                    featureType: "administrative",
+                    elementType: "labels.text.fill",
+                    stylers: [{ color: '#818181' }]
                 },
                 {
                     featureType: "road.local",
@@ -73,7 +90,7 @@ const LocationConfirm = ({
             // zoom 15 if they want to show specific
             // zoom 13 if they want to show approximate
             const map = new Map(document.getElementById('step-1-confirm-map'), {
-                center: { lat: storedLat.current, lng: storedLng.current },
+                center: { lat: storedLat.current + randomLat, lng: storedLng.current + randomLng },
                 zoom: 13,
                 gestureHandling: 'none',
                 zoomControl: false,
@@ -93,16 +110,34 @@ const LocationConfirm = ({
             map.setMapTypeId('hide_feats');
 
             const marker = new window.google.maps.Marker({
-                position: { lat: storedLat.current, lng: storedLng.current },
+                position: { lat: storedLat.current + randomLat, lng: storedLng.current + randomLng },
                 map: map,
+                icon: {
+                    url: generalMarker,
+                    scaledSize: new window.google.maps.Size(74, 74),
+                    anchor: new window.google.maps.Point(37, 37),
+                },
             });
 
-            googleMarker.current = marker
+            googleMarker.current = marker;
+
+            const markerCircle = new window.google.maps.Circle({
+                center: { lat: storedLat.current + randomLat, lng: storedLng.current + randomLng },
+                map: map,
+                radius: 900,
+                strokeWeight: 0,
+                fillColor: '#FF5F15',
+                fillOpacity: 0.20,
+            })
+
+            googleCircle.current = markerCircle;
+
         });
-    }, [])
+    }, [randomLat, randomLng])
 
     useEffect(() => {
         const rateLimitGeocoder = () => {
+            console.log('rate')
             let fullAddress = '';
 
             if (address) {
@@ -137,8 +172,15 @@ const LocationConfirm = ({
                             return;
                         };
 
-                        googleMap.current.setCenter(location);
-                        googleMarker.current.setPosition({ lat: latitude, lng: longitude })
+                        if (checked) {
+                            googleCircle.current.setCenter({ lat: latitude, lng: longitude })
+                            googleMap.current.setCenter({ lat: latitude, lng: longitude });
+                            googleMarker.current.setPosition({ lat: latitude, lng: longitude })
+                        } else {
+                            googleCircle.current.setCenter({ lat: latitude + randomLat, lng: longitude + randomLng })
+                            googleMap.current.setCenter({ lat: latitude + randomLat, lng: longitude + randomLng });
+                            googleMarker.current.setPosition({ lat: latitude + randomLat, lng: longitude + randomLng })
+                        }
                         setLat(location.lat());
                         setLng(location.lng());
                     };
@@ -158,14 +200,35 @@ const LocationConfirm = ({
         return () => {
             clearTimeout(timeoutId);
         }
-    }, [address, city, country, state, zipcode, setLat, setLng]);
+    }, [address, city, country, state, zipcode, setLat, setLng, randomLat, randomLng]);
 
     const handleSwitch = () => {
         if (googleMap.current) {
             if (checked) {
-                googleMap.current.setZoom(15);
-            } else {
+                googleMap.current.setCenter({ lat: lat + randomLat, lng: lng + randomLng });
                 googleMap.current.setZoom(13);
+
+                googleMarker.current.setOptions({ animation: null });
+                googleMarker.current.setPosition({ lat: lat + randomLat, lng: lng + randomLng });
+                googleMarker.current.setIcon({
+                    url: generalMarker,
+                    scaledSize: new window.google.maps.Size(74, 74),
+                    anchor: new window.google.maps.Point(37, 37),
+                });
+
+                googleCircle.current.setRadius(900);
+            } else {
+                googleMap.current.setCenter({ lat: lat, lng: lng });
+                googleMap.current.setZoom(15);
+
+                googleMarker.current.setOptions({ animation: window.google.maps.Animation.BOUNCE });
+                googleMarker.current.setPosition({ lat: lat, lng: lng });
+                googleMarker.current.setIcon({
+                    url: exactMarker,
+                    scaledSize: new window.google.maps.Size(74, 74),
+                });
+
+                googleCircle.current.setRadius(0);
             };
         };
 
