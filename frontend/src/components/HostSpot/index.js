@@ -16,6 +16,7 @@ const HostSpot = () => {
 
     const [step, setStep] = useState(0);
     const [locationStep, setLocationStep] = useState(0);
+    const [isFinalCheck, setIsFinalCheck] = useState(false);
     const [transitionClass, setTransitionClass] = useState('host-spot-container-transition');
 
     const [tags, setTags] = useState(new Set());
@@ -67,16 +68,17 @@ const HostSpot = () => {
                         setCity={setCity} state={state} setState={setState}
                         zipcode={zipcode} setZipcode={setZipcode} country={country}
                         setCountry={setCountry} lat={lat} setLat={setLat} lng={lng}
-                        setLng={setLng} />
+                        setLng={setLng} isFinalCheck={isFinalCheck}
+                        setIsFinalCheck={setIsFinalCheck} setLocationStep={setLocationStep} />
                 }
             </div>
             <div className='host-spot-footer'>
                 <HostFooter
                     step={step} setStep={setStep}
                     locationStep={locationStep} setLocationStep={setLocationStep}
-                    address={address} city={city}
-                    state={state} zipcode={zipcode}
-                    country={country} setTransitionClass={setTransitionClass} />
+                    address={address} city={city} state={state} zipcode={zipcode}
+                    country={country} setTransitionClass={setTransitionClass}
+                    isFinalCheck={isFinalCheck} setIsFinalCheck={setIsFinalCheck} />
             </div>
         </>
     )

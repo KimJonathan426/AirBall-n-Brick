@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import loadingGif from '../../images/host-court-loading.gif';
 import './HostSpot.css';
 
-const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, city, state, zipcode, country, setTransitionClass }) => {
+const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, city,
+    state, zipcode, country, setTransitionClass, isFinalCheck, setIsFinalCheck }) => {
 
     const [progressBar1, setProgressBar1] = useState('0');
     const [progressBar2, setProgressBar2] = useState('0');
@@ -44,8 +45,9 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
     };
 
     const handleNext = () => {
-        if (step === 4 && locationStep == 1) {
-            setLocationStep(locationStep + 1);
+        if (step === 4 && locationStep === 1) {
+            console.log('clicked next')
+            setIsFinalCheck(true);
             return;
         }
 

@@ -69,7 +69,6 @@ const Step1Location = ({
         });
 
         loader.importLibrary('maps').then(async ({ Map }) => {
-            // const { Map } = await window.google.maps.importLibrary('maps');
             const { Autocomplete } = await window.google.maps.importLibrary('places');
 
             const hideFeatures = [
