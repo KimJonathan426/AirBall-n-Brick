@@ -186,6 +186,9 @@ const LocationConfirm = ({
             geocoder.geocode(geocoderRequest, (results, status) => {
                 if (status === 'OK') {
                     // Geocoding was successful
+                    const location = results[0].geometry.location;
+                    const latitude = location.lat();
+                    const longitude = location.lng();
 
                     // If there are country restrictions, there will always be a result
                     // with the country itself being the highest level.
@@ -193,13 +196,10 @@ const LocationConfirm = ({
                     if (results[0] && isFinalCheck && (results[0].formatted_address === 'United States' ||
                         results[0].formatted_address === 'Canada')) {
                         setIsFinalCheck(false);
+                        setLat(latitude);
+                        setLng(longitude);
                         setAlert(true);
                     } else if (results[0]) {
-                        // Access the first result
-                        const location = results[0].geometry.location;
-                        const latitude = location.lat();
-                        const longitude = location.lng();
-
                         if (isFinalCheck) {
                             setIsFinalCheck(false);
                             setLat(latitude);
@@ -329,7 +329,7 @@ const LocationConfirm = ({
                                 <div className='location-confirm-combined-item-3'>
                                     <label className='location-confirm-combined' htmlFor='state'>
                                         <div className={state ? 'location-confirm-header-shrink' : 'location-confirm-header-enlarge'}>
-                                            <div className='location-confirm-header-text'>State</div>
+                                            <div className='location-confirm-header-text'>State / territory</div>
                                         </div>
                                         <input id='state' value={state} onChange={(e) => setState(e.target.value)} disabled={isFinalCheck} />
                                     </label>
@@ -339,7 +339,7 @@ const LocationConfirm = ({
                                         <div className={zipcode ? 'location-confirm-header-shrink' : 'location-confirm-header-enlarge'}>
                                             <div className='location-confirm-header-text'>Zipcode</div>
                                         </div>
-                                        <input id='zipcode' value={zipcode} onChange={(e) => setZipcode(e.target.value)} disabled={isFinalCheck}/>
+                                        <input id='zipcode' value={zipcode} onChange={(e) => setZipcode(e.target.value)} disabled={isFinalCheck} />
                                     </label>
                                 </div>
                                 <div className='location-confirm-border-1' />
@@ -371,9 +371,7 @@ const LocationConfirm = ({
                     </div>
                 </div>
             </div>
-            {alert &&
-                <LocationAlert alert={alert} setAlert={setAlert} />
-            }
+            <LocationAlert alert={alert} setAlert={setAlert} setLocationStep={setLocationStep} />
         </div>
     );
 };

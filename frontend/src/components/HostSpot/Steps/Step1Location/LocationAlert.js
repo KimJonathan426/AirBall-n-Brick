@@ -3,7 +3,7 @@ import exclamation from '../../../../images/exclamation-point.svg';
 import clearX from '../../../../images/clear-x-thin.svg';
 import './LocationAlert.css';
 
-const LocationAlert = ({ alert, setAlert }) => {
+const LocationAlert = ({ alert, setAlert, setLocationStep }) => {
 
     const [alertClass, setAlertClass] = useState('invalid-google-location-container-standby');
 
@@ -34,10 +34,10 @@ const LocationAlert = ({ alert, setAlert }) => {
                     </div>
                     <div className='invalid-google-location-main'>
                         <div className='invalid-google-location-main'>
-                            <button className='invalid-google-location-no'>
+                            <button className='invalid-google-location-no' onClick={() => setAlert(false)}>
                                 No, edit the address
                             </button>
-                            <button className='invalid-google-location-yes'>
+                            <button className='invalid-google-location-yes' onClick={() => setLocationStep((prev) => prev + 1)}>
                                 Yes, my address is correct
                             </button>
                         </div>
