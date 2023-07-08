@@ -3,7 +3,7 @@ import loadingGif from '../../images/host-court-loading.gif';
 import './HostSpot.css';
 
 const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, city,
-    state, zipcode, country, setTransitionClass, isFinalCheck, setIsFinalCheck }) => {
+    state, zipcode, country, setTransitionClass, setIsFinalCheck }) => {
 
     const [progressBar1, setProgressBar1] = useState('0');
     const [progressBar2, setProgressBar2] = useState('0');
@@ -28,11 +28,11 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
             setNextDisabled(false);
         };
 
-    }, [step, locationStep, address, city, state, zipcode, country]);
+    }, [step, locationStep, address, city, state, zipcode, country, nextDisabled]);
 
     const handleBack = () => {
         if (step === 4 && locationStep > 0) {
-            setLocationStep(locationStep - 1);
+            setLocationStep((prev) => prev - 1);
             return;
         }
 
@@ -46,7 +46,6 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
 
     const handleNext = () => {
         if (step === 4 && locationStep === 1) {
-            console.log('clicked next')
             setIsFinalCheck(true);
             return;
         }

@@ -16,7 +16,7 @@ const Step1Location = ({
         let manualElement;
 
         const handleManualClick = () => {
-            setLocationStep(locationStep + 1);
+            setLocationStep((prev) => prev + 1);
         };
 
         function waitForElement(querySelector, timeout = 0) {
@@ -59,7 +59,7 @@ const Step1Location = ({
                 manualElement.removeEventListener('mousedown', handleManualClick);
             };
         };
-    }, [loaded]);
+    }, [loaded, setLocationStep]);
 
     useEffect(() => {
         const loader = new Loader({
@@ -134,10 +134,7 @@ const Step1Location = ({
                 setLat(addressDetails['lat']);
                 setLng(addressDetails['lng']);
 
-                map.fitBounds(place.geometry.viewport);
-                map.setCenter(place.geometry.location);
-
-                setLocationStep(locationStep + 1);
+                setLocationStep((prev) => prev + 1);
             });
 
             setLoaded(true);
@@ -150,7 +147,7 @@ const Step1Location = ({
                 elements[0].remove();
             };
         };
-    }, []);
+    }, [setAddress, setCity, setCountry, setLat, setLng, setLocationStep, setState, setZipcode]);
 
 
     return (

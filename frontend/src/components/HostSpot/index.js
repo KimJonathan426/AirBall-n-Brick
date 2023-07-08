@@ -78,7 +78,7 @@ const HostSpot = () => {
                     locationStep={locationStep} setLocationStep={setLocationStep}
                     address={address} city={city} state={state} zipcode={zipcode}
                     country={country} setTransitionClass={setTransitionClass}
-                    isFinalCheck={isFinalCheck} setIsFinalCheck={setIsFinalCheck} />
+                    setIsFinalCheck={setIsFinalCheck} />
             </div>
         </>
     )

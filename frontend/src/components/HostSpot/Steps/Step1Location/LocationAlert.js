@@ -14,7 +14,7 @@ const LocationAlert = ({ alert, setAlert }) => {
         if (!alert && alertClass !== 'invalid-google-location-container-standby') {
             setAlertClass('invalid-google-location-container-off')
         };
-    }, [alert]);
+    }, [alert, alertClass]);
 
 
     return (
