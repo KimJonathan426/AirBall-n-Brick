@@ -272,11 +272,7 @@
 
 #step-1-confirm-map {
     width: 100%;
-    /* height: 100%; */
     height: 280px;
     border-radius: 16px;
     overflow: hidden !important;
-    /* position: absolute !important; */
-    /* top: 0; */
-    /* left: 0; */
 }

@@ -3,11 +3,12 @@ import { Loader } from '@googlemaps/js-api-loader';
 import generalMarker from '../../../../images/location-marker-general.svg';
 import exactMarker from '../../../../images/location-marker-exact.svg';
 import check from '../../../../images/check-mark.svg';
+import LocationAlert from './LocationAlert';
 import './Step1Location.css';
 import './LocationConfirm.css';
 
 const LocationConfirm = ({
-    locationStep, setLocationStep, address, setAddress,
+    showSpecific, setShowSpecific, address, setAddress,
     city, setCity, state, setState, zipcode, setZipcode,
     country, setCountry, lat, setLat, lng, setLng }) => {
 
@@ -16,11 +17,13 @@ const LocationConfirm = ({
     const googleCircle = useRef(null);
     const storedLat = useRef(lat);
     const storedLng = useRef(lng);
+    const showSpecificRef = useRef(showSpecific);
     const isFirstRender = useRef(true);
 
-    const [checked, setChecked] = useState(false);
     const [randomLat,] = useState(Math.random() * 0.012 - 0.006);
     const [randomLng,] = useState(Math.random() * 0.012 - 0.006);
+
+    const [alert, setAlert] = useState(false);
     // const [randomLat,] = useState(0);
     // const [randomLng,] = useState(0);
 
@@ -125,7 +128,7 @@ const LocationConfirm = ({
                 center: { lat: storedLat.current + randomLat, lng: storedLng.current + randomLng },
                 map: map,
                 radius: 900,
-                strokeWeight: 0,
+                strokeOpacity: 0,
                 fillColor: '#FF5F15',
                 fillOpacity: 0.20,
             })
@@ -172,15 +175,16 @@ const LocationConfirm = ({
                             return;
                         };
 
-                        if (checked) {
-                            googleCircle.current.setCenter({ lat: latitude, lng: longitude })
-                            googleMap.current.setCenter({ lat: latitude, lng: longitude });
+                        if (showSpecificRef.current) {
+                            googleCircle.current.setCenter({ lat: latitude + randomLat, lng: longitude + randomLng })
                             googleMarker.current.setPosition({ lat: latitude, lng: longitude })
+                            googleMap.current.setCenter({ lat: latitude, lng: longitude });
                         } else {
                             googleCircle.current.setCenter({ lat: latitude + randomLat, lng: longitude + randomLng })
-                            googleMap.current.setCenter({ lat: latitude + randomLat, lng: longitude + randomLng });
                             googleMarker.current.setPosition({ lat: latitude + randomLat, lng: longitude + randomLng })
+                            googleMap.current.setCenter({ lat: latitude + randomLat, lng: longitude + randomLng });
                         }
+
                         setLat(location.lat());
                         setLng(location.lng());
                     };
@@ -204,7 +208,7 @@ const LocationConfirm = ({
 
     const handleSwitch = () => {
         if (googleMap.current) {
-            if (checked) {
+            if (showSpecific) {
                 googleMap.current.setCenter({ lat: lat + randomLat, lng: lng + randomLng });
                 googleMap.current.setZoom(13);
 
@@ -232,7 +236,7 @@ const LocationConfirm = ({
             };
         };
 
-        setChecked(!checked);
+        setShowSpecific(!showSpecific);
     };
 
 
@@ -312,9 +316,9 @@ const LocationConfirm = ({
                                         We'll only share your address after they've made a reservation.
                                     </div>
                                 </div>
-                                <button className={checked ? 'location-preference-toggle-on' : 'location-preference-toggle-off'} onClick={handleSwitch}>
-                                    <div className={checked ? 'toggle-switch-circle-on' : 'toggle-switch-circle-off'}>
-                                        {checked &&
+                                <button className={showSpecific ? 'location-preference-toggle-on' : 'location-preference-toggle-off'} onClick={handleSwitch}>
+                                    <div className={showSpecific ? 'toggle-switch-circle-on' : 'toggle-switch-circle-off'}>
+                                        {showSpecific &&
                                             <img className='toggle-check-mark' src={check} alt='check mark' />
                                         }
                                     </div>
@@ -325,6 +329,7 @@ const LocationConfirm = ({
                     </div>
                 </div>
             </div>
+            {/* <LocationAlert alert={alert} setAlert={setAlert} /> */}
         </div>
     );
 };

@@ -27,6 +27,7 @@ const HostSpot = () => {
     const [country, setCountry] = useState('');
     const [lat, setLat] = useState(38.483378);
     const [lng, setLng] = useState(-109.681333);
+    const [showSpecific, setShowSpecific] = useState(false);
 
     useEffect(() => {
         setTransitionClass('host-spot-container')
@@ -61,7 +62,7 @@ const HostSpot = () => {
                 }
                 {step === 4 && locationStep === 1 &&
                     <LocationConfirm
-                        locationStep={locationStep} setLocationStep={setLocationStep}
+                        showSpecific={showSpecific} setShowSpecific={setShowSpecific}
                         address={address} setAddress={setAddress} city={city}
                         setCity={setCity} state={state} setState={setState}
                         zipcode={zipcode} setZipcode={setZipcode} country={country}
