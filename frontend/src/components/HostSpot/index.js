@@ -26,7 +26,7 @@ const HostSpot = () => {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [zipcode, setZipcode] = useState('');
-    const [country, setCountry] = useState('');
+    const [country, setCountry] = useState('United States');
     const [lat, setLat] = useState(38.483378);
     const [lng, setLng] = useState(-109.681333);
     const [showSpecific, setShowSpecific] = useState(false);
