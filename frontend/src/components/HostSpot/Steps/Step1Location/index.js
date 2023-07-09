@@ -61,6 +61,8 @@ const Step1Location = ({
     }, [loaded, setLocationStep]);
 
     useEffect(() => {
+        let autocomplete;
+
         const loader = new Loader({
             apiKey: process.env.REACT_APP_GOOGLE_PLACES_API,
             version: 'weekly',
@@ -138,7 +140,7 @@ const Step1Location = ({
             map.mapTypes.set('hide_feats', hideFeaturesMapType);
             map.setMapTypeId('hide_feats');
 
-            const autocomplete = new Autocomplete(document.getElementById('step-1-autocomplete'), {
+            autocomplete = new Autocomplete(document.getElementById('step-1-autocomplete'), {
                 componentRestrictions: { country: ['us', 'ca'] },
                 fields: ['address_components', 'geometry'],
             });
@@ -170,6 +172,10 @@ const Step1Location = ({
         });
 
         return () => {
+            if (autocomplete) {
+                window.google.maps.event.clearListeners(autocomplete, 'place_changed');
+            };
+
             const elements = document.getElementsByClassName('pac-container');
 
             if (elements[0]) {
