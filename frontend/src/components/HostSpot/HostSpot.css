@@ -307,15 +307,14 @@
         margin-right: 3px;
     }
 
-    .host-spot-back-btn {
+    .host-spot-back-btn,
+    .host-spot-back-loading {
         margin-left: 24px;
     }
 
-    .host-spot-next-btn {
-        margin-right: 24px;
-    }
-
-    .host-spot-next-btn-disabled {
+    .host-spot-next-btn,
+    .host-spot-next-btn-disabled,
+    .host-spot-next-loading {
         margin-right: 24px;
     }
 
