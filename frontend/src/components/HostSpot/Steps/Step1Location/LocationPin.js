@@ -9,12 +9,7 @@ import './LocationPin.css';
 import './Step1Location.css';
 
 const LocationPin = ({ address, city, state, zipcode, country, lat, lng, setLat, setLng }) => {
-
-    // create custom marker
-    // adjust map settings to be able to adjust zoom, move around marker/center
-    // get center of map/marker and update lat and lng with move
     const [pin, setPin] = useState('drop');
-
 
     useEffect(() => {
         let map;
@@ -84,6 +79,7 @@ const LocationPin = ({ address, city, state, zipcode, country, lat, lng, setLat,
                 zoomControlOptions: {
                     position: window.google.maps.ControlPosition.LEFT_BOTTOM,
                 },
+                scrollwheel: false,
                 streetViewControl: false,
                 fullscreenControl: false,
                 mapTypeControl: false,
@@ -97,18 +93,15 @@ const LocationPin = ({ address, city, state, zipcode, country, lat, lng, setLat,
             map.mapTypes.set('hide_feats', hideFeaturesMapType);
             map.setMapTypeId('hide_feats');
 
-            // const marker = new window.google.maps.Marker({
-            //     position: { lat: lat, lng: lng },
-            //     map: map
-            // });
-
             map.addListener('dragstart', function () {
-                setPin('lift')
-            })
+                setPin('lift');
+            });
 
             map.addListener('dragend', function () {
-                setPin('drop')
-            })
+                setPin('drop');
+                setLat(map.getCenter().lat());
+                setLng(map.getCenter().lng());
+            });
 
         });
 
@@ -116,8 +109,7 @@ const LocationPin = ({ address, city, state, zipcode, country, lat, lng, setLat,
             if (map) {
                 window.google.maps.event.clearInstanceListeners(map);
             };
-        }
-
+        };
     }, []);
 
 
