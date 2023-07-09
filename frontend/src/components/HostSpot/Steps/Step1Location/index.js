@@ -140,6 +140,11 @@ const Step1Location = ({
             map.mapTypes.set('hide_feats', hideFeaturesMapType);
             map.setMapTypeId('hide_feats');
 
+            // Warning:
+            // In react strict mode, use effects trigger twice on initial render,
+            // autocomplete will make 2 pac-containers making one show out of place
+            // as is it not handled by the function relocating it.
+            // will not occur in production.
             autocomplete = new Autocomplete(document.getElementById('step-1-autocomplete'), {
                 componentRestrictions: { country: ['us', 'ca'] },
                 fields: ['address_components', 'geometry'],
