@@ -9,6 +9,9 @@ import './LocationPin.css';
 import './Step1Location.css';
 
 const LocationPin = ({ address, city, state, zipcode, country, lat, lng, setLat, setLng }) => {
+
+    const [initialLat, ] = useState(lat);
+    const [initialLng, ] = useState(lng);
     const [pin, setPin] = useState('drop');
 
     useEffect(() => {
@@ -73,7 +76,7 @@ const LocationPin = ({ address, city, state, zipcode, country, lat, lng, setLat,
             const hideFeaturesMapType = new window.google.maps.StyledMapType(hideFeatures, { name: "HIDE FEATS" });
 
             map = new Map(document.getElementById('step-1-pin-map'), {
-                center: { lat: lat, lng: lng },
+                center: { lat: initialLat, lng: initialLng },
                 zoom: 15,
                 zoomControl: true,
                 zoomControlOptions: {
@@ -110,7 +113,7 @@ const LocationPin = ({ address, city, state, zipcode, country, lat, lng, setLat,
                 window.google.maps.event.clearInstanceListeners(map);
             };
         };
-    }, []);
+    }, [initialLat, initialLng, setLat, setLng]);
 
 
     return (
