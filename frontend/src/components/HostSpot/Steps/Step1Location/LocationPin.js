@@ -6,7 +6,13 @@ import './Step1Location.css';
 
 const LocationPin = ({ address, city, state, zipcode, country, lat, lng, setLat, setLng }) => {
 
+    // create custom marker
+    // adjust map settings to be able to adjust zoom, move around marker/center
+    // get center of map/marker and update lat and lng with move
+
     useEffect(() => {
+        let map;
+
         const loader = new Loader({
             apiKey: process.env.REACT_APP_GOOGLE_PLACES_API,
             version: 'weekly',
@@ -65,15 +71,17 @@ const LocationPin = ({ address, city, state, zipcode, country, lat, lng, setLat,
 
             const hideFeaturesMapType = new window.google.maps.StyledMapType(hideFeatures, { name: "HIDE FEATS" });
 
-            const map = new Map(document.getElementById('step-1-pin-map'), {
+            map = new Map(document.getElementById('step-1-pin-map'), {
                 center: { lat: lat, lng: lng },
                 zoom: 15,
-                gestureHandling: 'none',
-                zoomControl: false,
+                zoomControl: true,
+                zoomControlOptions: {
+                    position: window.google.maps.ControlPosition.LEFT_BOTTOM,
+                },
                 streetViewControl: false,
                 fullscreenControl: false,
                 mapTypeControl: false,
-                keyboardShortcuts: false,
+                keyboardShortcuts: true,
                 clickableIcons: false,
                 mapTypeControlOptions: {
                     mapTypeIds: [window.google.maps.MapTypeId.ROADMAP, 'hide_feats']
@@ -83,7 +91,23 @@ const LocationPin = ({ address, city, state, zipcode, country, lat, lng, setLat,
             map.mapTypes.set('hide_feats', hideFeaturesMapType);
             map.setMapTypeId('hide_feats');
 
+            const marker = new window.google.maps.Marker({
+                position: { lat: lat, lng: lng },
+                map: map
+            });
+
+            map.addListener('center_changed', function () {
+                marker.setPosition(map.getCenter());
+            });
+
         });
+
+        return () => {
+            if (map) {
+                window.google.maps.event.clearInstanceListeners(map);
+            };
+        }
+
     }, []);
 
 
