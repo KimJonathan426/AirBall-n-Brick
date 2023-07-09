@@ -315,6 +315,10 @@
         margin-right: 24px;
     }
 
+    .host-spot-next-btn-disabled {
+        margin-right: 24px;
+    }
+
     .host-spot-load-box {
         width: 100%;
         padding: 14px 28px;
