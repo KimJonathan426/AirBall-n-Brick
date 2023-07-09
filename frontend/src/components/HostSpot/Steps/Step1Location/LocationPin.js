@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import locationPing from '../../../../images/location.svg';
+import markerPin from '../../../../images/pins/marker-pin.svg';
+import markerShadow from '../../../../images/pins/marker-shadow.svg';
+import markerBasket from '../../../../images/pins/marker-basket.png';
+import markerBasketball from '../../../../images/pins/marker-basketball.png';
 import './LocationPin.css';
 import './Step1Location.css';
 
@@ -9,6 +13,8 @@ const LocationPin = ({ address, city, state, zipcode, country, lat, lng, setLat,
     // create custom marker
     // adjust map settings to be able to adjust zoom, move around marker/center
     // get center of map/marker and update lat and lng with move
+    const [pin, setPin] = useState('drop');
+
 
     useEffect(() => {
         let map;
@@ -91,14 +97,18 @@ const LocationPin = ({ address, city, state, zipcode, country, lat, lng, setLat,
             map.mapTypes.set('hide_feats', hideFeaturesMapType);
             map.setMapTypeId('hide_feats');
 
-            const marker = new window.google.maps.Marker({
-                position: { lat: lat, lng: lng },
-                map: map
-            });
+            // const marker = new window.google.maps.Marker({
+            //     position: { lat: lat, lng: lng },
+            //     map: map
+            // });
 
-            map.addListener('center_changed', function () {
-                marker.setPosition(map.getCenter());
-            });
+            map.addListener('dragstart', function () {
+                setPin('lift')
+            })
+
+            map.addListener('dragend', function () {
+                setPin('drop')
+            })
 
         });
 
@@ -129,6 +139,12 @@ const LocationPin = ({ address, city, state, zipcode, country, lat, lng, setLat,
                             <div className='static-autocomplete'>{address}, {city}, {state}, {country}, {zipcode}</div>
                         </div>
                         <div id='step-1-pin-map'></div>
+                        <div className='custom-google-marker'>
+                                < img className={`animated-google-marker-shadow-${pin}`} src={markerShadow} alt='circle shadow' />
+                                < img className={`animated-google-marker-pin-${pin}`} src={markerPin} alt='google map custom pin' />
+                                < img className={`animated-google-marker-basketball-${pin}`} src={markerBasketball} alt='basketball' />
+                                < img className={`animated-google-marker-basket-${pin}`} src={markerBasket} alt='basketball basket' />
+                        </div>
                     </div>
                 </div>
             </div>

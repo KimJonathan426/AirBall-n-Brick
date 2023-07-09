@@ -11,7 +11,6 @@
     background-color: #FFFFFF;
     box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.12);
     box-sizing: border-box;
-    /* cursor: grab; */
     pointer-events: none;
     position: absolute;
     top: 0;
@@ -38,6 +37,91 @@
     position: absolute !important;
     top: 0;
     left: 0;
+}
+
+.custom-google-marker {
+    width: 90px;
+    height: 90px;
+    pointer-events: none;
+    padding: 1.5em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    margin-top: -23px;
+}
+
+.animated-google-marker-pin-lift {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -15%);
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.animated-google-marker-pin-drop {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.animated-google-marker-shadow-lift {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 8%) scale(0.5);
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.animated-google-marker-shadow-drop {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%) scale(1);
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.animated-google-marker-basketball-lift {
+    width: 10px;
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -280%);
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1) ;
+}
+
+.animated-google-marker-basketball-drop {
+    width: 10px;
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.animated-google-marker-basket-lift {
+    width: 15px;
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -150%);
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.animated-google-marker-basket-drop {
+    width: 15px;
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
 }
 
 @media screen and (max-width: 743px) {
