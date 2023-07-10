@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
+import { parseAddress } from './parseAddress';
 import generalMarker from '../../../../images/location-marker-general.svg';
 import exactMarker from '../../../../images/location-marker-exact.svg';
 import check from '../../../../images/check-mark.svg';
@@ -19,7 +20,6 @@ const LocationConfirm = ({
     const storedLat = useRef(lat);
     const storedLng = useRef(lng);
     const showSpecificRef = useRef(showSpecific);
-    const isFirstRender = useRef(true);
 
     const [randomLat,] = useState(Math.random() * 0.012 - 0.006);
     const [randomLng,] = useState(Math.random() * 0.012 - 0.006);
@@ -186,25 +186,31 @@ const LocationConfirm = ({
             geocoder.geocode(geocoderRequest, (results, status) => {
                 if (status === 'OK') {
                     // Geocoding was successful
-                    const location = results[0].geometry.location;
-                    const latitude = location.lat();
-                    const longitude = location.lng();
+                    if (results[0]) {
+                        const location = results[0].geometry.location;
+                        const latitude = location.lat();
+                        const longitude = location.lng();
 
-                    // If there are country restrictions, there will always be a result
-                    // with the country itself being the highest level.
-                    // if the result equals the country, this will count as no response.
-                    if (results[0] && isFinalCheck && (results[0].formatted_address === 'United States' ||
-                        results[0].formatted_address === 'Canada')) {
-                        setIsFinalCheck(false);
-                        setLat(latitude);
-                        setLng(longitude);
-                        setAlert(true);
-                    } else if (results[0]) {
                         if (isFinalCheck) {
                             setIsFinalCheck(false);
                             setLat(latitude);
                             setLng(longitude);
-                            setLocationStep((prev) => prev + 1);
+
+                            if (results[0].partial_match) {
+                                setAlert(true);
+                            } else {
+                                const addressDetails = parseAddress(results[0]);
+
+                                setAddress(addressDetails['address']);
+                                setCity(addressDetails['locality']);
+                                setState(addressDetails['administrative_area_level_1']);
+                                setZipcode(addressDetails['postal_code']);
+                                setCountry(addressDetails['country']);
+
+                                setLocationStep((prev) => prev + 1);
+                            };
+
+                            return;
                         }
 
                         // If its the same location, no need to continue
@@ -229,13 +235,6 @@ const LocationConfirm = ({
             });
         };
 
-
-        if (isFirstRender.current) {
-            isFirstRender.current = false;
-            rateLimitGeocoder();
-            return;
-        }
-
         if (isFinalCheck) {
             rateLimitGeocoder();
             return;
@@ -246,7 +245,9 @@ const LocationConfirm = ({
         return () => {
             clearTimeout(timeoutId);
         }
-    }, [address, city, country, state, zipcode, setLat, setLng, randomLat, randomLng, isFinalCheck, setIsFinalCheck, setLocationStep]);
+    }, [address, setAddress, city, setCity, state, setState, zipcode, setZipcode,
+        country, setCountry, setLat, setLng, randomLat, randomLng, isFinalCheck,
+        setIsFinalCheck, setLocationStep]);
 
     const handleSwitch = () => {
         if (googleMap.current) {
@@ -315,7 +316,7 @@ const LocationConfirm = ({
                                         <div className={address ? 'location-confirm-header-shrink' : 'location-confirm-header-enlarge'}>
                                             <div className='location-confirm-header-text'>Street address</div>
                                         </div>
-                                        <input id='street' value={address} onChange={(e) => e.target.value.trimStart() === e.target.value ? setAddress(e.target.value) : null } disabled={isFinalCheck} />
+                                        <input id='street' value={address} onChange={(e) => e.target.value.trimStart() === e.target.value ? setAddress(e.target.value) : null} disabled={isFinalCheck} />
                                     </label>
                                 </div>
                                 <div className='location-confirm-combined-item-2'>
@@ -323,7 +324,7 @@ const LocationConfirm = ({
                                         <div className={city ? 'location-confirm-header-shrink' : 'location-confirm-header-enlarge'}>
                                             <div className='location-confirm-header-text'>City</div>
                                         </div>
-                                        <input id='city' value={city} onChange={(e) => e.target.value.trimStart() === e.target.value ? setCity(e.target.value) : null } disabled={isFinalCheck} />
+                                        <input id='city' value={city} onChange={(e) => e.target.value.trimStart() === e.target.value ? setCity(e.target.value) : null} disabled={isFinalCheck} />
                                     </label>
                                 </div>
                                 <div className='location-confirm-combined-item-3'>
@@ -331,7 +332,7 @@ const LocationConfirm = ({
                                         <div className={state ? 'location-confirm-header-shrink' : 'location-confirm-header-enlarge'}>
                                             <div className='location-confirm-header-text'>State / territory</div>
                                         </div>
-                                        <input id='state' value={state} onChange={(e) => e.target.value.trimStart() === e.target.value ? setState(e.target.value) : null } disabled={isFinalCheck} />
+                                        <input id='state' value={state} onChange={(e) => e.target.value.trimStart() === e.target.value ? setState(e.target.value) : null} disabled={isFinalCheck} />
                                     </label>
                                 </div>
                                 <div className='location-confirm-combined-item-4'>
@@ -339,7 +340,7 @@ const LocationConfirm = ({
                                         <div className={zipcode ? 'location-confirm-header-shrink' : 'location-confirm-header-enlarge'}>
                                             <div className='location-confirm-header-text'>Zipcode</div>
                                         </div>
-                                        <input id='zipcode' value={zipcode} onChange={(e) => e.target.value.trimStart() === e.target.value ? setZipcode(e.target.value) : null } disabled={isFinalCheck} />
+                                        <input id='zipcode' value={zipcode} onChange={(e) => e.target.value.trimStart() === e.target.value ? setZipcode(e.target.value) : null} disabled={isFinalCheck} />
                                     </label>
                                 </div>
                                 <div className='location-confirm-border-1' />
