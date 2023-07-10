@@ -10,8 +10,9 @@ import './Step1Location.css';
 
 const LocationPin = ({ address, city, state, zipcode, country, lat, lng, setLat, setLng }) => {
 
-    const [initialLat, ] = useState(lat);
-    const [initialLng, ] = useState(lng);
+    const [initialLat,] = useState(lat);
+    const [initialLng,] = useState(lng);
+    const [notification, setNotification] = useState(true);
     const [pin, setPin] = useState('drop');
 
     useEffect(() => {
@@ -104,6 +105,7 @@ const LocationPin = ({ address, city, state, zipcode, country, lat, lng, setLat,
                 setPin('drop');
                 setLat(map.getCenter().lat());
                 setLng(map.getCenter().lng());
+                setNotification(false);
             });
 
         });
@@ -127,6 +129,9 @@ const LocationPin = ({ address, city, state, zipcode, country, lat, lng, setLat,
                 </div>
                 <div className='host-step-1-location-bottom'>
                     <div className='host-step-1-location-main'>
+                        {notification &&
+                            <div className='drag-notification'>Drag the map to reposition the pin</div>
+                        }
                         <div className='static-autocomplete-container' >
                             <div className='step-1-locator-box'>
                                 <img className='step-1-locator' src={locationPing} alt='locator ping' />
@@ -135,10 +140,10 @@ const LocationPin = ({ address, city, state, zipcode, country, lat, lng, setLat,
                         </div>
                         <div id='step-1-pin-map'></div>
                         <div className='custom-google-marker'>
-                                < img className={`animated-google-marker-shadow-${pin}`} src={markerShadow} alt='circle shadow' />
-                                < img className={`animated-google-marker-pin-${pin}`} src={markerPin} alt='google map custom pin' />
-                                < img className={`animated-google-marker-basketball-${pin}`} src={markerBasketball} alt='basketball' />
-                                < img className={`animated-google-marker-basket-${pin}`} src={markerBasket} alt='basketball basket' />
+                            < img className={`animated-google-marker-shadow-${pin}`} src={markerShadow} alt='circle shadow' />
+                            < img className={`animated-google-marker-pin-${pin}`} src={markerPin} alt='google map custom pin' />
+                            < img className={`animated-google-marker-basketball-${pin}`} src={markerBasketball} alt='basketball' />
+                            < img className={`animated-google-marker-basket-${pin}`} src={markerBasket} alt='basketball basket' />
                         </div>
                     </div>
                 </div>
