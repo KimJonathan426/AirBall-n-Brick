@@ -49,8 +49,8 @@ export function parseAddress(place) {
         addressNameFormat['address'] = `${addressNameFormat['route']}`;
     };
 
-    addressNameFormat['lat'] = place?.geometry?.viewport?.Wa?.lo;
-    addressNameFormat['lng'] = place?.geometry?.viewport?.Ha?.lo;
+    addressNameFormat['lat'] = place.geometry.location.lat();
+    addressNameFormat['lng'] = place.geometry.location.lng();
 
     return addressNameFormat;
 };
