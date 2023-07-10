@@ -1,4 +1,5 @@
-import courtAnimation from '../../../../images/basketball-court.mp4';
+// import courtAnimation from '../../../../images/basketball-court.mp4';
+import courtAnimation from '../../../../images/court-animations/step-1-court.mp4';
 import './Step1Intro.css';
 
 const Step1Intro = () => {
