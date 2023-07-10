@@ -20,7 +20,7 @@ const Step1Type = ({ type, setType }) => {
                                     <div className='host-step-1-type-text-2'>Guests have the whole court to themselves.</div>
                                 </div>
                                 <div className='host-step-1-type-img-box'>
-                                    <img src={full} style={{ width: '37px' }} />
+                                    <img src={full} style={{ width: '37px' }} alt='basketball full court' />
                                 </div>
                             </button>
                         </div>
@@ -31,7 +31,7 @@ const Step1Type = ({ type, setType }) => {
                                     <div className='host-step-1-type-text-2'>Guests have their own half in a court, plus access to shared spaces.</div>
                                 </div>
                                 <div className='host-step-1-type-img-box'>
-                                    <img src={half} style={{ width: '35px', transform: 'rotate(90deg)' }} />
+                                    <img src={half} style={{ width: '35px', transform: 'rotate(90deg)' }} alt='basketball half court' />
                                 </div>
                             </button>
                         </div>
@@ -42,7 +42,7 @@ const Step1Type = ({ type, setType }) => {
                                     <div className='host-step-1-type-text-2'>Guests play in a court or common area that may be shared with you or others.</div>
                                 </div>
                                 <div className='host-step-1-type-img-box'>
-                                    <img src={share} style={{ width: '38px' }} />
+                                    <img src={share} style={{ width: '38px' }} alt='basketball court with two people' />
                                 </div>
                             </button>
                         </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import { parseAddress } from './parseAddress';
 import locationPing from '../../../../images/location.svg';

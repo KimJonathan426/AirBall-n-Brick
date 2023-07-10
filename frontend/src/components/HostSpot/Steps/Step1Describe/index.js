@@ -46,7 +46,7 @@ const Step1Describe = ({ tags, setTags }) => {
                         <div key={option[0]} className='host-step-1-describe-main' style={{ animationDelay: `${delayed * (1.00 + (.11 - .0027 * i) * i)}ms` }}>
                             <button className={tags.has(option[0]) ? 'host-step-1-describe-btn-checked' : 'host-step-1-describe-btn'} onClick={() => handleClick(option[0])}>
                                 <div style={{ height: '45px' }}>
-                                    <img src={option[1]} style={{ width: '35px' }} />
+                                    <img src={option[1]} style={{ width: '35px' }} alt='icon' />
                                 </div>
                                 <div className='host-step-1-describe-text'>{option[0]}</div>
                             </button>
