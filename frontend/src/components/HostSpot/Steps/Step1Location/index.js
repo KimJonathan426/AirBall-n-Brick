@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import { parseAddress } from './parseAddress';
 import locationPing from '../../../../images/location.svg';
@@ -6,10 +6,13 @@ import clearX from '../../../../images/clear-x-thick.svg';
 import './Step1Location.css';
 
 const Step1Location = ({
-    setLocationStep, setAddress, setCity, setState, setZipcode, setCountry, setLat, setLng }) => {
+    setLocationStep, setAddress, setCity, setState, setZipcode,
+    setCountry, lat, lng, setLat, setLng }) => {
 
     const [inputVal, setInputVal] = useState('');
     const [loaded, setLoaded] = useState(false);
+    const [initialLat, ] = useState(lat);
+    const [initialLng, ] = useState(lng);
 
     useEffect(() => {
         let manualElement;
@@ -62,7 +65,7 @@ const Step1Location = ({
 
     useEffect(() => {
         let autocomplete;
-
+        console.log('fire')
         const loader = new Loader({
             apiKey: process.env.REACT_APP_GOOGLE_PLACES_API,
             version: 'weekly',
@@ -123,7 +126,7 @@ const Step1Location = ({
             const hideFeaturesMapType = new window.google.maps.StyledMapType(hideFeatures, { name: "HIDE FEATS" });
 
             const map = new Map(document.getElementById('step-1-map'), {
-                center: { lat: 38.483378, lng: -109.681333 },
+                center: { lat: initialLat, lng: initialLng },
                 zoom: 12,
                 gestureHandling: 'none',
                 zoomControl: false,
@@ -187,7 +190,7 @@ const Step1Location = ({
                 elements[0].remove();
             };
         };
-    }, [setAddress, setCity, setCountry, setLat, setLng, setLocationStep, setState, setZipcode]);
+    }, [initialLat, initialLng, setAddress, setCity, setCountry, setLat, setLng, setLocationStep, setState, setZipcode]);
 
 
     return (

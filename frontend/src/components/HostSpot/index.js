@@ -59,7 +59,8 @@ const HostSpot = () => {
                     <Step1Location
                         setLocationStep={setLocationStep} setAddress={setAddress}
                         setCity={setCity} setState={setState} setZipcode={setZipcode}
-                        setCountry={setCountry} setLat={setLat} setLng={setLng} />
+                        setCountry={setCountry} lat={lat} lng={lng} setLat={setLat}
+                        setLng={setLng} />
                 }
                 {step === 4 && locationStep === 1 &&
                     <LocationConfirm
