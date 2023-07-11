@@ -40,11 +40,12 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
         setTransitionClass('host-spot-container-transition');
         setTimeout(() => {
             setStep(step - 1);
-            setBackButtonLoading(false);
 
             if (step >= 1 && step <= 5) {
                 setProgressBar1((prev) => `${Number(prev) - 25}`);
             }
+
+            setBackButtonLoading(false);
         }, 600);
     };
 
@@ -58,11 +59,13 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
         setTransitionClass('host-spot-container-transition');
         setTimeout(() => {
             setStep(step + 1);
-            setButtonLoading(false);
 
             if (step >= 1 && step <= 4) {
+                console.log('progress', progressBar1)
                 setProgressBar1((prev) => `${Number(prev) + 25}`);
             }
+
+            setButtonLoading(false);
         }, 600);
     };
 
