@@ -10,6 +10,7 @@ import Step1Location from './Steps/Step1Location';
 import LocationConfirm from './Steps/Step1Location/LocationConfirm';
 import LocationPin from './Steps/Step1Location/LocationPin';
 import Step2Intro from './Steps/StepIntros/Step2Intro';
+import Step2Amenities from './Steps/Step2Amenities';
 import HostFooter from './HostFooter';
 import logo from '../../images/logo-image.png';
 import './HostSpot.css';
@@ -22,6 +23,7 @@ const HostSpot = () => {
     const [transitionClass, setTransitionClass] = useState('host-spot-container-transition');
 
     const [tags, setTags] = useState(new Set());
+    const [amenities, setAmenities] = useState(new Set());
     const [type, setType] = useState('full');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
@@ -81,6 +83,9 @@ const HostSpot = () => {
                 }
                 {step === 5 &&
                     <Step2Intro />
+                }
+                {step === 6 &&
+                    <Step2Amenities amenities={amenities} setAmenities={setAmenities} />
                 }
             </div>
             <div className='host-spot-footer'>
