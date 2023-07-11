@@ -36,6 +36,21 @@
     -ms-overflow-style: none;
 }
 
+.host-spot-container-scrolled-down {
+    width: 100vw;
+    height: calc(100vh - 176px);
+    padding: 0 80px;
+    margin: 88px 0 82px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    opacity: 1;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    border-top: 1px solid #DDDDDD;
+    transition: border 0.1s ease-in 0s, opacity 0.6s;
+}
+
 .host-spot-container-transition {
     width: 100vw;
     height: calc(100vh - 176px);
@@ -50,11 +65,14 @@
     -ms-overflow-style: none;
 }
 
+
 .host-spot-container::-webkit-scrollbar,
-.host-spot-container-transition::-webkit-scrollbar {
+.host-spot-container-transition::-webkit-scrollbar,
+.host-spot-container-scrolled-down::-webkit-scrollbar {
     width: 0;
     height: 0;
 }
+
 
 .host-spot-footer {
     width: 100vw;

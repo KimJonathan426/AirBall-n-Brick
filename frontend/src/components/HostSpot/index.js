@@ -21,6 +21,8 @@ const HostSpot = () => {
     const [locationStep, setLocationStep] = useState(0);
     const [isFinalCheck, setIsFinalCheck] = useState(false);
     const [transitionClass, setTransitionClass] = useState('host-spot-container-transition');
+    const [scrolled, setScrolled] = useState(false);
+    const [disableScroll, setDisableScroll] = useState(false);
 
     const [tags, setTags] = useState(new Set());
     const [amenities, setAmenities] = useState(new Set());
@@ -34,9 +36,46 @@ const HostSpot = () => {
     const [lng, setLng] = useState(-109.681333);
     const [showSpecific, setShowSpecific] = useState(false);
 
+
     useEffect(() => {
-        setTransitionClass('host-spot-container')
-    }, [step]);
+        if (step === 4) {
+            setTransitionClass('host-spot-container');
+            setDisableScroll(false);
+        } else if (scrolled) {
+            setTransitionClass('host-spot-container-scrolled-down');
+            setDisableScroll(false);
+        } else {
+            setTransitionClass('host-spot-container');
+            setDisableScroll(false);
+        }
+    }, [step, scrolled]);
+
+    useEffect(() => {
+        const mainContainer = document.getElementById('host-spot-main-container');
+
+        const handleScroll = () => {
+            let scrollValue = mainContainer.scrollTop;
+
+            if (!disableScroll) {
+                if (scrollValue > 1) {
+                    setScrolled(true);
+                } else {
+                    setScrolled(false);
+                };
+            }
+        };
+
+        if (mainContainer) {
+            mainContainer.addEventListener('scroll', handleScroll);
+        };
+
+        return () => {
+            if (mainContainer) {
+                mainContainer.removeEventListener('scroll', handleScroll);
+            };
+        };
+    }, [disableScroll]);
+
 
     return (
         <>
@@ -45,7 +84,7 @@ const HostSpot = () => {
                     <img className='host-spot-logo' src={logo} alt='airballnbrick logo' />
                 </NavLink>
             </div>
-            <div className={transitionClass}>
+            <div id='host-spot-main-container' className={transitionClass}>
                 {step === 0 &&
                     <HostSpotIntro />
                 }
@@ -94,7 +133,7 @@ const HostSpot = () => {
                     locationStep={locationStep} setLocationStep={setLocationStep}
                     address={address} city={city} state={state} zipcode={zipcode}
                     country={country} setTransitionClass={setTransitionClass}
-                    setIsFinalCheck={setIsFinalCheck} />
+                    setIsFinalCheck={setIsFinalCheck} setDisableScroll={setDisableScroll} />
             </div>
         </>
     )
