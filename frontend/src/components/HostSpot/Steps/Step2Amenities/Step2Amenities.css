@@ -20,8 +20,8 @@
     width: 100%;
     max-width: 630px;
     margin-bottom: 32px;
-    animation-delay: 400ms;
     animation-name: amenitiesAnimation;
+    animation-delay: 400ms;
     animation-duration: 600ms;
     animation-iteration-count: 1;
     animation-fill-mode: both;
@@ -114,6 +114,19 @@
     font-weight: 600;
     text-align: left;
     word-break: break-word;
+}
+
+.step-2-amenities-standout-header {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 24px;
+    animation-name: amenitiesAnimation;
+    animation-delay: 680ms;
+    animation-duration: 600ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
 }
 
 @media screen and (max-width: 743px) {
