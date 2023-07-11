@@ -18,7 +18,7 @@ const HostSpotIntro = () => {
                     <div className='host-intro-right-1'>
                         <div className='host-intro-right-side'>1</div>
                         <div className='host-intro-right-main'>
-                            <h2 className='host-intro-right-main-header'>Tell us about your place</h2>
+                            <h2 className='host-intro-right-main-header'>Tell us about your court</h2>
                             <h3 className='host-intro-right-main-info'>Share some basic info, like where it is and what the court is like.</h3>
                         </div>
                         <div className='host-intro-right-img-box'>
