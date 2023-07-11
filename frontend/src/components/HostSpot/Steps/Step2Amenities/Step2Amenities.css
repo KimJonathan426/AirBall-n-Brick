@@ -116,14 +116,13 @@
     word-break: break-word;
 }
 
-.step-2-amenities-standout-header {
+.step-2-amenities-list-header {
     font-size: 18px;
     line-height: 24px;
     font-weight: 600;
     margin-top: 0;
     margin-bottom: 24px;
     animation-name: amenitiesAnimation;
-    animation-delay: 680ms;
     animation-duration: 600ms;
     animation-iteration-count: 1;
     animation-fill-mode: both;
