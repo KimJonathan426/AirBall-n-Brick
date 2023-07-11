@@ -7,13 +7,21 @@
     padding: 0;
     box-sizing: border-box;
     position: relative;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.host-step-1-location-container::-webkit-scrollbar {
+    width: 0;
+    height: 0;
 }
 
 .host-step-1-location-container-inner {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: calc(100vh - 210px);
+    height: calc(100vh - 224px);
     max-width: 630px;
     margin-bottom: 48px;
     position: relative;
@@ -22,6 +30,7 @@
     transform: translateX(-50%);
     box-sizing: border-box;
 }
+
 
 .host-step-1-location-top {
     width: 100%;
@@ -51,7 +60,7 @@
 .host-step-1-location-bottom {
     position: relative;
     height: 100%;
-    min-height: 124px;
+    min-height: 220px;
     margin-bottom: 48px;
     box-sizing: border-box;
 }
