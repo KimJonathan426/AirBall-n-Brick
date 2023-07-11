@@ -65,7 +65,7 @@ const Step1Location = ({
 
     useEffect(() => {
         let autocomplete;
-        console.log('fire')
+
         const loader = new Loader({
             apiKey: process.env.REACT_APP_GOOGLE_PLACES_API,
             version: 'weekly',

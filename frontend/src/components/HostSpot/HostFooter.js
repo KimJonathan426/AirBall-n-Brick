@@ -61,7 +61,6 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
             setStep(step + 1);
 
             if (step >= 1 && step <= 4) {
-                console.log('progress', progressBar1)
                 setProgressBar1((prev) => `${Number(prev) + 25}`);
             }
 
