@@ -1,5 +1,5 @@
 import { useState } from "react";
-import photosIcon from '../../../../images/photos-icon.svg';
+import photosIcon from '../../../../images/step-2-photos/photos-icon.svg';
 import './Step2Photos.css';
 
 const Step2Main = ({ setImages }) => {

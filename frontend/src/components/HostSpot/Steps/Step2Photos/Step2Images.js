@@ -1,5 +1,5 @@
 import { useState } from "react";
-import photosIcon from '../../../../images/photos-icon.svg';
+import photosIcon from '../../../../images/step-2-photos/photos-icon.svg';
 import './Step2Photos.css';
 
 const Step2Images = ({ images, setImages }) => {
@@ -26,15 +26,20 @@ const Step2Images = ({ images, setImages }) => {
 
     return (
         <>
-            <div className='step-2-photos-top'>
-                <h1 className='step-2-photos-header'>
-                    Choose at least 5 photos
-                </h1>
-                <div className='step-2-photos-subheader'>
-                    Drag to reorder
+            <div className='step-2-photos-top-2'>
+                <div style={{ paddingRight: '48px' }}>
+                    <h1 className='step-2-photos-header-2'>
+                        Choose at least 5 photos
+                    </h1>
+                    <div className='step-2-photos-subheader' style={{ paddingTop: '4px' }}>
+                        Drag to reorder
+                    </div>
                 </div>
+                <button className='add-more-btn'>
+
+                </button>
             </div>
-            <div className='step-2-photos-bottom'>
+            <div className='step-2-photos-bottom-2'>
                 <div
                     className=''
                     onDrop={handleDrop}

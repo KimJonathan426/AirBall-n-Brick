@@ -24,6 +24,19 @@
     animation-fill-mode: both;
 }
 
+.step-2-photos-top-2 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 700px;
+    padding-bottom: 24px;
+    animation-delay: 400ms;
+    animation-name: photosAnimation;
+    animation-duration: 600ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
 .step-2-photos-header {
     font-size: 32px;
     line-height: 36px;
@@ -31,6 +44,15 @@
     overflow-wrap: break-word;
     margin-top: 0;
     margin-bottom: 16px;
+}
+
+.step-2-photos-header-2 {
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+    overflow-wrap: break-word;
 }
 
 .step-2-photos-subheader {
@@ -121,15 +143,43 @@
 
 
 @media screen and (max-width: 743px) {
+    .step-2-photos-container-inner {
+        margin: unset;
+    }
+
     .step-2-photos-top {
         margin-bottom: 24px;
     }
 
+    .step-2-photos-header {
+        font-size: 26px;
+        line-height: 30px;
+        margin-bottom: 8px;
+    }
+
     .step-2-photos-bottom {
+        min-height: unset;
         max-width: unset;
-        gap: 12px;
-        padding: 2px 2px 12px 2px;
-        box-sizing: border-box;
+        height: 220px;
+        margin: 24px 0;
+    }
+
+    .step-2-photos-box,
+    .step-2-photos-box-drag {
+        padding: 0;
+    }
+
+    .photos-instruct-1 {
+        padding-bottom: 24px;
+    }
+
+    .photos-instruct-2 {
+        padding: 0 24px 24px 24px;
+    }
+
+    .photos-instruct-3 {
+        position: relative;
+        bottom: 0;
     }
 }
 
