@@ -315,7 +315,8 @@
         height: 44px;
     }
 
-    .host-spot-container {
+    .host-spot-container,
+    .host-spot-container-scrolled-down {
         padding: 0 24px 30px 24px;
     }
 
