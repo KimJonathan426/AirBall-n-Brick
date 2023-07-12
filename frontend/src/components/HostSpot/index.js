@@ -11,6 +11,7 @@ import LocationConfirm from './Steps/Step1Location/LocationConfirm';
 import LocationPin from './Steps/Step1Location/LocationPin';
 import Step2Intro from './Steps/StepIntros/Step2Intro';
 import Step2Amenities from './Steps/Step2Amenities';
+import Step2Photos from './Steps/Step2Photos';
 import HostFooter from './HostFooter';
 import logo from '../../images/logo-image.png';
 import './HostSpot.css';
@@ -35,6 +36,7 @@ const HostSpot = () => {
     const [lat, setLat] = useState(38.483378);
     const [lng, setLng] = useState(-109.681333);
     const [showSpecific, setShowSpecific] = useState(false);
+    const [images, setImages] = useState(null);
 
 
     useEffect(() => {
@@ -62,7 +64,7 @@ const HostSpot = () => {
                 } else {
                     setScrolled(false);
                 };
-            }
+            };
         };
 
         if (mainContainer) {
@@ -125,6 +127,9 @@ const HostSpot = () => {
                 }
                 {step === 6 &&
                     <Step2Amenities amenities={amenities} setAmenities={setAmenities} />
+                }
+                {step === 7 &&
+                    <Step2Photos images={images} setImages={setImages} />
                 }
             </div>
             <div className='host-spot-footer'>
