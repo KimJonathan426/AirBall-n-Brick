@@ -187,4 +187,16 @@
         width: 10px;
         height: 10px;
     }
+
+    .step-2-image-container {
+        width: 100%;
+    }
+
+    .step-2-image-container:nth-child(odd) {
+        padding-right: 0;
+    }
+
+    .step-2-image-container:nth-child(even) {
+        padding-left: 0;
+    }
 }
