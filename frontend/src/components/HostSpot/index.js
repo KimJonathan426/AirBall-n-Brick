@@ -36,7 +36,7 @@ const HostSpot = () => {
     const [lat, setLat] = useState(38.483378);
     const [lng, setLng] = useState(-109.681333);
     const [showSpecific, setShowSpecific] = useState(false);
-    const [images, setImages] = useState(null);
+    const [images, setImages] = useState([]);
 
 
     useEffect(() => {
