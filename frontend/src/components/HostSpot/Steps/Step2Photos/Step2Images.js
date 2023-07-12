@@ -5,41 +5,39 @@ import './Step2Photos.css';
 import './Step2Images.css';
 
 const Step2Images = ({ images, setImages }) => {
-
-    const [imageUrls, setImageUrls] = useState([undefined, undefined, undefined, undefined, undefined]);
-
     // add frontend validation for image types, show alert on attempt for invalid upload
     // also account for size ( no uploads less than 50KB or greater than 25MB)
 
+    const [imageUrls, setImageUrls] = useState([undefined, undefined, undefined, undefined, undefined]);
+    const [readerCount, setReaderCount] = useState(0);
+
     useEffect(() => {
-        if (images.length < 5) {
+        const loadImage = (image, i) => {
+            const reader = new FileReader();
 
-            for (const [i, image] of images.entries()) {
-                const reader = new FileReader();
+            reader.onload = () => {
+                setImageUrls((prev) => {
+                    const newState = [...prev];
+                    newState[i] = reader.result;
+                    return newState;
+                });
 
-                reader.onload = () => {
-                    setImageUrls((prev) => {
-                        prev[i] = reader.result;
-                        return [...prev];
-                    });
-                };
+                setReaderCount((count) => count + 1);
+            };
 
-                reader.readAsDataURL(image);
-            }
-        } else {
-            for (let image of images) {
-                const reader = new FileReader();
+            reader.readAsDataURL(image);
+        };
 
-                reader.onload = () => {
-                    setImageUrls((prev) => [...prev, reader.result]);
-                };
+        setImageUrls([undefined, undefined, undefined, undefined, undefined]);
+        setReaderCount(0);
 
-                reader.readAsDataURL(image);
-            }
-        }
+        images.forEach((image, i) => {
+            loadImage(image, i);
+        });
     }, [images]);
 
     const updateFiles = (e) => {
+        console.log('fired')
         const files = Array.from(e.target.files);
         setImages((prev) => [...prev, ...files]);
     };
@@ -59,10 +57,17 @@ const Step2Images = ({ images, setImages }) => {
     };
 
     const addImage = () => {
-        document.getElementById('step-2-photos-input').click();
+        const fileInputElement = document.getElementById('step-2-photos-input');
+
+        // clear value and reset just in case user wants to upload same image/input twice in a row
+        fileInputElement.value = '';
+        fileInputElement.click();
     };
 
-    console.log(imageUrls)
+    console.log('reader', readerCount)
+    console.log('images', images.length)
+    console.log('imageurls', imageUrls.length)
+
     return (
         <div className='step-2-photos-container-inner-2'>
             <div className='step-2-photos-top-2'>
@@ -91,30 +96,31 @@ const Step2Images = ({ images, setImages }) => {
                         onChange={updateFiles}
                     />
                 </div>
-                {imageUrls.map((url, i) => {
-                    return i === 0 ?
-                        <div key={`image-preview-${i}`} className='step-2-cover-image-box' >
-                            <img className='step-2-image' src={url} alt='court upload' />
-                        </div>
-                        : url ?
-                            <div key={`image-preview-${i}`} className='step-2-image-container'>
-                                <div className='step-2-image-container-inner'>
-                                    <div className='step-2-image-box'>
-                                        <div className='step-2-image-box-inner'>
-                                            <img className='step-2-image' src={url} alt='court upload' />
+                {images.length === readerCount &&
+                    imageUrls.map((url, i) =>
+                        i === 0 ?
+                            <div key={`image-preview-${i}`} className='step-2-cover-image-box' >
+                                <img className='step-2-image' src={url} alt='court upload' />
+                            </div>
+                            : url ?
+                                <div key={`image-preview-${i}`} className='step-2-image-container'>
+                                    <div className='step-2-image-container-inner'>
+                                        <div className='step-2-image-box'>
+                                            <div className='step-2-image-box-inner'>
+                                                <img className='step-2-image' src={url} alt='court upload' />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            :
-                            <div key={`image-preview-${i}`} className='step-2-image-container'>
-                                <div className='step-2-image-container-inner'>
-                                    <div className='step-2-image-container-empty' role='button' tabIndex="0" onClick={addImage}>
-                                        <img src={photoIcon} style={{ width: '32px' }} alt='portraits' />
+                                :
+                                <div key={`image-preview-${i}`} className='step-2-image-container'>
+                                    <div className='step-2-image-container-inner'>
+                                        <div className='step-2-image-container-empty' role='button' tabIndex="0" onClick={addImage}>
+                                            <img src={photoIcon} style={{ width: '32px' }} alt='portraits' />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                })}
+                    )}
             </div>
         </div>
     );
