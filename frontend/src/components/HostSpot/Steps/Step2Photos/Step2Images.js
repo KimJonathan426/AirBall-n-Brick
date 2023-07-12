@@ -1,10 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import photosIcon from '../../../../images/step-2-photos/photos-icon.svg';
 import plus from '../../../../images/step-2-photos/plus-sign.svg';
 import './Step2Photos.css';
 import './Step2Images.css';
 
 const Step2Images = ({ images, setImages }) => {
+
+    const [coverImage, setCoverImage] = useState('');
+
+    useEffect(() => {
+        const mainImage = images[0];
+        const reader = new FileReader();
+
+        reader.onload = () => {
+            setCoverImage(reader.result);
+        };
+
+        if (mainImage) {
+            reader.readAsDataURL(mainImage);
+        };
+    }, [images])
 
     const updateFiles = (e) => {
         const files = Array.from(e.target.files);
@@ -54,6 +69,10 @@ const Step2Images = ({ images, setImages }) => {
                         onChange={updateFiles}
                     />
                 </div>
+                <div className='step-2-cover-image-box' >
+                    <img className='step-2-cover-image' src={coverImage} alt='court upload' />
+                </div>
+                <div>Test</div>
             </div>
         </div>
     );
