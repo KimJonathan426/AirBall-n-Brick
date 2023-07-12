@@ -28,16 +28,14 @@ const Step2Images = ({ images, setImages }) => {
             reader.readAsDataURL(image);
         };
 
-        setImageUrls([undefined, undefined, undefined, undefined, undefined]);
-        setReaderCount(0);
+        const startFrom = readerCount;
 
-        images.forEach((image, i) => {
-            loadImage(image, i);
-        });
+        for (let i = startFrom; i < images.length; i++) {
+                loadImage(images[i], i);
+        };
     }, [images]);
 
     const updateFiles = (e) => {
-        console.log('fired')
         const files = Array.from(e.target.files);
         setImages((prev) => [...prev, ...files]);
     };
@@ -63,10 +61,7 @@ const Step2Images = ({ images, setImages }) => {
         fileInputElement.value = '';
         fileInputElement.click();
     };
-
-    console.log('reader', readerCount)
-    console.log('images', images.length)
-    console.log('imageurls', imageUrls.length)
+    console.log(imageUrls)
 
     return (
         <div className='step-2-photos-container-inner-2'>
