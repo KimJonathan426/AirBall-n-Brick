@@ -30,7 +30,7 @@ const Step2Main = ({ setImages }) => {
 
 
     return (
-        <>
+        <div className='step-2-photos-container-inner'>
             <div className='step-2-photos-top'>
                 <h1 className='step-2-photos-header'>Add some photos of your court</h1>
                 <div className='step-2-photos-subheader'>
@@ -72,7 +72,7 @@ const Step2Main = ({ setImages }) => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

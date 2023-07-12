@@ -8,13 +8,11 @@ const Step2Photos = ({ images, setImages }) => {
 
     return (
         <div className='step-2-photos-container'>
-            <div className='step-2-photos-container-inner'>
-                {images.length > 0 ?
-                    <Step2Images images={images} setImages={setImages}/>
-                    :
-                    <Step2Main setImages={setImages} />
-                }
-            </div>
+            {images.length > 0 ?
+                <Step2Images images={images} setImages={setImages} />
+                :
+                <Step2Main setImages={setImages} />
+            }
         </div>
     );
 };
