@@ -114,7 +114,7 @@
     padding-left: 8px;
 }
 
-.step-2-image-container-active {
+.step-2-image-container-inner {
     padding-bottom: 66.67%;
     color: #717171;
     position: relative;
@@ -123,6 +123,7 @@
 
 .step-2-image-container-empty {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -130,7 +131,7 @@
     padding: 40px;
     color: #717171;
     border: 1px dashed #717171;
-    position: relative;
+    position: absolute;
     box-sizing: border-box;
 }
 
