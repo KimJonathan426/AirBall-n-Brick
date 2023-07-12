@@ -6,6 +6,9 @@ const Step2Main = ({ setImages }) => {
 
     const [photoBoxClass, setPhotoBoxClass] = useState('step-2-photos-box');
 
+    // add frontend validation for image types, show alert on attempt for invalid upload
+    // also account for size ( no uploads less than 50KB or greater than 25MB)
+
     const updateFiles = (e) => {
         const files = Array.from(e.target.files);
         setImages(files);
@@ -54,7 +57,7 @@ const Step2Main = ({ setImages }) => {
                     onDragOver={handleDragOverMain}
                     onDragLeave={handleDragLeaveMain}>
                     <div className='step-2-photos-instruction'>
-                        <img src={photosIcon} style={{ width: '64px', height: '64px' }} />
+                        <img src={photosIcon} style={{ width: '64px', height: '64px' }} alt='portraits' />
                         {photoBoxClass === 'step-2-photos-box' &&
                             <>
                                 <div className='photos-instruct-1'>Drag your photos here</div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import photosIcon from '../../../../images/step-2-photos/photos-icon.svg';
+import photoIcon from '../../../../images/step-2-photos/photo-icon.svg';
 import plus from '../../../../images/step-2-photos/plus-sign.svg';
 import './Step2Photos.css';
 import './Step2Images.css';
@@ -7,6 +7,10 @@ import './Step2Images.css';
 const Step2Images = ({ images, setImages }) => {
 
     const [coverImage, setCoverImage] = useState('');
+    const [imageUrls, setImageUrls] = useState([]);
+
+    // add frontend validation for image types, show alert on attempt for invalid upload
+    // also account for size ( no uploads less than 50KB or greater than 25MB)
 
     useEffect(() => {
         const mainImage = images[0];
@@ -70,9 +74,22 @@ const Step2Images = ({ images, setImages }) => {
                     />
                 </div>
                 <div className='step-2-cover-image-box' >
-                    <img className='step-2-cover-image' src={coverImage} alt='court upload' />
+                    <img className='step-2-image' src={coverImage} alt='court upload' />
                 </div>
-                <div>Test</div>
+                <div className='step-2-image-container'>
+                    <div className='step-2-image-container-active'>
+                        <div className='step-2-image-box'>
+                            <div className='step-2-image-box-inner'>
+                                <img className='step-2-image' src={coverImage} alt='court upload' />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='step-2-image-container'>
+                    <div className='step-2-image-container-empty' role='button' tabIndex="0" onClick={() => document.getElementById('step-2-photos-input').click()}>
+                        <img src={photoIcon} style={{ width: '32px' }} alt='portraits' />
+                    </div>
+                </div>
             </div>
         </div>
     );
