@@ -43,8 +43,17 @@
     line-height: 20px;
     font-weight: 600;
     cursor: pointer;
-    transition-property: all 0.15s cubic-bezier(0.2,0,0,1);
+    transition: all 0.15s cubic-bezier(0.2,0,0,1);
     box-sizing: border-box;
+}
+
+.step-2-add-btn:hover {
+    border: 1px solid #222222;
+}
+
+.step-2-add-btn:active {
+    border: 1px solid #222222;
+    transform: scale(0.96);
 }
 
 .step-2-add-plus-box {
