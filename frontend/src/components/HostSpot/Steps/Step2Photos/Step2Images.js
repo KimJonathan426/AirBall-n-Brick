@@ -39,8 +39,13 @@ const Step2Images = ({ images, setImages }) => {
     }, [images]);
 
     const updateFiles = (e) => {
-        console.log(e)
-        const files = Array.from(e.target.files);
+        let files;
+
+        if (e.dataTransfer) {
+            files = Array.from(e.dataTransfer.files);
+        } else {
+            files = Array.from(e.target.files)
+        }
 
         const filler = files.length;
 
@@ -69,14 +74,9 @@ const Step2Images = ({ images, setImages }) => {
 
         setDragOverlayClass('step-2-photos-drag-overlay')
 
-        console.log('drop', e)
-
-        const files = Array.from(e.dataTransfer.files);
-        console.log('data transfer', e.dataTransfer.files)
-        console.log('file from event', files)
-        setImages(files);
+        updateFiles(e);
     };
-    console.log(images)
+
     const handleDragOver = (e) => {
         e.preventDefault();
 
