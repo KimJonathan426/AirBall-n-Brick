@@ -159,6 +159,21 @@
     position: relative;
 }
 
+.step-2-loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    color: #717171;
+    border: 2px solid #E9E9E9;
+    position: absolute;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
 
 @media screen and (max-width: 743px) {
     .step-2-photos-header-2 {

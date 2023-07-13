@@ -12,6 +12,7 @@ const Step2Images = ({ images, setImages }) => {
     const [readerCount, setReaderCount] = useState(0);
 
     useEffect(() => {
+        console.log(imageUrls)
         const loadImage = (image, i) => {
             const reader = new FileReader();
 
@@ -31,12 +32,32 @@ const Step2Images = ({ images, setImages }) => {
         const startFrom = readerCount;
 
         for (let i = startFrom; i < images.length; i++) {
-                loadImage(images[i], i);
+            loadImage(images[i], i);
         };
     }, [images]);
 
     const updateFiles = (e) => {
         const files = Array.from(e.target.files);
+
+        const filler = files.length;
+
+        const loadingFiller = Array.from({ length: filler }, () => 'loading');
+
+        if (readerCount < 5) {
+            setImageUrls((prev) => {
+                const undefinedIdx = prev.indexOf(undefined);
+                const validSlice = prev.slice(0, undefinedIdx);
+
+                const undefinedCount = 4 - undefinedIdx;
+
+                const remainingUndefined = Array.from({ length: undefinedCount }, () => undefined);
+
+                return [...validSlice, ...loadingFiller, ...remainingUndefined];
+            });
+        } else {
+            setImageUrls((prev) => [...prev, ...loadingFiller]);
+        }
+
         setImages((prev) => [...prev, ...files]);
     };
 
@@ -61,8 +82,8 @@ const Step2Images = ({ images, setImages }) => {
         fileInputElement.value = '';
         fileInputElement.click();
     };
-    console.log(imageUrls)
 
+    // console.log(imageUrls)
     return (
         <div className='step-2-photos-container-inner-2'>
             <div className='step-2-photos-top-2'>
@@ -91,31 +112,38 @@ const Step2Images = ({ images, setImages }) => {
                         onChange={updateFiles}
                     />
                 </div>
-                {images.length === readerCount &&
-                    imageUrls.map((url, i) =>
-                        i === 0 ?
-                            <div key={`image-preview-${i}`} className='step-2-cover-image-box' >
-                                <img className='step-2-image' src={url} alt='court upload' />
-                            </div>
-                            : url ?
-                                <div key={`image-preview-${i}`} className='step-2-image-container'>
-                                    <div className='step-2-image-container-inner'>
+                {/* {images.length === readerCount && */}
+                {imageUrls.map((url, i) =>
+                    i === 0 ?
+                        <div key={`image-preview-${i}`} className='step-2-cover-image-box' >
+                            <img className='step-2-image' src={url} alt='court upload' />
+                        </div>
+                        : url ?
+                            <div key={`image-preview-${i}`} className='step-2-image-container'>
+                                <div className='step-2-image-container-inner'>
+                                    {url === 'loading' ?
+                                        <div className='step-2-loading-container'>
+                                            <div className='loading-animation'></div>
+                                            <img src={photoIcon} style={{ width: '32px' }} alt='portraits' />
+                                        </div>
+                                        :
                                         <div className='step-2-image-box'>
                                             <div className='step-2-image-box-inner'>
                                                 <img className='step-2-image' src={url} alt='court upload' />
                                             </div>
                                         </div>
+                                    }
+                                </div>
+                            </div>
+                            :
+                            <div key={`image-preview-${i}`} className='step-2-image-container'>
+                                <div className='step-2-image-container-inner'>
+                                    <div className='step-2-image-container-empty' role='button' tabIndex="0" onClick={addImage}>
+                                        <img src={photoIcon} style={{ width: '32px' }} alt='portraits' />
                                     </div>
                                 </div>
-                                :
-                                <div key={`image-preview-${i}`} className='step-2-image-container'>
-                                    <div className='step-2-image-container-inner'>
-                                        <div className='step-2-image-container-empty' role='button' tabIndex="0" onClick={addImage}>
-                                            <img src={photoIcon} style={{ width: '32px' }} alt='portraits' />
-                                        </div>
-                                    </div>
-                                </div>
-                    )}
+                            </div>
+                )}
             </div>
         </div>
     );
