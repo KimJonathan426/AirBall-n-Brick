@@ -112,3 +112,28 @@ a {
     background: #FFF !important;
     opacity: 1 !important;
 }
+
+.loading-animation {
+    width: 300%;
+    height: 300%;
+    position: absolute;
+    background: linear-gradient(90deg, #E9E9E9, #F7F7F7, #E9E9E9);
+    background-size: 50% 100%;
+    background-color: #E9E9E9;
+    opacity: .8;
+    animation-name: loading;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform: rotate(10deg);
+}
+
+@keyframes loading {
+    0% {
+        background-position: -50% 50%;
+    }
+
+    100% {
+        background-position: 150% 50%;
+    }
+}
