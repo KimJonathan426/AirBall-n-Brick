@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import photoIcon from '../../../../images/step-2-photos/photo-icon.svg';
+import photosIcon from '../../../../images/step-2-photos/photos-icon.svg';
 // import plus from '../../../../images/step-2-photos/plus-sign.svg';
-import {ReactComponent as Plus} from '../../../../images/step-2-photos/plus-sign.svg';
+import { ReactComponent as Plus } from '../../../../images/step-2-photos/plus-sign.svg';
 import './Step2Photos.css';
 import './Step2Images.css';
 
@@ -9,6 +10,7 @@ const Step2Images = ({ images, setImages }) => {
     // add frontend validation for image types, show alert on attempt for invalid upload
     // also account for size ( no uploads less than 50KB or greater than 25MB)
 
+    const [dragOverlayClass, setDragOverlayClass] = useState('step-2-photos-drag-overlay');
     const [imageUrls, setImageUrls] = useState([undefined, undefined, undefined, undefined, undefined]);
     const [readerCount, setReaderCount] = useState(0);
 
@@ -37,6 +39,7 @@ const Step2Images = ({ images, setImages }) => {
     }, [images]);
 
     const updateFiles = (e) => {
+        console.log(e)
         const files = Array.from(e.target.files);
 
         const filler = files.length;
@@ -63,16 +66,33 @@ const Step2Images = ({ images, setImages }) => {
 
     const handleDrop = (e) => {
         e.preventDefault();
+
+        setDragOverlayClass('step-2-photos-drag-overlay')
+
+        console.log('drop', e)
+
         const files = Array.from(e.dataTransfer.files);
+        console.log('data transfer', e.dataTransfer.files)
+        console.log('file from event', files)
         setImages(files);
     };
-
+    console.log(images)
     const handleDragOver = (e) => {
         e.preventDefault();
+
+        setDragOverlayClass('step-2-photos-drag-overlay-active')
     };
 
     const handleDragLeave = (e) => {
         e.preventDefault();
+
+        // prevent flashing when dragging over different children in main container.
+        const isInContainer = e.relatedTarget && !e.currentTarget.contains(e.relatedTarget);
+
+        if (isInContainer) {
+            setDragOverlayClass('step-2-photos-drag-overlay')
+        }
+
     };
 
     const addImage = () => {
@@ -85,7 +105,10 @@ const Step2Images = ({ images, setImages }) => {
 
 
     return (
-        <div className='step-2-photos-container-inner-2'>
+        <div className='step-2-photos-container-inner-2'
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}>
             <div className='step-2-photos-top-2'>
                 <div style={{ paddingRight: '48px' }}>
                     <h1 className='step-2-photos-header-2'>
@@ -102,7 +125,13 @@ const Step2Images = ({ images, setImages }) => {
                     <span>Add more</span>
                 </button>
             </div>
-            <div className='step-2-photos-bottom-2'>
+            <div className='step-2-photos-bottom-2' >
+                <div className={dragOverlayClass}>
+                    <div className='step-2-photos-drag-overlay-inner'>
+                        <img src={photosIcon} style={{ width: '64px', height: '64px' }} alt='portraits' draggable='false' />
+                        <div className='photos-instruct-1'>Drop to upload</div>
+                    </div>
+                </div>
                 <div className='step-2-photos-input-box'>
                     <input
                         id='step-2-photos-input'
@@ -112,11 +141,10 @@ const Step2Images = ({ images, setImages }) => {
                         onChange={updateFiles}
                     />
                 </div>
-                {/* {images.length === readerCount && */}
                 {imageUrls.map((url, i) =>
                     i === 0 ?
-                        <div key={`image-preview-${i}`} className='step-2-cover-image-box' >
-                            <img className='step-2-image' src={url} alt='court upload' />
+                        <div key={`image-preview-${i}`} className='step-2-cover-image-box' draggable='true' >
+                            <img className='step-2-image' src={url} alt='court upload' draggable='false' />
                         </div>
                         : url ?
                             <div key={`image-preview-${i}`} className='step-2-image-container'>
@@ -124,12 +152,12 @@ const Step2Images = ({ images, setImages }) => {
                                     {url === 'loading' ?
                                         <div className='step-2-loading-container'>
                                             <div className='loading-animation'></div>
-                                            <img src={photoIcon} style={{ width: '32px' }} alt='portraits' />
+                                            <img src={photoIcon} style={{ width: '32px' }} alt='portraits' draggable='false' />
                                         </div>
                                         :
                                         <div className='step-2-image-box'>
                                             <div className='step-2-image-box-inner'>
-                                                <img className='step-2-image' src={url} alt='court upload' />
+                                                <img className='step-2-image' src={url} alt='court upload' draggable='false' />
                                             </div>
                                         </div>
                                     }
@@ -139,7 +167,7 @@ const Step2Images = ({ images, setImages }) => {
                             <div key={`image-preview-${i}`} className='step-2-image-container'>
                                 <div className='step-2-image-container-inner'>
                                     <div className='step-2-image-container-empty' role='button' tabIndex="0" onClick={addImage}>
-                                        <img src={photoIcon} style={{ width: '32px' }} alt='portraits' />
+                                        <img src={photoIcon} style={{ width: '32px' }} alt='portraits' draggable='false' />
                                     </div>
                                 </div>
                             </div>
@@ -153,7 +181,7 @@ const Step2Images = ({ images, setImages }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

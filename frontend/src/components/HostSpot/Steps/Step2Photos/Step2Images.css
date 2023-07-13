@@ -103,6 +103,7 @@
     position: absolute;
     box-sizing: border-box;
     transform: translateY(-74px);
+    pointer-events: none;
     z-index: 1;
 }
 
@@ -112,6 +113,18 @@
 
 .step-2-photos-drag-overlay-active {
     opacity: 0.95;
+}
+
+.step-2-photos-drag-overlay-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
 }
 
 .step-2-cover-image-box {
