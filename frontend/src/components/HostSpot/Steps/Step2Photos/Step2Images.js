@@ -11,21 +11,37 @@ const Step2Images = ({ images, setImages }) => {
     // also account for size ( no uploads less than 50KB or greater than 25MB)
 
     const [dragOverlayClass, setDragOverlayClass] = useState('step-2-photos-drag-overlay');
-    const [imageUrls, setImageUrls] = useState([undefined, undefined, undefined, undefined, undefined]);
+    const [imageUrls, setImageUrls] = useState([[undefined], [undefined], [undefined], [undefined], [undefined]]);
     const [readerCount, setReaderCount] = useState(0);
 
     useEffect(() => {
         const loadImage = (image, i) => {
             const reader = new FileReader();
 
-            reader.onload = () => {
-                setImageUrls((prev) => {
-                    const newState = [...prev];
-                    newState[i] = reader.result;
-                    return newState;
-                });
+            reader.onload = (e) => {
+                const img = new Image();
 
-                setReaderCount((count) => count + 1);
+                img.onload = () => {
+                    // change class based on image aspect ratio (tall = contain, short or square = cover)
+                    let imgClass = 'step-2-image-cover';
+
+                    const aspectRatio = img.naturalWidth / img.naturalHeight;
+
+                    if (aspectRatio < 1 ) {
+                        imgClass = 'step-2-image-contain';
+                    };
+
+                    setImageUrls((prev) => {
+                        const newState = [...prev];
+                        newState[i] = [reader.result, imgClass];
+                        return newState;
+                    });
+
+                    setReaderCount((count) => count + 1);
+                }
+
+                img.src = e.target.result
+
             };
 
             reader.readAsDataURL(image);
@@ -49,7 +65,7 @@ const Step2Images = ({ images, setImages }) => {
 
         const filler = files.length;
 
-        const loadingFiller = Array.from({ length: filler }, () => 'loading');
+        const loadingFiller = Array.from({ length: filler }, () => ['loading']);
 
         if (readerCount < 5) {
             setImageUrls((prev) => {
@@ -69,18 +85,40 @@ const Step2Images = ({ images, setImages }) => {
         setImages((prev) => [...prev, ...files]);
     };
 
-    const handleDrop = (e) => {
-        e.preventDefault();
+    const addImage = () => {
+        const fileInputElement = document.getElementById('step-2-photos-input');
 
-        setDragOverlayClass('step-2-photos-drag-overlay')
-
-        updateFiles(e);
+        // clear value and reset just in case user wants to upload same image/input twice in a row
+        fileInputElement.value = '';
+        fileInputElement.click();
     };
+
+    const handleDragStart = (e, id) => {
+        // e.stopPropagation();
+        // e.preventDefault();
+        console.log('id', id)
+        e.dataTransfer.setData('text/plain', id)
+
+        console.log('start e', e)
+    }
 
     const handleDragOver = (e) => {
         e.preventDefault();
 
+        // console.log('e', e.dataTransfer.getData('text/plain'))
+
+
         setDragOverlayClass('step-2-photos-drag-overlay-active')
+    };
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+
+        const transferredData = e.dataTransfer.getData('text/plain');
+        console.log('transfered Data', transferredData)
+        setDragOverlayClass('step-2-photos-drag-overlay')
+
+        updateFiles(e);
     };
 
     const handleDragLeave = (e) => {
@@ -95,19 +133,11 @@ const Step2Images = ({ images, setImages }) => {
 
     };
 
-    const addImage = () => {
-        const fileInputElement = document.getElementById('step-2-photos-input');
-
-        // clear value and reset just in case user wants to upload same image/input twice in a row
-        fileInputElement.value = '';
-        fileInputElement.click();
-    };
-
 
     return (
         <div className='step-2-photos-container-inner-2'
-            onDrop={handleDrop}
             onDragOver={handleDragOver}
+            onDrop={handleDrop}
             onDragLeave={handleDragLeave}>
             <div className='step-2-photos-top-2'>
                 <div style={{ paddingRight: '48px' }}>
@@ -143,13 +173,13 @@ const Step2Images = ({ images, setImages }) => {
                 </div>
                 {imageUrls.map((url, i) =>
                     i === 0 ?
-                        <div key={`image-preview-${i}`} className='step-2-cover-image-box' draggable='true' >
-                            <img className='step-2-image' src={url} alt='court upload' draggable='false' />
+                        <div key={`image-preview-${i}`} className='step-2-cover-image-box' draggable='true' onDragStart={(e) => handleDragStart(e, i)}>
+                            <img className='step-2-image-cover' src={url[0]} alt='court upload' draggable='false' />
                         </div>
-                        : url ?
+                        : url[0] ?
                             <div key={`image-preview-${i}`} className='step-2-image-container'>
                                 <div className='step-2-image-container-inner'>
-                                    {url === 'loading' ?
+                                    {url[0] === 'loading' ?
                                         <div className='step-2-loading-container'>
                                             <div className='loading-animation'></div>
                                             <img src={photoIcon} style={{ width: '32px' }} alt='portraits' draggable='false' />
@@ -157,7 +187,7 @@ const Step2Images = ({ images, setImages }) => {
                                         :
                                         <div className='step-2-image-box'>
                                             <div className='step-2-image-box-inner'>
-                                                <img className='step-2-image' src={url} alt='court upload' draggable='false' />
+                                                <img className={url[1]} src={url[0]} alt='court upload' draggable='false' />
                                             </div>
                                         </div>
                                     }
