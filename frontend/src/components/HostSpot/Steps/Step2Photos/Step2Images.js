@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import photoIcon from '../../../../images/step-2-photos/photo-icon.svg';
-import plus from '../../../../images/step-2-photos/plus-sign.svg';
+// import plus from '../../../../images/step-2-photos/plus-sign.svg';
+import {ReactComponent as Plus} from '../../../../images/step-2-photos/plus-sign.svg';
 import './Step2Photos.css';
 import './Step2Images.css';
 
@@ -12,7 +13,6 @@ const Step2Images = ({ images, setImages }) => {
     const [readerCount, setReaderCount] = useState(0);
 
     useEffect(() => {
-        console.log(imageUrls)
         const loadImage = (image, i) => {
             const reader = new FileReader();
 
@@ -83,7 +83,7 @@ const Step2Images = ({ images, setImages }) => {
         fileInputElement.click();
     };
 
-    // console.log(imageUrls)
+
     return (
         <div className='step-2-photos-container-inner-2'>
             <div className='step-2-photos-top-2'>
@@ -97,7 +97,7 @@ const Step2Images = ({ images, setImages }) => {
                 </div>
                 <button className='step-2-add-btn' onClick={addImage}>
                     <span className='step-2-add-plus-box'>
-                        <img src={plus} className='step-2-add-plus' alt='add more plus sign' />
+                        <Plus className='step-2-add-plus' />
                     </span>
                     <span>Add more</span>
                 </button>
@@ -144,6 +144,14 @@ const Step2Images = ({ images, setImages }) => {
                                 </div>
                             </div>
                 )}
+                <div className='step-2-image-container'>
+                    <div className='step-2-image-container-inner'>
+                        <div className='step-2-image-container-empty' role='button' tabIndex="0" onClick={addImage}>
+                            <Plus className='step-2-add-plus-alt' />
+                            <div className='step-2-add-text'>Add more</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

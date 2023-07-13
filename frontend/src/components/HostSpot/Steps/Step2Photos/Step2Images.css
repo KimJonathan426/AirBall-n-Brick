@@ -62,12 +62,26 @@
 
 .step-2-add-plus-box {
     margin-right: 8px;
-    height: 16px;
 }
 
 .step-2-add-plus {
-    width: 16px;
-    height: 16px;
+    width: 16px !important;
+    height: 16px !important;
+}
+
+.step-2-add-plus-alt {
+    width: 32px !important;
+    height: 32px !important;
+    stroke: #717171 !important;
+    stroke-width: 2 !important;
+}
+
+.step-2-add-text {
+    padding-top: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    color: #717171;
 }
 
 .step-2-photos-bottom-2 {
@@ -199,8 +213,15 @@
     }
 
     .step-2-add-plus {
-        width: 10px;
-        height: 10px;
+        width: 10px !important;
+        height: 10px !important;
+        stroke-width: 6.4 !important;
+    }
+
+    .step-2-add-plus-alt {
+        width: 16px !important;
+        height: 16px !important;
+        stroke-width: 4 !important;
     }
 
     .step-2-image-container {
