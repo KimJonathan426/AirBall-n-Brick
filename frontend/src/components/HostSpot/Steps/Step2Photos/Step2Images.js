@@ -127,7 +127,8 @@ const Step2Images = ({ images, setImages }) => {
         const transferredData = e.dataTransfer.getData('text/plain');
 
         // if its an internal drag do not show overlay
-        if (transferredData) {
+        // use both internal html drag data transfer and react state just in case
+        if (transferredData || dragElementId) {
             return;
         };
 
@@ -173,7 +174,7 @@ const Step2Images = ({ images, setImages }) => {
         const isInContainer = e.relatedTarget && e.currentTarget.contains(e.relatedTarget);
 
         // element is a file, same element, or already inside and should not execute function
-        if (dragElementId === null || dragElementId == id || isInContainer) {
+        if (dragElementId === null || dragElementId === id || isInContainer) {
             return;
         };
 
@@ -197,7 +198,8 @@ const Step2Images = ({ images, setImages }) => {
         // prevent multiple leaves from triggering while inside same element.
         const isInContainer = e.relatedTarget && e.currentTarget.contains(e.relatedTarget);
 
-        if (isInContainer) {
+        // element is a file, same element, or already inside and should not execute function
+        if (dragElementId === null || dragElementId === id || isInContainer) {
             return;
         };
 
@@ -217,22 +219,33 @@ const Step2Images = ({ images, setImages }) => {
 
         // another check to make it not drop in main just in case.
         // file will return out of function and an inner element drag will continue
-        if (transferredData) {
+        if (transferredData || dragElementId) {
             e.stopPropagation();
         } else {
             return;
         };
 
-        setInnerDrag(false);
         setValidDrop(true);
+        setInnerDrag(false); // set again just in case even tho dragend handles
+        setDragElementId(null); // set again just in case even tho dragend handles
 
-        if (id === Number(transferredData)) {
-            const placeholderElement = document.getElementById(`image-placeholder-${transferredData}`);
+        // could also use Number(transferredData) instead
+        if (id === dragElementId) {
+            const placeholderElement = document.getElementById(`image-placeholder-${dragElementId}`);
             placeholderElement.style.zIndex = 0;
+            return;
         };
+
+        // start switch logic
+        // setImages((prev) => {
+        //     const newState = [...prev];
+        //     [newState[id], newState[dragElementId]]
+        // })
+
     }
 
     const handleDragEnd = (e, id) => {
+        setInnerDrag(false);
         setValidDrop(false);
         setDragElementId(null);
 
