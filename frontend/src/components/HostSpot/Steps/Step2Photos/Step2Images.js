@@ -234,7 +234,6 @@ const Step2Images = ({ images, setImages }) => {
 
     const handleDragEnter = (e, id) => {
         e.preventDefault();
-        e.stopPropagation();
 
         // prevent multiple enters from triggering while in same element.
         const isInContainer = e.relatedTarget && e.currentTarget.contains(e.relatedTarget);
@@ -259,7 +258,6 @@ const Step2Images = ({ images, setImages }) => {
 
     const handleDragLeave = (e, id) => {
         e.preventDefault();
-        e.stopPropagation();
 
         // prevent multiple leaves from triggering while inside same element.
         const isInContainer = e.relatedTarget && e.currentTarget.contains(e.relatedTarget);
