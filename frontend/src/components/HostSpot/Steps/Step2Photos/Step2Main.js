@@ -30,11 +30,13 @@ const Step2Main = ({ setImages }) => {
         e.preventDefault();
 
         // prevent flashing when dragging over different children in main container.
-        const isInContainer = e.relatedTarget && !e.currentTarget.contains(e.relatedTarget);
+        const isInContainer = e.relatedTarget && e.currentTarget.contains(e.relatedTarget);
 
         if (isInContainer) {
-            setPhotoBoxClass('step-2-photos-box');
+            return;
         };
+
+        setPhotoBoxClass('step-2-photos-box');
     }
 
 

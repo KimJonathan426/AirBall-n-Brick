@@ -119,6 +119,9 @@
     position: relative;
 }
 
+.photos-instruct-upload:active {
+    color: #717171;
+}
 
 @media screen and (max-width: 743px) {
     .step-2-photos-container-inner {
