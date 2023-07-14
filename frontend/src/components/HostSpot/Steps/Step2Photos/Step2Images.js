@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { ReactComponent as Plus } from '../../../../images/step-2-photos/plus-sign.svg';
 import photoIcon from '../../../../images/step-2-photos/photo-icon.svg';
 import photosIcon from '../../../../images/step-2-photos/photos-icon.svg';
-import { ReactComponent as Plus } from '../../../../images/step-2-photos/plus-sign.svg';
 import './Step2Photos.css';
 import './Step2Images.css';
 
@@ -13,6 +13,7 @@ const Step2Images = ({ images, setImages }) => {
     const [imageUrls, setImageUrls] = useState([[undefined], [undefined], [undefined], [undefined], [undefined]]);
     const [readerCount, setReaderCount] = useState(0);
     const [innerDrag, setInnerDrag] = useState(false);
+
 
     useEffect(() => {
         const loadImage = (image, i) => {
@@ -52,7 +53,7 @@ const Step2Images = ({ images, setImages }) => {
         for (let i = startFrom; i < images.length; i++) {
             loadImage(images[i], i);
         };
-    }, [images]);
+    }, [images, readerCount]);
 
     const updateFiles = (e) => {
         let files;
@@ -105,7 +106,6 @@ const Step2Images = ({ images, setImages }) => {
     // main draggable functions
     const handleDragEnter = (e) => {
         e.preventDefault();
-        console.log('enter')
 
         // if its an internal drag do not show overlay
         if (innerDrag) {
@@ -152,16 +152,30 @@ const Step2Images = ({ images, setImages }) => {
         e.dataTransfer.setData('text/plain', id);
         setInnerDrag(true);
 
-        // const dragElement = document.getElementById(`image-preview-${id}`);
+        const placeholderElement = document.getElementById(`image-placeholder-${id}`);
+
+        // ensures the dragImage is the image and not overlay
+        setTimeout(() => {
+            if (placeholderElement) {
+                placeholderElement.style.zIndex = 1;
+            };
+        }, 0);
     };
 
     const handleDragDrop = (e, id) => {
         e.preventDefault();
         const transferredData = e.dataTransfer.getData('text/plain');
+
+        // another check to make it not drop in main just in case
+        // file will return out and an inner element drag will continue
+        if (transferredData) {
+            e.stopPropagation();
+        } else {
+            return;
+        };
+
         setInnerDrag(false);
 
-        console.log('id', id)
-        console.log('transferred data', transferredData)
     }
 
 
@@ -205,8 +219,13 @@ const Step2Images = ({ images, setImages }) => {
                 </div>
                 {imageUrls.map((url, i) =>
                     i === 0 ?
-                        <div key={i} id={`image-preview-${i}`} className='step-2-cover-image-box' draggable='true' onDragStart={(e) => handleDragStart(e, i)} onDrop={(e) => handleDragDrop(e, i)}>
-                            <img className='step-2-image-cover' src={url[0]} alt='court upload' draggable='false' />
+                        <div key={i} id={`image-preview-${i}`} className='step-2-image-container-main' draggable='true' onDragStart={(e) => handleDragStart(e, i)} onDrop={(e) => handleDragDrop(e, i)}>
+                            <div id={`image-placeholder-${i}`} className='step-2-image-placeholder-main' draggable='false'>
+                                <img src={photoIcon} style={{ width: '32px' }} alt='portraits' />
+                            </div>
+                            <div className='step-2-cover-image-box'>
+                                <img className='step-2-image-cover' src={url[0]} alt='court upload' draggable='false' />
+                            </div>
                         </div>
                         : url[0] ?
                             url[0] === 'loading' ?
@@ -220,6 +239,9 @@ const Step2Images = ({ images, setImages }) => {
                                 </div>
                                 :
                                 <div key={i} id={`image-preview-${i}`} className='step-2-image-container' draggable='true' onDragStart={(e) => handleDragStart(e, i)} onDrop={(e) => handleDragDrop(e, i)}>
+                                    <div id={`image-placeholder-${i}`} className='step-2-image-placeholder' draggable='false'>
+                                        <img src={photoIcon} style={{ width: '32px' }} alt='portraits' />
+                                    </div>
                                     <div className='step-2-image-container-inner'>
                                         <div className='step-2-image-box'>
                                             <div className='step-2-image-box-inner'>
