@@ -13,10 +13,35 @@ const Step2Images = ({ images, setImages }) => {
     const [dragOverlayClass, setDragOverlayClass] = useState('step-2-photos-drag-overlay');
     const [imageUrls, setImageUrls] = useState([[undefined], [undefined], [undefined], [undefined], [undefined]]);
     const [readerCount, setReaderCount] = useState(0);
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [dropdownId, setDropdownId] = useState(null);
     const [innerDrag, setInnerDrag] = useState(false);
     const [dragElementId, setDragElementId] = useState(null);
     const [validDrop, setValidDrop] = useState(false);
 
+    useEffect(() => {
+        const outsideClick = (e) => {
+            if (dropdownId === null) {
+                return;
+            };
+
+            const dropdownButton = document.getElementById(`image-dropdown-${dropdownId}`);
+            const dropdownContent = document.getElementById(`image-dropdown-items-${dropdownId}`);
+
+            const target = e.target;
+
+            if (!dropdownButton.contains(target) && !dropdownContent.contains(target)) {
+                setShowDropdown(false);
+                setDropdownId(null);
+            };
+        };
+
+        document.addEventListener('click', outsideClick);
+
+        return () => {
+            document.removeEventListener('click', outsideClick);
+        };
+    });
 
     useEffect(() => {
         const loadImage = (image, i) => {
@@ -103,6 +128,17 @@ const Step2Images = ({ images, setImages }) => {
         fileInputElement.click();
     };
 
+    const handleDropdown = (i) => {
+        if (dropdownId === i) {
+            setShowDropdown(!showDropdown);
+            setDropdownId(null);
+            return;
+        }
+
+        setShowDropdown(true);
+        setDropdownId(i);
+    };
+
     // main draggable functions
     const handleFileEnter = (e) => {
         e.preventDefault();
@@ -156,11 +192,17 @@ const Step2Images = ({ images, setImages }) => {
 
         const placeholderElement = document.getElementById(`image-placeholder-${id}`);
 
+        if (showDropdown || dropdownId !== null) {
+            setShowDropdown(false);
+            setDropdownId(null);
+        };
+
         // ensures the dragImage is the image and not overlay
         setTimeout(() => {
             if (placeholderElement) {
                 placeholderElement.style.zIndex = 1;
             };
+
         }, 0);
     };
 
@@ -306,9 +348,15 @@ const Step2Images = ({ images, setImages }) => {
                                 <div className='step-2-image-options-container'>
                                     <div className='step-2-image-options-inner'>
                                         <div className='cover-image-label'>Cover Photo</div>
-                                        <button className='step-2-image-options-btn'>
+                                        <button id={`image-dropdown-${i}`} className='step-2-image-options-btn' onClick={() => handleDropdown(i)}>
                                             <Options />
                                         </button>
+                                        {showDropdown && dropdownId === i &&
+                                            <div id={`image-dropdown-items-${i}`} className='step-2-options-dropdown'>
+                                                <button className='step-2-options-item'>Move forward</button>
+                                                <button className='step-2-options-item'>Delete</button>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                                 <div id={`image-placeholder-${i}`} className='step-2-image-placeholder' draggable='false'>
@@ -339,9 +387,19 @@ const Step2Images = ({ images, setImages }) => {
                                     <div className='step-2-image-container-inner'>
                                         <div className='step-2-image-options-container'>
                                             <div className='step-2-image-options-inner'>
-                                                <button className='step-2-image-options-btn'>
+                                                <button id={`image-dropdown-${i}`} className='step-2-image-options-btn' onClick={() => handleDropdown(i)}>
                                                     <Options />
                                                 </button>
+                                                {showDropdown && dropdownId === i &&
+                                                    <div id={`image-dropdown-items-${i}`} className='step-2-options-dropdown'>
+                                                        <button className='step-2-options-item'>Move backward</button>
+                                                        {i !== images.length - 1 &&
+                                                            < button className='step-2-options-item'>Move forward</button>
+                                                        }
+                                                        <button className='step-2-options-item'>Make cover photo</button>
+                                                        <button className='step-2-options-item'>Delete</button>
+                                                    </div>
+                                                }
                                             </div>
                                         </div>
                                         <div id={`image-placeholder-${i}`} className='step-2-image-placeholder' draggable='false'>
