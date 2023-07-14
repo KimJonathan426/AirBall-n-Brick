@@ -43,7 +43,7 @@ const Step2Images = ({ images, setImages }) => {
                     setReaderCount((count) => count + 1);
                 }
 
-                img.src = e.target.result
+                img.src = e.target.result;
 
             };
 
@@ -63,11 +63,10 @@ const Step2Images = ({ images, setImages }) => {
         if (e.dataTransfer) {
             files = Array.from(e.dataTransfer.files);
         } else {
-            files = Array.from(e.target.files)
-        }
+            files = Array.from(e.target.files);
+        };
 
         const filler = files.length;
-
         const loadingFiller = Array.from({ length: filler }, () => ['loading']);
 
         if (readerCount < 5) {
@@ -76,23 +75,21 @@ const Step2Images = ({ images, setImages }) => {
 
                 for (let imageArr of prev) {
                     if (imageArr[0] === undefined) {
-                        break
-                    }
+                        break;
+                    };
 
-                    undefinedIdx++
-                }
+                    undefinedIdx++;
+                };
 
                 const validSlice = prev.slice(0, undefinedIdx);
-
                 const undefinedCount = 4 - undefinedIdx;
-
                 const remainingUndefined = Array.from({ length: undefinedCount }, () => [undefined]);
 
                 return [...validSlice, ...loadingFiller, ...remainingUndefined];
             });
         } else {
             setImageUrls((prev) => [...prev, ...loadingFiller]);
-        }
+        };
 
         setImages((prev) => [...prev, ...files]);
     };
@@ -112,7 +109,7 @@ const Step2Images = ({ images, setImages }) => {
         // if its an internal drag do not show overlay
         if (innerDrag) {
             return;
-        }
+        };
 
         setDragOverlayClass('step-2-photos-drag-overlay-active');
     };
@@ -179,17 +176,17 @@ const Step2Images = ({ images, setImages }) => {
         };
 
         setTimeout(() => {
-            const dragElement = document.getElementById(`image-preview-${dragElementId}`);
             const dragElementOverlay = document.getElementById(`image-placeholder-${dragElementId}`);
-            const newElement = document.getElementById(`image-preview-${id}`);
 
+            setImageUrls((prev) => {
+                const newState = [...prev];
+                [newState[dragElementId], newState[id]] = [newState[id], newState[dragElementId]];
+                return newState;
+            });
 
-            dragElement.src = imageUrls[id][0];
-            newElement.src = imageUrls[dragElementId][0];
             dragElementOverlay.style.zIndex = 0;
-            [dragElement.className, newElement.className] = [newElement.className, dragElement.className];
-        }, 0)
-    }
+        }, 0);
+    };
 
     const handleDragLeave = (e, id) => {
         e.preventDefault();
@@ -203,15 +200,15 @@ const Step2Images = ({ images, setImages }) => {
             return;
         };
 
-        const dragElement = document.getElementById(`image-preview-${dragElementId}`);
         const dragElementOverlay = document.getElementById(`image-placeholder-${dragElementId}`);
-        const newElement = document.getElementById(`image-preview-${id}`);
-
         dragElementOverlay.style.zIndex = 1;
-        dragElement.src = imageUrls[dragElementId][0];
-        newElement.src = imageUrls[id][0];
-        [dragElement.className, newElement.className] = [newElement.className, dragElement.className];
-    }
+
+        setImageUrls((prev) => {
+            const newState = [...prev];
+            [newState[dragElementId], newState[id]] = [newState[id], newState[dragElementId]];
+            return newState;
+        });
+    };
 
     const handleDragDrop = (e, id) => {
         e.preventDefault();
@@ -226,7 +223,7 @@ const Step2Images = ({ images, setImages }) => {
         };
 
         setValidDrop(true);
-        setInnerDrag(false); // set again just in case even tho dragend handles
+        setInnerDrag(false);
         setDragElementId(null); // set again just in case even tho dragend handles
 
         // could also use Number(transferredData) instead
@@ -237,12 +234,12 @@ const Step2Images = ({ images, setImages }) => {
         };
 
         // start switch logic
-        // setImages((prev) => {
-        //     const newState = [...prev];
-        //     [newState[id], newState[dragElementId]]
-        // })
-
-    }
+        setImages((prev) => {
+            const newState = [...prev];
+            [newState[dragElementId], newState[id]] = [newState[id], newState[dragElementId]];
+            return newState;
+        });
+    };
 
     const handleDragEnd = (e, id) => {
         setInnerDrag(false);
