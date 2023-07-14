@@ -186,7 +186,6 @@ const Step2Images = ({ images, setImages }) => {
     }
 
     const handleDragEnd = (e, id) => {
-        console.log('id', id)
         setValidDrop(false);
 
         if (!validDrop) {
