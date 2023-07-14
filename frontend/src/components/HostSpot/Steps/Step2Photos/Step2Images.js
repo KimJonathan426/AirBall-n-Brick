@@ -13,6 +13,7 @@ const Step2Images = ({ images, setImages }) => {
     const [imageUrls, setImageUrls] = useState([[undefined], [undefined], [undefined], [undefined], [undefined]]);
     const [readerCount, setReaderCount] = useState(0);
     const [innerDrag, setInnerDrag] = useState(false);
+    const [dragElementId, setDragElementId] = useState(null);
     const [validDrop, setValidDrop] = useState(false);
 
 
@@ -105,7 +106,7 @@ const Step2Images = ({ images, setImages }) => {
     };
 
     // main draggable functions
-    const handleDragEnter = (e) => {
+    const handleFileEnter = (e) => {
         e.preventDefault();
 
         // if its an internal drag do not show overlay
@@ -135,7 +136,7 @@ const Step2Images = ({ images, setImages }) => {
         updateFiles(e);
     };
 
-    const handleDragLeave = (e) => {
+    const handleFileLeave = (e) => {
         e.preventDefault();
 
         // prevent flashing when dragging over different children in main container.
@@ -152,6 +153,7 @@ const Step2Images = ({ images, setImages }) => {
     const handleDragStart = (e, id) => {
         e.dataTransfer.setData('text/plain', id);
         setInnerDrag(true);
+        setDragElementId(id);
 
         const placeholderElement = document.getElementById(`image-placeholder-${id}`);
 
@@ -162,6 +164,52 @@ const Step2Images = ({ images, setImages }) => {
             };
         }, 0);
     };
+
+    const handleDragEnter = (e, id) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // prevent multiple enters from triggering while in same element.
+        const isInContainer = e.relatedTarget && e.currentTarget.contains(e.relatedTarget);
+
+        // element is a file, same element, or already inside and should not execute function
+        if (dragElementId === null || dragElementId == id || isInContainer) {
+            return;
+        };
+
+        setTimeout(() => {
+            const dragElement = document.getElementById(`image-preview-${dragElementId}`);
+            const dragElementOverlay = document.getElementById(`image-placeholder-${dragElementId}`);
+            const newElement = document.getElementById(`image-preview-${id}`);
+
+
+            dragElement.src = imageUrls[id][0];
+            newElement.src = imageUrls[dragElementId][0];
+            dragElementOverlay.style.zIndex = 0;
+            [dragElement.className, newElement.className] = [newElement.className, dragElement.className];
+        }, 0)
+    }
+
+    const handleDragLeave = (e, id) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // prevent multiple leaves from triggering while inside same element.
+        const isInContainer = e.relatedTarget && e.currentTarget.contains(e.relatedTarget);
+
+        if (isInContainer) {
+            return;
+        };
+
+        const dragElement = document.getElementById(`image-preview-${dragElementId}`);
+        const dragElementOverlay = document.getElementById(`image-placeholder-${dragElementId}`);
+        const newElement = document.getElementById(`image-preview-${id}`);
+
+        dragElementOverlay.style.zIndex = 1;
+        dragElement.src = imageUrls[dragElementId][0];
+        newElement.src = imageUrls[id][0];
+        [dragElement.className, newElement.className] = [newElement.className, dragElement.className];
+    }
 
     const handleDragDrop = (e, id) => {
         e.preventDefault();
@@ -181,27 +229,26 @@ const Step2Images = ({ images, setImages }) => {
         if (id === Number(transferredData)) {
             const placeholderElement = document.getElementById(`image-placeholder-${transferredData}`);
             placeholderElement.style.zIndex = 0;
-        }
-
+        };
     }
 
     const handleDragEnd = (e, id) => {
         setValidDrop(false);
+        setDragElementId(null);
 
         if (!validDrop) {
             const placeholderElement = document.getElementById(`image-placeholder-${id}`);
             placeholderElement.style.zIndex = 0;
-        }
-
-    }
+        };
+    };
 
 
     return (
         <div className='step-2-photos-container-inner-2'
-            onDragEnter={handleDragEnter}
+            onDragEnter={handleFileEnter}
             onDragOver={handleDragOver}
             onDrop={handleFileDrop}
-            onDragLeave={handleDragLeave}>
+            onDragLeave={handleFileLeave}>
             <div className='step-2-photos-top-2'>
                 <div style={{ paddingRight: '48px' }}>
                     <h1 className='step-2-photos-header-2'>
@@ -236,21 +283,24 @@ const Step2Images = ({ images, setImages }) => {
                 </div>
                 {imageUrls.map((url, i) =>
                     i === 0 ?
-                        <div key={i} id={`image-preview-${i}`} className='step-2-image-container-main'
+                        <div key={i} id={`image-container-${i}`} className='step-2-image-container-main'
                         draggable='true'
                         onDragStart={(e) => handleDragStart(e, i)}
+                        onDragEnter={(e) => handleDragEnter(e, i)}
+                        onDragOver={handleDragOver}
+                        onDragLeave={(e) => handleDragLeave(e, i)}
                         onDrop={(e) => handleDragDrop(e, i)}
                         onDragEnd={(e) => handleDragEnd(e, i)}>
-                            <div id={`image-placeholder-${i}`} className='step-2-image-placeholder-main' draggable='false'>
+                            <div id={`image-placeholder-${i}`} className='step-2-image-placeholder' draggable='false'>
                                 <img src={photoIcon} style={{ width: '32px' }} alt='portraits' />
                             </div>
                             <div className='step-2-cover-image-box'>
-                                <img className='step-2-image-cover' src={url[0]} alt='court upload' draggable='false' />
+                                <img id={`image-preview-${i}`} className='step-2-image-cover' src={url[0]} alt='court upload' draggable='false' />
                             </div>
                         </div>
                         : url[0] ?
                             url[0] === 'loading' ?
-                                <div key={i} id={`image-preview-${i}`} className='step-2-image-container' draggable='false'>
+                                <div key={i} id={`image-container-${i}`} className='step-2-image-container' draggable='false'>
                                     <div className='step-2-image-container-inner'>
                                         <div className='step-2-loading-container'>
                                             <div className='loading-animation'></div>
@@ -259,9 +309,12 @@ const Step2Images = ({ images, setImages }) => {
                                     </div>
                                 </div>
                                 :
-                                <div key={i} id={`image-preview-${i}`} className='step-2-image-container'
+                                <div key={i} id={`image-container-${i}`} className='step-2-image-container'
                                 draggable='true'
                                 onDragStart={(e) => handleDragStart(e, i)}
+                                onDragEnter={(e) => handleDragEnter(e, i)}
+                                onDragOver={handleDragOver}
+                                onDragLeave={(e) => handleDragLeave(e, i)}
                                 onDrop={(e) => handleDragDrop(e, i)}
                                 onDragEnd={(e) => handleDragEnd(e, i)}>
                                     <div id={`image-placeholder-${i}`} className='step-2-image-placeholder' draggable='false'>
@@ -270,13 +323,13 @@ const Step2Images = ({ images, setImages }) => {
                                     <div className='step-2-image-container-inner'>
                                         <div className='step-2-image-box'>
                                             <div className='step-2-image-box-inner'>
-                                                <img className={url[1]} src={url[0]} alt='court upload' draggable='false' />
+                                                <img id={`image-preview-${i}`} className={url[1]} src={url[0]} alt='court upload' draggable='false' />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             :
-                            <div key={i} id={`image-preview-${i}`} className='step-2-image-container'>
+                            <div key={i} id={`image-container-${i}`} className='step-2-image-container'>
                                 <div className='step-2-image-container-inner'>
                                     <div className='step-2-image-container-empty' role='button' tabIndex="0" onClick={addImage}>
                                         <img src={photoIcon} style={{ width: '32px' }} alt='portraits' draggable='false' />
