@@ -299,6 +299,7 @@
 
     .host-step-1-location-container-inner {
         max-width: unset;
+        height: calc(100vh - 212px);
     }
 
     .host-step-1-location-bottom {
