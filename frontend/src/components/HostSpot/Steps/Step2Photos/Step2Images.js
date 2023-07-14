@@ -97,8 +97,9 @@ const Step2Images = ({ images, setImages }) => {
 
         const filler = files.length;
         const loadingFiller = Array.from({ length: filler }, () => ['loading']);
+        const loadNum = loadingFiller.length
 
-        if (readerCount + loadingFiller.length < 5) {
+        if (readerCount + loadNum < 5) {
             setImageUrls((prev) => {
                 let undefinedIdx = 0;
 
@@ -111,7 +112,7 @@ const Step2Images = ({ images, setImages }) => {
                 };
 
                 const validSlice = prev.slice(0, undefinedIdx);
-                const undefinedCount = 4 - undefinedIdx;
+                const undefinedCount = 5 - undefinedIdx - loadNum;
                 const remainingUndefined = Array.from({ length: undefinedCount }, () => [undefined]);
 
                 return [...validSlice, ...loadingFiller, ...remainingUndefined];
