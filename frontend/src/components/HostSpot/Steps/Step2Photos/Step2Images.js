@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ReactComponent as Plus } from '../../../../images/step-2-photos/plus-sign.svg';
+import { ReactComponent as Options } from '../../../../images/step-2-photos/options.svg';
 import photoIcon from '../../../../images/step-2-photos/photo-icon.svg';
 import photosIcon from '../../../../images/step-2-photos/photos-icon.svg';
 import './Step2Photos.css';
@@ -294,17 +295,25 @@ const Step2Images = ({ images, setImages }) => {
                 {imageUrls.map((url, i) =>
                     i === 0 ?
                         <div key={i} id={`image-container-${i}`} className='step-2-image-container-main'
-                        draggable='true'
-                        onDragStart={(e) => handleDragStart(e, i)}
-                        onDragEnter={(e) => handleDragEnter(e, i)}
-                        onDragOver={handleDragOver}
-                        onDragLeave={(e) => handleDragLeave(e, i)}
-                        onDrop={(e) => handleDragDrop(e, i)}
-                        onDragEnd={(e) => handleDragEnd(e, i)}>
-                            <div id={`image-placeholder-${i}`} className='step-2-image-placeholder' draggable='false'>
-                                <img src={photoIcon} style={{ width: '32px' }} alt='portraits' />
-                            </div>
+                            draggable='true'
+                            onDragStart={(e) => handleDragStart(e, i)}
+                            onDragEnter={(e) => handleDragEnter(e, i)}
+                            onDragOver={handleDragOver}
+                            onDragLeave={(e) => handleDragLeave(e, i)}
+                            onDrop={(e) => handleDragDrop(e, i)}
+                            onDragEnd={(e) => handleDragEnd(e, i)}>
                             <div className='step-2-cover-image-box'>
+                                <div className='step-2-image-options-container'>
+                                    <div className='step-2-image-options-inner'>
+                                        <div className='cover-image-label'>Cover Photo</div>
+                                        <button className='step-2-image-options-btn'>
+                                            <Options />
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id={`image-placeholder-${i}`} className='step-2-image-placeholder' draggable='false'>
+                                    <img src={photoIcon} style={{ width: '32px' }} alt='portraits' />
+                                </div>
                                 <img id={`image-preview-${i}`} className='step-2-image-cover' src={url[0]} alt='court upload' draggable='false' />
                             </div>
                         </div>
@@ -320,17 +329,24 @@ const Step2Images = ({ images, setImages }) => {
                                 </div>
                                 :
                                 <div key={i} id={`image-container-${i}`} className='step-2-image-container'
-                                draggable='true'
-                                onDragStart={(e) => handleDragStart(e, i)}
-                                onDragEnter={(e) => handleDragEnter(e, i)}
-                                onDragOver={handleDragOver}
-                                onDragLeave={(e) => handleDragLeave(e, i)}
-                                onDrop={(e) => handleDragDrop(e, i)}
-                                onDragEnd={(e) => handleDragEnd(e, i)}>
-                                    <div id={`image-placeholder-${i}`} className='step-2-image-placeholder' draggable='false'>
-                                        <img src={photoIcon} style={{ width: '32px' }} alt='portraits' />
-                                    </div>
+                                    draggable='true'
+                                    onDragStart={(e) => handleDragStart(e, i)}
+                                    onDragEnter={(e) => handleDragEnter(e, i)}
+                                    onDragOver={handleDragOver}
+                                    onDragLeave={(e) => handleDragLeave(e, i)}
+                                    onDrop={(e) => handleDragDrop(e, i)}
+                                    onDragEnd={(e) => handleDragEnd(e, i)}>
                                     <div className='step-2-image-container-inner'>
+                                        <div className='step-2-image-options-container'>
+                                            <div className='step-2-image-options-inner'>
+                                                <button className='step-2-image-options-btn'>
+                                                    <Options />
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div id={`image-placeholder-${i}`} className='step-2-image-placeholder' draggable='false'>
+                                            <img src={photoIcon} style={{ width: '32px' }} alt='portraits' />
+                                        </div>
                                         <div className='step-2-image-box'>
                                             <div className='step-2-image-box-inner'>
                                                 <img id={`image-preview-${i}`} className={url[1]} src={url[0]} alt='court upload' draggable='false' />
