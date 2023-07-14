@@ -13,6 +13,7 @@ const Step2Images = ({ images, setImages }) => {
     const [imageUrls, setImageUrls] = useState([[undefined], [undefined], [undefined], [undefined], [undefined]]);
     const [readerCount, setReaderCount] = useState(0);
     const [innerDrag, setInnerDrag] = useState(false);
+    const [validDrop, setValidDrop] = useState(false);
 
 
     useEffect(() => {
@@ -166,8 +167,8 @@ const Step2Images = ({ images, setImages }) => {
         e.preventDefault();
         const transferredData = e.dataTransfer.getData('text/plain');
 
-        // another check to make it not drop in main just in case
-        // file will return out and an inner element drag will continue
+        // another check to make it not drop in main just in case.
+        // file will return out of function and an inner element drag will continue
         if (transferredData) {
             e.stopPropagation();
         } else {
@@ -175,6 +176,23 @@ const Step2Images = ({ images, setImages }) => {
         };
 
         setInnerDrag(false);
+        setValidDrop(true);
+
+        if (id === Number(transferredData)) {
+            const placeholderElement = document.getElementById(`image-placeholder-${transferredData}`);
+            placeholderElement.style.zIndex = 0;
+        }
+
+    }
+
+    const handleDragEnd = (e, id) => {
+        console.log('id', id)
+        setValidDrop(false);
+
+        if (!validDrop) {
+            const placeholderElement = document.getElementById(`image-placeholder-${id}`);
+            placeholderElement.style.zIndex = 0;
+        }
 
     }
 
@@ -219,7 +237,11 @@ const Step2Images = ({ images, setImages }) => {
                 </div>
                 {imageUrls.map((url, i) =>
                     i === 0 ?
-                        <div key={i} id={`image-preview-${i}`} className='step-2-image-container-main' draggable='true' onDragStart={(e) => handleDragStart(e, i)} onDrop={(e) => handleDragDrop(e, i)}>
+                        <div key={i} id={`image-preview-${i}`} className='step-2-image-container-main'
+                        draggable='true'
+                        onDragStart={(e) => handleDragStart(e, i)}
+                        onDrop={(e) => handleDragDrop(e, i)}
+                        onDragEnd={(e) => handleDragEnd(e, i)}>
                             <div id={`image-placeholder-${i}`} className='step-2-image-placeholder-main' draggable='false'>
                                 <img src={photoIcon} style={{ width: '32px' }} alt='portraits' />
                             </div>
@@ -238,7 +260,11 @@ const Step2Images = ({ images, setImages }) => {
                                     </div>
                                 </div>
                                 :
-                                <div key={i} id={`image-preview-${i}`} className='step-2-image-container' draggable='true' onDragStart={(e) => handleDragStart(e, i)} onDrop={(e) => handleDragDrop(e, i)}>
+                                <div key={i} id={`image-preview-${i}`} className='step-2-image-container'
+                                draggable='true'
+                                onDragStart={(e) => handleDragStart(e, i)}
+                                onDrop={(e) => handleDragDrop(e, i)}
+                                onDragEnd={(e) => handleDragEnd(e, i)}>
                                     <div id={`image-placeholder-${i}`} className='step-2-image-placeholder' draggable='false'>
                                         <img src={photoIcon} style={{ width: '32px' }} alt='portraits' />
                                     </div>
