@@ -77,8 +77,11 @@ const Step2Images = ({ images, setImages }) => {
         };
 
         const startFrom = readerCount;
-
+        console.log('imageurls', imageUrls)
+        console.log('images', images)
+        console.log('readercount', readerCount)
         for (let i = startFrom; i < images.length; i++) {
+            console.log('i', i)
             loadImage(images[i], i);
         };
     }, [images, readerCount]);
@@ -95,7 +98,7 @@ const Step2Images = ({ images, setImages }) => {
         const filler = files.length;
         const loadingFiller = Array.from({ length: filler }, () => ['loading']);
 
-        if (readerCount < 5) {
+        if (readerCount + loadingFiller.length < 5) {
             setImageUrls((prev) => {
                 let undefinedIdx = 0;
 
@@ -114,7 +117,7 @@ const Step2Images = ({ images, setImages }) => {
                 return [...validSlice, ...loadingFiller, ...remainingUndefined];
             });
         } else {
-            setImageUrls((prev) => [...prev, ...loadingFiller]);
+            setImageUrls((prev) => [...prev.slice(0, images.length), ...loadingFiller]);
         };
 
         setImages((prev) => [...prev, ...files]);
@@ -128,6 +131,7 @@ const Step2Images = ({ images, setImages }) => {
         fileInputElement.click();
     };
 
+    // dropdown and dropdown button functions
     const handleDropdown = (i) => {
         if (dropdownId === i) {
             setShowDropdown(!showDropdown);
@@ -137,6 +141,27 @@ const Step2Images = ({ images, setImages }) => {
 
         setShowDropdown(true);
         setDropdownId(i);
+    };
+    // console.log(imageUrls)
+    const handleDelete = (i) => {
+        setShowDropdown(false);
+        setDropdownId(null);
+        setReaderCount((prev) => prev - 1);
+        setImages((prev) => {
+            const newState = [...prev];
+            newState.splice(i, 1);
+            return newState;
+        });
+        setImageUrls((prev) => {
+            const newState = [...prev];
+            newState.splice(i, 1);
+
+            if (newState.length < 5) {
+                newState.push([undefined]);
+            }
+
+            return newState;
+        });
     };
 
     // main draggable functions
@@ -354,7 +379,7 @@ const Step2Images = ({ images, setImages }) => {
                                         {showDropdown && dropdownId === i &&
                                             <div id={`image-dropdown-items-${i}`} className='step-2-options-dropdown'>
                                                 <button className='step-2-options-item'>Move forward</button>
-                                                <button className='step-2-options-item'>Delete</button>
+                                                <button className='step-2-options-item' onClick={() => handleDelete(i)}>Delete</button>
                                             </div>
                                         }
                                     </div>
@@ -397,7 +422,7 @@ const Step2Images = ({ images, setImages }) => {
                                                             < button className='step-2-options-item'>Move forward</button>
                                                         }
                                                         <button className='step-2-options-item'>Make cover photo</button>
-                                                        <button className='step-2-options-item'>Delete</button>
+                                                        <button className='step-2-options-item' onClick={() => handleDelete(i)}>Delete</button>
                                                     </div>
                                                 }
                                             </div>
