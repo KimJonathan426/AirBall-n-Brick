@@ -19,6 +19,35 @@ const Step2Images = ({ images, setImages }) => {
     const [dragElementId, setDragElementId] = useState(null);
     const [validDrop, setValidDrop] = useState(false);
 
+    // adjust location of "drop to upload" in overlay to make sure user always knows what the overlay is.
+    useEffect(() => {
+        const adjustCenter = () => {
+            const scrollContainer = document.getElementById('host-spot-main-container');
+            const centerLabel = document.getElementsByClassName('step-2-photos-drag-overlay-inner')[0];
+
+            if (centerLabel && scrollContainer) {
+                const scrollY = scrollContainer.scrollTop;
+                const offsetY = scrollContainer.offsetTop;
+                const containerHeight = scrollContainer.clientHeight;
+
+                const position = scrollY + offsetY + (containerHeight / 2) - 114;
+
+                centerLabel.style.top = position + 'px';
+            };
+        }
+
+        const container = document.getElementById('host-spot-main-container');
+
+        container?.addEventListener('scroll', adjustCenter);
+        window.addEventListener('resize', adjustCenter);
+
+        return () => {
+            container?.removeEventListener('scroll', adjustCenter);
+            window.removeEventListener('scroll', adjustCenter);
+        };
+    }, []);
+
+    // handle dropdown minimize on outside click
     useEffect(() => {
         const outsideClick = (e) => {
             if (dropdownId === null) {
@@ -77,11 +106,8 @@ const Step2Images = ({ images, setImages }) => {
         };
 
         const startFrom = readerCount;
-        console.log('imageurls', imageUrls)
-        console.log('images', images)
-        console.log('readercount', readerCount)
+
         for (let i = startFrom; i < images.length; i++) {
-            console.log('i', i)
             loadImage(images[i], i);
         };
     }, [images, readerCount]);
@@ -97,7 +123,7 @@ const Step2Images = ({ images, setImages }) => {
 
         const filler = files.length;
         const loadingFiller = Array.from({ length: filler }, () => ['loading']);
-        const loadNum = loadingFiller.length
+        const loadNum = loadingFiller.length;
 
         if (readerCount + loadNum < 5) {
             setImageUrls((prev) => {
@@ -138,12 +164,12 @@ const Step2Images = ({ images, setImages }) => {
             setShowDropdown(!showDropdown);
             setDropdownId(null);
             return;
-        }
+        };
 
         setShowDropdown(true);
         setDropdownId(i);
     };
-    // console.log(imageUrls)
+
     const handleDelete = (i) => {
         setShowDropdown(false);
         setDropdownId(null);
@@ -159,7 +185,7 @@ const Step2Images = ({ images, setImages }) => {
 
             if (newState.length < 5) {
                 newState.push([undefined]);
-            }
+            };
 
             return newState;
         });
