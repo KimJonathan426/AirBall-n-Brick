@@ -211,7 +211,7 @@
     padding: 14px 32px;
     margin-right: 48px;
     box-sizing: border-box;
-    cursor: disabled;
+    cursor: not-allowed;
     transition: all 0.2s ease-in-out;
 }
 

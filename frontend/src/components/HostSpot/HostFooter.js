@@ -3,7 +3,8 @@ import loadingGif from '../../images/host-court-loading.gif';
 import './HostSpot.css';
 
 const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, city,
-    state, zipcode, country, setTransitionClass, setIsFinalCheck, setDisableScroll }) => {
+    state, zipcode, country, setTransitionClass, setIsFinalCheck, setDisableScroll,
+    images }) => {
 
     const [progressBar1, setProgressBar1] = useState('0');
     const [progressBar2, setProgressBar2] = useState('0');
@@ -13,22 +14,35 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
     const [buttonLoading, setButtonLoading] = useState(false);
 
     useEffect(() => {
-        if (step !== 4) {
-            if (nextDisabled) {
+        // if (step !== 4) {
+        //     if (nextDisabled) {
+        //         setNextDisabled(false);
+        //     };
+        //     return;
+        // };
+
+        // disable next button on google map and if no entry in confirm input.
+        if (step === 4) {
+            if (locationStep === 0) {
+                setNextDisabled(true);
+            } else if (locationStep === 1 && (!address || !city || !state || !zipcode || !country)) {
+                setNextDisabled(true);
+            } else {
                 setNextDisabled(false);
             };
+
             return;
-        };
+        }
 
-        if (locationStep === 0) {
+        // disable next button if less than 5 images
+        if (step === 7 && images.length < 5) {
             setNextDisabled(true);
-        } else if (locationStep === 1 && (!address || !city || !state || !zipcode || !country)) {
-            setNextDisabled(true);
-        } else {
-            setNextDisabled(false);
-        };
+            return
+        }
 
-    }, [step, locationStep, address, city, state, zipcode, country, nextDisabled]);
+        setNextDisabled(false);
+
+    }, [step, locationStep, address, city, state, zipcode, country, nextDisabled, images.length]);
 
     const handleBack = () => {
         if (step === 4 && locationStep > 0) {
