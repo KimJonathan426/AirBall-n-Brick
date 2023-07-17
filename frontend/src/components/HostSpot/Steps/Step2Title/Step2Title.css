@@ -25,7 +25,7 @@
 .host-step-2-title-top {
     width: 100%;
     margin-bottom: 32px;
-    animation-name: describeAnimation;
+    animation-name: titleAnimation;
     animation-duration: 600ms;
     animation-delay: 400ms;
     animation-iteration-count: 1;
@@ -72,7 +72,13 @@
     overflow-y: hidden;
     font-size: 22px;
     line-height: 26px;
+    color: #222222;
     box-sizing: border-box;
+    animation-name: titleAnimation;
+    animation-duration: 600ms;
+    animation-delay: 450ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
 }
 
 .host-step-2-title-textarea {
@@ -90,6 +96,37 @@
 
 .host-step-2-title-textarea-invalid:focus {
     box-shadow: firebrick 0px 0px 0px 2px inset;
+}
+
+.host-step-2-title-counter {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 16px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 700;
+    color: #717171;
+    animation-name: titleAnimation;
+    animation-duration: 600ms;
+    animation-delay: 500ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+.host-step-2-error {
+    display: flex;
+    align-items: center;
+    color: rgb(193, 53, 21);
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    margin-top: 16px;
+    box-sizing: border-box;
+}
+
+.host-step-2-error-hide {
+    display: none;
 }
 
 @media screen and (max-width: 743px) {
@@ -114,5 +151,28 @@
     .host-step-2-title-subheader {
         font-size: 16px;
         line-height: 20px;
+    }
+
+    .host-step-2-title-textarea,
+    .host-step-2-title-textarea-invalid {
+    max-height: 25vh;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+    .host-step-2-title-counter {
+        font-size: 12px;
+        line-height: 16px;
+    }
+}
+
+@keyframes titleAnimation {
+    0% {
+        opacity: 0;
+        transform: translate(0, 40%);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
     }
 }

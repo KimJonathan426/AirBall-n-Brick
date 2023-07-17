@@ -115,7 +115,7 @@ module.exports = {
         city: 'Long Beach',
         state: 'California',
         country: 'United States of America',
-        name: "Port of Long Beach, Michael Jordan's Private Yacht w/ Basketball Court",
+        name: "Michael Jordan's Private Yacht w/ Basketball Court",
         description: "Michael Jordan's $80 million Yacht comes with basketball court! Cruise the ocean and take in the views while you sink in some shots.",
         price: 175000
       },
