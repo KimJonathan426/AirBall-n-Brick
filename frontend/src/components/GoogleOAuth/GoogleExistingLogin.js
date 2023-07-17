@@ -5,7 +5,7 @@ import CryptoJS from 'crypto-js';
 import validator from 'validator';
 import * as sessionActions from "../../store/session";
 import loadingGif from '../../images/host-court-loading.gif';
-import errorMark from '../../images/error-mark.png';
+import errorMark from '../../images/error-mark.svg';
 import Loading from "../Loading";
 import './GoogleOAuth.css';
 

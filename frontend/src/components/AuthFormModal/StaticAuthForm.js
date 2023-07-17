@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import getGoogleOAuthURL from "../../utils/getGoogleUrl";
 import SignupStep from "../SignupStep";
 import loadingGif from '../../images/host-court-loading.gif';
-import errorMark from '../../images/error-mark.png';
+import errorMark from '../../images/error-mark.svg';
 import goBack from '../../images/left-arrow.svg';
 import googleIcon from '../../images/google-icon.svg';
 import './AuthForm.css';

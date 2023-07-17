@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import loadingGif from '../../images/host-court-loading.gif';
-import errorMark from '../../images/error-mark.png';
+import errorMark from '../../images/error-mark.svg';
 import './SignupStep.css';
 
 function SignupStep({ credential, setCredential }) {
