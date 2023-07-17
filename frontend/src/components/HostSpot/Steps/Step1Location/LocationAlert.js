@@ -33,14 +33,12 @@ const LocationAlert = ({ alert, setAlert, setLocationStep }) => {
                         Are you sure that it's correct?
                     </div>
                     <div className='invalid-google-location-main'>
-                        <div className='invalid-google-location-main'>
-                            <button className='invalid-google-location-no' onClick={() => setAlert(false)}>
-                                No, edit the address
-                            </button>
-                            <button className='invalid-google-location-yes' onClick={() => setLocationStep((prev) => prev + 1)}>
-                                Yes, my address is correct
-                            </button>
-                        </div>
+                        <button className='invalid-google-location-no' onClick={() => setAlert(false)}>
+                            No, edit the address
+                        </button>
+                        <button className='invalid-google-location-yes' onClick={() => setLocationStep((prev) => prev + 1)}>
+                            Yes, my address is correct
+                        </button>
                     </div>
                 </div>
                 <div className='invalid-google-location-exit'>
