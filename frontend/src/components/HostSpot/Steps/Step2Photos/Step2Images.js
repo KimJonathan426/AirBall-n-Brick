@@ -6,7 +6,7 @@ import photosIcon from '../../../../images/step-2-photos/photos-icon.svg';
 import './Step2Photos.css';
 import './Step2Images.css';
 
-const Step2Images = ({ images, setImages }) => {
+const Step2Images = ({ images, setImages, setValidationError, setShowError }) => {
     // add frontend validation for image types, show alert on attempt for invalid upload
     // also account for size ( no uploads less than 50KB or greater than 25MB)
 
@@ -119,6 +119,23 @@ const Step2Images = ({ images, setImages }) => {
             files = Array.from(e.dataTransfer.files);
         } else {
             files = Array.from(e.target.files);
+        };
+
+        // file input validation
+        for (let file of files) {
+            if (!(file.type === 'image/jpeg' || file.type === 'image/png')) {
+                setValidationError('The images you upload must be JPEG or PNG files. Please check your file type and try again.');
+                setShowError(true);
+                return;
+            } else if (file.size < 51200) {
+                setValidationError('The images you upload must exceed 50KBs.');
+                setShowError(true);
+                return;
+            } else if (file.size > 26214400) {
+                setValidationError('The images you upload can not exceed 25MBs.');
+                setShowError(true);
+                return;
+            };
         };
 
         const filler = files.length;

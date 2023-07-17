@@ -18,8 +18,9 @@ const Step2Main = ({ setImages, setValidationError, setShowError }) => {
             files = Array.from(e.target.files);
         };
 
+        // file input validation
         for (let file of files) {
-            if (file.type !== 'image/jpeg' || file.type !== 'image/png') {
+            if (!(file.type === 'image/jpeg' || file.type === 'image/png')) {
                 setValidationError('The images you upload must be JPEG or PNG files. Please check your file type and try again.');
                 setShowError(true);
                 return;
