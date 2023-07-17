@@ -2,7 +2,7 @@ import { useState } from "react";
 import photosIcon from '../../../../images/step-2-photos/photos-icon.svg';
 import './Step2Photos.css';
 
-const Step2Main = ({ setImages }) => {
+const Step2Main = ({ setImages, setValidationError, setShowError }) => {
 
     const [photoBoxClass, setPhotoBoxClass] = useState('step-2-photos-box');
 
@@ -10,15 +10,38 @@ const Step2Main = ({ setImages }) => {
     // also account for size ( no uploads less than 50KB or greater than 25MB)
 
     const updateFiles = (e) => {
-        const files = Array.from(e.target.files);
+        let files;
+
+        if (e.dataTransfer) {
+            files = Array.from(e.dataTransfer.files);
+        } else {
+            files = Array.from(e.target.files);
+        };
+
+        for (let file of files) {
+            if (file.type !== 'image/jpeg' || file.type !== 'image/png') {
+                setValidationError('The images you upload must be JPEG or PNG files. Please check your file type and try again.');
+                setShowError(true);
+                return;
+            } else if (file.size < 51200) {
+                setValidationError('The images you upload must exceed 50KBs.');
+                setShowError(true);
+                return;
+            } else if (file.size > 26214400) {
+                setValidationError('The images you upload can not exceed 25MBs.');
+                setShowError(true);
+                return;
+            };
+        };
+
         setImages(files);
     };
 
     const handleDropMain = (e) => {
         e.preventDefault();
         setPhotoBoxClass('step-2-photos-box');
-        const files = Array.from(e.dataTransfer.files);
-        setImages(files);
+
+        updateFiles(e);
     }
 
     const handleDragOverMain = (e) => {
