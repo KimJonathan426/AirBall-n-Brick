@@ -7,8 +7,6 @@ import './Step2Photos.css';
 import './Step2Images.css';
 
 const Step2Images = ({ images, setImages, setValidationError, setShowError }) => {
-    // add frontend validation for image types, show alert on attempt for invalid upload
-    // also account for size ( no uploads less than 50KB or greater than 25MB)
 
     const [dragOverlayClass, setDragOverlayClass] = useState('step-2-photos-drag-overlay');
     const [imageUrls, setImageUrls] = useState([[undefined], [undefined], [undefined], [undefined], [undefined]]);
@@ -128,11 +126,11 @@ const Step2Images = ({ images, setImages, setValidationError, setShowError }) =>
                 setShowError(true);
                 return;
             } else if (file.size < 51200) {
-                setValidationError('The images you upload must exceed 50KBs.');
+                setValidationError('Each image you upload must exceed 50KBs.');
                 setShowError(true);
                 return;
             } else if (file.size > 26214400) {
-                setValidationError('The images you upload can not exceed 25MBs.');
+                setValidationError('Each image you upload can not exceed 25MBs.');
                 setShowError(true);
                 return;
             };
