@@ -4,7 +4,7 @@ import './HostSpot.css';
 
 const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, city,
     state, zipcode, country, setTransitionClass, setIsFinalCheck, setDisableScroll,
-    images }) => {
+    images, title }) => {
 
     const [progressBar1, setProgressBar1] = useState('0');
     const [progressBar2, setProgressBar2] = useState('0');
@@ -14,13 +14,6 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
     const [buttonLoading, setButtonLoading] = useState(false);
 
     useEffect(() => {
-        // if (step !== 4) {
-        //     if (nextDisabled) {
-        //         setNextDisabled(false);
-        //     };
-        //     return;
-        // };
-
         // disable next button on google map and if no entry in confirm input.
         if (step === 4) {
             if (locationStep === 0) {
@@ -37,12 +30,17 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
         // disable next button if less than 5 images
         if (step === 7 && images.length < 5) {
             setNextDisabled(true);
-            return
+            return;
+        }
+
+        if (step === 8 && (title.length === 0 || title.length > 64)) {
+            setNextDisabled(true);
+            return;
         }
 
         setNextDisabled(false);
 
-    }, [step, locationStep, address, city, state, zipcode, country, nextDisabled, images.length]);
+    }, [step, locationStep, address, city, state, zipcode, country, nextDisabled, images.length, title.length]);
 
     const handleBack = () => {
         if (step === 4 && locationStep > 0) {
