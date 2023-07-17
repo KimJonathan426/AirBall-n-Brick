@@ -1,4 +1,4 @@
-.host-step-1-describe-container {
+.host-step-1-tags-container {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -7,7 +7,7 @@
     box-sizing: border-box;
 }
 
-.host-step-1-describe-container-inner {
+.host-step-1-tags-container-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,17 +15,17 @@
     box-sizing: border-box;
 }
 
-.host-step-1-describe-top {
+.host-step-1-tags-top {
     max-width: 630px;
     margin-bottom: 32px;
     animation-delay: 400ms;
-    animation-name: describeAnimation;
+    animation-name: tagAnimation;
     animation-duration: 600ms;
     animation-iteration-count: 1;
     animation-fill-mode: both;
 }
 
-.host-step-1-describe-header {
+.host-step-1-tags-header {
     font-size: 32px;
     line-height: 36px;
     font-weight: 600;
@@ -33,7 +33,7 @@
     margin-bottom: 0;
 }
 
-.host-step-1-describe-bottom {
+.host-step-1-tags-bottom {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -43,16 +43,16 @@
     box-sizing: border-box;
 }
 
-.host-step-1-describe-main {
+.host-step-1-tags-main {
     flex: 0 1 calc(33% - 9px);
     box-sizing: border-box;
-    animation-name: describeAnimation;
+    animation-name: tagAnimation;
     animation-duration: 600ms;
     animation-iteration-count: 1;
     animation-fill-mode: both;
 }
 
-.host-step-1-describe-btn {
+.host-step-1-tags-btn {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -69,7 +69,7 @@
     transition: box-shadow 0.2s cubic-bezier(0.2,0,0,1), transform 0.1s cubic-bezier(0.2,0,0,1);
 }
 
-.host-step-1-describe-btn-checked {
+.host-step-1-tags-btn-checked {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -87,18 +87,18 @@
     transition: box-shadow 0.2s cubic-bezier(0.2,0,0,1), transform 0.1s cubic-bezier(0.2,0,0,1);
 }
 
-.host-step-1-describe-btn:hover {
+.host-step-1-tags-btn:hover {
     box-shadow: 0 0 0 2px #000000;
 }
 
-.host-step-1-describe-btn:active,
-.host-step-1-describe-btn-checked:active {
+.host-step-1-tags-btn:active,
+.host-step-1-tags-btn-checked:active {
     box-shadow: 0 0 0 2px #000000;
     background-color: #F7F7F7;
     transform: scale(0.96);
 }
 
-.host-step-1-describe-text {
+.host-step-1-tags-text {
     font-size: 16px;
     line-height: 20px;
     font-weight: 600;
@@ -107,23 +107,23 @@
 }
 
 @media screen and (max-width: 743px) {
-    .host-step-1-describe-top {
+    .host-step-1-tags-top {
         margin-bottom: 24px;
     }
 
-    .host-step-1-describe-bottom {
+    .host-step-1-tags-bottom {
         max-width: unset;
         gap: 12px;
         padding: 2px 2px 12px 2px;
         box-sizing: border-box;
     }
 
-    .host-step-1-describe-main {
+    .host-step-1-tags-main {
         flex: 0 1 calc(50% - 6px);
     }
 }
 
-@keyframes describeAnimation {
+@keyframes tagAnimation {
     0% {
         opacity: 0;
         transform: translate(0, 40%);

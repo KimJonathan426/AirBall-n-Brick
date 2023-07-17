@@ -4,7 +4,7 @@ import { NavLink, useNavigate, Navigate } from 'react-router-dom';
 import { createSpot } from '../../store/spotReducer';
 import HostSpotIntro from './Steps/HostSpotIntro';
 import Step1Intro from './Steps/StepIntros/Step1Intro';
-import Step1Describe from './Steps/Step1Describe';
+import Step1Tags from './Steps/Step1Tags';
 import Step1Type from './Steps/Step1Type';
 import Step1Location from './Steps/Step1Location';
 import LocationConfirm from './Steps/Step1Location/LocationConfirm';
@@ -96,7 +96,7 @@ const HostSpot = () => {
                     <Step1Intro />
                 }
                 {step === 2 &&
-                    <Step1Describe tags={tags} setTags={setTags} />
+                    <Step1Tags tags={tags} setTags={setTags} />
                 }
                 {step === 3 &&
                     <Step1Type type={type} setType={setType} />
