@@ -18,8 +18,8 @@ const GeneralError = ({ error, showError, setShowError }) => {
 
 
     return (
-        <div className='general-error-container'>
-            <div className={errorClass}>
+        <div className={errorClass}>
+            <div className='general-error-container-inner'>
                 <div className='general-error-img-box'>
                     <div className='general-error-img-box-inner'>
                         <img className='general-error-exclamation' src={exclamation} alt='exclamation point' />
