@@ -15,6 +15,7 @@ import Step2Photos from './Steps/Step2Photos';
 import HostFooter from './HostFooter';
 import logo from '../../images/logo-image.png';
 import './HostSpot.css';
+import Step2Title from './Steps/Step2Title';
 
 const HostSpot = () => {
 
@@ -37,6 +38,7 @@ const HostSpot = () => {
     const [lng, setLng] = useState(-109.681333);
     const [showSpecific, setShowSpecific] = useState(false);
     const [images, setImages] = useState([]);
+    const [title, setTitle] = useState('');
 
 
     useEffect(() => {
@@ -130,6 +132,9 @@ const HostSpot = () => {
                 }
                 {step === 7 &&
                     <Step2Photos images={images} setImages={setImages} />
+                }
+                {step === 8 &&
+                    <Step2Title title={title} setTitle={setTitle} />
                 }
             </div>
             <div className='host-spot-footer'>
