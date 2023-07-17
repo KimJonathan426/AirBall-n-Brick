@@ -170,6 +170,38 @@ const Step2Images = ({ images, setImages }) => {
         setDropdownId(i);
     };
 
+    const handleMove = (i, move) => {
+        setShowDropdown(false);
+        setDropdownId(null);
+
+        setImages((prev) => {
+            const newState = [...prev];
+            [newState[i], newState[i + move]] = [newState[i + move], newState[i]]
+            return newState;
+        });
+        setImageUrls((prev) => {
+            const newState = [...prev];
+            [newState[i], newState[i + move]] = [newState[i + move], newState[i]];
+            return newState;
+        });
+    };
+
+    const handleCover = (i) => {
+        setShowDropdown(false);
+        setDropdownId(null);
+
+        setImages((prev) => {
+            const newState = [...prev];
+            [newState[i], newState[0]] = [newState[0], newState[i]]
+            return newState;
+        });
+        setImageUrls((prev) => {
+            const newState = [...prev];
+            [newState[i], newState[0]] = [newState[0], newState[i]];
+            return newState;
+        });
+    };
+
     const handleDelete = (i) => {
         setShowDropdown(false);
         setDropdownId(null);
@@ -403,7 +435,7 @@ const Step2Images = ({ images, setImages }) => {
                                         </button>
                                         {showDropdown && dropdownId === i &&
                                             <div id={`image-dropdown-items-${i}`} className='step-2-options-dropdown'>
-                                                <button className='step-2-options-item'>Move forward</button>
+                                                <button className='step-2-options-item' onClick={() => handleMove(i, 1)}>Move forward</button>
                                                 <button className='step-2-options-item' onClick={() => handleDelete(i)}>Delete</button>
                                             </div>
                                         }
@@ -442,11 +474,11 @@ const Step2Images = ({ images, setImages }) => {
                                                 </button>
                                                 {showDropdown && dropdownId === i &&
                                                     <div id={`image-dropdown-items-${i}`} className='step-2-options-dropdown'>
-                                                        <button className='step-2-options-item'>Move backward</button>
+                                                        <button className='step-2-options-item' onClick={() => handleMove(i, -1)}>Move backward</button>
                                                         {i !== images.length - 1 &&
-                                                            < button className='step-2-options-item'>Move forward</button>
+                                                            < button className='step-2-options-item' onClick={() => handleMove(i, 1)}>Move forward</button>
                                                         }
-                                                        <button className='step-2-options-item'>Make cover photo</button>
+                                                        <button className='step-2-options-item' onClick={() => handleCover(i)}>Make cover photo</button>
                                                         <button className='step-2-options-item' onClick={() => handleDelete(i)}>Delete</button>
                                                     </div>
                                                 }
