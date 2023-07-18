@@ -15,6 +15,7 @@ import Step2Photos from './Steps/Step2Photos';
 import Step2Title from './Steps/Step2Title';
 import Step2Description from './Steps/Step2Description';
 import Step3Intro from './Steps/StepIntros/Step3Intro';
+import Step3Price from './Steps/Step3Price';
 import HostFooter from './HostFooter';
 import logo from '../../images/logo-image.png';
 import './HostSpot.css';
@@ -42,6 +43,7 @@ const HostSpot = () => {
     const [images, setImages] = useState([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState("You'll be at peak performance and have the best time at this unique court.");
+    const [price, setPrice] = useState('60');
 
 
     useEffect(() => {
@@ -144,6 +146,9 @@ const HostSpot = () => {
                 }
                 {step === 10 &&
                     <Step3Intro />
+                }
+                {step === 11 &&
+                    <Step3Price price={price} setPrice={setPrice} />
                 }
             </div>
             <div className='host-spot-footer'>
