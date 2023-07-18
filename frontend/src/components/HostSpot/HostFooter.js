@@ -4,7 +4,7 @@ import './HostSpot.css';
 
 const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, city,
     state, zipcode, country, setTransitionClass, setIsFinalCheck, setDisableScroll,
-    images, title }) => {
+    images, title, description }) => {
 
     const [progressBar1, setProgressBar1] = useState('0');
     const [progressBar2, setProgressBar2] = useState('0');
@@ -38,9 +38,14 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
             return;
         }
 
+        if (step === 9 && (description.length === 0 || description.length > 500)) {
+            setNextDisabled(true);
+            return;
+        }
+
         setNextDisabled(false);
 
-    }, [step, locationStep, address, city, state, zipcode, country, nextDisabled, images.length, title.length]);
+    }, [step, locationStep, address, city, state, zipcode, country, nextDisabled, images.length, title.length, description.length]);
 
     const handleBack = () => {
         if (step === 4 && locationStep > 0) {
