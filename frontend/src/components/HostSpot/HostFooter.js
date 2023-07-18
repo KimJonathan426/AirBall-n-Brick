@@ -61,6 +61,8 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
 
             if (step >= 1 && step <= 5) {
                 setProgressBar1((prev) => `${Number(prev) - 25}`);
+            } else if (step >= 6 && step <= 10) {
+                setProgressBar2((prev) => `${Number(prev) - 20}`);
             }
 
             setBackButtonLoading(false);
@@ -81,6 +83,8 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
 
             if (step >= 1 && step <= 4) {
                 setProgressBar1((prev) => `${Number(prev) + 25}`);
+            } else if (step >= 5 && step <= 9) {
+                setProgressBar2((prev) => `${Number(prev) + 20}`);
             }
 
             setButtonLoading(false);
