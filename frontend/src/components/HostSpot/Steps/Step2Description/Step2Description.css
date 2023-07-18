@@ -1,4 +1,4 @@
-.host-step-2-title-container {
+.host-step-2-description-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,7 +7,7 @@
     box-sizing: border-box;
 }
 
-.host-step-2-title-container-inner {
+.host-step-2-description-container-inner {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -22,17 +22,17 @@
     box-sizing: border-box;
 }
 
-.host-step-2-title-top {
+.host-step-2-description-top {
     width: 100%;
     margin-bottom: 32px;
-    animation-name: titleAnimation;
+    animation-name: describeAnimation;
     animation-duration: 600ms;
     animation-delay: 400ms;
     animation-iteration-count: 1;
     animation-fill-mode: both;
 }
 
-.host-step-2-title-header {
+.host-step-2-description-header {
     font-size: 30px;
     line-height: 36px;
     font-weight: 600;
@@ -41,14 +41,14 @@
     margin-bottom: 24px;
 }
 
-.host-step-2-title-subheader {
+.host-step-2-description-subheader {
     font-size: 18px;
     line-height: 24px;
     color: #717171;
     overflow-wrap: break-word;
 }
 
-.host-step-2-title-bottom {
+.host-step-2-description-bottom {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -56,8 +56,8 @@
     box-sizing: border-box;
 }
 
-.host-step-2-title-textarea,
-.host-step-2-title-textarea-invalid {
+.host-step-2-description-textarea,
+.host-step-2-description-textarea-invalid {
     display: block;
     min-width: 100%;
     max-width: 100%;
@@ -69,36 +69,36 @@
     border: none;
     resize: vertical;
     text-overflow: ellipsis;
-    overflow-y: hidden;
-    font-size: 22px;
-    line-height: 26px;
+    overflow-y: auto;
+    font-size: 18px;
+    line-height: 28px;
     color: #222222;
     box-sizing: border-box;
-    animation-name: titleAnimation;
+    animation-name: describeAnimation;
     animation-duration: 600ms;
     animation-delay: 450ms;
     animation-iteration-count: 1;
     animation-fill-mode: both;
 }
 
-.host-step-2-title-textarea {
+.host-step-2-description-textarea {
     box-shadow: grey 0px 0px 0px 1px inset;
 }
 
-.host-step-2-title-textarea-invalid {
+.host-step-2-description-textarea-invalid {
     box-shadow: firebrick 0px 0px 0px 1px inset;
     background-color: rgb(255, 248, 246);
 }
 
-.host-step-2-title-textarea:focus {
+.host-step-2-description-textarea:focus {
     box-shadow: black 0 0 0 2px inset;
 }
 
-.host-step-2-title-textarea-invalid:focus {
+.host-step-2-description-textarea-invalid:focus {
     box-shadow: firebrick 0px 0px 0px 2px inset;
 }
 
-.host-step-2-title-counter {
+.host-step-2-description-counter {
     display: flex;
     justify-content: flex-start;
     padding-top: 16px;
@@ -107,7 +107,7 @@
     line-height: 18px;
     font-weight: 700;
     color: #717171;
-    animation-name: titleAnimation;
+    animation-name: describeAnimation;
     animation-duration: 600ms;
     animation-delay: 500ms;
     animation-iteration-count: 1;
@@ -130,44 +130,42 @@
 }
 
 @media screen and (max-width: 743px) {
-    .host-step-2-title-container {
+    .host-step-2-description-container {
         align-items: flex-start;
     }
 
-    .host-step-2-title-container-inner {
+    .host-step-2-description-container-inner {
         margin: 0 auto;
     }
 
-    .host-step-2-title-top {
+    .host-step-2-description-top {
         margin-bottom: 24px;
     }
 
-    .host-step-2-title-header {
+    .host-step-2-description-header {
         font-size: 26px;
         line-height: 30px;
         margin-bottom: 8px;
     }
 
-    .host-step-2-title-subheader {
+    .host-step-2-description-subheader {
         font-size: 16px;
         line-height: 20px;
     }
 
-    .host-step-2-title-textarea,
-    .host-step-2-title-textarea-invalid {
+    .host-step-2-description-textarea,
+    .host-step-2-description-textarea-invalid {
         max-height: 25vh;
-        font-size: 18px;
-        line-height: 28px;
         padding: 16px;
 }
 
-    .host-step-2-title-counter {
+    .host-step-2-description-counter {
         font-size: 12px;
         line-height: 16px;
     }
 }
 
-@keyframes titleAnimation {
+@keyframes describeAnimation {
     0% {
         opacity: 0;
         transform: translate(0, 40%);

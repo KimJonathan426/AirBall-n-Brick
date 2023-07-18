@@ -12,10 +12,11 @@ import LocationPin from './Steps/Step1Location/LocationPin';
 import Step2Intro from './Steps/StepIntros/Step2Intro';
 import Step2Amenities from './Steps/Step2Amenities';
 import Step2Photos from './Steps/Step2Photos';
+import Step2Title from './Steps/Step2Title';
 import HostFooter from './HostFooter';
 import logo from '../../images/logo-image.png';
 import './HostSpot.css';
-import Step2Title from './Steps/Step2Title';
+import Step2Description from './Steps/Step2Description';
 
 const HostSpot = () => {
 
@@ -39,6 +40,7 @@ const HostSpot = () => {
     const [showSpecific, setShowSpecific] = useState(false);
     const [images, setImages] = useState([]);
     const [title, setTitle] = useState('');
+    const [description, setDescription] = useState("You'll be at peak performance and have the best time at this unique court.");
 
 
     useEffect(() => {
@@ -135,6 +137,9 @@ const HostSpot = () => {
                 }
                 {step === 8 &&
                     <Step2Title title={title} setTitle={setTitle} />
+                }
+                {step === 9 &&
+                    <Step2Description description={description} setDescription={setDescription} />
                 }
             </div>
             <div className='host-spot-footer'>
