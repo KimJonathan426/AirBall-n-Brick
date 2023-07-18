@@ -13,10 +13,11 @@ import Step2Intro from './Steps/StepIntros/Step2Intro';
 import Step2Amenities from './Steps/Step2Amenities';
 import Step2Photos from './Steps/Step2Photos';
 import Step2Title from './Steps/Step2Title';
+import Step2Description from './Steps/Step2Description';
+import Step3Intro from './Steps/StepIntros/Step3Intro';
 import HostFooter from './HostFooter';
 import logo from '../../images/logo-image.png';
 import './HostSpot.css';
-import Step2Description from './Steps/Step2Description';
 
 const HostSpot = () => {
 
@@ -140,6 +141,9 @@ const HostSpot = () => {
                 }
                 {step === 9 &&
                     <Step2Description description={description} setDescription={setDescription} />
+                }
+                {step === 10 &&
+                    <Step3Intro />
                 }
             </div>
             <div className='host-spot-footer'>
