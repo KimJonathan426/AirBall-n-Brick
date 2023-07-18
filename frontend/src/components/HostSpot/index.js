@@ -158,7 +158,8 @@ const HostSpot = () => {
                     address={address} city={city} state={state} zipcode={zipcode}
                     country={country} setTransitionClass={setTransitionClass}
                     setIsFinalCheck={setIsFinalCheck} setDisableScroll={setDisableScroll}
-                    images={images} title={title} description={description} />
+                    images={images} title={title} description={description}
+                    price={price} />
             </div>
         </>
     )

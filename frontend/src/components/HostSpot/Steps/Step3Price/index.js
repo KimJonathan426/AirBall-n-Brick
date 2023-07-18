@@ -38,7 +38,7 @@ const Step3Price = ({ price, setPrice }) => {
 
         setPrice(trimmedAmount);
 
-        if (Number(amount) > 999999.99) {
+        if (Number(amount) > 999999) {
             setError('The maximum listing price is $999,999.99');
             setShowError(true);
         } else if (Number(amount) < 1) {
@@ -67,7 +67,7 @@ const Step3Price = ({ price, setPrice }) => {
                             $
                         </label>
                         <input id='spot-price' className='host-step-3-price-input'
-                            style={{ width: `${price.length ? price.length : 1}ch` }}
+                            style={{ width: `${price.length ? price.length + 1 : 1}ch` }}
                             type='number'
                             autoComplete='off'
                             value={price}

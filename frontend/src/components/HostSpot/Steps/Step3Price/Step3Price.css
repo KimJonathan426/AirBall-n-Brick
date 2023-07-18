@@ -66,7 +66,7 @@
     border-radius: 16px;
     border: 1px solid #B0B0B0;
     font-size: 48px;
-    line-height: 52px;
+    line-height: 48px;
     font-weight: 700;
     color: #222222;
     box-sizing: border-box;
@@ -81,9 +81,10 @@
     border: none;
     max-width: 100%;
     font-size: 48px;
-    line-height: 52px;
+    line-height: 48px;
     font-weight: 700;
     padding: 0px !important;
+    user-select: none;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -100,7 +101,7 @@
 }
 
 .host-step-3-price-input:focus + .host-step-3-price-btn {
-    display: none;
+    visibility: hidden;
 }
 
 .host-step-3-price-btn {
@@ -109,7 +110,6 @@
     padding: 3px;
     border-radius: 12px;
     border: 1px solid #DDDDDD;
-    margin-left: 3px;
     background: #FFFFFF;
     cursor: pointer;
     position: relative;
