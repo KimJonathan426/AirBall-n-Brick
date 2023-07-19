@@ -152,7 +152,10 @@ const HostSpot = () => {
                     <Step3Price price={price} setPrice={setPrice} />
                 }
                 {step === 12 &&
-                    <FinalReview images={images} title={title} price={price} />
+                    <FinalReview
+                    images={images} title={title} description={description} price={price}
+                    address={address} city={city} state={state} zipcode={zipcode}
+                    country={country} />
                 }
             </div>
             <div className='host-spot-footer'>

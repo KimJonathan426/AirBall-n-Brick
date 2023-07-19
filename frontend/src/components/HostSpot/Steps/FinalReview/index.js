@@ -3,12 +3,15 @@ import { ReactComponent as RatingStar } from '../../../../images/rating-star.svg
 import { ReactComponent as ConfirmCheck } from '../../../../images/final-review/confirm.svg';
 import { ReactComponent as CalendarCheck } from '../../../../images/final-review/calendar.svg';
 import { ReactComponent as SettingsPen } from '../../../../images/final-review/settings-pen.svg';
+import { Modal } from '../../../../context/Modal';
+import FinalReviewModal from './FinalReviewModal';
 import '../Steps.css';
 import './FinalReview.css';
 
-const FinalReview = ({ images, title, price }) => {
+const FinalReview = ({ images, title, description, price, address, city, state, zipcode, country }) => {
 
-    const [previewImg, setPreviewImg] = useState('')
+    const [previewImg, setPreviewImg] = useState('');
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const reader = new FileReader();
@@ -17,8 +20,8 @@ const FinalReview = ({ images, title, price }) => {
             setPreviewImg(reader.result);
         };
 
-        reader.readAsDataURL(images[1]);
-    }, []);
+        reader.readAsDataURL(images[0]);
+    }, [images]);
 
     return (
         <div className='host-step-container-center'>
@@ -32,7 +35,7 @@ const FinalReview = ({ images, title, price }) => {
                     </div>
                 </div>
                 <div className='host-final-review-bottom'>
-                    <button className='host-final-review-preview'>
+                    <button className='host-final-review-preview' onClick={() => setShowModal(true)}>
                         <div className='host-final-review-preview-main'>
                             <div className='host-preview-main-label'>Show preview</div>
                             <img className='host-preview-main-img' src={previewImg} alt='court cover' />
@@ -48,6 +51,13 @@ const FinalReview = ({ images, title, price }) => {
                             </div>
                         </div>
                     </button>
+                    {showModal && (
+                        <Modal onClose={() => setShowModal(false)}>
+                            <FinalReviewModal previewImg={previewImg} title={title} description={description}
+                            address={address} city={city} state={state} zipcode={zipcode} country={country}
+                            setShowModal={setShowModal} />
+                        </Modal>
+                    )}
                     <div className='host-final-review-info'>
                         <h2 className='host-final-review-info-header'>What's next?</h2>
                         <div className='host-final-review-info-item'>
