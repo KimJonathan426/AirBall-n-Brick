@@ -1,10 +1,17 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, Navigate } from 'react-router-dom';
+import { createSpot } from '../../store/spotReducer';
 import loadingGif from '../../images/host-court-loading.gif';
 import './HostSpot.css';
 
 const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, city,
-    state, zipcode, country, setTransitionClass, setIsFinalCheck, setDisableScroll,
-    images, title, description, price }) => {
+    state, zipcode, country, lat, lng, showSpecific, tags, amenities, type,
+    setTransitionClass, setIsFinalCheck, setDisableScroll, images, title, description, price }) => {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const userId = useSelector((state) => state.session.user?.id);
 
     const [progressBar1, setProgressBar1] = useState('0');
     const [progressBar2, setProgressBar2] = useState('0');
@@ -53,6 +60,10 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
             case 12:
                 setProgressBar3('100');
                 break;
+            default:
+                setProgressBar1('0');
+                setProgressBar2('0');
+                setProgressBar3('0');
         };
     }, [step]);
 
@@ -126,10 +137,37 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
         }, 600);
     };
 
-    const handlePublish = () => {
-        // setButtonLoading(true);
+    const handlePublish = async (e) => {
+        e.preventDefault();
+        setButtonLoading(true);
 
-    }
+        const payload = {
+            userId: userId,
+            address,
+            city,
+            state,
+            zipcode,
+            country,
+            lat,
+            lng,
+            showSpecific,
+            title,
+            description,
+            price,
+            images,
+            tags,
+            amenities,
+            type,
+        };
+
+        const res = await dispatch(createSpot(payload));
+
+        if (res) {
+            navigate(`/spots/${res}`);
+        };
+
+        setButtonLoading(false);
+    };
 
 
     return (

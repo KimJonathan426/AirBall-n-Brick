@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate, Navigate } from 'react-router-dom';
-import { createSpot } from '../../store/spotReducer';
+import { useSelector } from 'react-redux';
+import { NavLink, Navigate } from 'react-router-dom';
 import HostSpotIntro from './Steps/HostSpotIntro';
 import Step1Intro from './Steps/StepIntros/Step1Intro';
 import Step1Tags from './Steps/Step1Tags';
@@ -22,6 +21,8 @@ import logo from '../../images/logo-image.png';
 import './HostSpot.css';
 
 const HostSpot = () => {
+
+    const sessionUser = useSelector(state => state.session.user);
 
     const [step, setStep] = useState(0);
     const [locationStep, setLocationStep] = useState(0);
@@ -45,7 +46,6 @@ const HostSpot = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState("You'll be at peak performance and have the best time at this unique court.");
     const [price, setPrice] = useState('60');
-
 
     useEffect(() => {
         if (step === 4) {
@@ -86,6 +86,10 @@ const HostSpot = () => {
         };
     }, [disableScroll]);
 
+    // return user to home page if they are not logged in.
+    if (!sessionUser) return (
+        <Navigate replace to="/" />
+    );
 
     return (
         <>
@@ -153,9 +157,9 @@ const HostSpot = () => {
                 }
                 {step === 12 &&
                     <FinalReview
-                    images={images} title={title} description={description} price={price}
-                    address={address} city={city} state={state} zipcode={zipcode}
-                    country={country} />
+                        images={images} title={title} description={description} price={price}
+                        address={address} city={city} state={state} zipcode={zipcode}
+                        country={country} />
                 }
             </div>
             <div className='host-spot-footer'>
@@ -163,10 +167,11 @@ const HostSpot = () => {
                     step={step} setStep={setStep}
                     locationStep={locationStep} setLocationStep={setLocationStep}
                     address={address} city={city} state={state} zipcode={zipcode}
-                    country={country} setTransitionClass={setTransitionClass}
-                    setIsFinalCheck={setIsFinalCheck} setDisableScroll={setDisableScroll}
-                    images={images} title={title} description={description}
-                    price={price} />
+                    country={country} lat={lat} lng={lng} showSpecific={showSpecific}
+                    tags={tags} amenities={amenities} type={type} price={price}
+                    setTransitionClass={setTransitionClass} setIsFinalCheck={setIsFinalCheck}
+                    setDisableScroll={setDisableScroll} images={images} title={title}
+                    description={description} />
             </div>
         </>
     )
