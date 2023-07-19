@@ -17,9 +17,26 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING(50)
     },
+    zipcode: {
+      allowNull: false,
+      type: DataTypes.STRING(11)
+    },
     country: {
       allowNull: false,
       type:DataTypes.STRING(100)
+    },
+    lat: {
+      allowNull: false,
+      type: DataTypes.FLOAT
+    },
+    lng: {
+      allowNull: false,
+      type: DataTypes.FLOAT
+    },
+    showSpecific: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
     name: {
       allowNull: false,
@@ -27,7 +44,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     description: {
       allowNull: false,
-      type: DataTypes.TEXT
+      type: DataTypes.STRING(500)
+    },
+    type: {
+      allowNull: false,
+      type: DataTypes.STRING(5)
     },
     price: {
       allowNull: false,
