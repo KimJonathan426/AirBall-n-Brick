@@ -12,6 +12,7 @@ const FinalReview = ({ images, title, description, price, address, city, state, 
 
     const [previewImg, setPreviewImg] = useState('');
     const [showModal, setShowModal] = useState(false);
+    const [closeModal, setCloseModal] = useState(false);
 
     useEffect(() => {
         const reader = new FileReader();
@@ -22,6 +23,22 @@ const FinalReview = ({ images, title, description, price, address, city, state, 
 
         reader.readAsDataURL(images[0]);
     }, [images]);
+
+    useEffect(() => {
+        if (!closeModal) {
+            return;
+        };
+
+        const timeoutId = setTimeout(() => {
+            setShowModal(false);
+            setCloseModal(false);
+        }, 400);
+
+        return () => {
+            clearTimeout(timeoutId);
+        };
+    }, [closeModal]);
+
 
     return (
         <div className='host-step-container-center'>
@@ -52,10 +69,10 @@ const FinalReview = ({ images, title, description, price, address, city, state, 
                         </div>
                     </button>
                     {showModal && (
-                        <Modal onClose={() => setShowModal(false)}>
+                        <Modal onClose={() => setCloseModal(true)}>
                             <FinalReviewModal previewImg={previewImg} title={title} description={description}
-                            address={address} city={city} state={state} zipcode={zipcode} country={country}
-                            setShowModal={setShowModal} />
+                                address={address} city={city} state={state} zipcode={zipcode} country={country}
+                                closeModal={closeModal} setCloseModal={setCloseModal} />
                         </Modal>
                     )}
                     <div className='host-final-review-info'>

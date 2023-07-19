@@ -1,16 +1,27 @@
 import { useSelector } from 'react-redux';
 import { ReactComponent as ClearX } from '../../../../images/clear-x-thin.svg';
 import './FinalReviewModal.css';
+import { useEffect, useState } from 'react';
 
-const FinalReviewModal = ({ previewImg, title, description, address, city, state, zipcode, country }) => {
+const FinalReviewModal = ({ previewImg, title, description, address, city, state, zipcode,
+    country, closeModal, setCloseModal }) => {
 
     const username = useSelector(state => state.session.user.username);
+    const [modalClass, setModalClass] = useState('final-review-modal-container-open');
+
+    useEffect(() => {
+        if (closeModal) {
+            setModalClass('final-review-modal-container-close');
+        } else {
+            setModalClass('final-review-modal-container-open');
+        };
+    }, [closeModal]);
 
 
     return (
-        <div className='final-review-modal-container-open'>
+        <div className={modalClass}>
             <div className='final-review-modal-title'>
-                <button className='exit-final-review-modal'><ClearX /></button>
+                <button className='exit-final-review-modal' onClick={() => setCloseModal(true)}><ClearX /></button>
                 <h1 className='final-review-modal-title-text'>Full preview</h1>
             </div>
             <div className='final-review-modal-content'>
