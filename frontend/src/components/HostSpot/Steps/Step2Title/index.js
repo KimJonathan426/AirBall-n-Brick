@@ -24,13 +24,13 @@ const Step2Title = ({ title, setTitle }) => {
 
 
     return (
-        <div className='host-step-2-title-container'>
+        <div className='host-step-container-center'>
             <div className='host-step-2-title-container-inner'>
-                <div className='host-step-2-title-top'>
-                    <h1 className='host-step-2-title-header'>
+                <div className='host-step-top'>
+                    <h1 className='host-step-header'>
                         Now, let's give your court a title
                     </h1>
-                    <div className='host-step-2-title-subheader'>
+                    <div className='host-step-subheader'>
                         Short titles work best. Have fun with it—you can always change it later
                     </div>
                 </div>

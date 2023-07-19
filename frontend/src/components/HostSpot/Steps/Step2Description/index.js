@@ -24,13 +24,13 @@ const Step2Description = ({ description, setDescription }) => {
 
 
     return (
-        <div className='host-step-2-description-container'>
+        <div className='host-step-container-center'>
             <div className='host-step-2-description-container-inner'>
-                <div className='host-step-2-description-top'>
-                    <h1 className='host-step-2-description-header'>
+                <div className='host-step-top'>
+                    <h1 className='host-step-header'>
                         Create your description
                     </h1>
-                    <div className='host-step-2-description-subheader'>
+                    <div className='host-step-subheader'>
                         Share what makes your place special.
                     </div>
                 </div>

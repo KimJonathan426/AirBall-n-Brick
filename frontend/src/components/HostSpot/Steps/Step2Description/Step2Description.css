@@ -1,12 +1,3 @@
-.host-step-2-description-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-}
-
 .host-step-2-description-container-inner {
     display: flex;
     flex-direction: column;
@@ -20,32 +11,6 @@
     margin-bottom: auto;
     overflow: visible;
     box-sizing: border-box;
-}
-
-.host-step-2-description-top {
-    width: 100%;
-    margin-bottom: 32px;
-    animation-name: fadeUpIn;
-    animation-duration: 600ms;
-    animation-delay: 400ms;
-    animation-iteration-count: 1;
-    animation-fill-mode: both;
-}
-
-.host-step-2-description-header {
-    font-size: 30px;
-    line-height: 36px;
-    font-weight: 600;
-    overflow-wrap: break-word;
-    margin-top: 0;
-    margin-bottom: 24px;
-}
-
-.host-step-2-description-subheader {
-    font-size: 18px;
-    line-height: 24px;
-    color: #717171;
-    overflow-wrap: break-word;
 }
 
 .host-step-2-description-bottom {
@@ -130,27 +95,8 @@
 }
 
 @media screen and (max-width: 743px) {
-    .host-step-2-description-container {
-        align-items: flex-start;
-    }
-
     .host-step-2-description-container-inner {
         margin: 0 auto;
-    }
-
-    .host-step-2-description-top {
-        margin-bottom: 24px;
-    }
-
-    .host-step-2-description-header {
-        font-size: 26px;
-        line-height: 30px;
-        margin-bottom: 8px;
-    }
-
-    .host-step-2-description-subheader {
-        font-size: 16px;
-        line-height: 20px;
     }
 
     .host-step-2-description-textarea,

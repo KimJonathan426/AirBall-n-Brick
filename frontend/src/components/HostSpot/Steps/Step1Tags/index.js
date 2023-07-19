@@ -37,10 +37,10 @@ const Step1Tags = ({ tags, setTags }) => {
 
 
     return (
-        <div className='host-step-1-tags-container'>
-            <div className='host-step-1-tags-container-inner'>
-                <div className='host-step-1-tags-top'>
-                    <h1 className='host-step-1-tags-header'>Which of these best describes your&nbsp;court?</h1>
+        <div className='host-step-container-start'>
+            <div className='host-step-container-inner-start'>
+                <div className='host-step-top'>
+                    <h1 className='host-step-header-only'>Which of these best describes your&nbsp;court?</h1>
                 </div>
                 <div className='host-step-1-tags-bottom'>
                     {tagCombos.map((option, i) => (

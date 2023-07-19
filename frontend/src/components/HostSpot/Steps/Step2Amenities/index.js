@@ -55,11 +55,11 @@ const Step2Amenities = ({ amenities, setAmenities }) => {
 
 
     return (
-        <div className='step-2-amenities-container'>
-            <div className='step-2-amenities-container-inner'>
-                <div className='step-2-amenities-top'>
-                    <h1 className='step-2-amenities-header'>Tell guests what your court has to offer</h1>
-                    <div className='step-2-amenities-subheader'>You can add more amenities after you publish your listing.</div>
+        <div className='host-step-container-start'>
+            <div className='host-step-container-inner-start'>
+                <div className='host-step-top'>
+                    <h1 className='host-step-header'>Tell guests what your court has to offer</h1>
+                    <div className='host-step-subheader'>You can add more amenities after you publish your listing.</div>
                 </div>
                 <div>
                     <div className='step-2-amenities-bottom'>

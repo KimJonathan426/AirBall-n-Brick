@@ -52,13 +52,13 @@ const Step3Price = ({ price, setPrice }) => {
 
 
     return (
-        <div className='host-step-3-price-container'>
-            <div className='host-step-3-price-container-inner'>
-                <div className='host-step-3-price-top'>
-                    <h1 className='host-step-3-price-header'>
+        <div className='host-step-container-center'>
+            <div className='host-step-container-inner-mix'>
+                <div className='host-step-top'>
+                    <h1 className='host-step-header'>
                         Now, set your price
                     </h1>
-                    <div className='host-step-3-price-subheader'>
+                    <div className='host-step-subheader'>
                         You can change it anytime.
                     </div>
                 </div>

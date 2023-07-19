@@ -8,10 +8,10 @@ const Step1Type = ({ type, setType }) => {
 
 
     return (
-        <div className='host-step-1-type-container'>
-            <div className='host-step-1-type-container-inner'>
-                <div className='host-step-1-type-top'>
-                    <h1 className='host-step-1-type-header'>Which type of court will guests have?</h1>
+        <div className='host-step-container-center'>
+            <div className='host-step-container-inner-center'>
+                <div className='host-step-top'>
+                    <h1 className='host-step-header-only'>Which type of court will guests have?</h1>
                 </div>
                 <div className='host-step-1-type-bottom'>
                         <div className='host-step-1-type-main' style={{ animationDelay: '400ms' }}>

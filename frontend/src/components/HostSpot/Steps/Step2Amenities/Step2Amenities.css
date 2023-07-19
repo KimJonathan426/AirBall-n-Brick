@@ -1,53 +1,8 @@
-.step-2-amenities-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 100%;
-    height: 100%;
-    /* overflow: auto; */
-    box-sizing: border-box;
-}
-
-.step-2-amenities-container-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.step-2-amenities-top {
-    width: 100%;
-    max-width: 630px;
-    margin-bottom: 32px;
-    animation-name: fadeUpIn;
-    animation-delay: 400ms;
-    animation-duration: 600ms;
-    animation-iteration-count: 1;
-    animation-fill-mode: both;
-}
-
-.step-2-amenities-header {
-    font-size: 31px;
-    line-height: 36px;
-    font-weight: 600;
-    overflow-wrap: break-word;
-    margin-top: 0;
-    margin-bottom: 16px;
-}
-
-.step-2-amenities-subheader {
-    font-size: 17px;
-    line-height: 24px;
-    color: #717171;
-}
-
 .step-2-amenities-bottom {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
-    max-width: 630px;
     gap: 16px;
     margin-bottom: 40px;
     box-sizing: border-box;
@@ -129,10 +84,6 @@
 }
 
 @media screen and (max-width: 743px) {
-    .step-2-amenities-top {
-        margin-bottom: 24px;
-    }
-
     .step-2-amenities-bottom {
         max-width: unset;
         gap: 12px;
