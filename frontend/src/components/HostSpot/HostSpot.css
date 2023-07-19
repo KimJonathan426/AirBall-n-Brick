@@ -94,7 +94,8 @@
     box-sizing: border-box;
 }
 
-.host-spot-start-btn {
+.host-spot-start-btn,
+.host-spot-publish-btn {
     background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
     width: 154px;
     height: 100%;
@@ -113,11 +114,13 @@
     transition: all 0.2s ease-in-out;
 }
 
-.host-spot-start-btn:hover {
+.host-spot-start-btn:hover,
+.host-spot-publish-btn:hover {
     background: linear-gradient(to left,#E61E4D 0%, #E31C5F 50%,#D70466 100%);
 }
 
-.host-spot-start-btn:active {
+.host-spot-start-btn:active,
+.host-spot-publish-btn:active {
     transform: scale(0.96);
     background: linear-gradient(to right,#FF385C 100%,#E31C5F 50%,#D70466 0%);
 }

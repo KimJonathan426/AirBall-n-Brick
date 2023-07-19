@@ -14,6 +14,49 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
     const [buttonLoading, setButtonLoading] = useState(false);
 
     useEffect(() => {
+        switch (step) {
+            case 1:
+                setProgressBar1('0');
+                break;
+            case 2:
+                setProgressBar1('25');
+                break;
+            case 3:
+                setProgressBar1('50');
+                break;
+            case 4:
+                setProgressBar1('75');
+                break;
+            case 5:
+                setProgressBar1('100');
+                setProgressBar2('0');
+                break;
+            case 6:
+                setProgressBar2('20');
+                break;
+            case 7:
+                setProgressBar2('40');
+                break;
+            case 8:
+                setProgressBar2('60');
+                break;
+            case 9:
+                setProgressBar2('80');
+                break;
+            case 10:
+                setProgressBar2('100');
+                setProgressBar3('0');
+                break;
+            case 11:
+                setProgressBar3('50');
+                break;
+            case 12:
+                setProgressBar3('100');
+                break;
+        };
+    }, [step]);
+
+    useEffect(() => {
         // disable next button on google map and if no entry in confirm input.
         if (step === 4) {
             if (locationStep === 0) {
@@ -64,13 +107,6 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
         setTransitionClass('host-spot-container-transition');
         setTimeout(() => {
             setStep(step - 1);
-
-            if (step >= 1 && step <= 5) {
-                setProgressBar1((prev) => `${Number(prev) - 25}`);
-            } else if (step >= 6 && step <= 10) {
-                setProgressBar2((prev) => `${Number(prev) - 20}`);
-            }
-
             setBackButtonLoading(false);
         }, 600);
     };
@@ -86,16 +122,14 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
         setTransitionClass('host-spot-container-transition');
         setTimeout(() => {
             setStep(step + 1);
-
-            if (step >= 1 && step <= 4) {
-                setProgressBar1((prev) => `${Number(prev) + 25}`);
-            } else if (step >= 5 && step <= 9) {
-                setProgressBar2((prev) => `${Number(prev) + 20}`);
-            }
-
             setButtonLoading(false);
         }, 600);
     };
+
+    const handlePublish = () => {
+        // setButtonLoading(true);
+
+    }
 
 
     return (
@@ -134,17 +168,24 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
                             :
                             <button onClick={handleBack} className='host-spot-back-btn'>Back</button>
                         }
-                        {buttonLoading ?
-                            <button className='host-spot-next-loading'>
-                                <img className='host-spot-btn-load-next' src={loadingGif} alt='loading...' />
-                            </button>
-                            :
-                            <button
-                                onClick={handleNext}
-                                disabled={nextDisabled}
-                                className={nextDisabled ? 'host-spot-next-btn-disabled' : 'host-spot-next-btn'}>
-                                Next
-                            </button>
+                        {step === 12 ?
+                            buttonLoading ?
+                                <button className='host-spot-load-box'>
+                                    <img className='host-spot-btn-load' src={loadingGif} alt='loading...' />
+                                </button>
+                                :
+                                <button onClick={handlePublish} className='host-spot-publish-btn'>Publish</button>
+                            : buttonLoading ?
+                                <button className='host-spot-next-loading'>
+                                    <img className='host-spot-btn-load-next' src={loadingGif} alt='loading...' />
+                                </button>
+                                :
+                                <button
+                                    onClick={handleNext}
+                                    disabled={nextDisabled}
+                                    className={nextDisabled ? 'host-spot-next-btn-disabled' : 'host-spot-next-btn'}>
+                                    Next
+                                </button>
                         }
                     </div>
                 </>
