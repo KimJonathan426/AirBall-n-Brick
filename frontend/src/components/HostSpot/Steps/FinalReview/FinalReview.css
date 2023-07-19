@@ -122,6 +122,46 @@
     top: 2px;
 }
 
+.host-final-review-info {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    max-width: 400px;
+    margin-left: 78px;
+}
+
+.host-final-review-info-header {
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 32px;
+}
+
+.host-final-review-info-item {
+    display: flex;
+    margin-bottom: 32px;
+}
+
+.host-final-review-item-inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.host-final-review-item-header {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 4px
+}
+
+.host-final-review-item-subheader {
+    font-size: 14px;
+    line-height: 18px;
+    color: #717171;
+}
+
 @media screen and (max-width: 743px) {
     .host-final-review-container-inner {
         margin: 0 auto;
@@ -146,5 +186,33 @@
     .host-final-review-bottom {
         display: flex;
         flex-direction: column;
+    }
+
+    .host-final-review-preview {
+        max-width: 500px;
+        padding: 16px;
+        margin-bottom: 32px;
+    }
+
+    .host-final-review-info {
+        align-self: unset;
+        width: 100%;
+        max-width: unset;
+        margin-left: 0;
+        margin-bottom: 32px;
+    }
+
+    .host-final-review-info-header {
+        font-size: 18px;
+        line-height: 22px;
+        margin-bottom: 24px;
+    }
+
+    .host-final-review-info-item {
+        margin-bottom: 24px;
+    }
+
+    .host-final-review-item-header {
+        margin-bottom: 2px
     }
 }

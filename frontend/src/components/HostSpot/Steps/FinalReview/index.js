@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
-import {ReactComponent as RatingStar} from '../../../../images/rating-star.svg';
+import { ReactComponent as RatingStar } from '../../../../images/rating-star.svg';
+import { ReactComponent as ConfirmCheck } from '../../../../images/final-review/confirm.svg';
+import { ReactComponent as CalendarCheck } from '../../../../images/final-review/calendar.svg';
+import { ReactComponent as SettingsPen } from '../../../../images/final-review/settings-pen.svg';
 import '../Steps.css';
 import './FinalReview.css';
 
@@ -10,11 +13,11 @@ const FinalReview = ({ images, title, price }) => {
     useEffect(() => {
         const reader = new FileReader();
 
-            reader.onload = () => {
-                setPreviewImg(reader.result);
-            };
+        reader.onload = () => {
+            setPreviewImg(reader.result);
+        };
 
-            reader.readAsDataURL(images[1]);
+        reader.readAsDataURL(images[1]);
     }, []);
 
     return (
@@ -45,7 +48,42 @@ const FinalReview = ({ images, title, price }) => {
                             </div>
                         </div>
                     </button>
-                    <div>whats next</div>
+                    <div className='host-final-review-info'>
+                        <h2 className='host-final-review-info-header'>What's next?</h2>
+                        <div className='host-final-review-info-item'>
+                            <div style={{ marginRight: '16px' }}><ConfirmCheck /></div>
+                            <div className='host-final-review-item-inner'>
+                                <h3 className='host-final-review-item-header'>
+                                    Confirm details and publish
+                                </h3>
+                                <div className='host-final-review-item-subheader'>
+                                    We'll let you know if you need to perform any additional steps in the future.
+                                </div>
+                            </div>
+                        </div>
+                        <div className='host-final-review-info-item'>
+                            <div style={{ marginRight: '16px' }}><CalendarCheck /></div>
+                            <div className='host-final-review-item-inner'>
+                                <h3 className='host-final-review-item-header'>
+                                    Mark your calendar
+                                </h3>
+                                <div className='host-final-review-item-subheader'>
+                                    Keep a look out for new and existing bookings.
+                                </div>
+                            </div>
+                        </div>
+                        <div className='host-final-review-info-item'>
+                            <div style={{ marginRight: '16px' }}><SettingsPen /></div>
+                            <div className='host-final-review-item-inner'>
+                                <h3 className='host-final-review-item-header'>
+                                    Adjust your settings
+                                </h3>
+                                <div className='host-final-review-item-subheader'>
+                                    Update your listing, maintain your court, and continue hosting a great game.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
