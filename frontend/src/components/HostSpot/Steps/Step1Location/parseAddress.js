@@ -27,7 +27,7 @@ export function parseAddress(place) {
                 addressNameFormat[addressType] = component['long_name'];
                 break;
             case 'administrative_area_level_1':
-                addressNameFormat[addressType] = component['short_name'];
+                addressNameFormat[addressType] = component['long_name'];
                 break;
             case 'country':
                 addressNameFormat[addressType] = component['long_name'];
