@@ -22,6 +22,7 @@ import smokeAlarm from '../../../../images/amenities/smoke-alarm.svg';
 import firstAid from '../../../../images/amenities/first-aid.svg';
 import fireExtinguisher from '../../../../images/amenities/fire-extinguisher.svg';
 import tape from '../../../../images/amenities/tape.svg';
+import '../Steps.css';
 import './Step2Amenities.css';
 
 const Step2Amenities = ({ amenities, setAmenities }) => {

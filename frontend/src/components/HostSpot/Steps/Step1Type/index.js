@@ -1,6 +1,7 @@
 import full from '../../../../images/types/type-full.png';
 import half from '../../../../images/types/type-half.png';
 import share from '../../../../images/types/type-share.png';
+import '../Steps.css';
 import './Step1Type.css';
 
 const Step1Type = ({ type, setType }) => {

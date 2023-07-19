@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ReactComponent as ErrorMark } from '../../../../images/error-mark.svg';
 import { ReactComponent as EditPen } from '../../../../images/edit-pen.svg';
+import '../Steps.css';
 import './Step3Price.css';
 
 const Step3Price = ({ price, setPrice }) => {

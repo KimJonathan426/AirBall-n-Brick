@@ -3,6 +3,7 @@ import { Loader } from '@googlemaps/js-api-loader';
 import { parseAddress } from './parseAddress';
 import locationPing from '../../../../images/location.svg';
 import clearX from '../../../../images/clear-x-thick.svg';
+import '../Steps.css';
 import './Step1Location.css';
 
 const Step1Location = ({

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ReactComponent as ErrorMark } from '../../../../images/error-mark.svg';
+import '../Steps.css';
 import './Step2Title.css';
 
 const Step2Title = ({ title, setTitle }) => {

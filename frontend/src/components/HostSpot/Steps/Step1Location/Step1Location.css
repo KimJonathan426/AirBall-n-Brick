@@ -35,7 +35,7 @@
 .host-step-1-location-top {
     width: 100%;
     margin-bottom: 44px;
-    animation-name: describeAnimation;
+    animation-name: fadeUpIn;
     animation-duration: 600ms;
     animation-delay: 400ms;
     animation-iteration-count: 1;

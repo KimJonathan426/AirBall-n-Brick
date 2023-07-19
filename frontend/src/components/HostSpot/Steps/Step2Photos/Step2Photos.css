@@ -18,7 +18,7 @@
     max-width: 630px;
     margin-bottom: 32px;
     animation-delay: 400ms;
-    animation-name: photosAnimation;
+    animation-name: fadeUpIn;
     animation-duration: 600ms;
     animation-iteration-count: 1;
     animation-fill-mode: both;
@@ -161,16 +161,5 @@
     .photos-instruct-3 {
         position: relative;
         bottom: 0;
-    }
-}
-
-@keyframes photosAnimation {
-    0% {
-        opacity: 0;
-        transform: translate(0, 40%);
-    }
-    100% {
-        opacity: 1;
-        transform: none;
     }
 }

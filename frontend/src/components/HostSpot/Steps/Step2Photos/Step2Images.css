@@ -14,7 +14,7 @@
     width: 100%;
     padding-bottom: 24px;
     animation-delay: 400ms;
-    animation-name: photosAnimation;
+    animation-name: fadeUpIn;
     animation-duration: 600ms;
     animation-iteration-count: 1;
     animation-fill-mode: both;

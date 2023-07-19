@@ -20,7 +20,7 @@
     width: 100%;
     max-width: 630px;
     margin-bottom: 32px;
-    animation-name: amenitiesAnimation;
+    animation-name: fadeUpIn;
     animation-delay: 400ms;
     animation-duration: 600ms;
     animation-iteration-count: 1;
@@ -56,7 +56,7 @@
 .step-2-amenities-main {
     flex: 0 1 calc(33% - calc(32px / 3));
     box-sizing: border-box;
-    animation-name: amenitiesAnimation;
+    animation-name: fadeUpIn;
     animation-duration: 600ms;
     animation-iteration-count: 1;
     animation-fill-mode: both;
@@ -122,7 +122,7 @@
     font-weight: 600;
     margin-top: 0;
     margin-bottom: 24px;
-    animation-name: amenitiesAnimation;
+    animation-name: fadeUpIn;
     animation-duration: 600ms;
     animation-iteration-count: 1;
     animation-fill-mode: both;
@@ -142,16 +142,5 @@
 
     .step-2-amenities-main {
         flex: 0 1 calc(50% - 6px);
-    }
-}
-
-@keyframes amenitiesAnimation {
-    0% {
-        opacity: 0;
-        transform: translate(0, 40%);
-    }
-    100% {
-        opacity: 1;
-        transform: none;
     }
 }

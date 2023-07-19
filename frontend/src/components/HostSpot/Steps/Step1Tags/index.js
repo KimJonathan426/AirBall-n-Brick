@@ -13,6 +13,7 @@ import chain from '../../../../images/tags/tag-chain.png';
 import netless from '../../../../images/tags/tag-no-net.png';
 import adjustable from '../../../../images/tags/tag-adjustable.png';
 import mini from '../../../../images/tags/tag-mini.png';
+import '../Steps.css';
 import './Step1Tags.css';
 
 const Step1Tags = ({ tags, setTags }) => {

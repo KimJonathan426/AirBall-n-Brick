@@ -25,7 +25,7 @@
 .host-step-2-title-top {
     width: 100%;
     margin-bottom: 32px;
-    animation-name: titleAnimation;
+    animation-name: fadeUpIn;
     animation-duration: 600ms;
     animation-delay: 400ms;
     animation-iteration-count: 1;
@@ -74,7 +74,7 @@
     line-height: 26px;
     color: #222222;
     box-sizing: border-box;
-    animation-name: titleAnimation;
+    animation-name: fadeUpIn;
     animation-duration: 600ms;
     animation-delay: 450ms;
     animation-iteration-count: 1;
@@ -107,7 +107,7 @@
     line-height: 18px;
     font-weight: 700;
     color: #717171;
-    animation-name: titleAnimation;
+    animation-name: fadeUpIn;
     animation-duration: 600ms;
     animation-delay: 500ms;
     animation-iteration-count: 1;
@@ -164,16 +164,5 @@
     .host-step-2-title-counter {
         font-size: 12px;
         line-height: 16px;
-    }
-}
-
-@keyframes titleAnimation {
-    0% {
-        opacity: 0;
-        transform: translate(0, 40%);
-    }
-    100% {
-        opacity: 1;
-        transform: none;
     }
 }

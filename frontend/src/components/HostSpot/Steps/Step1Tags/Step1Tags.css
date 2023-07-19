@@ -19,7 +19,7 @@
     max-width: 630px;
     margin-bottom: 32px;
     animation-delay: 400ms;
-    animation-name: tagAnimation;
+    animation-name: fadeUpIn;
     animation-duration: 600ms;
     animation-iteration-count: 1;
     animation-fill-mode: both;
@@ -46,7 +46,7 @@
 .host-step-1-tags-main {
     flex: 0 1 calc(33% - 9px);
     box-sizing: border-box;
-    animation-name: tagAnimation;
+    animation-name: fadeUpIn;
     animation-duration: 600ms;
     animation-iteration-count: 1;
     animation-fill-mode: both;
@@ -120,16 +120,5 @@
 
     .host-step-1-tags-main {
         flex: 0 1 calc(50% - 6px);
-    }
-}
-
-@keyframes tagAnimation {
-    0% {
-        opacity: 0;
-        transform: translate(0, 40%);
-    }
-    100% {
-        opacity: 1;
-        transform: none;
     }
 }

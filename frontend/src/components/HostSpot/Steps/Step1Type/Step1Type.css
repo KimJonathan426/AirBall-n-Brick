@@ -25,7 +25,7 @@
 .host-step-1-type-top {
     width: 100%;
     margin-bottom: 32px;
-    animation-name: describeAnimation;
+    animation-name: fadeUpIn;
     animation-duration: 600ms;
     animation-delay: 400ms;
     animation-iteration-count: 1;
@@ -54,7 +54,7 @@
     width: 100%;
     margin-bottom: 12px;
     box-sizing: border-box;
-    animation-name: describeAnimation;
+    animation-name: fadeUpIn;
     animation-duration: 600ms;
     animation-iteration-count: 1;
     animation-fill-mode: both;

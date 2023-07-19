@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Step2Main from './Step2Main';
 import Step2Images from './Step2Images';
 import GeneralError from '../../../GeneralError';
+import '../Steps.css';
 import './Step2Photos.css';
 
 const Step2Photos = ({ images, setImages }) => {
