@@ -16,6 +16,7 @@ import Step2Title from './Steps/Step2Title';
 import Step2Description from './Steps/Step2Description';
 import Step3Intro from './Steps/StepIntros/Step3Intro';
 import Step3Price from './Steps/Step3Price';
+import FinalReview from './Steps/FinalReview';
 import HostFooter from './HostFooter';
 import logo from '../../images/logo-image.png';
 import './HostSpot.css';
@@ -149,6 +150,9 @@ const HostSpot = () => {
                 }
                 {step === 11 &&
                     <Step3Price price={price} setPrice={setPrice} />
+                }
+                {step === 12 &&
+                    <FinalReview images={images} title={title} price={price} />
                 }
             </div>
             <div className='host-spot-footer'>
