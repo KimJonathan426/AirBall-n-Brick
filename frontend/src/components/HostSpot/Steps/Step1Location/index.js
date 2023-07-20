@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import { parseAddress } from './parseAddress';
 import locationPing from '../../../../images/location.svg';
@@ -9,6 +9,8 @@ import './Step1Location.css';
 const Step1Location = ({
     setLocationStep, setAddress, setCity, setState, setZipcode,
     setCountry, lat, lng, setLat, setLng }) => {
+
+    const firstRender = useRef(null);
 
     const [inputVal, setInputVal] = useState('');
     const [loaded, setLoaded] = useState(false);
@@ -65,6 +67,13 @@ const Step1Location = ({
     }, [loaded, setLocationStep]);
 
     useEffect(() => {
+        // prevent processing loader and autocomplete twice in strict mode.
+        if (firstRender.current) {
+            return;
+        } else {
+            firstRender.current = true;
+        };
+
         let autocomplete;
 
         const loader = new Loader({

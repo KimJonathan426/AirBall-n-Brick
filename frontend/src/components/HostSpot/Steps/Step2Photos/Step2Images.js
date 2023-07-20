@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ReactComponent as Plus } from '../../../../images/step-2-photos/plus-sign.svg';
 import { ReactComponent as Options } from '../../../../images/step-2-photos/options.svg';
 import photoIcon from '../../../../images/step-2-photos/photo-icon.svg';
@@ -7,6 +7,8 @@ import './Step2Photos.css';
 import './Step2Images.css';
 
 const Step2Images = ({ images, setImages, setValidationError, setShowError }) => {
+
+    const firstRender = useRef(null);
 
     const [dragOverlayClass, setDragOverlayClass] = useState('step-2-photos-drag-overlay');
     const [imageUrls, setImageUrls] = useState([[undefined], [undefined], [undefined], [undefined], [undefined]]);
@@ -71,6 +73,13 @@ const Step2Images = ({ images, setImages, setValidationError, setShowError }) =>
     });
 
     useEffect(() => {
+        if (firstRender.current === true) {
+            firstRender.current = 'strict mode second render';
+            return;
+        } else if (firstRender.current === null) {
+            firstRender.current = true;
+        };
+
         const loadImage = (image, i) => {
             const reader = new FileReader();
 
