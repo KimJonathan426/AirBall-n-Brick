@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     country: {
       allowNull: false,
-      type:DataTypes.STRING(100)
+      type: DataTypes.STRING(100)
     },
     lat: {
       allowNull: false,
@@ -55,25 +55,30 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER(6)
     }
   }, {});
-  Spot.associate = function(models) {
+  Spot.associate = function (models) {
     Spot.hasMany(models.Image, {
       foreignKey: 'spotId',
       onDelete: 'CASCADE',
       hooks: true
-    })
+    });
     Spot.hasMany(models.Review, {
       foreignKey: 'spotId',
       onDelete: 'CASCADE',
       hooks: true
-    })
+    });
     Spot.hasMany(models.Booking, {
       foreignKey: 'spotId',
       onDelete: 'CASCADE',
       hooks: true
-    })
+    });
     Spot.belongsTo(models.User, {
       foreignKey: 'userId'
-    })
+    });
+    Spot.belongsToMany(models.Tags, {
+      through: 'SpotTags',
+      foreignKey: 'spotId',
+      otherKey: 'tagId'
+    });
   };
   return Spot;
 };
