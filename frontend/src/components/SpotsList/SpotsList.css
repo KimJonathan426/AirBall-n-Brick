@@ -178,9 +178,12 @@
 }
 
 .spot-location {
-    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
     width: 75%;
-    white-space: nowrap;
+    word-wrap: break-word;
+    word-break: break-all;
     overflow: hidden;
     text-overflow: ellipsis;
 }
