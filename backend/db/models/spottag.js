@@ -16,5 +16,5 @@ module.exports = (sequelize, DataTypes) => {
       hooks: true
     });
   };
-  return SpotTags;
+  return SpotTag;
 };

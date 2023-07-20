@@ -18,5 +18,5 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'spotId'
     });
   };
-  return Tags;
+  return Tag;
 };
