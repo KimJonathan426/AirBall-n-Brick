@@ -46,27 +46,27 @@ module.exports = {
         url: 'https://airballnbrick.s3.amazonaws.com/tag-vinyl.png'
       },
       {
-        name: 'Double',
+        name: 'Double rim',
         url: 'https://airballnbrick.s3.amazonaws.com/tag-double.png'
       },
       {
-        name: 'Nylon',
+        name: 'Nylon net',
         url: 'https://airballnbrick.s3.amazonaws.com/tag-nylon.png'
       },
       {
-        name: 'Chain',
+        name: 'Chain net',
         url: 'https://airballnbrick.s3.amazonaws.com/tag-chain.png'
       },
       {
-        name: 'Netless',
+        name: 'No net',
         url: 'https://airballnbrick.s3.amazonaws.com/tag-no-net.png'
       },
       {
-        name: 'Adjustable',
+        name: 'Adjustable hoop',
         url: 'https://airballnbrick.s3.amazonaws.com/tag-adjustable.png'
       },
       {
-        name: 'Mini',
+        name: 'Mini hoop',
         url: 'https://airballnbrick.s3.amazonaws.com/tag-mini.png'
       },
     ], {});
