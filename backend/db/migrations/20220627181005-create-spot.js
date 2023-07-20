@@ -60,7 +60,7 @@ module.exports = {
       },
       price: {
         allowNull: false,
-        type: Sequelize.INTEGER(6)
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
