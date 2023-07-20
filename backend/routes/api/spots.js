@@ -85,6 +85,13 @@ router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res) =
     const spot = await Spot.create({ userId, address, city, state, zipcode,
         country, lat, lng, showSpecific, name, description, type, price });
 
+    const spotImages = [];
+
+    for (let image of images) {
+        const spotImage = await Image.create({ spotId, url: image });
+        spotImages.push(spotImage);
+    }
+
     const tagsArray = JSON.parse(tags);
     const tagIds = [];
     const amenitiesArray = JSON.parse(amenities);
@@ -109,18 +116,12 @@ router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res) =
             amenityIds.push(foundAmenity.id);
         };
     };
-    console.log('tagIds', tagIds)
+
     await spot.addTags(tagIds);
     await spot.addAmenities(amenityIds);
 
     const spotId = spot.id;
 
-    const spotImages = [];
-
-    for (let image of images) {
-        const spotImage = await Image.create({ spotId, url: image });
-        spotImages.push(spotImage);
-    }
 
     return res.json({
         spot,
