@@ -85,6 +85,7 @@ router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res) =
     const spot = await Spot.create({ userId, address, city, state, zipcode,
         country, lat, lng, showSpecific, name, description, type, price });
 
+    const spotId = spot.id;
     const spotImages = [];
 
     for (let image of images) {
@@ -120,7 +121,6 @@ router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res) =
     await spot.addTags(tagIds);
     await spot.addAmenities(amenityIds);
 
-    const spotId = spot.id;
 
 
     return res.json({
