@@ -102,21 +102,38 @@ export const getSpotImages = (spotId) => async (dispatch) => {
 };
 
 export const createSpot = (payload) => async (dispatch) => {
-    const { userId, address, city, state, country, name, description, price, images } = payload;
+    const { userId, address, city, state, zipcode, country,
+        lat, lng, showSpecific, name, description,
+        type, price, images, tags, amenities } = payload;
+
     const formData = new FormData();
     formData.append('userId', userId);
     formData.append('address', address);
     formData.append('city', city);
     formData.append('state', state);
+    formData.append('zipcode', zipcode);
     formData.append('country', country);
+    formData.append('lat', lat);
+    formData.append('lng', lng);
+    formData.append('showSpecific', showSpecific);
     formData.append('name', name);
     formData.append('description', description);
+    formData.append('type', type);
     formData.append('price', price);
-    formData.append('images', images[0])
-    formData.append('images', images[1])
-    formData.append('images', images[2])
-    formData.append('images', images[3])
-    formData.append('images', images[4])
+
+    const tagsArray = Array.from(tags);
+    const jsonTags = JSON.stringify(tagsArray);
+    const amenitiesArray = Array.from(amenities);
+    const jsonAmenities = JSON.stringify(amenitiesArray);
+
+    formData.append('tags', jsonTags);
+    formData.append('amenities', jsonAmenities);
+
+    if (images && images.length !== 0) {
+        for (let i = 0; i < images.length; i++) {
+            formData.append("images", images[i]);
+        }
+    }
 
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
@@ -137,10 +154,10 @@ export const createImages = (payload) => async (dispatch) => {
     const formData = new FormData();
 
     if (images && images.length !== 0) {
-        for (var i = 0; i < images.length; i++) {
-          formData.append("images", images[i]);
+        for (let i = 0; i < images.length; i++) {
+            formData.append("images", images[i]);
         }
-      }
+    }
 
     const response = await csrfFetch(`/api/spots/${id}/images/new`, {
         method: 'POST',
@@ -207,16 +224,16 @@ const spotReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SPOTS: {
             const newState = { spots: {}, images: {} };
-            action.spots.forEach( spot => {
+            action.spots.forEach(spot => {
                 newState.spots[spot.id] = spot;
             });
-            action.images.forEach( image => {
+            action.images.forEach(image => {
                 newState.images[image.id] = image;
             });
             return newState;
         }
         case GET_SINGLE_SPOT: {
-            const newState = {spots: {}, images: {}};
+            const newState = { spots: {}, images: {} };
 
             newState.spots[action.spot.id] = action.spot;
 
@@ -232,7 +249,7 @@ const spotReducer = (state = initialState, action) => {
         }
         case ADD_IMAGES: {
             const newState = { ...state };
-            action.images.forEach( image => {
+            action.images.forEach(image => {
                 newState.images[image.id] = image;
             })
             return newState;

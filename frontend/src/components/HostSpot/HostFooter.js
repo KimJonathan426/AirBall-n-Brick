@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { createSpot } from '../../store/spotReducer';
 import loadingGif from '../../images/host-court-loading.gif';
 import './HostSpot.css';
@@ -151,13 +151,13 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
             lat,
             lng,
             showSpecific,
-            title,
+            name: title,
             description,
+            type,
             price,
             images,
             tags,
             amenities,
-            type,
         };
 
         const res = await dispatch(createSpot(payload));
