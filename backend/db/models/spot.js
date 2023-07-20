@@ -52,7 +52,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     price: {
       allowNull: false,
-      type: DataTypes.INTEGER(6)
+      type: DataTypes.INTEGER,
+      validate: {
+        max: 999999,
+      },
     }
   }, {});
   Spot.associate = function (models) {
