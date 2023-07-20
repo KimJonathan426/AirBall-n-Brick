@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { multiplePublicFileUpload, multipleMulterUpload } = require('../../awsS3');
 
-const { User, Spot, Image, Review, Booking, Tags, sequelize } = require('../../db/models');
+const { User, Spot, Image, Review, Booking, Tag, Amenity } = require('../../db/models');
 
 const router = express.Router();
 
@@ -88,10 +88,10 @@ router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res) =
     const tagsArray = JSON.parse(tags);
     const tagIds = [];
     const amenitiesArray = JSON.parse(amenities);
-    const amenitiesIds = [];
+    const amenityIds = [];
 
     for (let tag of tagsArray) {
-        const foundTag = await Tags.findOne({
+        const foundTag = await Tag.findOne({
             where: { name: tag }
         });
 
@@ -100,17 +100,18 @@ router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res) =
         };
     };
 
-    // for (let amenity of amenitiesArray) {
-    //     const foundAmenity = await Amenities.findOne({
-    //         where: { name: amenity }
-    //     });
+    for (let amenity of amenitiesArray) {
+        const foundAmenity = await Amenity.findOne({
+            where: { name: amenity }
+        });
 
-    //     if (foundAmenity) {
-    //         amenitiesIds.push(foundAmenity.id);
-    //     };
-    // };
-
+        if (foundAmenity) {
+            amenityIds.push(foundAmenity.id);
+        };
+    };
+    console.log('tagIds', tagIds)
     await spot.addTags(tagIds);
+    await spot.addAmenities(amenityIds);
 
     const spotId = spot.id;
 
