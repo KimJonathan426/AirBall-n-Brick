@@ -1,16 +1,16 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const SpotTags = sequelize.define('SpotTags', {
+  const SpotTag = sequelize.define('SpotTag', {
 
   }, {});
-  SpotTags.associate = function (models) {
+  SpotTag.associate = function (models) {
     // associations can be defined here
-    SpotTags.belongsTo(models.Spot, {
+    SpotTag.belongsTo(models.Spot, {
       foreignKey: 'spotId',
       onDelete: 'CASCADE',
       hooks: true
     });
-    SpotTags.belongsTo(models.Tags, {
+    SpotTag.belongsTo(models.Tag, {
       foreignKey: 'tagId',
       onDelete: 'CASCADE',
       hooks: true

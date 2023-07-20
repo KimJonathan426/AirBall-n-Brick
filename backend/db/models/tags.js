@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Tags = sequelize.define('Tags', {
+  const Tag = sequelize.define('Tag', {
     name: {
       allowNull: false,
       type: DataTypes.STRING(20)
@@ -10,10 +10,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT
     }
   }, {});
-  Tags.associate = function (models) {
+  Tag.associate = function (models) {
     // associations can be defined here
-    Tags.belongsToMany(models.Spot, {
-      through: 'SpotTags',
+    Tag.belongsToMany(models.Spot, {
+      through: 'SpotTag',
       foreignKey: 'tagId',
       otherKey: 'spotId'
     });

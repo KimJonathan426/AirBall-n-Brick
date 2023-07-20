@@ -77,8 +77,8 @@ module.exports = (sequelize, DataTypes) => {
     Spot.belongsTo(models.User, {
       foreignKey: 'userId'
     });
-    Spot.belongsToMany(models.Tags, {
-      through: 'SpotTags',
+    Spot.belongsToMany(models.Tag, {
+      through: 'SpotTag',
       foreignKey: 'spotId',
       otherKey: 'tagId'
     });
