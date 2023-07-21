@@ -11,7 +11,7 @@ router.get('/', asyncHandler(async (_req, res) => {
         include: [User]
     });
 
-    images = [];
+    const images = [];
 
     for (let spot of spots) {
         const spotImages = await Image.findAll({
@@ -34,8 +34,9 @@ router.get('/single-spot/:spotId', asyncHandler(async (req, res) => {
     const spotId = req.params.spotId;
 
     const spot = await Spot.findByPk(spotId, {
-        include: [User]
+        include: [User, Tag, Amenity]
     });
+
     const images = await Image.findAll({
         where: {
             spotId: spotId
@@ -57,7 +58,7 @@ router.get('/user/:userId', asyncHandler(async (req, res) => {
         }
     });
 
-    images = [];
+    const images = [];
 
     for (let spot of spots) {
         const spotImage = await Image.findOne({
@@ -120,8 +121,6 @@ router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res) =
 
     await spot.addTags(tagIds);
     await spot.addAmenities(amenityIds);
-
-
 
     return res.json({
         spot,
