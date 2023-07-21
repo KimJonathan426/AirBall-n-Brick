@@ -163,7 +163,7 @@
 .spot-edit-step-textarea-invalid {
     display: block;
     width: 100%;
-    min-height: 144px;
+    min-height: 96px;
     max-height: 300px;
     outline: none;
     padding: 12px;
@@ -215,10 +215,6 @@
     font-weight: 400;
     margin-top: 4px;
     box-sizing: border-box;
-}
-
-.spot-edit-step-error-hide {
-    display: none;
 }
 
 
