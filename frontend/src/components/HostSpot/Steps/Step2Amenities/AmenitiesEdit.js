@@ -33,14 +33,14 @@ const AmenitiesEdit = ({ amenities, setAmenities }) => {
 
 
     return (
-        <div className='spot-edit-amenities-container'>
-            <h1 className='spot-edit-amenities-header'>Amenities</h1>
-            <div className='spot-edit-amenities-bottom'>
+        <div className='spot-edit-step-container'>
+            <h1 className='spot-edit-step-header'>Amenities</h1>
+            <div className='spot-edit-step-bottom'>
                 {allAmenities.map(option => (
-                    <div key={option.id} className='spot-edit-amenities-main'>
-                        <button className={amenities.has(option.name) ? 'spot-edit-amenities-btn-checked' : 'spot-edit-amenities-btn'} onClick={() => handleClick(option.name)}>
+                    <div key={option.id} className='spot-edit-step-main'>
+                        <button className={amenities.has(option.name) ? 'spot-edit-step-btn-checked' : 'spot-edit-step-btn'} onClick={() => handleClick(option.name)}>
                             <img src={option.url} style={{ width: '18px', marginRight: '8px' }} alt='icon' />
-                            <div className='spot-edit-amenities-text'>{option.name}</div>
+                            <div className='spot-edit-step-text'>{option.name}</div>
                         </button>
                     </div>
                 ))}

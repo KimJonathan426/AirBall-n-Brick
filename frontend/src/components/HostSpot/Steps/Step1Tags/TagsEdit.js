@@ -34,14 +34,14 @@ const TagsEdit = ({ tags, setTags }) => {
 
 
     return (
-        <div className='spot-edit-tags-container'>
-            <h1 className='spot-edit-tags-header'>Tags</h1>
-            <div className='spot-edit-tags-bottom'>
+        <div className='spot-edit-step-container'>
+            <h1 className='spot-edit-step-header'>Tags</h1>
+            <div className='spot-edit-step-bottom'>
                 {tagCombos.map(option => (
                     <div key={option.id}>
-                        <button className={tags.has(option.name) ? 'spot-edit-tags-btn-checked' : 'spot-edit-tags-btn'} onClick={() => handleClick(option.name)}>
+                        <button className={tags.has(option.name) ? 'spot-edit-step-btn-checked' : 'spot-edit-step-btn'} onClick={() => handleClick(option.name)}>
                             <img src={option.url} style={{ width: '15px', marginRight: '8px' }} alt='icon' />
-                            <div className='spot-edit-tags-text'>{option.name}</div>
+                            <div className='spot-edit-step-text'>{option.name}</div>
                         </button>
                     </div>
                 ))}

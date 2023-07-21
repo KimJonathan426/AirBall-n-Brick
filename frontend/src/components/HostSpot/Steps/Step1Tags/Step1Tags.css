@@ -1,59 +1,3 @@
-.spot-edit-tags-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.spot-edit-tags-header {
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 8px;
-}
-
-.spot-edit-tags-bottom {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px 10px;
-    padding: 2px;
-    box-sizing: border-box;
-}
-
-.spot-edit-tags-btn,
-.spot-edit-tags-btn-checked {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    min-height: 32px;
-    padding: 6px 12px;
-    border: 1px solid #DDDDDD;
-    border-radius: 16px;
-    cursor: pointer;
-    box-sizing: border-box;
-    transition: box-shadow 0.2s cubic-bezier(0.2,0,0,1), transform 0.1s cubic-bezier(0.2,0,0,1);
-}
-
-.spot-edit-tags-btn {
-    background-color: #FFFFFF;
-}
-
-.spot-edit-tags-btn-checked {
-    background-color: #F7F7F7;
-    box-shadow: 0 0 0 1px #000000;
-}
-
-.spot-edit-tags-text {
-    font-size: 14px;
-    line-height: 18px;
-    font-weight: 500;
-    text-align: left;
-    word-break: break-word;
-}
-
 .host-step-1-tags-bottom {
     display: flex;
     flex-direction: row;
@@ -112,20 +56,9 @@
     box-shadow: 0 0 0 2px #000000;
 }
 
-.spot-edit-tags-btn:hover {
-    box-shadow: 0 0 0 1px #000000;
-}
-
 .host-step-1-tags-btn:active,
 .host-step-1-tags-btn-checked:active {
     box-shadow: 0 0 0 2px #000000;
-    background-color: #F7F7F7;
-    transform: scale(0.96);
-}
-
-.spot-edit-tags-btn:active,
-.spot-edit-tags-btn-checked:active {
-    box-shadow: 0 0 0 1px #000000;
     background-color: #F7F7F7;
     transform: scale(0.96);
 }
