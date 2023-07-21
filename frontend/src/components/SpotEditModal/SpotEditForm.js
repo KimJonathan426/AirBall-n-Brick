@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ReactComponent as ClearX } from '../../images/clear-x-thin.svg';
+import TagsEdit from '../HostSpot/Steps/Step1Tags/TagsEdit';
 import LocationEdit from '../HostSpot/Steps/Step1Location/LocationEdit';
 import './SpotEditForm.css';
 
@@ -8,8 +9,8 @@ const SpotEditForm2 = ({ spot, closeModal, setCloseModal }) => {
     const [modalClass, setModalClass] = useState('spot-edit-modal-container-open');
     const [isFinalCheck, setIsFinalCheck] = useState(false);
 
-    const [tags, setTags] = useState(spot.Amenities);
-    const [amenities, setAmenities] = useState(spot.Tags);
+    const [tags, setTags] = useState(new Set(spot.Tags.map(tag => tag.name)));
+    const [amenities, setAmenities] = useState(new Set(spot.Amenities.map(amenity => amenity.name)));
     const [type, setType] = useState(spot.type);
     const [address, setAddress] = useState(spot.address);
     const [city, setCity] = useState(spot.city);
@@ -39,8 +40,8 @@ const SpotEditForm2 = ({ spot, closeModal, setCloseModal }) => {
                 <h1 className='spot-edit-modal-title-text'>Edit spot</h1>
             </div>
             <div className='spot-edit-modal-content'>
-                <div className='spot-edit-modal-content-half'>
-
+                <div className='spot-edit-modal-content-half' style={{ paddingRight: '12px' }}>
+                    <TagsEdit tags={tags} setTags={setTags} />
                 </div>
                 <div className='spot-edit-modal-content-half'>
                     <LocationEdit
