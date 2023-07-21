@@ -18,6 +18,7 @@ import BookingEditFormModal from '../BookingEditFormModal';
 import AirCover from '../AirCover';
 import CancelBookingModal from '../CancelBookingModal';
 import Loading from '../Loading';
+import { ReactComponent as SelfCheck } from '../../images/self-check.svg';
 import './SingleSpot.css';
 
 const SingleSpot = () => {
@@ -50,6 +51,8 @@ const SingleSpot = () => {
 
     const spotImages = Object.values(images);
     const singleSpot = spotState[id];
+    const spotTags = singleSpot?.Tags?.slice(0, 2);
+    const spotAmenities = singleSpot?.Amenities;
     const spotAvg = reviewAvgs.reviewAvgs;
 
     useEffect(() => {
@@ -156,10 +159,44 @@ const SingleSpot = () => {
                                 <h3 className='host-name'>
                                     Hosted By {singleSpot.User.username}
                                 </h3>
+                                <div className='single-spot-tags-container'>
+                                    <div className='single-spot-tag-item'>
+                                        <SelfCheck />
+                                        <div className='single-spot-tag-item-text'>
+                                            <div className='tag-item-text-1'>Self check-in</div>
+                                            <div className='tag-item-text-2'>Walk onto the court and start playing</div>
+                                        </div>
+                                    </div>
+                                    {spotTags.map(tag =>
+                                        <div className='single-spot-tag-item'>
+                                            <img src={tag.url} style={{ width: '26px', height: '26px' }} alt='tag' />
+                                            <div className='single-spot-tag-item-text'>
+                                                <div className='tag-item-text-1'>{tag.name}</div>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
                                 <h5 className='spot-description'>
                                     {singleSpot.description}
                                 </h5>
                                 <AirCover />
+                                {spotAmenities.length > 0 &&
+                                    <div className='single-spot-amenities-container'>
+                                        <h2 className='single-spot-amenities-header'>
+                                            What this place offers
+                                        </h2>
+                                        <div className='single-spot-amenities-inner'>
+                                            {spotAmenities.map(amenity =>
+                                                <div className='spot-amenities-item'>
+                                                    <div className='spot-amenities-item-inner'>
+                                                        <img src={amenity.url} style={{ marginRight: '16px' }} alt='amenity' />
+                                                        <div>{amenity.name}</div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                }
                                 {previousBookings.length > 0 &&
                                     <div className='previous-bookings content-divider'>
                                         <h2 className='single-spot-header'>You've played here before</h2>
@@ -252,12 +289,12 @@ const SingleSpot = () => {
                                 <div className='hovering-content-title'>
                                     ${Number(singleSpot.price)?.toLocaleString('en-US', { maximumFractionDigits: 0 })} <span>day</span>
                                 </div>
-                                <BookingForm user={user} spotId={singleSpot?.id} hostId={singleSpot.userId} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} stateTransfer={stateTransfer} setStateTransfer={setStateTransfer} edited={edited} setEdited={setEdited} addDisabledDate={addDisabledDate} setAddDisabledDate={setAddDisabledDate}/>
+                                <BookingForm user={user} spotId={singleSpot?.id} hostId={singleSpot.userId} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} stateTransfer={stateTransfer} setStateTransfer={setStateTransfer} edited={edited} setEdited={setEdited} addDisabledDate={addDisabledDate} setAddDisabledDate={setAddDisabledDate} />
                             </div>
                         </div>
                         <div className='spot-review-container'>
                             <h3 className='spot-review-header'>
-                                <img className='review-star-image' src={ratingStar} alt='star'/>
+                                <img className='review-star-image' src={ratingStar} alt='star' />
                                 {spotAvg[singleSpot.id]?.avg && (
                                     <>
                                         {' ' + spotAvg[singleSpot.id]?.avg} <span>&nbsp;·&nbsp;</span> {spotAvg[singleSpot.id]?.count} reviews
@@ -280,7 +317,7 @@ const SingleSpot = () => {
                             <SpotReviewList user={user} spotId={id} ratingStar={ratingStar} />
                         </div>
                         <div className='booking-form-bottom-fixed'>
-                            <BookingFormFixed user={user} spotId={singleSpot?.id} hostId={singleSpot.userId} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} stateTransfer={stateTransfer} setStateTransfer={setStateTransfer} edited={edited} setEdited={setEdited} addDisabledDate={addDisabledDate} setAddDisabledDate={setAddDisabledDate}/>
+                            <BookingFormFixed user={user} spotId={singleSpot?.id} hostId={singleSpot.userId} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} stateTransfer={stateTransfer} setStateTransfer={setStateTransfer} edited={edited} setEdited={setEdited} addDisabledDate={addDisabledDate} setAddDisabledDate={setAddDisabledDate} />
                         </div>
                         <div className='bottom-fixed-title'>
                             ${Number(singleSpot.price)?.toLocaleString('en-US', { maximumFractionDigits: 0 })} <span>day</span>
