@@ -18,18 +18,35 @@
     transition: all 0.2s ease-in-out;
 }
 
-.spot-listing-edit-btn:hover {
+.spot-edit-submit-btn {
+    background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+    border-radius: 12px;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+}
+
+.spot-listing-edit-btn:hover,
+.spot-edit-submit-btn:hover {
     background: linear-gradient(to left,#E61E4D 0%, #E31C5F 50%,#D70466 100%);
 }
 
-.spot-listing-edit-btn:active {
+.spot-listing-edit-btn:active,
+.spot-edit-submit-btn:active {
     transform: scale(0.96);
     background: linear-gradient(to right,#FF385C 100%,#E31C5F 50%,#D70466 0%);
 }
 
 .spot-edit-modal-container-open {
-    width: 1032px;
-    height: 800px;
+    width: 80vw;
+    height: 90vh;
     border-radius: 12px;
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
     background-color: #FFFFFF;
@@ -40,8 +57,8 @@
 }
 
 .spot-edit-modal-container-close {
-    width: 1032px;
-    height: 800px;
+    width: 80vw;
+    height: 90vh;
     border-radius: 12px;
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
     background-color: #FFFFFF;
@@ -98,8 +115,8 @@
 .spot-edit-modal-content {
     display: flex;
     width: 100%;
-    height: calc(100% - 64px);
-    padding: 24px;
+    height: calc(100% - 128px);
+    padding: 18px;
     box-sizing: border-box;
     overflow: auto;
 }
@@ -110,5 +127,17 @@
     position: relative;
     word-wrap: break-word;
     word-break: break-word;
+    box-sizing: border-box;
+}
+
+.spot-edit-modal-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    text-align: center;
+    padding: 0 12px;
+    border-top: 1px solid #EBEBEB;
     box-sizing: border-box;
 }

@@ -27,12 +27,24 @@ const SpotEditForm2 = ({ spot, closeModal, setCloseModal }) => {
     const [price, setPrice] = useState(spot.price);
 
     useEffect(() => {
+        document.body.style.overflowY = 'hidden';
+        return () => {
+            document.body.style.overflowY = 'unset'
+        }
+    }, []);
+
+    useEffect(() => {
         if (closeModal) {
             setModalClass('spot-edit-modal-container-close');
         } else {
             setModalClass('spot-edit-modal-container-open');
         };
     }, [closeModal]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
+
 
     return (
         <div className={modalClass}>
@@ -53,6 +65,9 @@ const SpotEditForm2 = ({ spot, closeModal, setCloseModal }) => {
                     lat={lat} setLat={setLat} lng={lng} setLng={setLng} isFinalCheck={isFinalCheck}
                     setIsFinalCheck={setIsFinalCheck} />
                 </div>
+            </div>
+            <div className='spot-edit-modal-footer'>
+                <button className='spot-edit-submit-btn' onClick={handleSubmit}>Update spot</button>
             </div>
         </div>
     );
