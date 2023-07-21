@@ -168,7 +168,7 @@ const SingleSpot = () => {
                                         </div>
                                     </div>
                                     {spotTags.map(tag =>
-                                        <div className='single-spot-tag-item'>
+                                        <div key={tag.id} className='single-spot-tag-item'>
                                             <img src={tag.url} style={{ width: '26px', height: '26px' }} alt='tag' />
                                             <div className='single-spot-tag-item-text'>
                                                 <div className='tag-item-text-1'>{tag.name}</div>
@@ -187,7 +187,7 @@ const SingleSpot = () => {
                                         </h2>
                                         <div className='single-spot-amenities-inner'>
                                             {spotAmenities.map(amenity =>
-                                                <div className='spot-amenities-item'>
+                                                <div key={amenity.id} className='spot-amenities-item'>
                                                     <div className='spot-amenities-item-inner'>
                                                         <img src={amenity.url} style={{ marginRight: '16px' }} alt='amenity' />
                                                         <div>{amenity.name}</div>
