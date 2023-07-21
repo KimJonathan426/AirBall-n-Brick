@@ -5,6 +5,7 @@ import LocationEdit from '../HostSpot/Steps/Step1Location/LocationEdit';
 import './SpotEditForm.css';
 import AmenitiesEdit from '../HostSpot/Steps/Step2Amenities/AmenitiesEdit';
 import TypeEdit from '../HostSpot/Steps/Step1Type/TypeEdit';
+import DescriptionEdit from '../HostSpot/Steps/Step2Description/DescriptionEdit';
 
 const SpotEditForm2 = ({ spot, closeModal, setCloseModal }) => {
 
@@ -55,6 +56,7 @@ const SpotEditForm2 = ({ spot, closeModal, setCloseModal }) => {
             </div>
             <div className='spot-edit-modal-content'>
                 <div className='spot-edit-modal-content-half' style={{ paddingRight: '12px' }}>
+                    <DescriptionEdit description={description} setDescription={setDescription} />
                     <TagsEdit tags={tags} setTags={setTags} />
                     <AmenitiesEdit amenities={amenities} setAmenities={setAmenities} />
                     <TypeEdit type={type} setType={setType} />

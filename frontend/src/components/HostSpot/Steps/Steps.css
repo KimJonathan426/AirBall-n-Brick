@@ -159,6 +159,68 @@
     word-break: break-word;
 }
 
+.spot-edit-step-textarea,
+.spot-edit-step-textarea-invalid {
+    display: block;
+    width: 100%;
+    min-height: 144px;
+    max-height: 300px;
+    outline: none;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    resize: vertical;
+    text-overflow: ellipsis;
+    overflow-y: auto;
+    font-size: 16px;
+    line-height: 26px;
+    color: #222222;
+    box-sizing: border-box;
+}
+
+.spot-edit-step-textarea {
+    box-shadow: grey 0px 0px 0px 1px inset;
+}
+
+.spot-edit-step-textarea-invalid {
+    box-shadow: firebrick 0px 0px 0px 1px inset;
+    background-color: rgb(255, 248, 246);
+}
+
+.spot-edit-step-textarea:focus {
+    box-shadow: black 0 0 0 2px inset;
+}
+
+.spot-edit-step-textarea-invalid:focus {
+    box-shadow: firebrick 0px 0px 0px 2px inset;
+}
+
+.spot-edit-step-counter {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 8px;
+    width: 100%;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 700;
+    color: #717171;
+}
+
+.spot-edit-step-error {
+    display: flex;
+    align-items: center;
+    color: rgb(193, 53, 21);
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    margin-top: 4px;
+    box-sizing: border-box;
+}
+
+.spot-edit-step-error-hide {
+    display: none;
+}
+
 
 @media screen and (max-width: 743px) {
     .host-step-container-center {
