@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
     url: {
       allowNull: false,
       type: DataTypes.TEXT
+    },
+    type: {
+      allowNull: false,
+      type: DataTypes.STRING(10)
     }
   }, {});
   Amenity.associate = function(models) {
