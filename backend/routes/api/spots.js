@@ -55,7 +55,8 @@ router.get('/user/:userId', asyncHandler(async (req, res) => {
     const spots = await Spot.findAll({
         where: {
             userId
-        }
+        },
+        include: [User, Tag, Amenity]
     });
 
     const images = [];
