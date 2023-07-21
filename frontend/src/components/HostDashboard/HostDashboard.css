@@ -110,10 +110,6 @@
     position: relative;
 }
 
-.hosted-spot-listing {
-    cursor: pointer;
-}
-
 @media screen and (max-width: 610px) {
     .hosted-spot-listing,
     .hosted-reservation {
