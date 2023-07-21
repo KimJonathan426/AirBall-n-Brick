@@ -12,6 +12,7 @@ import SpotReviewList from '../SpotReviewList';
 import ratingStar from '../../images/rating-star.svg';
 import SpotImagesModal from '../SpotImagesModal';
 import SpotImagesForm from '../SpotImagesForm';
+import SpotMap from './SpotMap/index';
 import BookingForm from '../BookingForm';
 import BookingFormFixed from '../BookingFormFixed';
 import BookingEditFormModal from '../BookingEditFormModal';
@@ -19,6 +20,9 @@ import AirCover from '../AirCover';
 import CancelBookingModal from '../CancelBookingModal';
 import Loading from '../Loading';
 import { ReactComponent as SelfCheck } from '../../images/self-check.svg';
+import full from '../../images/types/type-full.png'
+import half from '../../images/types/type-half.png'
+import share from '../../images/types/type-share.png'
 import './SingleSpot.css';
 
 const SingleSpot = () => {
@@ -51,7 +55,6 @@ const SingleSpot = () => {
 
     const spotImages = Object.values(images);
     const singleSpot = spotState[id];
-    const spotTags = singleSpot?.Tags?.slice(0, 2);
     const spotAmenities = singleSpot?.Amenities;
     const spotAvg = reviewAvgs.reviewAvgs;
 
@@ -63,10 +66,10 @@ const SingleSpot = () => {
 
             setRefresh(false);
             setLoading(true);
-        }
+        };
 
         fetchData();
-    }, [dispatch, id, refresh])
+    }, [dispatch, id, refresh]);
 
     useEffect(() => {
         if (user) {
@@ -75,8 +78,8 @@ const SingleSpot = () => {
             setPreviousBookings([]);
             setCurrentBookings([]);
             setUpcomingBookings([]);
-        }
-    }, [bookingState, user])
+        };
+    }, [bookingState, user]);
 
 
     return (
@@ -159,22 +162,39 @@ const SingleSpot = () => {
                                 <h3 className='host-name'>
                                     Hosted By {singleSpot.User.username}
                                 </h3>
-                                <div className='single-spot-tags-container'>
-                                    <div className='single-spot-tag-item'>
+                                <div className='single-spot-type-container'>
+                                    <div className='single-spot-type-item'>
                                         <SelfCheck />
-                                        <div className='single-spot-tag-item-text'>
-                                            <div className='tag-item-text-1'>Self check-in</div>
-                                            <div className='tag-item-text-2'>Walk onto the court and start playing</div>
+                                        <div className='single-spot-type-item-text'>
+                                            <div className='type-item-text-1'>Self check-in</div>
+                                            <div className='type-item-text-2'>Walk onto the court and start playing</div>
                                         </div>
                                     </div>
-                                    {spotTags.map(tag =>
-                                        <div key={tag.id} className='single-spot-tag-item'>
-                                            <img src={tag.url} style={{ width: '26px', height: '26px' }} alt='tag' />
-                                            <div className='single-spot-tag-item-text'>
-                                                <div className='tag-item-text-1'>{tag.name}</div>
+                                    {singleSpot.type === 'full' ?
+                                        <div className='single-spot-type-item'>
+                                            <img src={full} style={{ width: '23px', height: '23px' }} alt='court type' />
+                                            <div className='single-spot-type-item-text'>
+                                                <div className='type-item-text-1'>Full court</div>
+                                                <div className='type-item-text-2'>Entire court is available to you and your group</div>
                                             </div>
                                         </div>
-                                    )}
+                                        : singleSpot.type === 'half' ?
+                                            <div className='single-spot-type-item'>
+                                                <img src={half} style={{ width: '26px', height: '26px', transform: 'rotate(90deg)' }} alt='court type' />
+                                                <div className='single-spot-type-item-text'>
+                                                    <div className='type-item-text-1'>Half court</div>
+                                                    <div className='type-item-text-2'>Portion of a court reserved for you and your group</div>
+                                                </div>
+                                            </div>
+                                            :
+                                            <div className='single-spot-type-item'>
+                                                <img src={share} style={{ width: '26px', height: '26px' }} alt='court type' />
+                                                <div className='single-spot-type-item-text'>
+                                                    <div className='type-item-text-1'>Shared court</div>
+                                                    <div className='type-item-text-2'>Play with and against other players</div>
+                                                </div>
+                                            </div>
+                                    }
                                 </div>
                                 <h5 className='spot-description'>
                                     {singleSpot.description}
@@ -182,7 +202,7 @@ const SingleSpot = () => {
                                 <AirCover />
                                 {spotAmenities.length > 0 &&
                                     <div className='single-spot-amenities-container'>
-                                        <h2 className='single-spot-amenities-header'>
+                                        <h2 className='single-spot-header'>
                                             What this place offers
                                         </h2>
                                         <div className='single-spot-amenities-inner'>
@@ -316,6 +336,7 @@ const SingleSpot = () => {
                             )}
                             <SpotReviewList user={user} spotId={id} ratingStar={ratingStar} />
                         </div>
+                        <SpotMap singleSpot={singleSpot} />
                         <div className='booking-form-bottom-fixed'>
                             <BookingFormFixed user={user} spotId={singleSpot?.id} hostId={singleSpot.userId} price={singleSpot.price} canceled={canceled} setCanceled={setCanceled} stateTransfer={stateTransfer} setStateTransfer={setStateTransfer} edited={edited} setEdited={setEdited} addDisabledDate={addDisabledDate} setAddDisabledDate={setAddDisabledDate} />
                         </div>
