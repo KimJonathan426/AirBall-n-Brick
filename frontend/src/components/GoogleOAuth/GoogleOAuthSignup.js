@@ -5,7 +5,7 @@ import CryptoJS from "crypto-js";
 import validator from 'validator';
 import * as sessionActions from "../../store/session";
 import loadingGif from '../../images/host-court-loading.gif';
-import errorMark from '../../images/error-mark.svg';
+import { ReactComponent as ErrorMark } from '../../images/error-mark.svg';
 import Loading from "../Loading";
 import './GoogleOAuth.css';
 
@@ -117,7 +117,7 @@ function GoogleOAuthSignup() {
                             <div className='auth-error-container'>
                                 <ul className='auth-error-list'>
                                     {usernameErrors.map((error, idx) => (
-                                        <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
+                                        <li className='auth-error-item' key={idx}><ErrorMark className='exclamation-mark' />{error}</li>
                                     ))}
                                 </ul>
                             </div>
@@ -139,7 +139,7 @@ function GoogleOAuthSignup() {
                             <div className='auth-error-container'>
                                 <ul className='auth-error-list'>
                                     {emailErrors.map((error, idx) => (
-                                        <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
+                                        <li className='auth-error-item' key={idx}><ErrorMark className='exclamation-mark' />{error}</li>
                                     ))}
                                 </ul>
                             </div>
@@ -152,7 +152,7 @@ function GoogleOAuthSignup() {
                             <div className='auth-error-container'>
                                 <ul className='auth-error-list'>
                                     {errors.map((error, idx) => (
-                                        <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
+                                        <li className='auth-error-item' key={idx}><ErrorMark className='exclamation-mark' />{error}</li>
                                     ))}
                                 </ul>
                             </div>
