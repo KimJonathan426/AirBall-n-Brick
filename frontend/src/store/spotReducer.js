@@ -18,14 +18,14 @@ const actionAddSpot = (spot) => {
     return {
         type: ADD_SPOT,
         spot
-    }
+    };
 };
 
 const actionAddImages = (images) => {
     return {
         type: ADD_IMAGES,
         images
-    }
+    };
 };
 
 const actionGetSpots = (spots, images) => {
@@ -33,7 +33,7 @@ const actionGetSpots = (spots, images) => {
         type: GET_SPOTS,
         spots,
         images
-    }
+    };
 };
 
 const actionGetSingleSpot = (spot, images) => {
@@ -41,7 +41,7 @@ const actionGetSingleSpot = (spot, images) => {
         type: GET_SINGLE_SPOT,
         spot,
         images
-    }
+    };
 };
 
 const actionDeleteSpot = (spotId, imageIds) => {
@@ -49,14 +49,14 @@ const actionDeleteSpot = (spotId, imageIds) => {
         type: DELETE_SPOT,
         spotId,
         imageIds
-    }
+    };
 };
 
 const actionDeleteImage = (imageId) => {
     return {
         type: DELETE_IMAGE,
         imageId
-    }
+    };
 };
 
 
@@ -68,7 +68,7 @@ export const getSpots = () => async (dispatch) => {
         const data = await response.json();
         dispatch(actionGetSpots(data.spots, data.images));
         return data;
-    }
+    };
 };
 
 export const getSingleSpot = (spotId) => async (dispatch) => {
@@ -78,7 +78,7 @@ export const getSingleSpot = (spotId) => async (dispatch) => {
         const data = await response.json();
         dispatch(actionGetSingleSpot(data.spot, data.images));
         return data;
-    }
+    };
 };
 
 export const getUserSpots = (userId) => async (dispatch) => {
@@ -88,7 +88,7 @@ export const getUserSpots = (userId) => async (dispatch) => {
         const data = await response.json();
         dispatch(actionGetSpots(data.spots, data.images));
         return data;
-    }
+    };
 };
 
 export const getSpotImages = (spotId) => async (dispatch) => {
@@ -98,7 +98,7 @@ export const getSpotImages = (spotId) => async (dispatch) => {
         const data = await response.json();
         dispatch(actionAddImages(data.images));
         return data.images;
-    }
+    };
 };
 
 export const createSpot = (payload) => async (dispatch) => {
@@ -132,8 +132,8 @@ export const createSpot = (payload) => async (dispatch) => {
     if (images && images.length !== 0) {
         for (let i = 0; i < images.length; i++) {
             formData.append("images", images[i]);
-        }
-    }
+        };
+    };
 
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
@@ -146,8 +146,8 @@ export const createSpot = (payload) => async (dispatch) => {
         dispatch(actionAddSpot(data.spot));
         dispatch(actionAddImages(data.spotImages));
         return data.spot.id;
-    }
-}
+    };
+};
 
 export const createImages = (payload) => async (dispatch) => {
     const { id, images } = payload;
@@ -156,8 +156,8 @@ export const createImages = (payload) => async (dispatch) => {
     if (images && images.length !== 0) {
         for (let i = 0; i < images.length; i++) {
             formData.append("images", images[i]);
-        }
-    }
+        };
+    };
 
     const response = await csrfFetch(`/api/spots/${id}/images/new`, {
         method: 'POST',
@@ -169,8 +169,8 @@ export const createImages = (payload) => async (dispatch) => {
         const data = await response.json();
         dispatch(actionAddImages(data.spotImages));
         return data.spotImages;
-    }
-}
+    };
+};
 
 export const updateSpot = (payload) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${payload.id}`, {
@@ -179,13 +179,17 @@ export const updateSpot = (payload) => async (dispatch) => {
         body: JSON.stringify(payload)
     });
 
-
     if (response.ok) {
         const data = await response.json();
+
+        if (data.error) {
+            return { error: 'Error updating spot, please try again.' };
+        };
+
         dispatch(actionAddSpot(data.spot));
         return data;
-    }
-}
+    };
+};
 
 export const deleteSpot = (spotId) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spotId}`, {
@@ -197,8 +201,8 @@ export const deleteSpot = (spotId) => async (dispatch) => {
     if (data.message === 'Successfully Deleted') {
         dispatch(actionDeleteSpot(spotId));
         return data;
-    }
-}
+    };
+};
 
 export const deleteImage = (payload) => async (dispatch) => {
     const { spotId, imageId } = payload;
@@ -213,9 +217,9 @@ export const deleteImage = (payload) => async (dispatch) => {
         dispatch(actionDeleteImage(imageId));
         return data;
     } else {
-        return data
-    }
-}
+        return data;
+    };
+};
 
 const initialState = { spots: {}, images: {} };
 
@@ -231,7 +235,7 @@ const spotReducer = (state = initialState, action) => {
                 newState.images[image.id] = image;
             });
             return newState;
-        }
+        };
         case GET_SINGLE_SPOT: {
             const newState = { spots: {}, images: {} };
 
@@ -241,34 +245,34 @@ const spotReducer = (state = initialState, action) => {
                 newState.images[image.id] = image;
             });
             return newState;
-        }
+        };
         case ADD_SPOT: {
             const newState = { ...state };
             newState.spots[action.spot.id] = action.spot;
             return newState;
-        }
+        };
         case ADD_IMAGES: {
             const newState = { ...state };
             action.images.forEach(image => {
                 newState.images[image.id] = image;
             })
             return newState;
-        }
+        };
         case DELETE_SPOT: {
             const newState = { ...state };
             delete newState.spots[action.spotId];
 
             return newState;
-        }
+        };
         case DELETE_IMAGE: {
             const newState = { ...state }
             delete newState.images[action.imageId];
 
             return newState;
-        }
+        };
         default:
             return state;
-    }
-}
+    };
+};
 
 export default spotReducer;

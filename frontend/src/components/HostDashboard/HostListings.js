@@ -8,12 +8,14 @@ import SpotEditModal from '../SpotEditModal';
 
 const HostListings = () => {
     const dispatch = useDispatch();
-    const userData = useSelector(state => state.spot)
-    const userId = useSelector(state => state.session.user?.id)
-    const [images, setImages] = useState({})
-    const [spots, setSpots] = useState([])
+    const userData = useSelector(state => state.spot);
+    const userId = useSelector(state => state.session.user?.id);
+
+    const [images, setImages] = useState({});
+    const [spots, setSpots] = useState([]);
     const [loading, setLoading] = useState(false);
     const [loadingImages, setLoadingImages] = useState(false);
+    const [spotUpdated, setSpotUpdated] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,7 +25,7 @@ const HostListings = () => {
         }
 
         fetchData();
-    }, [dispatch, userId]);
+    }, [dispatch, userId, spotUpdated]);
 
     useEffect(() => {
         const parseImages = () => {
@@ -57,7 +59,7 @@ const HostListings = () => {
                             <>
                                 {spots.map((spot) => (
                                     <div key={spot.id} className='hosted-spot-listing'>
-                                        <SpotEditModal spot={spot}/>
+                                        <SpotEditModal spot={spot} setSpotUpdated={setSpotUpdated} />
                                         <NavLink to={`/spots/${spot.id}`} className='hosted-spot-image-container'>
                                             <img className='hosted-spot-image' src={images[spot.id]} alt='spot court' />
                                         </NavLink>

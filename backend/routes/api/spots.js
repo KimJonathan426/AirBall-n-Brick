@@ -21,8 +21,8 @@ router.get('/', asyncHandler(async (_req, res) => {
             limit: 5
         });
 
-        images.push(...spotImages)
-    }
+        images.push(...spotImages);
+    };
 
     return res.json({
         spots,
@@ -41,7 +41,7 @@ router.get('/single-spot/:spotId', asyncHandler(async (req, res) => {
         where: {
             spotId: spotId
         }
-    })
+    });
 
     return res.json({
         spot,
@@ -68,8 +68,8 @@ router.get('/user/:userId', asyncHandler(async (req, res) => {
             }
         });
 
-        images.push(spotImage)
-    }
+        images.push(spotImage);
+    };
 
     return res.json({
         spots,
@@ -84,8 +84,10 @@ router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res) =
 
     const images = await multiplePublicFileUpload(req.files);
 
-    const spot = await Spot.create({ userId, address, city, state, zipcode,
-        country, lat, lng, showSpecific, name, description, type, price });
+    const spot = await Spot.create({
+        userId, address, city, state, zipcode,
+        country, lat, lng, showSpecific, name, description, type, price
+    });
 
     const spotId = spot.id;
     const spotImages = [];
@@ -152,7 +154,7 @@ router.get('/:spotId/images', asyncHandler(async (req, res) => {
         where: {
             spotId: spotId
         }
-    })
+    });
 
     return res.json({
         images
@@ -189,25 +191,64 @@ router.delete('/:spotId/images/:imageId/delete', asyncHandler(async (req, res) =
         });
 
         for (let booking of spotBookings) {
-            await booking.update({ url })
-        }
-    }
+            await booking.update({ url });
+        };
+    };
 
     return res.json({ message: 'Successfully Deleted' });
 }));
 
 router.put('/:id', asyncHandler(async (req, res) => {
-    const { id, address, city, state, country, name, description, price } = req.body;
+    const { id, address, city, state, zipcode, country, lat, lng, showSpecific,
+        name, type, description, price, tags, amenities } = req.body;
 
-    const spot = await Spot.findByPk(id, {
-        include: [User]
-    });
+    try {
+        const spot = await Spot.findByPk(id, {
+            include: [User, Tag, Amenity]
+        });
 
-    await spot.update({ address, city, state, country, name, description, price });
+        await spot.update({
+            address, city, state, zipcode, country, lat, lng,
+            showSpecific, name, type, description, price
+        });
 
-    return res.json({
-        spot
-    });
+        await spot.setTags([]);
+        await spot.setAmenities([]);
+
+        const tagIds = [];
+        const amenityIds = [];
+
+        for (let tag of tags) {
+            const foundTag = await Tag.findOne({
+                where: { name: tag }
+            });
+
+            if (foundTag) {
+                tagIds.push(foundTag.id);
+            };
+        };
+
+        for (let amenity of amenities) {
+            const foundAmenity = await Amenity.findOne({
+                where: { name: amenity }
+            });
+
+            if (foundAmenity) {
+                amenityIds.push(foundAmenity.id);
+            };
+        };
+
+        await spot.addTags(tagIds);
+        await spot.addAmenities(amenityIds);
+
+        return res.json({
+            spot
+        });
+
+    } catch (error) {
+        console.error('Error updating spot:', error);
+        return res.json({ error: 'Error updating spot, please try again.' });
+    };
 }));
 
 router.delete('/:id', asyncHandler(async (req, res) => {
