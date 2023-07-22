@@ -46,6 +46,7 @@
 
 .spot-edit-modal-container-open {
     width: 80vw;
+    max-width: 1280px;
     height: 90vh;
     border-radius: 12px;
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
@@ -58,6 +59,7 @@
 
 .spot-edit-modal-container-close {
     width: 80vw;
+    max-width: 1280px;
     height: 90vh;
     border-radius: 12px;
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
@@ -114,19 +116,13 @@
 
 .spot-edit-modal-content {
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: calc(100% - 128px);
-    padding: 18px;
-    box-sizing: border-box;
+    padding: 32px;
     overflow: auto;
-}
-
-.spot-edit-modal-content-half {
-    width: 50%;
-    height: 100%;
     position: relative;
     word-wrap: break-word;
-    word-break: break-word;
     box-sizing: border-box;
 }
 

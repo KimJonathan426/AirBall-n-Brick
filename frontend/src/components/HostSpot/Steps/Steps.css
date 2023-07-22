@@ -97,6 +97,13 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding: 32px 0;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.spot-edit-step-container:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
 }
 
 .spot-edit-step-header {

@@ -182,7 +182,7 @@
 }
 
 .location-edit-map-container {
-    padding-top: 28px;
+    padding: 32px 0;
     border-top: 1px solid #DDDDDD;
     margin-top: 32px;
     box-sizing: border-box;
@@ -277,16 +277,10 @@
     height: 12px;
 }
 
-#step-1-confirm-map {
-    width: 100%;
-    height: 280px;
-    border-radius: 16px;
-    overflow: hidden !important;
-}
-
+#step-1-confirm-map,
 #spot-edit-map {
     width: 100%;
-    height: 188px;
+    height: 280px;
     border-radius: 16px;
     overflow: hidden !important;
 }

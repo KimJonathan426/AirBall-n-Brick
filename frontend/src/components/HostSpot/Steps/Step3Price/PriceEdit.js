@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { ReactComponent as ErrorMark } from '../../../../images/error-mark.svg';
-import { ReactComponent as EditPen } from '../../../../images/edit-pen.svg';
 import '../Steps.css';
 import './Step3Price.css';
 
@@ -52,7 +51,7 @@ const PriceEdit = ({ price, setPrice }) => {
 
 
     return (
-        <div className='spot-edit-step-container'>
+        <div className='spot-edit-step-container' style={{ marginTop: '64px', borderTop: '1px solid #DDDDDD' }}>
             <h1 className='spot-edit-step-header'>Price</h1>
             <div className='spot-edit-step-bottom'>
                 <div className='spot-edit-price-input-box'>
