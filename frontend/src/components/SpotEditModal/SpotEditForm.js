@@ -13,6 +13,7 @@ const SpotEditForm2 = ({ spot, closeModal, setCloseModal }) => {
 
     const [modalClass, setModalClass] = useState('spot-edit-modal-container-open');
     const [isFinalCheck, setIsFinalCheck] = useState(false);
+    const [buttonDisabled, setButtonDisabled] = useState(false);
 
     const [tags, setTags] = useState(new Set(spot.Tags.map(tag => tag.name)));
     const [amenities, setAmenities] = useState(new Set(spot.Amenities.map(amenity => amenity.name)));
@@ -44,8 +45,19 @@ const SpotEditForm2 = ({ spot, closeModal, setCloseModal }) => {
         };
     }, [closeModal]);
 
+    useEffect(() => {
+        if (!address || !city || !state || !zipcode || !country || !title || !description
+            || !price || title.length > 64 || description.length > 500) {
+            setButtonDisabled(true);
+        } else {
+            setButtonDisabled(false);
+        };
+    }, [address, city, state, zipcode, country, title, description, price]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        setIsFinalCheck(true);
+
     }
 
 
@@ -70,7 +82,7 @@ const SpotEditForm2 = ({ spot, closeModal, setCloseModal }) => {
                 <AmenitiesEdit amenities={amenities} setAmenities={setAmenities} />
             </div>
             <div className='spot-edit-modal-footer'>
-                <button className='spot-edit-submit-btn' onClick={handleSubmit}>Update spot</button>
+                <button className={buttonDisabled ? 'spot-edit-disabled-btn' :'spot-edit-submit-btn'} onClick={handleSubmit}>Update spot</button>
             </div>
         </div>
     );
