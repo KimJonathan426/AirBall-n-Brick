@@ -22,6 +22,8 @@ const Step2Amenities = ({ amenities, setAmenities }) => {
                 const safety = [];
 
                 for (const amenity of data.amenities) {
+                    // default case to do nothing not needed
+                    // eslint-disable-next-line
                     switch (amenity.type) {
                         case 'basic':
                             basic.push(amenity);

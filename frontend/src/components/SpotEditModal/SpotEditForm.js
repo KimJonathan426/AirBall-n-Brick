@@ -13,7 +13,6 @@ const SpotEditForm2 = ({ spot, closeModal, setCloseModal }) => {
 
     const [modalClass, setModalClass] = useState('spot-edit-modal-container-open');
     const [isFinalCheck, setIsFinalCheck] = useState(false);
-    const [editErrors, setEditErrors] = useState({});
 
     const [tags, setTags] = useState(new Set(spot.Tags.map(tag => tag.name)));
     const [amenities, setAmenities] = useState(new Set(spot.Amenities.map(amenity => amenity.name)));
@@ -62,10 +61,10 @@ const SpotEditForm2 = ({ spot, closeModal, setCloseModal }) => {
                     setAddress={setAddress} city={city} setCity={setCity} state={state} setState={setState}
                     zipcode={zipcode} setZipcode={setZipcode} country={country} setCountry={setCountry}
                     lat={lat} setLat={setLat} lng={lng} setLng={setLng} isFinalCheck={isFinalCheck}
-                    setIsFinalCheck={setIsFinalCheck} setEditErrors={setEditErrors}/>
-                <PriceEdit price={price} setPrice={setPrice} setEditErrors={setEditErrors} />
-                <TitleEdit title={title} setTitle={setTitle} setEditErrors={setEditErrors} />
-                <DescriptionEdit description={description} setDescription={setDescription} setEditErrors={setEditErrors} />
+                    setIsFinalCheck={setIsFinalCheck} />
+                <PriceEdit price={price} setPrice={setPrice} />
+                <TitleEdit title={title} setTitle={setTitle} />
+                <DescriptionEdit description={description} setDescription={setDescription} />
                 <TypeEdit type={type} setType={setType} />
                 <TagsEdit tags={tags} setTags={setTags} />
                 <AmenitiesEdit amenities={amenities} setAmenities={setAmenities} />
