@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
+import { ReactComponent as ErrorMark } from '../../../../images/error-mark.svg';
 import generalMarker from '../../../../images/location-marker-general.svg';
 import exactMarker from '../../../../images/location-marker-exact.svg';
 import check from '../../../../images/check-mark.svg';
@@ -19,17 +20,27 @@ const LocationEdit = ({
     const storedLng = useRef(lng);
     const showSpecificRef = useRef(showSpecific);
 
+    const [showError, setShowError] = useState(false);
     const [randomLat,] = useState(Math.random() * 0.012 - 0.006);
     const [randomLng,] = useState(Math.random() * 0.012 - 0.006);
 
     // update reference without it being necessary in larger useEffect dependency array
     useEffect(() => {
         showSpecificRef.current = showSpecific;
-    }, [showSpecific])
+    }, [showSpecific]);
+
     useEffect(() => {
         storedLat.current = lat;
         storedLng.current = lng;
-    }, [lat, lng])
+    }, [lat, lng]);
+
+    useEffect(() => {
+        if (!address || !city || !state || !zipcode || !country) {
+            setShowError(true);
+        } else {
+            setShowError(false);
+        };
+    }, [address, city, state, zipcode, country]);
 
     useEffect(() => {
         const loader = new Loader({
@@ -311,6 +322,12 @@ const LocationEdit = ({
                     <div className='location-confirm-border-1' />
                     <div className='location-confirm-border-2' />
                     <div className='location-confirm-border-3' />
+                </div>
+                <div className={showError ? 'spot-edit-step-error' : 'host-step-2-error-hide'} style={{ marginTop: '8px' }}>
+                    <ErrorMark />
+                    <span style={{ marginLeft: '8px' }}>
+                        All address components must be populated
+                    </span>
                 </div>
             </div>
             <div className='location-edit-map-container'>
