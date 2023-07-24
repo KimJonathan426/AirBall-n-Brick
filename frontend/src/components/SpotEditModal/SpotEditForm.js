@@ -11,7 +11,7 @@ import DescriptionEdit from '../HostSpot/Steps/Step2Description/DescriptionEdit'
 import TitleEdit from '../HostSpot/Steps/Step2Title/TitleEdit';
 import PriceEdit from '../HostSpot/Steps/Step3Price/PriceEdit';
 
-const SpotEditForm2 = ({ spot, closeModal, setCloseModal, setSpotUpdated }) => {
+const SpotEditForm2 = ({ spot, closeModal, setCloseModal, setUpdateState }) => {
     console.log('spot', spot)
     const dispatch = useDispatch();
 
@@ -87,7 +87,7 @@ const SpotEditForm2 = ({ spot, closeModal, setCloseModal, setSpotUpdated }) => {
                 return alert('Error updating spot, please review all your updates and try again.');
             };
 
-            setSpotUpdated((prev) => !prev);
+            setUpdateState((prev) => !prev);
             setCloseModal(true);
         };
     };
