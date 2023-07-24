@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getUserSpots } from '../../store/spotReducer';
 import reservationIcon from '../../images/reservation-icon.svg';
-import Loading from '../Loading';
 import SpotEditModal from '../SpotEditModal';
+import Loading from '../Loading';
+import SpotDeleteModal from '../SpotDeleteModal';
 
 const HostListings = () => {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const HostListings = () => {
     const [spots, setSpots] = useState([]);
     const [loading, setLoading] = useState(false);
     const [loadingImages, setLoadingImages] = useState(false);
-    const [spotUpdated, setSpotUpdated] = useState(false);
+    const [updateState, setUpdateState] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,7 +26,7 @@ const HostListings = () => {
         }
 
         fetchData();
-    }, [dispatch, userId, spotUpdated]);
+    }, [dispatch, userId, updateState]);
 
     useEffect(() => {
         const parseImages = () => {
@@ -59,7 +60,8 @@ const HostListings = () => {
                             <>
                                 {spots.map((spot) => (
                                     <div key={spot.id} className='hosted-spot-listing'>
-                                        <SpotEditModal spot={spot} setSpotUpdated={setSpotUpdated} />
+                                        <SpotEditModal spot={spot} setUpdateState={setUpdateState} />
+                                        <SpotDeleteModal spotId={spot.id} setUpdateState={setUpdateState} />
                                         <NavLink to={`/spots/${spot.id}`} className='hosted-spot-image-container'>
                                             <img className='hosted-spot-image' src={images[spot.id]} alt='spot court' />
                                         </NavLink>

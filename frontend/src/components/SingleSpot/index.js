@@ -6,7 +6,6 @@ import { getBookings } from '../../store/bookingReducer';
 import { getReviewAvg } from '../../store/reviewReducer';
 import findBookings from '../FindBookings';
 import SpotEditForm from '../SpotEditForm';
-import ConfirmDeleteSpotModal from '../ConfirmDeleteSpotModal';
 import ReviewForm from '../ReviewForm';
 import SpotReviewList from '../SpotReviewList';
 import ratingStar from '../../images/rating-star.svg';
@@ -91,7 +90,6 @@ const SingleSpot = () => {
                             <div className='edit-delete-buttons'>
                                 <button className='edit-button' onClick={() => setShowEditSpotForm(true)}>Edit Court</button>
                                 <button className='edit-button' onClick={() => setShowImagesForm(true)}>Add Images</button>
-                                <ConfirmDeleteSpotModal spotId={singleSpot?.id} />
                             </div>
                         )}
                         {(showEditSpotForm && user) && (

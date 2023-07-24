@@ -1,0 +1,167 @@
+.spot-listing-delete-btn {
+    background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+    width: 74px;
+    height: 32px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+    padding: 7px 12px;
+    border-radius: 8px;
+    border: none;
+    color: #FFFFFF;
+    position: absolute;
+    right: 12px;
+    top: 56px;
+    z-index: 1;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+}
+
+.spot-listing-delete-btn:hover {
+    background: linear-gradient(to left, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+}
+
+.spot-listing-delete-btn:active {
+    transform: scale(0.96);
+    background: linear-gradient(to right, #FF385C 100%, #E31C5F 50%, #D70466 0%);
+}
+
+.spot-delete-modal-container-open {
+    width: 488px;
+    border-radius: 12px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+    background-color: #FFFFFF;
+    animation-name: slideUpIn;
+    animation-duration: 400ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+.spot-delete-modal-container-close {
+    width: 488px;
+    border-radius: 12px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+    background-color: #FFFFFF;
+    animation-name: slideDownOut;
+    animation-duration: 400ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+.exit-spot-delete-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.exit-spot-delete-modal:hover {
+    background: #F7F7F7;
+}
+
+.exit-spot-delete-modal:active {
+    background: #F7F7F7;
+    transform: scale(0.96);
+}
+
+.spot-delete-modal-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0 24px;
+    border-bottom: 1px solid #EBEBEB;
+    box-sizing: border-box;
+}
+
+.confirm-delete-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 24px 24px 24px 24px;
+    box-sizing: border-box;
+}
+
+.spot-delete-input {
+    width: 100%;
+    padding: 6px 12px;
+    box-sizing: border-box;
+}
+
+.spot-delete-label {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.spot-delete-input::-webkit-input-placeholder {
+    font-style: italic;
+}
+
+.spot-delete-input:-moz-placeholder {
+    font-style: italic;
+}
+
+.spot-delete-input:-ms-input-placeholder {
+    font-style: italic;
+}
+
+.spot-delete-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 0 24px 24px 24px;
+}
+
+.spot-delete-cancel,
+.spot-delete-confirm,
+.spot-delete-disabled {
+    width: auto;
+    height: auto;
+    padding: 4px 10px;
+    border: 3px groove #CF5300;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    font-weight: 600;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+}
+
+.spot-delete-cancel,
+.spot-delete-confirm {
+    cursor: pointer;
+}
+
+.spot-delete-disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+.spot-delete-cancel:hover,
+.spot-delete-confirm:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.spot-delete-cancel:active,
+.spot-delete-confirm:active {
+    background: rgba(0, 0, 0, 0.05);
+    transform: scale(0.96);
+}
