@@ -25,21 +25,42 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(50)
       },
+      zipcode: {
+        allowNull: false,
+        type: Sequelize.STRING(11)
+      },
       country: {
         allowNull: false,
         type: Sequelize.STRING(100)
       },
+      lat: {
+        allowNull: false,
+        type: Sequelize.FLOAT
+      },
+      lng: {
+        allowNull: false,
+        type: Sequelize.FLOAT
+      },
+      showSpecific: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
       name: {
         allowNull: false,
-        type: Sequelize.STRING(155)
+        type: Sequelize.STRING(64)
       },
       description: {
         allowNull: false,
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(500)
+      },
+      type: {
+        allowNull: false,
+        type: Sequelize.STRING(5)
       },
       price: {
         allowNull: false,
-        type: Sequelize.DECIMAL(10, 2)
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

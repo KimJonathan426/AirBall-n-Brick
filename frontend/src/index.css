@@ -19,12 +19,17 @@ input,
 textarea {
     border: 1px solid rgb(0, 0, 0, 0.5);
     border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 input:focus,
 textarea:focus {
     outline: none;
-    border: 1px solid rgb(207, 83, 0, 0.5);
+    /* border: 1px solid rgb(207, 83, 0, 0.5); */
+}
+
+select {
+    font-family: 'Montserrat', sans-serif;
 }
 
 label {
@@ -106,4 +111,53 @@ a {
 .swiper-pagination-bullet-active {
     background: #FFF !important;
     opacity: 1 !important;
+}
+
+.loading-animation {
+    width: 300%;
+    height: 300%;
+    position: absolute;
+    background: linear-gradient(90deg, #E9E9E9, #F7F7F7, #E9E9E9);
+    background-size: 50% 100%;
+    background-color: #E9E9E9;
+    opacity: .8;
+    animation-name: loading;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform: rotate(10deg);
+}
+
+@keyframes loading {
+    0% {
+        background-position: -50% 50%;
+    }
+
+    100% {
+        background-position: 150% 50%;
+    }
+}
+
+@keyframes slideUpIn {
+    0% {
+        opacity: 0;
+        transform: translate(0, 100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes slideDownOut {
+    0% {
+        opacity: 1;
+        transform: none;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(0, 100%);
+    }
 }

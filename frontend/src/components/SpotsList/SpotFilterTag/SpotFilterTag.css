@@ -1,0 +1,81 @@
+.filter-tags-container {
+    margin-bottom: 20px;
+}
+
+.filter-list {
+    display: flex;
+    width: 100%;
+    min-width: 250px;
+    height: fit-content;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.filter-tags-option,
+.filter-tags-option-checked {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    padding: 4px 0;
+    margin-top: 12px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.filter-tags-option {
+    filter: invert(6%) sepia(0%) saturate(0%) hue-rotate(172deg) brightness(108%) contrast(82%);
+}
+
+.filter-tags-option-checked {
+    padding-bottom: 12px;
+    margin-bottom: 0;
+    margin-left: 4px;
+    margin-right: 4px;
+    border-bottom: 2px solid #000000;
+}
+
+.filter-tags-option:hover {
+    padding-bottom: 12px;
+    margin-bottom: 0;
+    margin-left: 4px;
+    margin-right: 4px;
+    border-bottom: 2px solid #DDDDDD;
+}
+
+.filter-tags-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.filter-tags-btn:active {
+    transform: scale(0.96);
+}
+
+.filter-tags-img {
+    width: 25px !important;
+    height: 25px !important;
+}
+
+.filter-tags-text,
+.filter-tags-text-checked {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.filter-tags-text {
+    color: #717171;
+}
+
+.filter-tags-text-checked {
+    color: #000000;
+}

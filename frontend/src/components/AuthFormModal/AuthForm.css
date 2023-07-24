@@ -250,15 +250,12 @@
 
 .exclamation-mark {
     margin-right: 8px;
-    filter: invert(19%) sepia(53%) saturate(4915%) hue-rotate(4deg) brightness(92%) contrast(84%);
-    height: 16px;
-    width: 16px;
 }
 
 .auth-next {
     width: 100%;
     height: 48px;
-    background: #D70466;
+    background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
     padding: 14px 24px;
     border: none;
     border-radius: 8px;
@@ -273,12 +270,12 @@
 }
 
 .auth-next:hover {
-    background-color: #E31C5F;
+    background: linear-gradient(to left,#E61E4D 0%, #E31C5F 50%,#D70466 100%);
 }
 
 .auth-next:active {
     transform: scale(0.96);
-    background: #FF385C;
+    background: linear-gradient(to right,#FF385C 100%,#E31C5F 50%,#D70466 0%);
 }
 
 .or-divider {

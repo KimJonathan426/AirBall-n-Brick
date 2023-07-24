@@ -116,8 +116,12 @@
     transition: transform 0.2s ease-in-out;
 }
 
+.start-searching-link:hover {
+    background: linear-gradient(to left,#E61E4D 0%, #E31C5F 50%,#D70466 100%);
+}
+
 .start-searching-link:active {
-    background: #FF385C;
+    background: linear-gradient(to right,#FF385C 100%,#E31C5F 50%,#D70466 0%);
     transform: scale(0.95);
 }
 
@@ -331,7 +335,7 @@
     }
 }
 
-@media screen and (max-width: 744px) {
+@media screen and (max-width: 743px) {
 
     .no-booked-trips-image-box {
         display: none;

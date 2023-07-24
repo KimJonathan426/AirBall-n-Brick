@@ -1,0 +1,97 @@
+.step-2-amenities-bottom {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 16px;
+    margin-bottom: 40px;
+    box-sizing: border-box;
+}
+
+.step-2-amenities-main {
+    flex: 0 1 calc(33% - calc(32px / 3));
+    box-sizing: border-box;
+    animation-name: fadeUpIn;
+    animation-duration: 600ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+.step-2-amenities-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    min-height: 88px;
+    background-color: #FFFFFF;
+    padding: 16px;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s cubic-bezier(0.2,0,0,1), transform 0.1s cubic-bezier(0.2,0,0,1);
+}
+
+.step-2-amenities-btn-checked {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    min-height: 88px;
+    background-color: #F7F7F7;
+    padding: 16px;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    box-shadow: 0 0 0 2px #000000;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s cubic-bezier(0.2,0,0,1), transform 0.1s cubic-bezier(0.2,0,0,1);
+}
+
+.step-2-amenities-btn:hover {
+    box-shadow: 0 0 0 2px #000000;
+}
+
+.step-2-amenities-btn:active,
+.step-2-amenities-btn-checked:active {
+    box-shadow: 0 0 0 2px #000000;
+    background-color: #F7F7F7;
+    transform: scale(0.96);
+}
+
+.step-2-amenities-text {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    text-align: left;
+    word-break: break-word;
+}
+
+.step-2-amenities-list-header {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 24px;
+    animation-name: fadeUpIn;
+    animation-duration: 600ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+@media screen and (max-width: 743px) {
+    .step-2-amenities-bottom {
+        max-width: unset;
+        gap: 12px;
+        padding: 2px 2px 12px 2px;
+        box-sizing: border-box;
+    }
+
+    .step-2-amenities-main {
+        flex: 0 1 calc(50% - 6px);
+    }
+}

@@ -1,0 +1,124 @@
+.general-error-container-on,
+.general-error-container-off {
+    display: block;
+    width: auto;
+    padding: 0;
+    position: fixed;
+    bottom: 0px;
+    z-index: 1;
+    left: calc(50% - 25vw + 48px);
+    box-sizing: border-box;
+}
+
+.general-error-container-standby {
+    display: none;
+}
+
+.general-error-container-inner {
+    display: inline-flex;
+    width: calc(50vw - 96px);
+    max-width: unset;
+    contain: layout;
+    padding: 16px;
+    border: 1px solid #DDDDDD;
+    border-radius: 12px;
+    background-color: #FFFFFF;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+.general-error-container-on {
+    animation-name: errorAnimationMount;
+    animation-duration: 500ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+.general-error-container-off {
+    animation-name: errorAnimationUnmount;
+    animation-duration: 500ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+.general-error-img-box {
+    margin-right: 12px;
+}
+
+.general-error-img-box-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px !important;
+    height: 44px !important;
+    color: #FFFFFF;
+    background-color: #C13515;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+.general-error-exclamation {
+    height: 16px;
+    width: 16px;
+    filter: brightness(0) invert(1);
+}
+
+.general-error-text-1 {
+    font-size: 14px;
+    line-height: 18px;
+    overflow-wrap: break-word;
+}
+
+.general-error-exit {
+    margin-left: auto;
+}
+
+.general-error-cancel {
+    border-radius: 50%;
+    padding: 0;
+    border: none;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1);
+}
+
+@media screen and (max-width: 743px) {
+    .general-error-container-on,
+    .general-error-container-off {
+        width: 80%;
+        left: 10%;
+    }
+
+    .general-error-container-inner {
+        width: 100%;
+    }
+}
+
+@keyframes errorAnimationMount {
+    0% {
+        opacity: 0;
+        bottom: 0px;
+    }
+
+    100% {
+        opacity: 1;
+        bottom: 98px;
+        transform: none;
+    }
+}
+
+@keyframes errorAnimationUnmount {
+    0% {
+        display: block;
+        opacity: 1;
+        bottom: 98px;
+        transform: none;
+    }
+
+    100% {
+        opacity: 0;
+        bottom: 0px;
+        display: none;
+    }
+}

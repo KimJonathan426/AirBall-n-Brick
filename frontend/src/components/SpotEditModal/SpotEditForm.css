@@ -1,0 +1,158 @@
+.spot-listing-edit-btn {
+    display: inline-block;
+    width: 78px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    padding: 7px 15px;
+    border-radius: 8px;
+    border: 1px solid #222222;
+    -webkit-tap-highlight-color: transparent;
+    background: #FFFFFF;
+    cursor: pointer;
+    position: absolute;
+    right: 12px;
+    top: 56px;
+    z-index: 1;
+    outline: none;
+    touch-action: manipulation;
+    transition: all 0.2s ease-in-out;
+}
+
+.spot-listing-edit-btn:hover {
+    background: #F7F7F7;
+}
+
+.spot-listing-edit-btn:active {
+    background: #DDDDDD;
+    transform: scale(0.96);
+}
+
+.spot-edit-submit-btn,
+.spot-edit-disabled-btn {
+    background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+    border-radius: 12px;
+    border: none;
+    color: #FFFFFF;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+}
+
+.spot-edit-submit-btn {
+    cursor: pointer;
+}
+
+.spot-edit-disabled-btn {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.spot-edit-submit-btn:hover {
+    background: linear-gradient(to left,#E61E4D 0%, #E31C5F 50%,#D70466 100%);
+}
+
+.spot-edit-submit-btn:active {
+    transform: scale(0.96);
+    background: linear-gradient(to right,#FF385C 100%,#E31C5F 50%,#D70466 0%);
+}
+
+.spot-edit-modal-container-open {
+    width: 80vw;
+    max-width: 1280px;
+    height: 90vh;
+    border-radius: 12px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+    background-color: #FFFFFF;
+    animation-name: slideUpIn;
+    animation-duration: 400ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+.spot-edit-modal-container-close {
+    width: 80vw;
+    max-width: 1280px;
+    height: 90vh;
+    border-radius: 12px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+    background-color: #FFFFFF;
+    animation-name: slideDownOut;
+    animation-duration: 400ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+.spot-edit-modal-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    text-align: center;
+    padding: 0 24px;
+    border-bottom: 1px solid #EBEBEB;
+    box-sizing: border-box;
+}
+
+.exit-spot-edit-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.exit-spot-edit-modal:hover {
+    background: #F7F7F7;
+}
+
+.exit-spot-edit-modal:active {
+    background: #F7F7F7;
+    transform: scale(0.96);
+}
+
+.spot-edit-modal-title-text {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.spot-edit-modal-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100% - 128px);
+    padding: 32px;
+    overflow: auto;
+    position: relative;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+
+.spot-edit-modal-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    text-align: center;
+    padding: 0 12px;
+    border-top: 1px solid #EBEBEB;
+    box-sizing: border-box;
+}

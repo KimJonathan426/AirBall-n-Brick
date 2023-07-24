@@ -2,16 +2,32 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { multiplePublicFileUpload, multipleMulterUpload } = require('../../awsS3');
 
-const { User, Spot, Image, Review, Booking } = require('../../db/models');
+const { User, Spot, Image, Review, Booking, Tag, Amenity } = require('../../db/models');
 
 const router = express.Router();
 
-router.get('/', asyncHandler(async (_req, res) => {
-    const spots = await Spot.findAll({
-        include: [User]
-    });
+router.get('/:filter', asyncHandler(async (req, res) => {
+    const filter = req.params.filter;
 
-    images = [];
+    let spots;
+
+    if (filter === 'All') {
+        spots = await Spot.findAll({
+            include: [User]
+        });
+    } else {
+        spots = await Spot.findAll({
+            include: [
+                {
+                    model: Tag,
+                    where: { name: filter },
+                },
+                { model: User },
+            ],
+        });
+    };
+
+    const images = [];
 
     for (let spot of spots) {
         const spotImages = await Image.findAll({
@@ -21,8 +37,8 @@ router.get('/', asyncHandler(async (_req, res) => {
             limit: 5
         });
 
-        images.push(...spotImages)
-    }
+        images.push(...spotImages);
+    };
 
     return res.json({
         spots,
@@ -34,13 +50,14 @@ router.get('/single-spot/:spotId', asyncHandler(async (req, res) => {
     const spotId = req.params.spotId;
 
     const spot = await Spot.findByPk(spotId, {
-        include: [User]
+        include: [User, Tag, Amenity]
     });
+
     const images = await Image.findAll({
         where: {
             spotId: spotId
         }
-    })
+    });
 
     return res.json({
         spot,
@@ -54,10 +71,11 @@ router.get('/user/:userId', asyncHandler(async (req, res) => {
     const spots = await Spot.findAll({
         where: {
             userId
-        }
+        },
+        include: [User, Tag, Amenity]
     });
 
-    images = [];
+    const images = [];
 
     for (let spot of spots) {
         const spotImage = await Image.findOne({
@@ -66,8 +84,8 @@ router.get('/user/:userId', asyncHandler(async (req, res) => {
             }
         });
 
-        images.push(spotImage)
-    }
+        images.push(spotImage);
+    };
 
     return res.json({
         spots,
@@ -76,10 +94,16 @@ router.get('/user/:userId', asyncHandler(async (req, res) => {
 }));
 
 router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res) => {
-    const { userId, address, city, state, country, name, description, price } = req.body;
+    const { userId, address, city, state, zipcode,
+        country, lat, lng, showSpecific, name,
+        description, type, price, tags, amenities } = req.body;
+
     const images = await multiplePublicFileUpload(req.files);
 
-    const spot = await Spot.create({ userId, address, city, state, country, name, description, price });
+    const spot = await Spot.create({
+        userId, address, city, state, zipcode,
+        country, lat, lng, showSpecific, name, description, type, price
+    });
 
     const spotId = spot.id;
     const spotImages = [];
@@ -88,6 +112,34 @@ router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res) =
         const spotImage = await Image.create({ spotId, url: image });
         spotImages.push(spotImage);
     }
+
+    const tagsArray = JSON.parse(tags);
+    const tagIds = [];
+    const amenitiesArray = JSON.parse(amenities);
+    const amenityIds = [];
+
+    for (let tag of tagsArray) {
+        const foundTag = await Tag.findOne({
+            where: { name: tag }
+        });
+
+        if (foundTag) {
+            tagIds.push(foundTag.id);
+        };
+    };
+
+    for (let amenity of amenitiesArray) {
+        const foundAmenity = await Amenity.findOne({
+            where: { name: amenity }
+        });
+
+        if (foundAmenity) {
+            amenityIds.push(foundAmenity.id);
+        };
+    };
+
+    await spot.addTags(tagIds);
+    await spot.addAmenities(amenityIds);
 
     return res.json({
         spot,
@@ -118,7 +170,7 @@ router.get('/:spotId/images', asyncHandler(async (req, res) => {
         where: {
             spotId: spotId
         }
-    })
+    });
 
     return res.json({
         images
@@ -155,25 +207,64 @@ router.delete('/:spotId/images/:imageId/delete', asyncHandler(async (req, res) =
         });
 
         for (let booking of spotBookings) {
-            await booking.update({ url })
-        }
-    }
+            await booking.update({ url });
+        };
+    };
 
     return res.json({ message: 'Successfully Deleted' });
 }));
 
 router.put('/:id', asyncHandler(async (req, res) => {
-    const { id, address, city, state, country, name, description, price } = req.body;
+    const { id, address, city, state, zipcode, country, lat, lng, showSpecific,
+        name, type, description, price, tags, amenities } = req.body;
 
-    const spot = await Spot.findByPk(id, {
-        include: [User]
-    });
+    try {
+        const spot = await Spot.findByPk(id, {
+            include: [User, Tag, Amenity]
+        });
 
-    await spot.update({ address, city, state, country, name, description, price });
+        await spot.update({
+            address, city, state, zipcode, country, lat, lng,
+            showSpecific, name, type, description, price
+        });
 
-    return res.json({
-        spot
-    });
+        await spot.setTags([]);
+        await spot.setAmenities([]);
+
+        const tagIds = [];
+        const amenityIds = [];
+
+        for (let tag of tags) {
+            const foundTag = await Tag.findOne({
+                where: { name: tag }
+            });
+
+            if (foundTag) {
+                tagIds.push(foundTag.id);
+            };
+        };
+
+        for (let amenity of amenities) {
+            const foundAmenity = await Amenity.findOne({
+                where: { name: amenity }
+            });
+
+            if (foundAmenity) {
+                amenityIds.push(foundAmenity.id);
+            };
+        };
+
+        await spot.addTags(tagIds);
+        await spot.addAmenities(amenityIds);
+
+        return res.json({
+            spot
+        });
+
+    } catch (error) {
+        console.error('Error updating spot:', error);
+        return res.json({ error: 'Error updating spot, please try again.' });
+    };
 }));
 
 router.delete('/:id', asyncHandler(async (req, res) => {

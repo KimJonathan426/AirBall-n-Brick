@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import loadingGif from '../../images/host-court-loading.gif';
-import errorMark from '../../images/error-mark.png';
+import { ReactComponent as ErrorMark } from '../../images/error-mark.svg';
 import './SignupStep.css';
 
 function SignupStep({ credential, setCredential }) {
@@ -110,7 +110,7 @@ function SignupStep({ credential, setCredential }) {
                     <div className='auth-error-container'>
                         <ul className='auth-error-list'>
                             {emailErrors.map((error, idx) => (
-                                <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
+                                <li className='auth-error-item' key={idx}><ErrorMark className='exclamation-mark' />{error}</li>
                             ))}
                         </ul>
                     </div>
@@ -132,7 +132,7 @@ function SignupStep({ credential, setCredential }) {
                     <div className='auth-error-container'>
                         <ul className='auth-error-list'>
                             {usernameErrors.map((error, idx) => (
-                                <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
+                                <li className='auth-error-item' key={idx}><ErrorMark className='exclamation-mark' />{error}</li>
                             ))}
                         </ul>
                     </div>
@@ -154,7 +154,7 @@ function SignupStep({ credential, setCredential }) {
                     <div className='auth-error-container'>
                         <ul className='auth-error-list'>
                             {passwordErrors.map((error, idx) => (
-                                <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
+                                <li className='auth-error-item' key={idx}><ErrorMark className='exclamation-mark' />{error}</li>
                             ))}
                         </ul>
                     </div>
@@ -172,7 +172,7 @@ function SignupStep({ credential, setCredential }) {
                     <div className='auth-error-container'>
                         <ul className='auth-error-list'>
                             {confirmErrors.map((error, idx) => (
-                                <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
+                                <li className='auth-error-item' key={idx}><ErrorMark className='exclamation-mark' />{error}</li>
                             ))}
                         </ul>
                     </div>
@@ -181,7 +181,7 @@ function SignupStep({ credential, setCredential }) {
                     <div className='auth-error-container'>
                         <ul className='auth-error-list'>
                             {errors.map((error, idx) => (
-                                <li className='auth-error-item' key={idx}><img className='exclamation-mark' src={errorMark} alt='error exclamation mark' />{error}</li>
+                                <li className='auth-error-item' key={idx}><ErrorMark className='exclamation-mark' />{error}</li>
                             ))}
                         </ul>
                     </div>

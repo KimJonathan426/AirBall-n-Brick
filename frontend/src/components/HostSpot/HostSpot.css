@@ -1,0 +1,378 @@
+.host-spot-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100vw;
+    height: 88px;
+    padding: 32px 48px 0;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    box-sizing: border-box;
+    z-index: 3;
+}
+
+.host-spot-logo {
+    width: 52px;
+    height: 52px;
+    transition: all 0.2s ease-in-out;
+}
+
+.host-spot-logo:active {
+    transform: scale(0.94);
+}
+
+.host-spot-container {
+    width: 100vw;
+    height: calc(100vh - 176px);
+    padding: 0 80px;
+    margin: 88px 0 82px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    opacity: 1;
+    transition: opacity 0.6s;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.host-spot-container-scrolled-down {
+    width: 100vw;
+    height: calc(100vh - 176px);
+    padding: 0 80px;
+    margin: 88px 0 82px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    opacity: 1;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    border-top: 1px solid #DDDDDD;
+    transition: border 0.1s ease-in 0s, opacity 0.6s;
+}
+
+.host-spot-container-transition {
+    width: 100vw;
+    height: calc(100vh - 176px);
+    padding: 0 80px;
+    margin: 88px 0 82px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.6s;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+
+.host-spot-container::-webkit-scrollbar,
+.host-spot-container-transition::-webkit-scrollbar,
+.host-spot-container-scrolled-down::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+
+.host-spot-footer {
+    width: 100vw;
+    height: 88px;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    z-index: 2;
+    box-sizing: border-box;
+}
+
+.host-spot-start {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 88px;
+    padding: 16px 0;
+    border-top: 6px solid #DDDDDD;
+    box-sizing: border-box;
+}
+
+.host-spot-start-btn,
+.host-spot-publish-btn {
+    background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
+    width: 154px;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    cursor: pointer;
+    padding: 14px 32px;
+    margin-right: 48px;
+    position: relative;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+}
+
+.host-spot-start-btn:hover,
+.host-spot-publish-btn:hover {
+    background: linear-gradient(to left,#E61E4D 0%, #E31C5F 50%,#D70466 100%);
+}
+
+.host-spot-start-btn:active,
+.host-spot-publish-btn:active {
+    transform: scale(0.96);
+    background: linear-gradient(to right,#FF385C 100%,#E31C5F 50%,#D70466 0%);
+}
+
+.host-spot-footer-progress {
+    display: flex;
+    align-items: center;
+    height: 6px;
+    box-sizing: border-box;
+}
+
+.host-spot-footer-progress-bar {
+    width: 100%;
+    height: 100%;
+    background-color: #DDDDDD;
+    overflow-x: hidden;
+    margin-right: 6px;
+}
+
+.host-spot-footer-progress-bar:last-child {
+    margin-right: 0px;
+}
+
+.footer-progress-bar-highlight {
+    position: relative;
+    width: 100%;
+    left: -100%;
+    height: 100%;
+    background: #000000;
+}
+
+.host-spot-footer-step {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 82px;
+    padding: 16px 0;
+    box-sizing: border-box;
+}
+
+.host-spot-back-btn {
+    width: 56px;
+    height: 100%;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    text-decoration: underline;
+    background: transparent;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    border: none;
+    margin-left: 48px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.host-spot-next-btn {
+    background: #222222;
+    width: 102px;
+    height: 100%;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 600;
+    color: #FFFFFF;
+    border: 1px solid black;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    text-align: center;
+    padding: 14px 32px;
+    margin-right: 48px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.host-spot-next-btn-disabled {
+    background: #DDDDDD;
+    width: 102px;
+    height: 100%;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 600;
+    color: #FFFFFF;
+    border: 1px solid black;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    text-align: center;
+    padding: 14px 32px;
+    margin-right: 48px;
+    box-sizing: border-box;
+    cursor: not-allowed;
+    transition: all 0.2s ease-in-out;
+}
+
+.host-spot-back-btn:hover {
+    background: #F7F7F7;
+}
+
+.host-spot-next-btn:hover {
+    background: black;
+}
+
+.host-spot-back-btn:active,
+.host-spot-next-btn:active,
+.host-spot-next-btn-disabled:active {
+    transform: scale(0.96);
+}
+
+
+.host-spot-load-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #DDDDDD;
+    color: #DDDDDD;
+    width: 154px;
+    height: 100%;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 8px;
+    line-height: 20px;
+    cursor: wait;
+    margin-right: 48px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.host-spot-back-loading {
+    background-color: #000000;
+    width: 56px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    margin-left: 48px;
+    cursor: wait;
+    position: relative;
+}
+
+.host-spot-next-loading,
+.host-spot-publish-loading {
+    background: #DDDDDD;
+    height: 100%;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 600;
+    color: #FFFFFF;
+    border: 1px solid black;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    text-align: center;
+    padding: 14px 32px;
+    margin-right: 48px;
+    position: relative;
+    box-sizing: border-box;
+    cursor: wait;
+}
+
+.host-spot-next-loading {
+    width: 102px;
+}
+
+.host-spot-publish-loading {
+    width: 154px;
+}
+
+.host-spot-btn-load,
+.host-spot-publish-load {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+
+.host-spot-btn-load-next {
+    position: relative;
+    left: -33px;
+    width: 100px;
+    height: 100%;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+
+.host-spot-btn-load-back {
+    position: relative;
+    left: -6px;
+    width: 56px;
+    height: 100%;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 743px) {
+    .host-spot-nav {
+        height: 64px;
+        padding: 16px 24px 8px;
+    }
+
+    .host-spot-logo {
+        width: 44px;
+        height: 44px;
+    }
+
+    .host-spot-container,
+    .host-spot-container-scrolled-down {
+        padding: 0 24px 30px 24px;
+    }
+
+    .host-spot-container-transition {
+        padding: 0 24px 30px 24px;
+    }
+
+    .host-spot-start {
+        margin: 0 24px;
+    }
+
+    .host-spot-start-btn {
+        width: 100%;
+        padding: 14px 28px;
+        margin: 0;
+    }
+
+    .host-spot-footer-progress-bar {
+        margin-right: 3px;
+    }
+
+    .host-spot-back-btn,
+    .host-spot-back-loading {
+        margin-left: 24px;
+    }
+
+    .host-spot-next-btn,
+    .host-spot-next-btn-disabled,
+    .host-spot-next-loading,
+    .host-spot-publish-btn,
+    .host-spot-publish-loading {
+        margin-right: 24px;
+    }
+
+    .host-spot-load-box {
+        width: 100%;
+        padding: 14px 28px;
+        margin: 0;
+    }
+
+    .host-spot-btn-load {
+        width: 25%;
+        height: 100%;
+        object-fit: cover;
+        box-sizing: border-box;
+    }
+}

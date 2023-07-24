@@ -10,7 +10,6 @@ import Loading from '../Loading';
 
 const HostingReservations = () => {
     const dispatch = useDispatch();
-    const bookingData = useSelector(state => state.booking);
     const userId = useSelector(state => state.session.user?.id);
     const [choice, setChoice] = useState('hosting');
     const [currentlyHosting, setCurrentlyHosting] = useState([]);
@@ -22,8 +21,9 @@ const HostingReservations = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            await dispatch(getHostedBookings(userId));
+            const res = await dispatch(getHostedBookings(userId));
 
+            parseBookingData(res);
             setLoading(true);
         }
 
@@ -31,7 +31,7 @@ const HostingReservations = () => {
     }, [dispatch, userId]);
 
     // Parse booking data into categories
-    useEffect(() => {
+    const parseBookingData = (bookingData) => {
         const today = moment();
         const tomorrow = today.clone().add(1, 'day');
 
@@ -75,7 +75,7 @@ const HostingReservations = () => {
         setArrivingSoon(soon);
         setUpcoming(future);
         setParsed(true);
-    }, [bookingData]);
+    };
 
 
     return (

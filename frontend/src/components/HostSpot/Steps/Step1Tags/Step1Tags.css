@@ -1,0 +1,85 @@
+.host-step-1-tags-bottom {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 640px;
+    gap: 16px;
+    padding: 2px 2px 40px 2px;
+    box-sizing: border-box;
+}
+
+.host-step-1-tags-main {
+    flex: 0 1 calc(33% - 9px);
+    box-sizing: border-box;
+    animation-name: fadeUpIn;
+    animation-duration: 600ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+.host-step-1-tags-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    min-height: 88px;
+    background-color: #FFFFFF;
+    padding: 16px;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s cubic-bezier(0.2,0,0,1), transform 0.1s cubic-bezier(0.2,0,0,1);
+}
+
+.host-step-1-tags-btn-checked {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    min-height: 88px;
+    background-color: #F7F7F7;
+    padding: 16px;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    box-shadow: 0 0 0 2px #000000;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s cubic-bezier(0.2,0,0,1), transform 0.1s cubic-bezier(0.2,0,0,1);
+}
+
+.host-step-1-tags-btn:hover {
+    box-shadow: 0 0 0 2px #000000;
+}
+
+.host-step-1-tags-btn:active,
+.host-step-1-tags-btn-checked:active {
+    box-shadow: 0 0 0 2px #000000;
+    background-color: #F7F7F7;
+    transform: scale(0.96);
+}
+
+.host-step-1-tags-text {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    text-align: left;
+    word-break: break-word;
+}
+
+@media screen and (max-width: 743px) {
+    .host-step-1-tags-bottom {
+        max-width: unset;
+        gap: 12px;
+        padding: 2px 2px 12px 2px;
+        box-sizing: border-box;
+    }
+
+    .host-step-1-tags-main {
+        flex: 0 1 calc(50% - 6px);
+    }
+}

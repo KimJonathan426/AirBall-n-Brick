@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotList from "./components/SpotsList";
-import SpotForm from "./components/SpotForm";
+import HostSpot from "./components/HostSpot";
 import SingleSpot from "./components/SingleSpot";
 import Trips from "./components/Trips";
 import HostDashboard from "./components/HostDashboard";
@@ -34,12 +34,7 @@ function App() {
                                     <SpotList />
                                   </>
                                 } />
-          <Route path="/spots/new" element={
-                                  <>
-                                    <Navigation isLoaded={isLoaded} fixed={false} />
-                                    <SpotForm />
-                                  </>
-                                } />
+          <Route path="/spots/new" element={ <HostSpot /> } />
           <Route path="/spots/:id" element={
                                   <>
                                     <Navigation isLoaded={isLoaded} fixed={false} type='nav-contained' />

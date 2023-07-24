@@ -1,0 +1,172 @@
+.final-review-modal-container-open {
+    width: 1032px;
+    height: 582px;
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+    position: relative;
+    animation-name: slideUpIn;
+    animation-duration: 400ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    box-sizing: border-box;
+}
+
+.final-review-modal-container-close {
+    width: 1032px;
+    height: 582px;
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+    position: relative;
+    animation-name: slideDownOut;
+    animation-duration: 400ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    box-sizing: border-box;
+}
+
+.final-review-modal-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    text-align: center;
+    padding: 0 24px;
+    border-bottom: 1px solid #EBEBEB;
+    box-sizing: border-box;
+}
+
+.exit-final-review-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.exit-final-review-modal:hover {
+    background: #F7F7F7;
+}
+
+.exit-final-review-modal:active {
+    background: #F7F7F7;
+    transform: scale(0.96);
+}
+
+.final-review-modal-title-text {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.final-review-modal-content {
+    display: flex;
+    width: 100%;
+    height: calc(100% - 64px);
+    padding: 24px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.final-review-modal-preview {
+    width: 444px;
+    height: 422px;
+    padding: 24px;
+    margin: 0;
+    position: relative;
+}
+
+.final-review-modal-preview-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.final-review-modal-info {
+    width: 50%;
+    height: 100%;
+    padding-top: 24px;
+    position: relative;
+    word-wrap: break-word;
+    word-break: break-word;
+    box-sizing: border-box;
+}
+
+.final-review-modal-info-title {
+    font-size: 32px;
+    line-height: 36px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.final-review-modal-info-user {
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 600;
+    padding: 32px 0;
+    border-bottom: 1px solid #EBEBEB;
+    margin: 0;
+}
+
+.final-review-modal-info-description {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    padding: 32px 0;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.final-review-modal-info-location {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+.final-review-modal-info-location-notice {
+    font-size: 12px;
+    line-height: 16px;
+    color: #717171;
+    margin-top: 8px;
+}
+
+@media screen and (max-width: 1127px) {
+    .final-review-modal-container-open {
+        width: 376px;
+        height: calc(100vh - 140px);
+    }
+
+    .final-review-modal-container-close {
+        width: 376px;
+        height: calc(100vh - 140px);
+    }
+
+    .final-review-modal-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .final-review-modal-preview {
+        width: 100%;
+        height: 296px;
+        padding: 0;
+    }
+
+    .final-review-modal-info {
+        width: 100%;
+        height: calc(100% - 296px);
+    }
+}

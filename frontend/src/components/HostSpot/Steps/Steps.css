@@ -1,0 +1,264 @@
+.host-step-container-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.host-step-container-start {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.host-step-container-inner-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 630px;
+    min-width: 205px;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+.host-step-container-inner-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 630px;
+    min-width: 205px;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+.host-step-container-inner-mix {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    max-width: 630px;
+    min-width: 205px;
+    height: 412px;
+    margin-top: auto;
+    margin-bottom: auto;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+.host-step-top {
+    width: 100%;
+    margin-bottom: 32px;
+    animation-name: fadeUpIn;
+    animation-duration: 600ms;
+    animation-delay: 400ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+.host-step-header-only {
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: 600;
+    overflow-wrap: break-word;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.host-step-header {
+    font-size: 31px;
+    line-height: 36px;
+    font-weight: 600;
+    overflow-wrap: break-word;
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.host-step-subheader {
+    font-size: 17px;
+    line-height: 24px;
+    color: #717171;
+}
+
+/* spot edit css */
+.spot-edit-step-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 32px 0;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.spot-edit-step-container:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.spot-edit-step-header {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.spot-edit-step-bottom {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+.spot-edit-step-btn,
+.spot-edit-step-btn-checked {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 32px;
+    padding: 6px 12px;
+    border: 1px solid #DDDDDD;
+    border-radius: 16px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s cubic-bezier(0.2,0,0,1), transform 0.1s cubic-bezier(0.2,0,0,1);
+}
+
+.spot-edit-step-btn {
+    background-color: #FFFFFF;
+}
+
+.spot-edit-step-btn-checked {
+    background-color: #F7F7F7;
+    box-shadow: 0 0 0 1px #000000;
+}
+
+.spot-edit-step-btn:hover {
+    box-shadow: 0 0 0 1px #000000;
+}
+.spot-edit-step-btn:active,
+.spot-edit-step-btn-checked:active {
+    box-shadow: 0 0 0 1px #000000;
+    background-color: #F7F7F7;
+    transform: scale(0.96);
+}
+
+.spot-edit-step-text {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+    text-align: left;
+    word-break: break-word;
+}
+
+.spot-edit-step-textarea,
+.spot-edit-step-textarea-invalid {
+    display: block;
+    width: 100%;
+    min-height: 96px;
+    max-height: 300px;
+    outline: none;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    resize: vertical;
+    text-overflow: ellipsis;
+    overflow-y: auto;
+    font-size: 16px;
+    line-height: 26px;
+    color: #222222;
+    box-sizing: border-box;
+}
+
+.spot-edit-step-textarea {
+    box-shadow: grey 0px 0px 0px 1px inset;
+}
+
+.spot-edit-step-textarea-invalid {
+    box-shadow: firebrick 0px 0px 0px 1px inset;
+    background-color: rgb(255, 248, 246);
+}
+
+.spot-edit-step-textarea:focus {
+    box-shadow: black 0 0 0 2px inset;
+}
+
+.spot-edit-step-textarea-invalid:focus {
+    box-shadow: firebrick 0px 0px 0px 2px inset;
+}
+
+.spot-edit-step-counter {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 8px;
+    width: 100%;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 700;
+    color: #717171;
+}
+
+.spot-edit-step-error {
+    display: flex;
+    align-items: center;
+    color: rgb(193, 53, 21);
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    margin-top: 4px;
+    box-sizing: border-box;
+}
+
+
+@media screen and (max-width: 743px) {
+    .host-step-container-center {
+        align-items: flex-start;
+    }
+
+    .host-step-container-inner-center,
+    .host-step-container-inner-mix {
+        margin: 0 auto;
+    }
+
+    .host-step-top {
+        margin-bottom: 24px;
+    }
+
+    .host-step-header-only,
+    .host-step-header {
+        font-size: 26px;
+        line-height: 30px;
+        margin-bottom: 8px;
+    }
+
+    .host-step-subheader {
+        font-size: 16px;
+        line-height: 20px;
+    }
+}
+
+@keyframes fadeUpIn {
+    0% {
+        opacity: 0;
+        transform: translate(0, 40%);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}

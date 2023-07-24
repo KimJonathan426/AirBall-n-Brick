@@ -66,7 +66,7 @@
 }
 
 .cancel-booking {
-    background-color: #D70466;
+    background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
     width: 100%;
     padding: 14px 24px;
     border: none;
@@ -80,7 +80,7 @@
 }
 
 .confirm-booking {
-    background-color: #D70466;
+    background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
     width: 100%;
     padding: 14px 24px;
     border: none;
@@ -95,13 +95,13 @@
 
 .cancel-booking:hover,
 .confirm-booking:hover {
-    background-color: #E31C5F;
+    background: linear-gradient(to left,#E61E4D 0%, #E31C5F 50%,#D70466 100%);
 }
 
 .cancel-booking:active,
 .confirm-booking:active {
     transform: scale(0.96);
-    background-color: #FF385C;
+    background: linear-gradient(to right,#FF385C 100%,#E31C5F 50%,#D70466 0%);
 }
 
 .confirm-booking-disabled {

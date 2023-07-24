@@ -1,0 +1,218 @@
+.host-final-review-container-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 850px;
+    min-width: 205px;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+.host-final-review-top {
+    width: 100%;
+    margin-bottom: 48px;
+}
+
+.host-final-review-header {
+    font-size: 48px;
+    line-height: 54px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.host-final-review-subheader {
+    font-size: 18px;
+    line-height: 24px;
+    color: #717171;
+    margin-top: 24px;
+}
+
+.host-final-review-bottom {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.host-final-review-preview {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 40vw;
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, .04);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    background: #FFFFFF;
+    position: relative;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.host-final-review-preview-main {
+    width: 100%;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.host-preview-main-label {
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    background-color: #FFFFFF;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    box-sizing: border-box;
+}
+
+.host-preview-main-img {
+    width: 100%;
+    aspect-ratio: 1.05;
+    object-fit: cover;
+}
+
+.host-preview-text-box {
+    display: flex;
+    width: 100%;
+}
+
+.host-preview-text-box-inner {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    flex: 1;
+    word-break: break-word;
+    max-width: calc(100% - 80px);
+    box-sizing: border-box;
+}
+
+.host-preview-text-1 {
+    font-size: 15px;
+    line-height: 19px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
+}
+
+.host-preview-text-box-2 {
+    display: inline-flex;
+    font-size: 15px;
+    line-height: 19px;
+    margin-left: auto;
+    position: relative;
+}
+
+.host-preview-rating-star {
+    width: 12px !important;
+    position: relative;
+    top: 2px;
+}
+
+.host-final-review-info {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    max-width: 400px;
+    margin-left: 78px;
+}
+
+.host-final-review-info-header {
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 32px;
+}
+
+.host-final-review-info-item {
+    display: flex;
+    margin-bottom: 32px;
+}
+
+.host-final-review-item-inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.host-final-review-item-header {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 4px
+}
+
+.host-final-review-item-subheader {
+    font-size: 14px;
+    line-height: 18px;
+    color: #717171;
+}
+
+@media screen and (max-width: 743px) {
+    .host-final-review-container-inner {
+        margin: 0 auto;
+    }
+
+    .host-final-review-top {
+        width: 100%;
+        margin-bottom: 24px;
+    }
+
+    .host-final-review-header {
+        font-size: 26px;
+        line-height: 30px;
+    }
+
+    .host-final-review-subheader {
+        font-size: 16px;
+        line-height: 20px;
+        margin-top: 8px;
+    }
+
+    .host-final-review-bottom {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .host-final-review-preview {
+        max-width: 500px;
+        padding: 16px;
+        margin-bottom: 32px;
+    }
+
+    .host-final-review-info {
+        align-self: unset;
+        width: 100%;
+        max-width: unset;
+        margin-left: 0;
+        margin-bottom: 32px;
+    }
+
+    .host-final-review-info-header {
+        font-size: 18px;
+        line-height: 22px;
+        margin-bottom: 24px;
+    }
+
+    .host-final-review-info-item {
+        margin-bottom: 24px;
+    }
+
+    .host-final-review-item-header {
+        margin-bottom: 2px
+    }
+}
