@@ -104,8 +104,8 @@ const SpotFilterTag = ({ filter, setFilter }) => {
                     </div>
                 </SwiperSlide>
                 {tagCombos.map((option) => (
-                    <SwiperSlide>
-                        <div key={option.id} className={filter === option.name ? 'filter-tags-option-checked' : 'filter-tags-option'}>
+                    <SwiperSlide key={option.id}>
+                        <div className={filter === option.name ? 'filter-tags-option-checked' : 'filter-tags-option'}>
                             <button className='filter-tags-btn' onClick={() => setFilter(option.name)}>
                                 <img src={option.url} className='filter-tags-img' alt='court ag icon' />
                                 <div className={filter === option.name ? 'filter-tags-text-checked' : 'filter-tags-text'}>{option.name}</div>
