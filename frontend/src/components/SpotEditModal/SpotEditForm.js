@@ -11,7 +11,7 @@ import TitleEdit from '../HostSpot/Steps/Step2Title/TitleEdit';
 import PriceEdit from '../HostSpot/Steps/Step3Price/PriceEdit';
 import './SpotEditForm.css';
 
-const SpotEditForm2 = ({ spot, closeModal, setCloseModal, setUpdateState }) => {
+const SpotEditForm = ({ spot, closeModal, setCloseModal, setUpdateState }) => {
 
     const dispatch = useDispatch();
 
@@ -120,4 +120,4 @@ const SpotEditForm2 = ({ spot, closeModal, setCloseModal, setUpdateState }) => {
     );
 };
 
-export default SpotEditForm2;
+export default SpotEditForm;

@@ -5,12 +5,10 @@ import { getSingleSpot } from '../../store/spotReducer';
 import { getBookings } from '../../store/bookingReducer';
 import { getReviewAvg } from '../../store/reviewReducer';
 import findBookings from '../FindBookings';
-import SpotEditForm from '../SpotEditForm';
 import ReviewForm from '../ReviewForm';
 import SpotReviewList from '../SpotReviewList';
 import ratingStar from '../../images/rating-star.svg';
 import SpotImagesModal from '../SpotImagesModal';
-import SpotImagesForm from '../SpotImagesForm';
 import SpotMap from './SpotMap/index';
 import BookingForm from '../BookingForm';
 import BookingFormFixed from '../BookingFormFixed';
@@ -33,8 +31,6 @@ const SingleSpot = () => {
     const bookingState = useSelector(state => state.booking);
     const user = useSelector(state => state.session?.user?.id);
 
-    const [showEditSpotForm, setShowEditSpotForm] = useState(false);
-    const [showImagesForm, setShowImagesForm] = useState(false);
     const [showReviewForm, setShowReviewForm] = useState(false);
     const [previousBookings, setPreviousBookings] = useState([]);
     const [currentBookings, setCurrentBookings] = useState([]);
@@ -86,18 +82,6 @@ const SingleSpot = () => {
             <div className='single-spot-content'>
                 {loading ? singleSpot ?
                     <>
-                        {(!showEditSpotForm && !showImagesForm && user === singleSpot?.userId) && (
-                            <div className='edit-delete-buttons'>
-                                <button className='edit-button' onClick={() => setShowEditSpotForm(true)}>Edit Court</button>
-                                <button className='edit-button' onClick={() => setShowImagesForm(true)}>Add Images</button>
-                            </div>
-                        )}
-                        {(showEditSpotForm && user) && (
-                            <SpotEditForm spot={singleSpot} id={id} hideForm={() => setShowEditSpotForm(false)} />
-                        )}
-                        {(showImagesForm && user) && (
-                            <SpotImagesForm id={id} hideForm={() => setShowImagesForm(false)} />
-                        )}
                         <div className='spot-header'>
                             <div className='single-name-info'>
                                 {singleSpot.name}

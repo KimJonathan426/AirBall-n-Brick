@@ -28,31 +28,6 @@
     font-weight: bold;
 }
 
-.edit-delete-buttons {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-}
-
-.edit-button,
-.delete-button {
-    width: 35%;
-    min-width: 101px;
-    padding: 15px;
-    margin: 25px 50px;
-    border: 5px groove #CF5300;
-    border-radius: 10px;
-    background-color: rgb(58, 58, 58);
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-}
-
-.edit-button:active,
-.delete-button:active,
 .post-review-button:active {
     background-color: black;
     transform: scale(0.96);

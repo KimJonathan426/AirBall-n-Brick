@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from '../../context/Modal';
-import SpotEditForm2 from './SpotEditForm';
+import SpotEditForm from './SpotEditForm';
 import './SpotEditForm.css';
 
 function SpotEditModal({ spot, setUpdateState }) {
@@ -28,7 +28,7 @@ function SpotEditModal({ spot, setUpdateState }) {
       <button className='spot-listing-edit-btn' onClick={() => setShowModal(true)}>Edit</button>
       {showModal && (
         <Modal onClose={() => setCloseModal(true)}>
-          <SpotEditForm2 spot={spot} closeModal={closeModal} setCloseModal={setCloseModal} setUpdateState={setUpdateState} />
+          <SpotEditForm spot={spot} closeModal={closeModal} setCloseModal={setCloseModal} setUpdateState={setUpdateState} />
         </Modal>
       )}
     </>
