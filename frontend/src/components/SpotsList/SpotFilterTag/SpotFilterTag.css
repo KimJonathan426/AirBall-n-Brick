@@ -29,12 +29,16 @@
 .filter-tags-option-checked {
     padding-bottom: 12px;
     margin-bottom: 0;
+    margin-left: 4px;
+    margin-right: 4px;
     border-bottom: 2px solid #000000;
 }
 
 .filter-tags-option:hover {
     padding-bottom: 12px;
     margin-bottom: 0;
+    margin-left: 4px;
+    margin-right: 4px;
     border-bottom: 2px solid #DDDDDD;
 }
 

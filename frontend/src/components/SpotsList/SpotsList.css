@@ -19,6 +19,36 @@
     }
 }
 
+.spots-list-empty-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.spots-list-empty-img-box {
+    width: calc(20% + 200px);
+    height: 100%;
+    aspect-ratio: 700 / 500;
+}
+
+.spots-list-empty-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.spots-list-empty-text {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 600;
+    text-align: center;
+    word-wrap: break-word;
+    margin-top: 24px;
+}
+
 .spots-list-container {
     display: grid;
     grid-template-columns: 1fr;
