@@ -88,7 +88,8 @@ const SpotList = () => {
                         }
                     </div>
                     :
-                    <div className='spots-list-empty-container'>
+                    <div>
+                        test
                         <div className='spots-list-empty-img-box'>
                             <img className='spots-list-empty-img' src={tipOff} alt='basketball tip off' />
                         </div>
@@ -97,7 +98,7 @@ const SpotList = () => {
                     </div>
                 :
                 <Loading />
-            };
+            }
         </div>
     );
 };
