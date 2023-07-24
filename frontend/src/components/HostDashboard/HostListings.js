@@ -4,8 +4,9 @@ import { NavLink } from 'react-router-dom';
 import { getUserSpots } from '../../store/spotReducer';
 import reservationIcon from '../../images/reservation-icon.svg';
 import SpotEditModal from '../SpotEditModal';
-import Loading from '../Loading';
 import SpotDeleteModal from '../SpotDeleteModal';
+import AddImagesModal from '../HostSpot/Steps/Step2Photos/AddImagesModal';
+import Loading from '../Loading';
 
 const HostListings = () => {
     const dispatch = useDispatch();
@@ -62,6 +63,7 @@ const HostListings = () => {
                                     <div key={spot.id} className='hosted-spot-listing'>
                                         <SpotEditModal spot={spot} setUpdateState={setUpdateState} />
                                         <SpotDeleteModal spotId={spot.id} setUpdateState={setUpdateState} />
+                                        <AddImagesModal spotId={spot.id} setUpdateState={setUpdateState} />
                                         <NavLink to={`/spots/${spot.id}`} className='hosted-spot-image-container'>
                                             <img className='hosted-spot-image' src={images[spot.id]} alt='spot court' />
                                         </NavLink>

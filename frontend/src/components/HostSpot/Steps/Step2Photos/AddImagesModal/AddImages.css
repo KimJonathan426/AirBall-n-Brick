@@ -1,0 +1,213 @@
+.spot-add-images-btn {
+    display: inline-block;
+    width: auto;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    padding: 7px 15px;
+    border-radius: 8px;
+    border: 1px solid #222222;
+    -webkit-tap-highlight-color: transparent;
+    background: #FFFFFF;
+    cursor: pointer;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 1;
+    outline: none;
+    touch-action: manipulation;
+    transition: all 0.2s ease-in-out;
+}
+
+.spot-add-images-btn:hover {
+    background: #F7F7F7;
+}
+
+.spot-add-images-btn:active {
+    background: #DDDDDD;
+    transform: scale(0.96);
+}
+
+.add-images-modal-container-open {
+    width: 80vw;
+    max-width: 690px;
+    border-radius: 12px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+    background-color: #FFFFFF;
+    position: relative;
+    animation-name: slideUpIn;
+    animation-duration: 400ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+.add-images-modal-container-close {
+    width: 80vw;
+    max-width: 740px;
+    border-radius: 12px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+    background-color: #FFFFFF;
+    position: relative;
+    animation-name: slideDownOut;
+    animation-duration: 400ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+.add-images-modal-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    text-align: center;
+    padding: 0 24px;
+    border-bottom: 1px solid #EBEBEB;
+    box-sizing: border-box;
+}
+
+.exit-add-images-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.add-images-modal-title-text {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.add-images-modal-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    text-align: center;
+    padding: 0 12px;
+    border-top: 1px solid #EBEBEB;
+    position: relative;
+    bottom: 0;
+    box-sizing: border-box;
+}
+
+.add-images-submit-btn,
+.add-images-disabled-btn {
+    background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+    border-radius: 12px;
+    border: none;
+    color: #FFFFFF;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+}
+
+.add-images-submit-btn {
+    cursor: pointer;
+}
+
+.add-images-disabled-btn {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.add-images-submit-btn:hover {
+    background: linear-gradient(to left,#E61E4D 0%, #E31C5F 50%,#D70466 100%);
+}
+
+.add-images-submit-btn:active {
+    transform: scale(0.96);
+    background: linear-gradient(to right,#FF385C 100%,#E31C5F 50%,#D70466 0%);
+}
+
+/* new images */
+.new-photos-drag-overlay,
+.new-photos-drag-overlay-active {
+    width: calc(100% - 24px);
+    height: 100%;
+    background: #FFFFFF;
+    border: 2px solid #222222;
+    position: absolute;
+    box-sizing: border-box;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.new-photos-drag-overlay {
+    opacity: 0;
+}
+
+.new-photos-drag-overlay-active {
+    opacity: 0.95;
+}
+
+.new-photos-container-inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 700px;
+    max-height: 900px;
+    margin: 24px auto;
+    position: relative;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.main-photos-bottom {
+    width: 100%;
+    max-width: 640px;
+    height: 65vh;
+    min-height: 300px;
+    max-height: min(700px, 50vh);
+    position: relative;
+    box-sizing: border-box;
+}
+
+.new-photos-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0 24px;
+    position: relative;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.new-image-container {
+    width: calc(50% - 8px);
+    margin-bottom: 16px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 743px) {
+    .main-photos-bottom {
+        min-height: unset;
+        max-width: unset;
+        height: 320px;
+    }
+
+    .new-image-container {
+        width: 100%;
+    }
+}
