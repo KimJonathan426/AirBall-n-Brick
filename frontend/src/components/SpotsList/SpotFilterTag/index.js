@@ -27,7 +27,11 @@ const SpotFilterTag = ({ filter, setFilter }) => {
     }, []);
 
     const swiperBreakpoints = {
-        350: {
+        325: {
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+        },
+        400: {
             slidesPerView: 4,
             slidesPerGroup: 4,
         },
@@ -81,8 +85,8 @@ const SpotFilterTag = ({ filter, setFilter }) => {
     return (
         <div className='filter-tags-container'>
             <Swiper
-            slidesPerView={3}
-            slidesPerGroup={3}
+            slidesPerView={2}
+            slidesPerGroup={2}
                 navigation={{
                     prevEl: '.left-arrow',
                     nextEl: '.right-arrow',
@@ -109,8 +113,8 @@ const SpotFilterTag = ({ filter, setFilter }) => {
                         </div>
                     </SwiperSlide>
                 ))}
-                <button className='left-arrow'><img src={swiperLeft} alt='left arrow' /></button>
-                <button className='right-arrow'><img src={swiperRight} alt='right arrow' /></button>
+                <button style={{ left: '1px' }} className='left-arrow'><img src={swiperLeft} alt='left arrow' /></button>
+                <button style={{ right: '1px' }} className='right-arrow'><img src={swiperRight} alt='right arrow' /></button>
             </Swiper>
         </div>
     );
