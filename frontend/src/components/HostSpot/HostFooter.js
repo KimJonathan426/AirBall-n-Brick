@@ -208,8 +208,8 @@ const HostFooter = ({ step, setStep, locationStep, setLocationStep, address, cit
                         }
                         {step === 12 ?
                             buttonLoading ?
-                                <button className='host-spot-load-box'>
-                                    <img className='host-spot-btn-load' src={loadingGif} alt='loading...' />
+                                <button className='host-spot-publish-loading'>
+                                    <img className='host-spot-publish-load' src={loadingGif} alt='loading...' />
                                 </button>
                                 :
                                 <button onClick={handlePublish} className='host-spot-publish-btn'>Publish</button>

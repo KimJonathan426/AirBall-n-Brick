@@ -262,9 +262,9 @@
     position: relative;
 }
 
-.host-spot-next-loading {
+.host-spot-next-loading,
+.host-spot-publish-loading {
     background: #DDDDDD;
-    width: 102px;
     height: 100%;
     font-size: 15px;
     line-height: 20px;
@@ -282,7 +282,16 @@
     cursor: wait;
 }
 
-.host-spot-btn-load {
+.host-spot-next-loading {
+    width: 102px;
+}
+
+.host-spot-publish-loading {
+    width: 154px;
+}
+
+.host-spot-btn-load,
+.host-spot-publish-load {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -348,7 +357,9 @@
 
     .host-spot-next-btn,
     .host-spot-next-btn-disabled,
-    .host-spot-next-loading {
+    .host-spot-next-loading,
+    .host-spot-publish-btn,
+    .host-spot-publish-loading {
         margin-right: 24px;
     }
 
