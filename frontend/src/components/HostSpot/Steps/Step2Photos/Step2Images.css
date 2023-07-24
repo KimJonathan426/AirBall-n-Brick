@@ -293,6 +293,7 @@
     border: 1px dashed #717171;
     position: absolute;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .step-2-image-placeholder {
