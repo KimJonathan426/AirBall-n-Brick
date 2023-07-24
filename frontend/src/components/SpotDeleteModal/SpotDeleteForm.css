@@ -1,30 +1,33 @@
 .spot-listing-delete-btn {
-    background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
-    width: 74px;
-    height: 32px;
+    display: inline-block;
+    width: 78px;
     font-size: 14px;
     line-height: 18px;
     font-weight: 600;
-    padding: 7px 12px;
+    text-align: center;
+    text-decoration: none;
+    padding: 7px 15px;
     border-radius: 8px;
-    border: none;
-    color: #FFFFFF;
+    border: 1px solid #222222;
+    -webkit-tap-highlight-color: transparent;
+    background: #FFFFFF;
+    cursor: pointer;
     position: absolute;
     right: 12px;
-    top: 56px;
+    top: 100px;
     z-index: 1;
-    cursor: pointer;
-    box-sizing: border-box;
+    outline: none;
+    touch-action: manipulation;
     transition: all 0.2s ease-in-out;
 }
 
 .spot-listing-delete-btn:hover {
-    background: linear-gradient(to left, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+    background: #F7F7F7;
 }
 
 .spot-listing-delete-btn:active {
+    background: #DDDDDD;
     transform: scale(0.96);
-    background: linear-gradient(to right, #FF385C 100%, #E31C5F 50%, #D70466 0%);
 }
 
 .spot-delete-modal-container-open {

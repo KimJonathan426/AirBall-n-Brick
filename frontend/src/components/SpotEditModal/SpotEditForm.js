@@ -4,15 +4,15 @@ import { updateSpot } from '../../store/spotReducer';
 import { ReactComponent as ClearX } from '../../images/clear-x-thin.svg';
 import TagsEdit from '../HostSpot/Steps/Step1Tags/TagsEdit';
 import LocationEdit from '../HostSpot/Steps/Step1Location/LocationEdit';
-import './SpotEditForm.css';
 import AmenitiesEdit from '../HostSpot/Steps/Step2Amenities/AmenitiesEdit';
 import TypeEdit from '../HostSpot/Steps/Step1Type/TypeEdit';
 import DescriptionEdit from '../HostSpot/Steps/Step2Description/DescriptionEdit';
 import TitleEdit from '../HostSpot/Steps/Step2Title/TitleEdit';
 import PriceEdit from '../HostSpot/Steps/Step3Price/PriceEdit';
+import './SpotEditForm.css';
 
 const SpotEditForm2 = ({ spot, closeModal, setCloseModal, setUpdateState }) => {
-    console.log('spot', spot)
+
     const dispatch = useDispatch();
 
     const [modalClass, setModalClass] = useState('spot-edit-modal-container-open');
