@@ -15,19 +15,19 @@ const SpotList = () => {
     const spots = useSelector(state => state.spot);
     const reviews = useSelector(state => state.review)
 
-    const [filter, setFilter] = useState('all');
+    const [filter, setFilter] = useState('All');
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
-            await dispatch(getSpots());
+            await dispatch(getSpots(filter));
             await dispatch(getReviewAvg());
 
             setLoading(true);
         }
 
         fetchData();
-    }, [dispatch]);
+    }, [dispatch, filter]);
 
     const spotArray = Object.values(spots.spots);
     const imageArray = Object.values(spots.images);

@@ -6,10 +6,26 @@ const { User, Spot, Image, Review, Booking, Tag, Amenity } = require('../../db/m
 
 const router = express.Router();
 
-router.get('/', asyncHandler(async (_req, res) => {
-    const spots = await Spot.findAll({
-        include: [User]
-    });
+router.get('/:filter', asyncHandler(async (req, res) => {
+    const filter = req.params.filter;
+
+    let spots;
+
+    if (filter === 'All') {
+        spots = await Spot.findAll({
+            include: [User]
+        });
+    } else {
+        spots = await Spot.findAll({
+            include: [
+                {
+                    model: Tag,
+                    where: { name: filter },
+                },
+                { model: User },
+            ],
+        });
+    };
 
     const images = [];
 

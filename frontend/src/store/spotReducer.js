@@ -61,8 +61,8 @@ const actionDeleteImage = (imageId) => {
 
 
 // Thunks
-export const getSpots = () => async (dispatch) => {
-    const response = await csrfFetch('/api/spots');
+export const getSpots = (filter) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${filter}`);
 
     if (response.ok) {
         const data = await response.json();

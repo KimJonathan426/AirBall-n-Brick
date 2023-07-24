@@ -92,10 +92,10 @@ const SpotFilterTag = ({ filter, setFilter }) => {
                 className="filter-list"
             >
                 <SwiperSlide>
-                    <div className={filter === 'all' ? 'filter-tags-option-checked' : 'filter-tags-option'}>
-                        <button className='filter-tags-btn' onClick={() => setFilter('all')}>
+                    <div className={filter === 'All' ? 'filter-tags-option-checked' : 'filter-tags-option'}>
+                        <button className='filter-tags-btn' onClick={() => setFilter('All')}>
                             <ShowAll className='filter-tags-img' />
-                            <div className={filter === 'all' ? 'filter-tags-text-checked' : 'filter-tags-text'}>All spots</div>
+                            <div className={filter === 'All' ? 'filter-tags-text-checked' : 'filter-tags-text'}>All spots</div>
                         </button>
                     </div>
                 </SwiperSlide>
