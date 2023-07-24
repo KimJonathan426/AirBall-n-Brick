@@ -5,6 +5,7 @@
     padding: 0;
     position: fixed;
     bottom: 0px;
+    z-index: 1;
     left: calc(50% - 25vw + 48px);
     box-sizing: border-box;
 }
