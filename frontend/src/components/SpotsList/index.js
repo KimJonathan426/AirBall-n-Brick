@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getSpots } from '../../store/spotReducer';
 import { getReviewAvg } from '../../store/reviewReducer';
+import SpotFilterTag from './SpotFilterTag';
 import HomeImages from '../HomeImages';
 import ratingStar from '../../images/rating-star.svg';
 import Loading from '../Loading';
@@ -14,6 +15,7 @@ const SpotList = () => {
     const spots = useSelector(state => state.spot);
     const reviews = useSelector(state => state.review)
 
+    const [filter, setFilter] = useState('all');
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -44,6 +46,7 @@ const SpotList = () => {
 
     return (
         <div className='main-content-spots-list'>
+            <SpotFilterTag filter={filter} setFilter={setFilter} />
             {loading ?
                 <div className='spots-list-container'>
                     {spotArray.map((spot) => (
