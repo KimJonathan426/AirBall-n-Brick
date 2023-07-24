@@ -84,21 +84,14 @@
 }
 
 @media screen and (max-width: 743px) {
-
-    .general-error-container {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        padding: 0 24px;
-        left: 0;
-    }
-
     .general-error-container-on,
     .general-error-container-off {
-        display: flex;
-        justify-content: center;
+        width: 80%;
+        left: 10%;
+    }
+
+    .general-error-container-inner {
         width: 100%;
-        left: 0;
     }
 }
 
@@ -117,6 +110,7 @@
 
 @keyframes errorAnimationUnmount {
     0% {
+        display: block;
         opacity: 1;
         bottom: 98px;
         transform: none;
@@ -125,5 +119,6 @@
     100% {
         opacity: 0;
         bottom: 0px;
+        display: none;
     }
 }
