@@ -13,7 +13,7 @@ _For a link to the AirBallnBrick wiki, click here: [Wiki](https://github.com/Kim
   Home Page
 </h3>
 
-https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/1716b30a-f0e9-4bf2-923c-3bb7dac50018
+https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/f63151bc-9fc8-43f6-a9e8-e2dcfeb619b0
 
 
 <h3 align="center">
@@ -27,7 +27,14 @@ https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/8cc2e0a0-0021
   Spot Page
 </h3>
 
-https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/c064d987-2b84-4868-996d-a834b444eede
+![single-spot](https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/78fec1d8-8399-4442-b413-1f892ba249f7) | ![single-spot-responsive](https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/fbf40014-16ad-488c-8b7d-a8abc122ac85)
+:---------------------:|:----------------------:
+
+<h3 align="center">
+  Hosting Dashboard
+</h3>
+
+![hosting-dashboard](https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/7af5097d-f533-488d-84ce-ca25f7be4fe9)
 
 
 ## Instructions
