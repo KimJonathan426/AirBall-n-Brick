@@ -2,7 +2,7 @@
 
 _For a live version of AirBallnBrick, click here: [AirBallnBrick](https://airball-n-brick.herokuapp.com/)._
 
-AirBallnBrick is an Airbnb clone that allows users to discover, rent, and list a variety of different basketball courts around the world.
+AirBallnBrick is an Airbnb clone that allows users to discover, rent, and list a variety of different basketball courts around the world. The website is fully responsive and will dynamically change depending on the users current window/screen size.
 
 _For a link to the AirBallnBrick wiki, click here: [Wiki](https://github.com/KimJonathan426/AirBall-n-Brick/wiki)._
 
@@ -13,30 +13,39 @@ _For a link to the AirBallnBrick wiki, click here: [Wiki](https://github.com/Kim
   Home Page
 </h3>
 
-![Home Page](https://user-images.githubusercontent.com/100963461/177250785-1d8e7a41-ea4d-424f-a2a6-2a814ae50d19.PNG)
+https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/97f07989-95d9-40e5-b677-bf8af77cfd56
 
 
 <h3 align="center">
   Host Court Form
 </h3>
 
-![Host Court](https://user-images.githubusercontent.com/100963461/177251572-19d8666a-fc4c-4519-a258-7960099682cc.PNG)
+https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/8cc2e0a0-0021-4a9c-a2dc-c78c542d161e
 
 
 <h3 align="center">
   Spot Page
 </h3>
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/100963461/177252214-791f915a-d415-4eb5-baac-2372139dd035.PNG" />
-</p>
+![single-spot](https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/78fec1d8-8399-4442-b413-1f892ba249f7) | ![single-spot-responsive](https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/fbf40014-16ad-488c-8b7d-a8abc122ac85) | ![booking-form-responsive](https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/47581a07-deb9-47be-93fa-a0b37b584cec)
+:---------------------:|:----------------------:|:----------------------:
+
+<h3 align="center">
+  Hosting Dashboard
+</h3>
+
+![hosting-dashboard](https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/7af5097d-f533-488d-84ce-ca25f7be4fe9)
 
 
 ## Instructions
 1. Clone the repo
 2. Open two terminals and cd into the frontend directory on one, and cd into the backend directory on the other
 3. Run an npm install on both directories
-4. Input the command "npm start" into each terminal to start the project locally
+4. Add corresponding environment variables
+5. cd into backend
+6. npx dotenv sequelize-cli db:migrate
+7. npx dotenv sequelize-cli db:seed:all
+8. Input the command "npm start" into each terminal to start the project locally
 
 
 ## Technologies Used
@@ -46,12 +55,17 @@ _For a link to the AirBallnBrick wiki, click here: [Wiki](https://github.com/Kim
 - Express
 - PostgreSQL
 - Heroku
+- Google OAuth 2.0
+- Google Maps API
+- Google Places API
+- Google Geocoder API
+- HTML Drag and Drop API
+- crypto.js
+- swiper.js
+- Blender v3.6.1
 
 
 ## Future Implementations
-- Include update operation for review feature
-- Include a bookings feature
-- Include an image feature separate from the spot form with full CRUD
-- Custom radio buttons to match stars
-- Implement edit forms as a modal
-- Implement a confirmation requirement for delete buttons
+- Skeleton loading pages
+- Host spot form with saved state
+- Custom radio buttons to match stars w/ updated review modal
