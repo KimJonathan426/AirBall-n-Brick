@@ -1,5 +1,3 @@
-
-https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/8cc2e0a0-0021-4a9c-a2dc-c78c542d161e
 # AirBallnBrick
 
 _For a live version of AirBallnBrick, click here: [AirBallnBrick](https://airball-n-brick.herokuapp.com/)._
@@ -15,21 +13,21 @@ _For a link to the AirBallnBrick wiki, click here: [Wiki](https://github.com/Kim
   Home Page
 </h3>
 
-![Home Page](https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/1716b30a-f0e9-4bf2-923c-3bb7dac50018)
+https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/1716b30a-f0e9-4bf2-923c-3bb7dac50018
 
 
 <h3 align="center">
   Host Court Form
 </h3>
 
-![Host Court](https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/b57323f5-5252-4e1b-90d1-4bd4778b94ff)
+https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/8cc2e0a0-0021-4a9c-a2dc-c78c542d161e
 
 
 <h3 align="center">
   Spot Page
 </h3>
 
-![single-spot](https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/c064d987-2b84-4868-996d-a834b444eede)
+https://github.com/KimJonathan426/AirBall-n-Brick/assets/100963461/c064d987-2b84-4868-996d-a834b444eede
 
 
 ## Instructions
